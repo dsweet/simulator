@@ -48,20 +48,19 @@ function App() {
   };
 
   const handleYearComplete = () => {
-    setScreen('year-rating');
+    if (currentYear < 2) {
+      // Skip rating after year 1, go straight to year 2
+      setCurrentYear(prev => prev + 1);
+      setScreen('course-planner');
+    } else {
+      setScreen('year-rating');
+    }
   };
 
   const handleRatingSubmit = (rating: import('./types').YearRating) => {
     const newState = addYearRating(gameState, gameState.currentRun!, rating);
     updateState(newState);
-
-    if (currentYear >= 2) {
-      // Can continue or go to outcomes
-      setScreen('outcomes');
-    } else {
-      setCurrentYear(prev => prev + 1);
-      setScreen('course-planner');
-    }
+    setScreen('outcomes');
   };
 
   const handleContinueYear = () => {
