@@ -74,6 +74,17 @@ export function startRun(state: GameState, schoolId: string): GameState {
   };
 }
 
+export function rewindToTerm(state: GameState, schoolId: string, keepTermCount: number): GameState {
+  return {
+    ...state,
+    runs: state.runs.map(run =>
+      run.schoolId === schoolId
+        ? { ...run, termSelections: run.termSelections.slice(0, keepTermCount) }
+        : run
+    ),
+  };
+}
+
 export function addTermSelection(state: GameState, schoolId: string, term: TermSelection): GameState {
   return {
     ...state,

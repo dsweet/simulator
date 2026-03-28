@@ -4,7 +4,7 @@ import { getCurriculum } from '../data/curricula/index';
 import { studentProfile } from '../data/student';
 import { creditPolicies } from '../data/creditPolicies';
 import { evaluateCredits } from '../engine/creditEvaluator';
-import { addTermSelection } from '../engine/gameState';
+import { addTermSelection, rewindToTerm } from '../engine/gameState';
 import { checkPrereqs } from '../engine/progressTracker';
 import DegreeProgress from './DegreeProgress';
 
@@ -34,10 +34,14 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [hasPrePopulated, setHasPrePopulated] = useState(false);
+  // Stashed future terms when rewinding (so we can restore previous selections)
+  const [stashedTerms, setStashedTerms] = useState<Array<{ termLabel: string; courses: string[] }>>([]);
 
   const termLabels = getTermLabels(school.calendar, year);
   const currentTerm = termLabels[currentTermIndex];
   const maxCourses = school.calendar === 'quarter' ? 4 : 5;
+  const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
+  const termsFromPriorYears = (year - 1) * termsPerYear;
 
   // Credit summary for degree progress
   const policy = creditPolicies.find(p => p.schoolId === school.id);
@@ -77,14 +81,28 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
 
   const previouslyTakenIds = useMemo(() => Array.from(previouslyTaken), [previouslyTaken]);
 
-  // Pre-populate from recommended sequence when term changes
+  // Pre-populate from stashed terms (rewind) or recommended sequence
   useEffect(() => {
-    if (!curriculum?.recommendedSequence || hasPrePopulated) return;
+    if (!curriculum || hasPrePopulated) return;
 
-    const recTerm = curriculum.recommendedSequence.terms.find(t => t.termLabel === currentTerm);
-    if (!recTerm) return;
+    // First check stashed terms (from rewind)
+    const stashed = stashedTerms.find(t => t.termLabel === currentTerm);
+    if (stashed) {
+      // Restore previous selections, filtering out courses no longer in catalog or already taken
+      const validCourses = stashed.courses.filter(
+        id => curriculum.courses.some(c => c.id === id) && !previouslyTaken.has(id)
+      );
+      setSelectedCourses(validCourses);
+      setLockedSlots(validCourses.map(() => false));
+      setSlotLabels(validCourses.map(() => ''));
+      setHasPrePopulated(true);
+      return;
+    }
 
-    // Filter out courses already taken
+    // Fall back to recommended sequence
+    const recTerm = curriculum.recommendedSequence?.terms.find(t => t.termLabel === currentTerm);
+    if (!recTerm) { setHasPrePopulated(true); return; }
+
     const validCourses: string[] = [];
     const validLocked: boolean[] = [];
     const validLabels: string[] = [];
@@ -102,7 +120,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
     setLockedSlots(validLocked);
     setSlotLabels(validLabels);
     setHasPrePopulated(true);
-  }, [curriculum, currentTerm, previouslyTaken, hasPrePopulated]);
+  }, [curriculum, currentTerm, previouslyTaken, hasPrePopulated, stashedTerms]);
 
   // Reset pre-population flag when term changes
   useEffect(() => {
@@ -162,6 +180,25 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
     setHasPrePopulated(false);
   };
 
+  // How many terms in this year have been confirmed (saved to game state)
+  const confirmedTermsThisYear = run.termSelections.length - termsFromPriorYears;
+
+  const handleGoToTerm = (termIndex: number) => {
+    if (termIndex >= confirmedTermsThisYear) return;
+    // Stash future terms (from the clicked term onward) so we can restore them
+    const futureTerms = run.termSelections.slice(termsFromPriorYears + termIndex);
+    setStashedTerms(futureTerms);
+    // Rewind game state
+    const keepCount = termsFromPriorYears + termIndex;
+    const newState = rewindToTerm(gameState, school.id, keepCount);
+    onUpdateState(newState);
+    setCurrentTermIndex(termIndex);
+    setSelectedCourses([]);
+    setLockedSlots([]);
+    setSlotLabels([]);
+    setHasPrePopulated(false);
+  };
+
   const handleConfirmTerm = () => {
     const newState = addTermSelection(gameState, school.id, {
       termLabel: currentTerm,
@@ -187,11 +224,20 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
       <div className="planner-header">
         <h2>{run.alias} — {currentTerm}</h2>
         <div className="term-progress">
-          {termLabels.map((label, i) => (
-            <span key={label} className={`term-dot ${i < currentTermIndex ? 'done' : i === currentTermIndex ? 'active' : ''}`}>
-              {label}
-            </span>
-          ))}
+          {termLabels.map((label, i) => {
+            const isDone = i < confirmedTermsThisYear && i !== currentTermIndex;
+            const isActive = i === currentTermIndex;
+            const canClick = i < confirmedTermsThisYear && i !== currentTermIndex;
+            return (
+              <span
+                key={label}
+                className={`term-dot ${isDone ? 'done' : ''} ${isActive ? 'active' : ''} ${canClick ? 'clickable' : ''}`}
+                onClick={canClick ? () => handleGoToTerm(i) : undefined}
+              >
+                {label}
+              </span>
+            );
+          })}
         </div>
       </div>
 
@@ -212,7 +258,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
                 onChange={e => setCategoryFilter(e.target.value || null)}
                 className="filter-select"
               >
-                <option value="">All categories</option>
+                <option value="">Filter by category...</option>
                 <option value="major-required">Major Required</option>
                 <option value="major-elective">Major Elective</option>
                 <option value="gen-ed">Gen-Ed</option>
@@ -224,7 +270,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
                 onChange={e => setInterestFilter(e.target.value || null)}
                 className="filter-select"
               >
-                <option value="">All interests</option>
+                <option value="">Filter by interest...</option>
                 {INTEREST_TAGS.map(tag => (
                   <option key={tag.id} value={tag.id}>{tag.label}</option>
                 ))}
@@ -278,19 +324,28 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
           <h3>Your {currentTerm} Schedule</h3>
           <p className="selection-count">{selectedCourses.length}/{maxCourses} courses · {totalSelectedCredits} credits</p>
 
-          {selectedCourseObjects.map((course, idx) => (
-            <div key={course.id} className={`selected-course ${lockedSlots[idx] ? 'slot-locked' : ''}`}>
-              <div>
-                <span className="course-id">{course.id}</span>
-                <span className="course-title">{course.title}</span>
-                {lockedSlots[idx] && <span className="lock-icon">🔒</span>}
-                {slotLabels[idx] && <div className="slot-label">{slotLabels[idx]}</div>}
+          {selectedCourseObjects.map((course, idx) => {
+            const prereqCheck = checkPrereqs(course, [...previouslyTakenIds]);
+            const hasBrokenPrereq = !prereqCheck.met;
+            return (
+              <div key={course.id} className={`selected-course ${lockedSlots[idx] ? 'slot-locked' : ''} ${hasBrokenPrereq ? 'prereq-broken' : ''}`}>
+                <div>
+                  <span className="course-id">{course.id}</span>
+                  <span className="course-title">{course.title}</span>
+                  {lockedSlots[idx] && <span className="lock-icon">🔒</span>}
+                  {slotLabels[idx] && <div className="slot-label">{slotLabels[idx]}</div>}
+                  {hasBrokenPrereq && (
+                    <div className="prereq-broken-notice">
+                      Missing prereqs: {prereqCheck.missing.join(', ')}
+                    </div>
+                  )}
+                </div>
+                {!lockedSlots[idx] && (
+                  <button className="remove-btn" onClick={() => handleRemoveCourse(course.id)}>✕</button>
+                )}
               </div>
-              {!lockedSlots[idx] && (
-                <button className="remove-btn" onClick={() => handleRemoveCourse(course.id)}>✕</button>
-              )}
-            </div>
-          ))}
+            );
+          })}
 
           {selectedCourses.length === 0 && (
             <p className="empty-slate">Click courses from the catalog to add them to your schedule</p>
