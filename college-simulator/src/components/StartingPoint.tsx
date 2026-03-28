@@ -175,19 +175,19 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
           <div className="credit-details">
             {creditSummary.results.map((result, i) => (
               <div key={i} className={`credit-row ${result.creditsAwarded > 0 ? 'awarded' : 'denied'}`}>
-                <span className="exam-name">
-                  {result.examName}
-                  {result.isPending && <span className="pending-badge">pending</span>}
-                </span>
-                <span className="score">Score: {result.score}</span>
-                <span className="credits">+{result.creditsAwarded} credits</span>
-                {(result.courseEquivalent || result.courseDescription) && (
-                  <span className="equivalent has-tooltip">
-                    {result.courseEquivalent ? `= ${result.courseEquivalent}` : ''}
-                    {result.courseDescription && (
-                      <span className="credit-tooltip">{result.courseDescription}</span>
-                    )}
+                <div className="credit-row-main">
+                  <span className="exam-name">
+                    {result.examName}
+                    {result.isPending && <span className="pending-badge">pending</span>}
                   </span>
+                  <span className="score">Score: {result.score}</span>
+                  <span className="credits">+{result.creditsAwarded} credits</span>
+                </div>
+                {result.creditsAwarded > 0 && (result.courseEquivalent || result.courseDescription) && (
+                  <div className="credit-row-detail">
+                    {result.courseEquivalent && <span className="course-equiv">{result.courseEquivalent}</span>}
+                    {result.courseDescription && <span className="course-desc"> — {result.courseDescription}</span>}
+                  </div>
                 )}
               </div>
             ))}
