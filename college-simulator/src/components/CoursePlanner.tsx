@@ -43,14 +43,37 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   const policy = creditPolicies.find(p => p.schoolId === school.id);
   const creditSummary = policy ? evaluateCredits(studentProfile, policy) : null;
 
+  // Course IDs the student already has credit for via AP/IB
+  const creditedCourseIds = useMemo(() => {
+    if (!creditSummary || !curriculum) return new Set<string>();
+    const ids = new Set<string>();
+    const catalogIds = new Set(curriculum.courses.map(c => c.id));
+    for (const result of creditSummary.results) {
+      if (result.creditsAwarded <= 0 || !result.courseEquivalent) continue;
+      // courseEquivalent may be "MATH 124/125" — split on "/" and normalize
+      const parts = result.courseEquivalent.split('/').map(p => p.trim());
+      const prefix = parts[0].replace(/\s*\d+.*$/, ''); // e.g., "MATH"
+      for (const part of parts) {
+        const full = part.includes(prefix) ? part : `${prefix} ${part}`;
+        const normalized = full.replace(/\s+/g, '').toUpperCase();
+        if (catalogIds.has(normalized)) {
+          ids.add(normalized);
+        }
+      }
+    }
+    return ids;
+  }, [creditSummary, curriculum]);
+
   // Courses already taken in previous terms
   const previouslyTaken = useMemo(() => {
     const taken = new Set<string>();
     for (const term of run.termSelections) {
       term.courses.forEach(c => taken.add(c));
     }
+    // Also include courses already credited via AP/IB
+    creditedCourseIds.forEach(id => taken.add(id));
     return taken;
-  }, [run.termSelections]);
+  }, [run.termSelections, creditedCourseIds]);
 
   const previouslyTakenIds = useMemo(() => Array.from(previouslyTaken), [previouslyTaken]);
 
