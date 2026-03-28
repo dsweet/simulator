@@ -14,7 +14,7 @@ export const studentProfile: StudentProfile = {
   ],
   ibDiploma: true,
   assumedScores: {
-    hlDefault: 6,
+    hlDefault: 5,
     slDefault: 5,
   },
 };

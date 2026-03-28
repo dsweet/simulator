@@ -3,6 +3,7 @@ import { School, ExamScore } from '../types';
 import { studentProfile } from '../data/student';
 import { creditPolicies } from '../data/creditPolicies';
 import { evaluateCredits } from '../engine/creditEvaluator';
+import { getCurriculum } from '../data/curricula/index';
 
 interface Props {
   school: School;
@@ -42,8 +43,47 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
 
   const policy = creditPolicies.find(p => p.schoolId === school.id);
   const creditSummary = policy ? evaluateCredits(adjustedProfile, policy) : null;
+  const curriculum = getCurriculum(school.id);
 
   const pendingExams = studentProfile.exams.filter(e => e.score === null);
+
+  // Compute degree context metrics
+  const degreeContext = useMemo(() => {
+    if (!curriculum || !creditSummary) return null;
+    const { degreeRequirements } = curriculum;
+    const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
+    const creditsPerYear = degreeRequirements.totalCredits / 4; // 4-year degree
+    const yearsWorth = creditSummary.totalCredits / creditsPerYear;
+
+    // Find which major-required courses are satisfied by AP/IB credit
+    // courseEquivalent is like "STAT 290" and majorCourses has "STAT290" — normalize both
+    const normalize = (s: string) => s.replace(/\s+/g, '').toUpperCase();
+    const majorCourseIds = new Set(degreeRequirements.majorCourses.map(normalize));
+    const satisfiedMajorCourses: { examName: string; courseEquivalent: string }[] = [];
+    for (const result of creditSummary.results) {
+      if (result.creditsAwarded > 0 && result.courseEquivalent) {
+        // courseEquivalent might be "MATH 124/125" — check each part
+        const parts = result.courseEquivalent.split('/').map(p => p.trim());
+        // For "MATH 124/125", first part is "MATH 124", second is just "125" — expand
+        const prefix = parts[0].replace(/\s*\d+.*$/, ''); // e.g., "MATH"
+        for (const part of parts) {
+          const full = part.includes(prefix) ? part : `${prefix} ${part}`;
+          if (majorCourseIds.has(normalize(full))) {
+            satisfiedMajorCourses.push({ examName: result.examName, courseEquivalent: full });
+          }
+        }
+      }
+    }
+
+    return {
+      totalCredits: degreeRequirements.totalCredits,
+      majorCredits: degreeRequirements.majorCredits,
+      creditsPerYear,
+      termsPerYear,
+      yearsWorth,
+      satisfiedMajorCourses,
+    };
+  }, [curriculum, creditSummary, school.calendar]);
 
   const handleScoreChange = (exam: ExamScore, newScore: number) => {
     setScoreOverrides(prev => ({ ...prev, [examKey(exam)]: newScore }));
@@ -107,11 +147,29 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
         </div>
       )}
 
-      {creditSummary && (
+      {creditSummary && degreeContext && (
         <div className="credit-summary">
+          <h3>Degree Requirements at This School</h3>
+          <div className="degree-overview">
+            <div className="degree-stat">
+              <span className="degree-stat-value">{degreeContext.totalCredits}</span>
+              <span className="degree-stat-label">total credits to graduate</span>
+            </div>
+            <div className="degree-stat">
+              <span className="degree-stat-value">{degreeContext.majorCredits}</span>
+              <span className="degree-stat-label">credits in the major</span>
+            </div>
+            <div className="degree-stat">
+              <span className="degree-stat-value">{degreeContext.creditsPerYear}</span>
+              <span className="degree-stat-label">credits per year (typical)</span>
+            </div>
+          </div>
+
           <h3>Your AP/IB Credits at This School</h3>
           <p className="credit-headline">
-            You're walking in with <strong>{creditSummary.totalCredits} credits</strong> already earned
+            You're walking in with <strong>{creditSummary.totalCredits} credits</strong> already
+            earned — that's <strong>{degreeContext.yearsWorth.toFixed(2)} years</strong> worth
+            of coursework ({Math.round((creditSummary.totalCredits / degreeContext.totalCredits) * 100)}% of your degree).
           </p>
 
           <div className="credit-details">
@@ -125,7 +183,7 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
                 <span className="credits">+{result.creditsAwarded} credits</span>
                 {(result.courseEquivalent || result.courseDescription) && (
                   <span className="equivalent has-tooltip">
-                    {result.courseEquivalent ? `= ${result.courseEquivalent}` : '📋'}
+                    {result.courseEquivalent ? `= ${result.courseEquivalent}` : ''}
                     {result.courseDescription && (
                       <span className="credit-tooltip">{result.courseDescription}</span>
                     )}
@@ -142,6 +200,17 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
               </div>
             )}
           </div>
+
+          {degreeContext.satisfiedMajorCourses.length > 0 && (
+            <div className="satisfied-major">
+              <h4>Required Degree Courses Satisfied</h4>
+              <div className="gened-chips">
+                {degreeContext.satisfiedMajorCourses.map((c, i) => (
+                  <span key={i} className="gened-chip major-chip">✓ {c.courseEquivalent} <span className="chip-source">({c.examName})</span></span>
+                ))}
+              </div>
+            </div>
+          )}
 
           {creditSummary.satisfiedGenEds.length > 0 && (
             <div className="satisfied-geneds">
