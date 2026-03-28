@@ -128,6 +128,12 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
     setHasPrePopulated(true);
   }, [curriculum, currentTerm, previouslyTaken, hasPrePopulated, stashedTerms]);
 
+  // Reset term index when year changes (e.g., year 1 → year 2)
+  useEffect(() => {
+    setCurrentTermIndex(0);
+    setHasPrePopulated(false);
+  }, [year]);
+
   // Reset pre-population flag when term changes
   useEffect(() => {
     setHasPrePopulated(false);
