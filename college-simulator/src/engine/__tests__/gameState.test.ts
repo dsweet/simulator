@@ -156,11 +156,12 @@ describe('getCompletedRunCount', () => {
 });
 
 describe('getAvailableSchools', () => {
-  it('excludes already-played schools', () => {
+  it('always returns all schools in the track', () => {
     let s = startRun(state, 'ups');
+    s = { ...s, runs: s.runs.map(r => r.schoolId === 'ups' ? { ...r, completed: true } : r) };
     const available = getAvailableSchools(s, 'economics');
-    expect(available).not.toContain('ups');
-    expect(available.length).toBe(4); // 5 econ schools - 1 played
+    expect(available).toContain('ups');
+    expect(available.length).toBe(5);
   });
 
   it('returns only schools matching the track', () => {

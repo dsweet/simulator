@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { GameState, Track } from './types';
-import { loadState, saveState, startRun, rollRandomSchool, getCompletedRunCount, canPeek, canFullReveal, addYearRating, resetState } from './engine/gameState';
+import { loadState, saveState, startRun, rollRandomSchool, getCompletedRunCount, canPeek, canFullReveal, addYearRating, resetState, cleanupAbandonedRuns } from './engine/gameState';
 import { schools } from './data/schools';
 import TrackSelection from './components/TrackSelection';
 import StartingPoint from './components/StartingPoint';
@@ -14,7 +14,12 @@ import './App.css';
 type Screen = 'track-selection' | 'starting-point' | 'course-planner' | 'year-rating' | 'outcomes' | 'reveal' | 'comparison';
 
 function App() {
-  const [gameState, setGameState] = useState<GameState>(loadState);
+  const [gameState, setGameState] = useState<GameState>(() => {
+    const loaded = loadState();
+    const cleaned = cleanupAbandonedRuns(loaded);
+    if (cleaned !== loaded) saveState(cleaned);
+    return cleaned;
+  });
   const [screen, setScreen] = useState<Screen>('track-selection');
   const [currentYear, setCurrentYear] = useState(1);
 
@@ -83,6 +88,7 @@ function App() {
   };
 
   const handleBackToTracks = () => {
+    updateState(cleanupAbandonedRuns(gameState));
     setScreen('track-selection');
   };
 
@@ -98,7 +104,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 onClick={() => setScreen('track-selection')} style={{ cursor: 'pointer' }}>
+        <h1 onClick={() => { updateState(cleanupAbandonedRuns(gameState)); setScreen('track-selection'); }} style={{ cursor: 'pointer' }}>
           College Experience Simulator
         </h1>
         <div className="header-stats">

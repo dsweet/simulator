@@ -1,5 +1,5 @@
 import { GameState, Track } from '../types';
-import { getAvailableSchools, canPeek, canFullReveal, getCompletedRunCount } from '../engine/gameState';
+import { getUnplayedSchools, canPeek, canFullReveal, getCompletedRunCount } from '../engine/gameState';
 
 interface Props {
   gameState: GameState;
@@ -10,8 +10,8 @@ interface Props {
 }
 
 export default function TrackSelection({ gameState, onSelectTrack, onReset, onPeek, onFullReveal }: Props) {
-  const engineAvailable = getAvailableSchools(gameState, 'engineering-design');
-  const econAvailable = getAvailableSchools(gameState, 'economics');
+  const engineUnplayed = getUnplayedSchools(gameState, 'engineering-design');
+  const econUnplayed = getUnplayedSchools(gameState, 'economics');
   const completedCount = getCompletedRunCount(gameState);
 
   const completedRuns = gameState.runs.filter(r => r.completed);
@@ -29,32 +29,30 @@ export default function TrackSelection({ gameState, onSelectTrack, onReset, onPe
 
       <div className="tracks">
         <button
-          className={`track-card ${engineAvailable.length === 0 ? 'exhausted' : ''}`}
+          className="track-card"
           onClick={() => onSelectTrack('engineering-design')}
-          disabled={engineAvailable.length === 0}
         >
           <div className="track-icon">🎨</div>
           <h3>Engineering & Design Track</h3>
           <p>Human-centered design, UX research, interaction design, prototyping, design thinking</p>
           <div className="track-meta">
-            {engineAvailable.length > 0
-              ? `${engineAvailable.length} school to explore`
-              : 'All schools explored ✓'}
+            {engineUnplayed.length > 0
+              ? `${engineUnplayed.length} new school to explore`
+              : 'All schools explored — replay to try different courses'}
           </div>
         </button>
 
         <button
-          className={`track-card ${econAvailable.length === 0 ? 'exhausted' : ''}`}
+          className="track-card"
           onClick={() => onSelectTrack('economics')}
-          disabled={econAvailable.length === 0}
         >
           <div className="track-icon">📊</div>
           <h3>Economics Track</h3>
           <p>Microeconomics, macroeconomics, econometrics, game theory, policy analysis, finance</p>
           <div className="track-meta">
-            {econAvailable.length > 0
-              ? `${econAvailable.length} school${econAvailable.length > 1 ? 's' : ''} to explore`
-              : 'All schools explored ✓'}
+            {econUnplayed.length > 0
+              ? `${econUnplayed.length} new school${econUnplayed.length > 1 ? 's' : ''} to explore`
+              : 'All schools explored — replay to try different courses'}
           </div>
         </button>
       </div>

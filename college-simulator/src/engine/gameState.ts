@@ -25,16 +25,30 @@ export function saveState(state: GameState): void {
 }
 
 export function getAvailableSchools(state: GameState, track: 'engineering-design' | 'economics'): string[] {
-  const playedIds = state.runs.map(r => r.schoolId);
   return schools
-    .filter(s => s.track === track && !playedIds.includes(s.id))
+    .filter(s => s.track === track)
     .map(s => s.id);
 }
 
+export function getUnplayedSchools(state: GameState, track: 'engineering-design' | 'economics'): string[] {
+  const completedIds = new Set(state.runs.filter(r => r.completed).map(r => r.schoolId));
+  return schools
+    .filter(s => s.track === track && !completedIds.has(s.id))
+    .map(s => s.id);
+}
+
+export function cleanupAbandonedRuns(state: GameState): GameState {
+  const cleaned = state.runs.filter(r => r.completed);
+  if (cleaned.length === state.runs.length) return state;
+  return { ...state, runs: cleaned, currentRun: undefined };
+}
+
 export function rollRandomSchool(state: GameState, track: 'engineering-design' | 'economics'): string | null {
-  const available = getAvailableSchools(state, track);
-  if (available.length === 0) return null;
-  return available[Math.floor(Math.random() * available.length)];
+  // Prefer unplayed schools, but allow replays of completed ones
+  const unplayed = getUnplayedSchools(state, track);
+  const pool = unplayed.length > 0 ? unplayed : getAvailableSchools(state, track);
+  if (pool.length === 0) return null;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
 export function getNextAlias(state: GameState): string {
