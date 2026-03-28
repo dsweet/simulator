@@ -21,7 +21,7 @@ export const richmondEcon: Curriculum = {
       { id: 'historical', name: 'Historical Studies (HS)', creditsRequired: 2, satisfiedBy: ['HIST100', 'HIST201', 'HIST230'] },
       { id: 'arts', name: 'Visual & Performing Arts (VPA)', creditsRequired: 1, satisfiedBy: ['ART101', 'ART130', 'MUSC100', 'THTR100'] },
       { id: 'diversity', name: 'Diverse Perspectives', creditsRequired: 2, satisfiedBy: ['AMST250', 'ENGL260', 'HIST245'] },
-      { id: 'foreign-language', name: 'Foreign Language', creditsRequired: 2, satisfiedBy: [] },
+      { id: 'foreign-language', name: 'Foreign Language', creditsRequired: 2, satisfiedBy: ['JAPN101', 'JAPN102', 'JAPN201', 'JAPN202', 'SPAN101', 'SPAN102', 'FREN101', 'FREN102'] },
     ],
   },
   recommendedSequence: {
@@ -91,9 +91,9 @@ export const richmondEcon: Curriculum = {
     { id: 'ART370', title: 'Visual Communication & Branding', description: 'Building cohesive visual identities. Logo systems, brand guidelines, packaging, and environmental graphics. Client-based studio projects.', credits: 1, category: 'elective', interestTags: ['design'], prereqs: ['ART160'], genEdReqs: [] },
 
     // ===== ASTRONOMY / SPACE =====
-    { id: 'ASTR130', title: 'Introduction to Astronomy', description: 'Tour of the universe: solar system, stars, galaxies, and cosmology. Nighttime observatory sessions on campus.', credits: 1, category: 'elective', interestTags: ['astronomy', 'space'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'PHYS101', title: 'General Physics I', description: 'Mechanics, waves, and thermodynamics. Algebra-based with lab. Foundation for understanding physical sciences.', credits: 1, category: 'elective', interestTags: ['space'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'PHYS102', title: 'General Physics II', description: 'Electricity, magnetism, optics, and modern physics. Laboratory included.', credits: 1, category: 'elective', interestTags: ['space'], prereqs: ['PHYS101'], genEdReqs: ['natural-science'] },
+    { id: 'ASTR130', title: 'Introduction to Astronomy', description: 'Tour of the universe: solar system, stars, galaxies, and cosmology. Nighttime observatory sessions on campus.', credits: 1, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
+    { id: 'PHYS101', title: 'General Physics I', description: 'Mechanics, waves, and thermodynamics. Algebra-based with lab. Foundation for understanding physical sciences.', credits: 1, category: 'elective', interestTags: ['space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
+    { id: 'PHYS102', title: 'General Physics II', description: 'Electricity, magnetism, optics, and modern physics. Laboratory included.', credits: 1, category: 'elective', interestTags: ['space', 'science'], prereqs: ['PHYS101'], genEdReqs: ['natural-science'] },
 
     // ===== HISTORY =====
     { id: 'HIST100', title: 'Introduction to Historical Thinking', description: 'How historians work: primary sources, interpretation, context, and constructing historical arguments.', credits: 1, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['historical'] },
@@ -127,13 +127,23 @@ export const richmondEcon: Curriculum = {
     { id: 'RHCS240', title: 'Russian Literature', description: 'Dostoevsky, Tolstoy, Chekhov, Bulgakov. The Russian tradition: moral philosophy through fiction.', credits: 1, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['literary-studies'] },
     { id: 'ENGL275', title: 'World Literature', description: 'Voices from across the globe: African, Latin American, Asian, and Middle Eastern literary traditions.', credits: 1, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['literary-studies'] },
 
+    // ===== FOREIGN LANGUAGE =====
+    { id: 'JAPN101', title: 'Elementary Japanese I', description: 'Introduction to spoken and written Japanese. Hiragana, katakana, basic grammar, and everyday conversation.', credits: 1, category: 'gen-ed', interestTags: ['cultural-studies'], prereqs: [], genEdReqs: ['foreign-language'] },
+    { id: 'JAPN102', title: 'Elementary Japanese II', description: 'Continuation of Japanese I. More grammar, reading, and writing. Introduction to kanji.', credits: 1, category: 'gen-ed', interestTags: ['cultural-studies'], prereqs: ['JAPN101'], genEdReqs: ['foreign-language'] },
+    { id: 'JAPN201', title: 'Intermediate Japanese I', description: 'Intermediate grammar, reading, and conversation. More complex kanji and written expression.', credits: 1, category: 'gen-ed', interestTags: ['cultural-studies'], prereqs: ['JAPN102'], genEdReqs: ['foreign-language'] },
+    { id: 'JAPN202', title: 'Intermediate Japanese II', description: 'Continued development of reading, writing, and speaking. Cultural topics and authentic materials.', credits: 1, category: 'gen-ed', interestTags: ['cultural-studies'], prereqs: ['JAPN201'], genEdReqs: ['foreign-language'] },
+    { id: 'SPAN101', title: 'Elementary Spanish I', description: 'Introduction to Spanish language and culture. Speaking, listening, reading, and writing fundamentals.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['foreign-language'] },
+    { id: 'SPAN102', title: 'Elementary Spanish II', description: 'Continuation of Spanish I. More complex grammar, vocabulary, and cultural exploration.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: ['SPAN101'], genEdReqs: ['foreign-language'] },
+    { id: 'FREN101', title: 'Elementary French I', description: 'Introduction to French language. Pronunciation, grammar, conversation, and Francophone cultures.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['foreign-language'] },
+    { id: 'FREN102', title: 'Elementary French II', description: 'Continuation of French I. Reading, writing, and oral expression with cultural content.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: ['FREN101'], genEdReqs: ['foreign-language'] },
+
     // ===== GENERAL ED OPTIONS =====
     { id: 'FYS100', title: 'First-Year Seminar', description: 'Small seminar introducing college-level thinking and writing. Topics vary by section. Class size capped at 16 students.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['writing'] },
     { id: 'PSYCH100', title: 'Introduction to Psychology', description: 'Scientific study of behavior and mental processes. Research methods, brain, learning, memory, and social behavior.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science'] },
     { id: 'SOC100', title: 'Introduction to Sociology', description: 'Social structures, institutions, inequality, and change. How society shapes individual experience.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science'] },
     { id: 'PLSC100', title: 'Introduction to Political Science', description: 'Political systems, institutions, and ideologies. American government, comparative politics, and international relations.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'BIOL100', title: 'Biology for Non-Majors', description: 'Genetics, evolution, ecology, and contemporary issues in biology. Laboratory included.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'CHEM101', title: 'General Chemistry I', description: 'Atomic theory, bonding, reactions, stoichiometry, and gases. Laboratory included.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['natural-science'] },
+    { id: 'BIOL100', title: 'Biology for Non-Majors', description: 'Genetics, evolution, ecology, and contemporary issues in biology. Laboratory included.', credits: 1, category: 'gen-ed', interestTags: ['science'], prereqs: [], genEdReqs: ['natural-science'] },
+    { id: 'CHEM101', title: 'General Chemistry I', description: 'Atomic theory, bonding, reactions, stoichiometry, and gases. Laboratory included.', credits: 1, category: 'gen-ed', interestTags: ['science'], prereqs: [], genEdReqs: ['natural-science'] },
     { id: 'MUSC100', title: 'Introduction to Music', description: 'Elements of music, historical periods, and diverse musical traditions. Concert attendance required.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['arts'] },
     { id: 'THTR100', title: 'Introduction to Theater', description: 'Theater as art form and cultural expression. Acting, design, and dramatic literature. Performance attendance.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['arts'] },
     { id: 'CSCI150', title: 'Introduction to Computing', description: 'Computational problem-solving with Python. Variables, loops, functions, and data manipulation.', credits: 1, category: 'elective', interestTags: ['video-games'], prereqs: [], genEdReqs: [] },

@@ -9,6 +9,11 @@ import {
   canFullReveal,
   getCompletedRunCount,
   getAvailableSchools,
+  getUnplayedSchools,
+  cleanupAbandonedRuns,
+  rewindToTerm,
+  rollRandomSchool,
+  resetState,
 } from '../gameState';
 import { GameState } from '../../types';
 
@@ -75,9 +80,6 @@ describe('addYearRating', () => {
     const rating = {
       year: 1,
       courseInterest: 4,
-      freedom: 3,
-      intellectualEngagement: 5,
-      pathMatch: 4,
       overallAppeal: 4,
       notes: 'Good year',
     };
@@ -167,5 +169,122 @@ describe('getAvailableSchools', () => {
   it('returns only schools matching the track', () => {
     const available = getAvailableSchools(state, 'engineering-design');
     expect(available).toEqual(['uw']);
+  });
+});
+
+describe('getUnplayedSchools', () => {
+  it('returns all schools when none completed', () => {
+    const unplayed = getUnplayedSchools(state, 'economics');
+    expect(unplayed.length).toBe(5);
+  });
+
+  it('excludes completed schools', () => {
+    let s = startRun(state, 'ups');
+    s = addOutcomeRating(s, 'ups', { appeal: 4, notes: '' });
+    const unplayed = getUnplayedSchools(s, 'economics');
+    expect(unplayed).not.toContain('ups');
+    expect(unplayed.length).toBe(4);
+  });
+
+  it('returns empty when all schools in track are completed', () => {
+    let s = state;
+    for (const id of ['ups', 'richmond', 'rochester', 'ucsd', 'ucla']) {
+      s = startRun(s, id);
+      s = addOutcomeRating(s, id, { appeal: 3, notes: '' });
+    }
+    expect(getUnplayedSchools(s, 'economics')).toHaveLength(0);
+  });
+});
+
+describe('cleanupAbandonedRuns', () => {
+  it('removes incomplete runs', () => {
+    let s = startRun(state, 'uw'); // incomplete
+    const cleaned = cleanupAbandonedRuns(s);
+    expect(cleaned.runs).toHaveLength(0);
+    expect(cleaned.currentRun).toBeUndefined();
+  });
+
+  it('preserves completed runs', () => {
+    let s = startRun(state, 'uw');
+    s = addOutcomeRating(s, 'uw', { appeal: 4, notes: '' });
+    s = startRun(s, 'ups'); // incomplete
+    const cleaned = cleanupAbandonedRuns(s);
+    expect(cleaned.runs).toHaveLength(1);
+    expect(cleaned.runs[0].schoolId).toBe('uw');
+  });
+
+  it('returns same reference when no abandoned runs exist', () => {
+    let s = startRun(state, 'uw');
+    s = addOutcomeRating(s, 'uw', { appeal: 4, notes: '' });
+    const cleaned = cleanupAbandonedRuns(s);
+    expect(cleaned).toBe(s);
+  });
+});
+
+describe('rewindToTerm', () => {
+  it('slices termSelections to keepTermCount', () => {
+    let s = startRun(state, 'uw');
+    s = addTermSelection(s, 'uw', { termLabel: 'Fall Year 1', courses: ['A'] });
+    s = addTermSelection(s, 'uw', { termLabel: 'Winter Year 1', courses: ['B'] });
+    s = addTermSelection(s, 'uw', { termLabel: 'Spring Year 1', courses: ['C'] });
+    const rewound = rewindToTerm(s, 'uw', 1);
+    expect(rewound.runs[0].termSelections).toHaveLength(1);
+    expect(rewound.runs[0].termSelections[0].termLabel).toBe('Fall Year 1');
+  });
+
+  it('does not modify other runs', () => {
+    let s = startRun(state, 'uw');
+    s = addTermSelection(s, 'uw', { termLabel: 'Fall Year 1', courses: ['A'] });
+    s = addTermSelection(s, 'uw', { termLabel: 'Winter Year 1', courses: ['B'] });
+    s = startRun(s, 'ups');
+    s = addTermSelection(s, 'ups', { termLabel: 'Fall Year 1', courses: ['X'] });
+    const rewound = rewindToTerm(s, 'uw', 1);
+    expect(rewound.runs[1].termSelections).toHaveLength(1);
+    expect(rewound.runs[1].termSelections[0].courses).toEqual(['X']);
+  });
+
+  it('keeps all terms when keepTermCount >= existing count', () => {
+    let s = startRun(state, 'uw');
+    s = addTermSelection(s, 'uw', { termLabel: 'Fall Year 1', courses: ['A'] });
+    const rewound = rewindToTerm(s, 'uw', 5);
+    expect(rewound.runs[0].termSelections).toHaveLength(1);
+  });
+});
+
+describe('rollRandomSchool', () => {
+  it('returns a school from the correct track', () => {
+    const result = rollRandomSchool(state, 'engineering-design');
+    expect(result).toBe('uw');
+  });
+
+  it('prefers unplayed schools over completed ones', () => {
+    // Complete all econ schools except ucla
+    let s = state;
+    for (const id of ['ups', 'richmond', 'rochester', 'ucsd']) {
+      s = startRun(s, id);
+      s = addOutcomeRating(s, id, { appeal: 3, notes: '' });
+    }
+    const result = rollRandomSchool(s, 'economics');
+    expect(result).toBe('ucla');
+  });
+});
+
+describe('resetState', () => {
+  it('returns a fresh initial state', () => {
+    // Mock localStorage since it's not available in Node
+    const mockStorage: Record<string, string> = {};
+    globalThis.localStorage = {
+      getItem: (key: string) => mockStorage[key] ?? null,
+      setItem: (key: string, value: string) => { mockStorage[key] = value; },
+      removeItem: (key: string) => { delete mockStorage[key]; },
+      clear: () => { Object.keys(mockStorage).forEach(k => delete mockStorage[k]); },
+      length: 0,
+      key: () => null,
+    };
+    const fresh = resetState();
+    expect(fresh.runs).toHaveLength(0);
+    expect(fresh.currentRun).toBeUndefined();
+    expect(fresh.revealed).toBe(false);
+    expect(fresh.peekUsed).toBe(false);
   });
 });

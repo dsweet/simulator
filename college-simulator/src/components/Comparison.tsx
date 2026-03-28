@@ -71,27 +71,6 @@ export default function Comparison({ gameState, onBack }: Props) {
               })}
             </tr>
             <tr>
-              <td>Freedom to Choose (avg)</td>
-              {sortedRuns.map(run => {
-                const avg = run.yearRatings.reduce((sum, r) => sum + r.freedom, 0) / run.yearRatings.length;
-                return <td key={run.schoolId}>{avg.toFixed(1)} / 5</td>;
-              })}
-            </tr>
-            <tr>
-              <td>Intellectual Engagement (avg)</td>
-              {sortedRuns.map(run => {
-                const avg = run.yearRatings.reduce((sum, r) => sum + r.intellectualEngagement, 0) / run.yearRatings.length;
-                return <td key={run.schoolId}>{avg.toFixed(1)} / 5</td>;
-              })}
-            </tr>
-            <tr>
-              <td>Path Match (avg)</td>
-              {sortedRuns.map(run => {
-                const avg = run.yearRatings.reduce((sum, r) => sum + r.pathMatch, 0) / run.yearRatings.length;
-                return <td key={run.schoolId}>{avg.toFixed(1)} / 5</td>;
-              })}
-            </tr>
-            <tr>
               <td>Outcomes Appeal</td>
               {sortedRuns.map(run => (
                 <td key={run.schoolId}>{run.outcomeRating?.appeal || '-'} / 5</td>

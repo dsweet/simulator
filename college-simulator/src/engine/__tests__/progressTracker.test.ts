@@ -61,6 +61,42 @@ describe('initializeProgress', () => {
     expect(progress.genEdsSatisfied['quantitative'].satisfied).toBe(true);
     expect(progress.genEdsSatisfied['writing'].satisfied).toBe(false);
   });
+
+  it('marks major courses completed when AP/IB courseEquivalent matches', () => {
+    const creditWithMajorCourse: CreditSummary = {
+      totalCredits: 5,
+      results: [{ examName: 'AP Calc', examType: 'AP', subject: 'Math', score: 5, isPending: false, creditsAwarded: 4, courseEquivalent: 'MATH 101', satisfiedGenEds: [] }],
+      diplomaBonus: 0,
+      satisfiedGenEds: [],
+    };
+    const progress = initializeProgress(mockCurriculum, creditWithMajorCourse);
+    expect(progress.majorCoursesCompleted).toContain('MATH101');
+    expect(progress.majorCoursesRemaining).not.toContain('MATH101');
+  });
+
+  it('splits multi-course equivalents like "ECON 101/102" and matches both', () => {
+    const creditWithMulti: CreditSummary = {
+      totalCredits: 8,
+      results: [{ examName: 'IB Econ HL', examType: 'IB', subject: 'Economics', score: 6, isPending: false, creditsAwarded: 8, courseEquivalent: 'ECON 101/102', satisfiedGenEds: [] }],
+      diplomaBonus: 0,
+      satisfiedGenEds: [],
+    };
+    const progress = initializeProgress(mockCurriculum, creditWithMulti);
+    expect(progress.majorCoursesCompleted).toContain('ECON101');
+    expect(progress.majorCoursesCompleted).toContain('ECON102');
+    expect(progress.majorCoursesRemaining).toEqual(['MATH101']);
+  });
+
+  it('does not mark major courses when courseEquivalent is missing', () => {
+    const creditWithoutEquiv: CreditSummary = {
+      totalCredits: 5,
+      results: [{ examName: 'AP Stats', examType: 'AP', subject: 'Statistics', score: 4, isPending: false, creditsAwarded: 5, satisfiedGenEds: ['quantitative'] }],
+      diplomaBonus: 0,
+      satisfiedGenEds: ['quantitative'],
+    };
+    const progress = initializeProgress(mockCurriculum, creditWithoutEquiv);
+    expect(progress.majorCoursesCompleted).toHaveLength(0);
+  });
 });
 
 describe('addCourseToProgress', () => {

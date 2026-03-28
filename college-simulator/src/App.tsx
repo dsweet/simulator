@@ -43,6 +43,24 @@ function App() {
     setScreen('starting-point');
   };
 
+  const handleReroll = () => {
+    if (!currentSchool) return;
+    const track = currentSchool.track;
+    // Pick a different school from the same track
+    const schoolId = rollRandomSchool(gameState, track);
+    if (!schoolId || schoolId === currentSchool.id) {
+      // If we got the same school or null, try all schools in the track
+      const allInTrack = schools.filter(s => s.track === track && s.id !== currentSchool.id);
+      if (allInTrack.length === 0) return; // only one school in track
+      const pick = allInTrack[Math.floor(Math.random() * allInTrack.length)];
+      const newState = startRun(gameState, pick.id);
+      updateState(newState);
+      return;
+    }
+    const newState = startRun(gameState, schoolId);
+    updateState(newState);
+  };
+
   const handleStartPlanning = () => {
     setScreen('course-planner');
   };
@@ -130,6 +148,7 @@ function App() {
             school={currentSchool}
             alias={currentRun.alias}
             onContinue={handleStartPlanning}
+            onReroll={handleReroll}
           />
         )}
 

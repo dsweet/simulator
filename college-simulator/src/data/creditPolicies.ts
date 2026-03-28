@@ -31,7 +31,7 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'AP Computer Science A', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CSCI 1xx', courseDescription: 'Elective credit in computer science — object-oriented programming fundamentals' },
       { examName: 'IB Literature HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Credit in English — critical analysis of literary texts across genres and periods' },
       { examName: 'IB History HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'HIST 1xx', courseDescription: 'Credit in history — comparative and thematic historical analysis' },
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 180', courseDescription: 'Credit in mathematics — calculus and mathematical reasoning' },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170/180', courseDescription: 'Credit in mathematics — Calculus I & II' },
     ],
   },
   {
@@ -53,7 +53,7 @@ export const creditPolicies: CreditPolicy[] = [
     hlMinScore: 5,
     creditCap: 16,
     awards: [
-      { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'STAT 180', courseDescription: 'Introduction to Statistics — data collection, probability, and inference for decision-making' },
+      { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'STT 211', courseDescription: 'Introduction to Statistics — data collection, probability, and inference for decision-making' },
       { examName: 'AP Computer Science A', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CSC 171', courseDescription: 'The Science of Programming — introduction to computational thinking, algorithms, and Java' },
       { examName: 'IB Literature HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENG 1xx', courseDescription: 'Elective credit in English — textual analysis and academic writing' },
       { examName: 'IB History HL', minScore: 6, creditsAwarded: 1, courseEquivalent: 'HIS 1xx', courseDescription: 'Elective credit in history — requires score of 6+ (higher bar than most schools)' },

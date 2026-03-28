@@ -71,6 +71,13 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
         }
       }
     }
+    // Allow retaking Calc II even with credit
+    for (const id of [...ids]) {
+      const course = curriculum.courses.find(c => c.id === id);
+      if (course && /\bCalculus\b.*\bII\b|^Integration\b/i.test(course.title)) {
+        ids.delete(id);
+      }
+    }
     return ids;
   }, [creditSummary, curriculum]);
 
@@ -146,7 +153,13 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
       if (previouslyTaken.has(course.id)) return false;
       if (selectedCourses.includes(course.id)) return false;
       if (interestFilter && !course.interestTags.includes(interestFilter)) return false;
-      if (categoryFilter && course.category !== categoryFilter) return false;
+      if (categoryFilter) {
+        if (categoryFilter === 'math') {
+          if (!/^(MATH|MTH|STAT|STT)/i.test(course.id)) return false;
+        } else {
+          if (course.category !== categoryFilter) return false;
+        }
+      }
       if (searchQuery) {
         const q = searchQuery.toLowerCase();
         return course.title.toLowerCase().includes(q) || course.description.toLowerCase().includes(q) || course.id.toLowerCase().includes(q);
@@ -267,26 +280,27 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
               type="text"
               placeholder="Search courses..."
               value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
+              onChange={e => { setSearchQuery(e.target.value); setCategoryFilter(null); setInterestFilter(null); }}
               className="search-input"
             />
 
             <div className="filter-row">
               <select
                 value={categoryFilter || ''}
-                onChange={e => setCategoryFilter(e.target.value || null)}
+                onChange={e => { setCategoryFilter(e.target.value || null); setSearchQuery(''); }}
                 className="filter-select"
               >
                 <option value="">Filter by category...</option>
                 <option value="major-required">Major Required</option>
                 <option value="major-elective">Major Elective</option>
+                <option value="math">Math & Statistics</option>
                 <option value="gen-ed">Gen-Ed</option>
                 <option value="elective">Elective</option>
               </select>
 
               <select
                 value={interestFilter || ''}
-                onChange={e => setInterestFilter(e.target.value || null)}
+                onChange={e => { setInterestFilter(e.target.value || null); setSearchQuery(''); }}
                 className="filter-select"
               >
                 <option value="">Filter by interest...</option>

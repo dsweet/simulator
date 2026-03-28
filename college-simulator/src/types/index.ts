@@ -24,6 +24,7 @@ export const INTEREST_TAGS: InterestTag[] = [
   { id: 'literature', label: 'Literature' },
   { id: 'philosophy', label: 'Philosophy' },
   { id: 'space', label: 'Space Science' },
+  { id: 'science', label: 'Science' },
 ];
 
 // ============================================================
@@ -56,6 +57,7 @@ export interface Course {
   genEdReqs?: string[];         // Which gen-ed requirements this satisfies
   termAvailability?: string[];  // e.g., ["fall", "winter", "spring"] or ["fall", "spring"]
   yearLevel?: number;           // 1-4, for sorting/filtering
+  clusterGroup?: string;        // For Rochester-style clusters: department grouping (e.g., 'astronomy', 'philosophy')
 }
 
 export interface DegreeRequirements {
@@ -148,6 +150,8 @@ export interface OutcomeData {
   gradSchoolRate?: number;      // Percentage
   commonGradPrograms: string[];
   internshipCulture: string;    // Description
+  quantitativePrep: string;     // How program's quant rigor affects career options
+  gradSchoolNotes: string;      // Grad school readiness given this program's structure
 }
 
 // ============================================================
@@ -208,9 +212,6 @@ export interface TermSelection {
 export interface YearRating {
   year: number;
   courseInterest: number;       // 1-5
-  freedom: number;              // 1-5
-  intellectualEngagement: number;
-  pathMatch: number;
   overallAppeal: number;
   notes: string;
 }

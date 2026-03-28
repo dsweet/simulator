@@ -1,14 +1,20 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { School, ExamScore } from '../types';
 import { studentProfile } from '../data/student';
 import { creditPolicies } from '../data/creditPolicies';
 import { evaluateCredits } from '../engine/creditEvaluator';
 import { getCurriculum } from '../data/curricula/index';
 
+const DICE_FACES = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+function randomDiceFace() {
+  return DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)];
+}
+
 interface Props {
   school: School;
   alias: string;
   onContinue: () => void;
+  onReroll?: () => void;
 }
 
 // Build a key for an exam to use in the overrides map
@@ -16,7 +22,15 @@ function examKey(exam: ExamScore): string {
   return `${exam.examType}:${exam.subject}`;
 }
 
-export default function StartingPoint({ school, alias, onContinue }: Props) {
+export default function StartingPoint({ school, alias, onContinue, onReroll }: Props) {
+  const [diceFace, setDiceFace] = useState(randomDiceFace);
+  const [diceKey, setDiceKey] = useState(0);
+
+  const handleReroll = useCallback(() => {
+    setDiceFace(randomDiceFace());
+    setDiceKey(k => k + 1);
+    if (onReroll) onReroll();
+  }, [onReroll]);
   // Track per-exam score overrides for pending exams
   const [scoreOverrides, setScoreOverrides] = useState<Record<string, number>>(() => {
     const defaults: Record<string, number> = {};
@@ -117,9 +131,17 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
   return (
     <div className="screen starting-point">
       <div className="dice-result">
-        <div className="dice-animation">🎲</div>
+        <div
+          key={diceKey}
+          className={`dice-animation ${onReroll ? 'dice-clickable' : ''}`}
+          onClick={onReroll ? handleReroll : undefined}
+          title={onReroll ? 'Click to re-roll a different school' : undefined}
+        >
+          {diceFace}
+        </div>
         <h2>You've been assigned to...</h2>
         <h1 className="alias-name">{alias}</h1>
+        {onReroll && <p className="reroll-hint">Click the die to re-roll</p>}
       </div>
 
       <div className="school-hints">

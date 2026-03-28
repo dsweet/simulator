@@ -97,6 +97,16 @@ export default function OutcomesPreview({ school, alias, gameState, onUpdateStat
       </div>
 
       <div className="outcome-section">
+        <h4>Quantitative Preparation</h4>
+        <p>{outcomeData.quantitativePrep}</p>
+      </div>
+
+      <div className="outcome-section">
+        <h4>Graduate School Readiness</h4>
+        <p>{outcomeData.gradSchoolNotes}</p>
+      </div>
+
+      <div className="outcome-section">
         <h4>Internship Culture</h4>
         <p>{outcomeData.internshipCulture}</p>
       </div>

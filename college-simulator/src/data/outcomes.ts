@@ -12,6 +12,8 @@ export const outcomes: OutcomeData[] = [
     gradSchoolRate: 25,
     commonGradPrograms: ['HCI (Carnegie Mellon, Georgia Tech)', 'Design (Stanford d.school)', 'MBA', 'Information Science'],
     internshipCulture: 'Very strong — Seattle tech ecosystem provides abundant internship opportunities. Most HCDE students complete 1-2 internships. Amazon, Microsoft, and other tech companies actively recruit from the program.',
+    quantitativePrep: 'Moderate quantitative focus. Required calculus and statistics provide a foundation, but the emphasis is on design methods, user research, and prototyping rather than heavy math. Students who want more quantitative depth can take additional stats or CS electives.',
+    gradSchoolNotes: 'Well-positioned for HCI, design, and information science graduate programs. The design portfolio and project experience matter more than quant depth for these paths. Students interested in data science or CS grad programs would need additional math/CS coursework beyond the major requirements.',
   },
   {
     schoolId: 'ups',
@@ -24,6 +26,8 @@ export const outcomes: OutcomeData[] = [
     gradSchoolRate: 40,
     commonGradPrograms: ['MBA', 'Law School', 'Public Policy (Evans School, Goldman)', 'Economics PhD', 'Education'],
     internshipCulture: 'Strong liberal arts network. Smaller school means more personalized career advising. Proximity to Seattle/Tacoma provides access to internships, though students need to be proactive. Close alumni network.',
+    quantitativePrep: 'Calculus and statistics are required, but econometrics is only an elective — not required for the major. Students who skip it will graduate without training in causal inference or regression methods that are standard in the field. Those interested in quantitative careers would need to proactively elect econometrics and additional math courses.',
+    gradSchoolNotes: 'The liberal arts foundation is excellent preparation for MBA, law school, and policy programs. However, economics PhD programs typically expect 2+ econometrics courses and real analysis — students pursuing that path would need to take significantly more math and stats electives than the major requires. Close faculty mentoring can help motivated students prepare.',
   },
   {
     schoolId: 'richmond',
@@ -36,6 +40,8 @@ export const outcomes: OutcomeData[] = [
     gradSchoolRate: 35,
     commonGradPrograms: ['MBA (top programs)', 'Law School', 'Economics PhD', 'Public Policy', 'Finance MS'],
     internshipCulture: 'Robins School of Business connection provides strong finance/consulting pipelines. Richmond\'s location near DC opens government and policy internships. Strong alumni giving and engagement.',
+    quantitativePrep: 'One required econometrics course covers regression and causal inference basics. Combined with required calculus and statistics, this provides a solid but not deep quantitative foundation. Students aiming for quant-heavy careers should add the advanced econometrics elective and additional math courses.',
+    gradSchoolNotes: 'Strong pipeline to MBA programs, law school, and consulting. For economics PhD programs, one econometrics course is below the typical expectation — competitive applicants would need to take the advanced econometrics elective plus linear algebra and real analysis. The small class sizes mean strong faculty recommendation letters, which helps in any graduate application.',
   },
   {
     schoolId: 'rochester',
@@ -48,6 +54,8 @@ export const outcomes: OutcomeData[] = [
     gradSchoolRate: 40,
     commonGradPrograms: ['Economics PhD (strong placement)', 'MBA', 'Finance MS', 'Data Science MS', 'Public Policy'],
     internshipCulture: 'Strong economics department with research opportunities. Rochester\'s open curriculum means students often double-major, making them versatile candidates. NYC proximity (5.5 hrs) provides summer internship access.',
+    quantitativePrep: 'Two required econometrics courses (Economic Statistics + Econometrics) provide solid training in regression, causal inference, and empirical methods. The writing-intensive econometrics course builds communication skills alongside technical ones. The open curriculum makes it easy to add more math — many econ students take linear algebra, probability, and real analysis.',
+    gradSchoolNotes: 'Strong track record placing students in economics PhD programs — the department is well-regarded by graduate admissions committees. Two econometrics courses plus the open curriculum\'s flexibility to load up on math make this a strong launchpad for PhD-track students. Also well-positioned for finance MS, data science, and MBA programs.',
   },
   {
     schoolId: 'ucsd',
@@ -60,6 +68,8 @@ export const outcomes: OutcomeData[] = [
     gradSchoolRate: 30,
     commonGradPrograms: ['MBA', 'Economics PhD', 'Law School', 'Data Science MS', 'Public Policy'],
     internshipCulture: 'San Diego biotech and tech scene provides internships. Large class sizes mean students must be proactive in seeking opportunities. Career center serves a very large student body. Research university culture encourages lab/research assistant positions.',
+    quantitativePrep: 'The most econometrics-intensive program of the group — three required courses (Econometrics A, B, and C) build from basic regression through instrumental variables, panel data, and causal inference. Combined with three required calculus courses, graduates have strong quantitative skills. Additional applied econometrics electives go even deeper into program evaluation methods.',
+    gradSchoolNotes: 'The three-course econometrics sequence puts graduates in a strong position for economics PhD programs and quantitative finance roles. Students who also take the math electives (probability, mathematical statistics) are very competitive for top PhD programs. The research university environment provides opportunities to work as an RA for faculty, which is increasingly important for PhD admissions.',
   },
   {
     schoolId: 'ucla',
@@ -72,5 +82,7 @@ export const outcomes: OutcomeData[] = [
     gradSchoolRate: 30,
     commonGradPrograms: ['MBA (Anderson, Wharton)', 'Law School', 'Economics PhD', 'Finance MS', 'Public Policy'],
     internshipCulture: 'Los Angeles location provides unparalleled access to entertainment, tech, and finance internships. UCLA brand carries weight nationally. Large alumni network (over 500,000). Very competitive — students need to hustle for top positions.',
+    quantitativePrep: 'Two required econometrics courses (Introduction to Econometrics + Advanced Econometrics) provide solid training in regression, causal inference, and modern empirical methods. The program also requires Statistics for Economists and Math for Economists, building a strong quantitative base. Students can deepen further with stats department electives.',
+    gradSchoolNotes: 'The two-course econometrics sequence plus required math/stats courses provide a good foundation for economics PhD programs, though the most competitive applicants supplement with real analysis and additional math. UCLA\'s brand recognition and large research faculty create opportunities for RA positions. Excellent for MBA (Anderson is on campus), law, and policy programs.',
   },
 ];

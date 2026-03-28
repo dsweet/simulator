@@ -90,7 +90,7 @@ export default function Reveal({ gameState, onUpdateState, onBack, onCompare }: 
 
                   {run.yearRatings.map(yr => (
                     <div key={yr.year} className="year-summary">
-                      <strong>Year {yr.year}:</strong> Interest {yr.courseInterest}/5, Freedom {yr.freedom}/5, Engagement {yr.intellectualEngagement}/5
+                      <strong>Year {yr.year}:</strong> Interest {yr.courseInterest}/5, Overall {yr.overallAppeal}/5
                       {yr.notes && <p className="year-notes">"{yr.notes}"</p>}
                     </div>
                   ))}

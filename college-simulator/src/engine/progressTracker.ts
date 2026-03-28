@@ -112,6 +112,54 @@ export function computeFullProgress(
       progress = addCourseToProgress(progress, course, curriculum);
     }
   }
+
+  // Detect Rochester-style clusters: count courses per clusterGroup
+  const clusterGenEdIds = curriculum.degreeRequirements.genEdCategories
+    .filter(c => c.id.startsWith('cluster-'))
+    .map(c => c.id);
+
+  if (clusterGenEdIds.length > 0) {
+    const groupCounts: Record<string, number> = {};
+    for (const courseId of completedCourseIds) {
+      const course = curriculum.courses.find(c => c.id === courseId);
+      if (course?.clusterGroup) {
+        groupCounts[course.clusterGroup] = (groupCounts[course.clusterGroup] || 0) + 1;
+      }
+    }
+    // Groups with 3+ courses form completed clusters
+    const completedGroups = Object.entries(groupCounts)
+      .filter(([, count]) => count >= 3)
+      .sort(([, a], [, b]) => b - a); // most courses first
+
+    const newGenEds = { ...progress.genEdsSatisfied };
+    const usedGroups = new Set<string>();
+    for (let i = 0; i < clusterGenEdIds.length; i++) {
+      const genEdId = clusterGenEdIds[i];
+      if (newGenEds[genEdId]) {
+        const group = completedGroups.find(([name]) => !usedGroups.has(name));
+        if (group) {
+          usedGroups.add(group[0]);
+          newGenEds[genEdId] = {
+            ...newGenEds[genEdId],
+            creditsEarned: group[1],
+            satisfied: true,
+          };
+        } else {
+          // Partial progress: best ungrouped department count
+          const bestPartial = Object.entries(groupCounts)
+            .filter(([name]) => !usedGroups.has(name))
+            .sort(([, a], [, b]) => b - a)[0];
+          newGenEds[genEdId] = {
+            ...newGenEds[genEdId],
+            creditsEarned: bestPartial ? bestPartial[1] : 0,
+            satisfied: false,
+          };
+        }
+      }
+    }
+    progress = { ...progress, genEdsSatisfied: newGenEds };
+  }
+
   return progress;
 }
 
