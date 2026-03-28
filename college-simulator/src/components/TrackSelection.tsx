@@ -21,9 +21,10 @@ export default function TrackSelection({ gameState, onSelectTrack, onReset, onPe
       <div className="intro">
         <h2>Choose Your Academic Path</h2>
         <p>
-          You're about to explore what college life would actually feel like —
-          choosing real courses, building a real schedule, making progress toward a real degree.
-          The school's identity is hidden. You'll rate each experience blind, then reveal everything at the end.
+          You're about to explore what college academics would actually feel like —
+          choosing courses, building a schedule, making progress toward a degree.
+          The school's identity is hidden. You'll rate each experience blind,
+          then reveal the school and common outcomes at the end.
         </p>
       </div>
 
