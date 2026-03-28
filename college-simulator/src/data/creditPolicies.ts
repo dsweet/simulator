@@ -72,7 +72,7 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 8A', courseDescription: 'Introduction to Programming and Computational Problem-Solving' },
       { examName: 'IB Literature HL', minScore: 5, creditsAwarded: 8, courseEquivalent: 'LTWL 1A/1B', courseDescription: 'Literatures of the World — literary analysis, critical reading, and persuasive writing' },
       { examName: 'IB History HL', minScore: 5, creditsAwarded: 8, courseEquivalent: 'HIUS 1xx/2xx', courseDescription: 'History elective credit — historical inquiry and analytical writing' },
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 8, courseEquivalent: 'MATH 20A/20B', courseDescription: 'Calculus for Science and Engineering — differential and integral calculus' },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 8, courseEquivalent: 'MATH 10A/10B', courseDescription: 'Calculus — differential and integral calculus (also satisfies MATH 20A/20B)' },
     ],
   },
   {
