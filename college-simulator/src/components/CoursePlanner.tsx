@@ -15,6 +15,7 @@ interface Props {
   gameState: GameState;
   onUpdateState: (state: GameState) => void;
   onYearComplete: () => void;
+  onUpdateYear: (year: number) => void;
 }
 
 function getTermLabels(calendar: 'quarter' | 'semester', year: number): string[] {
@@ -24,7 +25,7 @@ function getTermLabels(calendar: 'quarter' | 'semester', year: number): string[]
   return [`Fall Year ${year}`, `Spring Year ${year}`];
 }
 
-export default function CoursePlanner({ school, run, year, gameState, onUpdateState, onYearComplete }: Props) {
+export default function CoursePlanner({ school, run, year, gameState, onUpdateState, onYearComplete, onUpdateYear }: Props) {
   const curriculum = getCurriculum(school.id);
   const [currentTermIndex, setCurrentTermIndex] = useState(0);
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
@@ -37,11 +38,16 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   // Stashed future terms when rewinding (so we can restore previous selections)
   const [stashedTerms, setStashedTerms] = useState<Array<{ termLabel: string; courses: string[] }>>([]);
 
-  const termLabels = getTermLabels(school.calendar, year);
-  const currentTerm = termLabels[currentTermIndex];
-  const maxCourses = school.calendar === 'quarter' ? 4 : 5;
+  // Show all terms from year 1 through current year
+  const allTermLabels: string[] = [];
+  for (let y = 1; y <= year; y++) {
+    allTermLabels.push(...getTermLabels(school.calendar, y));
+  }
   const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
-  const termsFromPriorYears = (year - 1) * termsPerYear;
+  // The "global" index into allTermLabels for the currently active term
+  const globalTermIndex = (year - 1) * termsPerYear + currentTermIndex;
+  const currentTerm = allTermLabels[globalTermIndex];
+  const maxCourses = school.calendar === 'quarter' ? 4 : 5;
 
   // Credit summary for degree progress
   const policy = creditPolicies.find(p => p.schoolId === school.id);
@@ -180,19 +186,25 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
     setHasPrePopulated(false);
   };
 
-  // How many terms in this year have been confirmed (saved to game state)
-  const confirmedTermsThisYear = run.termSelections.length - termsFromPriorYears;
+  // Total confirmed terms across all years
+  const totalConfirmedTerms = run.termSelections.length;
 
-  const handleGoToTerm = (termIndex: number) => {
-    if (termIndex >= confirmedTermsThisYear) return;
-    // Stash future terms (from the clicked term onward) so we can restore them
-    const futureTerms = run.termSelections.slice(termsFromPriorYears + termIndex);
+  const handleGoToTerm = (globalIdx: number) => {
+    if (globalIdx >= totalConfirmedTerms || globalIdx === globalTermIndex) return;
+    // Stash future terms (from the clicked term onward)
+    const futureTerms = run.termSelections.slice(globalIdx);
     setStashedTerms(futureTerms);
     // Rewind game state
-    const keepCount = termsFromPriorYears + termIndex;
-    const newState = rewindToTerm(gameState, school.id, keepCount);
+    const newState = rewindToTerm(gameState, school.id, globalIdx);
     onUpdateState(newState);
-    setCurrentTermIndex(termIndex);
+    // Update year and term index
+    const targetYear = Math.floor(globalIdx / termsPerYear) + 1;
+    const targetTermIndex = globalIdx % termsPerYear;
+    if (targetYear !== year) {
+      // Need to change year — call onUpdateYear
+      onUpdateYear(targetYear);
+    }
+    setCurrentTermIndex(targetTermIndex);
     setSelectedCourses([]);
     setLockedSlots([]);
     setSlotLabels([]);
@@ -209,7 +221,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
     setLockedSlots([]);
     setSlotLabels([]);
 
-    if (currentTermIndex < termLabels.length - 1) {
+    if (currentTermIndex < termsPerYear - 1) {
       setCurrentTermIndex(prev => prev + 1);
     } else {
       onYearComplete();
@@ -224,14 +236,15 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
       <div className="planner-header">
         <h2>{run.alias} — {currentTerm}</h2>
         <div className="term-progress">
-          {termLabels.map((label, i) => {
-            const isDone = i < confirmedTermsThisYear && i !== currentTermIndex;
-            const isActive = i === currentTermIndex;
-            const canClick = i < confirmedTermsThisYear && i !== currentTermIndex;
+          {allTermLabels.map((label, i) => {
+            const isDone = i < totalConfirmedTerms && i !== globalTermIndex;
+            const isActive = i === globalTermIndex;
+            const canClick = i < totalConfirmedTerms && i !== globalTermIndex;
+            const isFuture = i > globalTermIndex && i >= totalConfirmedTerms;
             return (
               <span
                 key={label}
-                className={`term-dot ${isDone ? 'done' : ''} ${isActive ? 'active' : ''} ${canClick ? 'clickable' : ''}`}
+                className={`term-dot ${isDone ? 'done' : ''} ${isActive ? 'active' : ''} ${canClick ? 'clickable' : ''} ${isFuture ? 'future' : ''}`}
                 onClick={canClick ? () => handleGoToTerm(i) : undefined}
               >
                 {label}
@@ -368,9 +381,9 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
             disabled={selectedCourses.length === 0}
             onClick={handleConfirmTerm}
           >
-            {currentTermIndex < termLabels.length - 1
+            {currentTermIndex < termsPerYear - 1
               ? `Confirm & Next ${school.calendar === 'quarter' ? 'Quarter' : 'Semester'} →`
-              : `Confirm & Rate Year ${year} →`
+              : year < 2 ? `Confirm & Start Year ${year + 1} →` : `Confirm & Rate Years 1–${year} →`
             }
           </button>
         </div>

@@ -141,6 +141,7 @@ function App() {
             gameState={gameState}
             onUpdateState={updateState}
             onYearComplete={handleYearComplete}
+            onUpdateYear={setCurrentYear}
           />
         )}
 

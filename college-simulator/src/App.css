@@ -356,6 +356,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .term-dot.done { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
 .term-dot.clickable { cursor: pointer; }
 .term-dot.clickable:hover { background: #bbf7d0; border-color: #86efac; }
+.term-dot.future { opacity: 0.4; }
 
 .planner-layout { display: grid; grid-template-columns: 1fr 350px; gap: 1.5rem; }
 
