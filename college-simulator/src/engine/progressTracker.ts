@@ -30,13 +30,28 @@ export function initializeProgress(
     };
   }
 
+  // Major courses satisfied by AP/IB credit equivalents
+  const majorCompletedByCredit: string[] = [];
+  for (const result of creditSummary.results) {
+    if (result.creditsAwarded <= 0 || !result.courseEquivalent) continue;
+    const parts = result.courseEquivalent.split('/').map(p => p.trim());
+    const prefix = parts[0].replace(/\s*\d+.*$/, '');
+    for (const part of parts) {
+      const full = part.includes(prefix) ? part : `${prefix} ${part}`;
+      const normalized = full.replace(/\s+/g, '').toUpperCase();
+      if (reqs.majorCourses.includes(normalized)) {
+        majorCompletedByCredit.push(normalized);
+      }
+    }
+  }
+
   const totalCreditsEarned = creditSummary.totalCredits;
 
   return {
     totalCreditsEarned,
     totalCreditsRequired: reqs.totalCredits,
-    majorCoursesCompleted: [],
-    majorCoursesRemaining: [...reqs.majorCourses],
+    majorCoursesCompleted: majorCompletedByCredit,
+    majorCoursesRemaining: reqs.majorCourses.filter(id => !majorCompletedByCredit.includes(id)),
     genEdsSatisfied,
     electiveCreditsEarned: 0,
     electiveCreditsRequired: reqs.electiveCredits,
