@@ -1,0 +1,113 @@
+import { GameState, SchoolRun, TermSelection, YearRating, OutcomeRating, SCHOOL_ALIASES } from '../types';
+import { schools } from '../data/schools';
+
+const STORAGE_KEY = 'college-simulator-state';
+
+export function createInitialState(): GameState {
+  return {
+    runs: [],
+    currentRun: undefined,
+    revealed: false,
+    peekUsed: false,
+  };
+}
+
+export function loadState(): GameState {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch { /* ignore parse errors */ }
+  return createInitialState();
+}
+
+export function saveState(state: GameState): void {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+export function getAvailableSchools(state: GameState, track: 'engineering-design' | 'economics'): string[] {
+  const playedIds = state.runs.map(r => r.schoolId);
+  return schools
+    .filter(s => s.track === track && !playedIds.includes(s.id))
+    .map(s => s.id);
+}
+
+export function rollRandomSchool(state: GameState, track: 'engineering-design' | 'economics'): string | null {
+  const available = getAvailableSchools(state, track);
+  if (available.length === 0) return null;
+  return available[Math.floor(Math.random() * available.length)];
+}
+
+export function getNextAlias(state: GameState): string {
+  return SCHOOL_ALIASES[state.runs.length] || `School ${state.runs.length + 1}`;
+}
+
+export function startRun(state: GameState, schoolId: string): GameState {
+  const alias = getNextAlias(state);
+  const newRun: SchoolRun = {
+    schoolId,
+    alias,
+    termSelections: [],
+    yearRatings: [],
+    outcomeRating: undefined,
+    yearsCompleted: 0,
+    completed: false,
+  };
+
+  return {
+    ...state,
+    runs: [...state.runs, newRun],
+    currentRun: schoolId,
+  };
+}
+
+export function addTermSelection(state: GameState, schoolId: string, term: TermSelection): GameState {
+  return {
+    ...state,
+    runs: state.runs.map(run =>
+      run.schoolId === schoolId
+        ? { ...run, termSelections: [...run.termSelections, term] }
+        : run
+    ),
+  };
+}
+
+export function addYearRating(state: GameState, schoolId: string, rating: YearRating): GameState {
+  return {
+    ...state,
+    runs: state.runs.map(run =>
+      run.schoolId === schoolId
+        ? { ...run, yearRatings: [...run.yearRatings, rating], yearsCompleted: rating.year }
+        : run
+    ),
+  };
+}
+
+export function addOutcomeRating(state: GameState, schoolId: string, rating: OutcomeRating): GameState {
+  return {
+    ...state,
+    runs: state.runs.map(run =>
+      run.schoolId === schoolId
+        ? { ...run, outcomeRating: rating, completed: true }
+        : run
+    ),
+    currentRun: undefined,
+  };
+}
+
+export function canPeek(state: GameState): boolean {
+  const completedRuns = state.runs.filter(r => r.completed).length;
+  return completedRuns >= 3 && !state.peekUsed;
+}
+
+export function canFullReveal(state: GameState): boolean {
+  return state.runs.filter(r => r.completed).length >= 6;
+}
+
+export function getCompletedRunCount(state: GameState): number {
+  return state.runs.filter(r => r.completed).length;
+}
+
+export function resetState(): GameState {
+  localStorage.removeItem(STORAGE_KEY);
+  return createInitialState();
+}
