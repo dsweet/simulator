@@ -85,6 +85,31 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
     };
   }, [curriculum, creditSummary, school.calendar]);
 
+  // Generate a short plain-English summary of the credit policy
+  const policySummaryText = useMemo(() => {
+    if (!policy) return null;
+    const parts: string[] = [];
+
+    if (policy.slExamsAccepted) {
+      parts.push(`Accepts both HL and SL IB exams (score of ${policy.slMinScore ?? policy.hlMinScore}+)`);
+    } else {
+      parts.push(`HL exams only (score of ${policy.hlMinScore}+) — no credit for SL exams`);
+    }
+
+    if (policy.creditCap) {
+      parts.push(`Maximum ${policy.creditCap} credits from AP/IB combined`);
+    } else {
+      parts.push('No hard cap on AP/IB credits');
+    }
+
+    if (policy.diplomaBonus) {
+      const minNote = policy.diplomaBonusMinScore ? ` (if total IB score is ${policy.diplomaBonusMinScore}+)` : '';
+      parts.push(`IB Diploma bonus: ${policy.diplomaBonus} extra credits${minNote}`);
+    }
+
+    return parts;
+  }, [policy]);
+
   const handleScoreChange = (exam: ExamScore, newScore: number) => {
     setScoreOverrides(prev => ({ ...prev, [examKey(exam)]: newScore }));
   };
@@ -166,6 +191,13 @@ export default function StartingPoint({ school, alias, onContinue }: Props) {
           </div>
 
           <h3>Your AP/IB Credits at This School</h3>
+          {policySummaryText && (
+            <ul className="policy-summary">
+              {policySummaryText.map((line, i) => (
+                <li key={i}>{line}</li>
+              ))}
+            </ul>
+          )}
           <p className="credit-headline">
             You're walking in with <strong>{creditSummary.totalCredits} credits</strong> already
             earned — that's <strong>{degreeContext.yearsWorth.toFixed(2)} years</strong> worth
