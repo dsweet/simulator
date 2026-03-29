@@ -25,6 +25,15 @@ export const INTEREST_TAGS: InterestTag[] = [
   { id: 'philosophy', label: 'Philosophy' },
   { id: 'space', label: 'Space Science' },
   { id: 'science', label: 'Science' },
+  { id: 'music', label: 'Music' },
+  { id: 'linguistics', label: 'Linguistics' },
+  { id: 'film', label: 'Film & Media' },
+  { id: 'environmental', label: 'Environmental Studies' },
+  { id: 'politics', label: 'Politics & Policy' },
+  { id: 'economics', label: 'Economics' },
+  { id: 'sociology', label: 'Sociology' },
+  { id: 'religion', label: 'Religion' },
+  { id: 'biology', label: 'Biology' },
 ];
 
 // ============================================================
