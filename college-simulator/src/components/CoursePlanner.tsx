@@ -47,7 +47,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   // The "global" index into allTermLabels for the currently active term
   const globalTermIndex = (year - 1) * termsPerYear + currentTermIndex;
   const currentTerm = allTermLabels[globalTermIndex];
-  const maxCourses = school.calendar === 'quarter' ? 3 : 5;
+  const maxCourses = school.calendar === 'quarter' ? 3 : 4;
 
   // Credit summary for degree progress
   const policy = creditPolicies.find(p => p.schoolId === school.id);
