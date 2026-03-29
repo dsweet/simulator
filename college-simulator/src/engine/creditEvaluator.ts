@@ -65,12 +65,16 @@ function matchExamToPolicy(
 }
 
 // Priority for keeping credits when cap is exceeded:
-// 1. Credits with course equivalents (e.g., MATH 124, CSE 121) — hardest to replace
-// 2. Credits that satisfy gen-eds — save time on requirements
-// 3. Generic elective credits — easiest to replace with any course
+// 2 = specific course equivalent (e.g., MATH 124, CSE 121) — hardest to replace
+// 1 = satisfies gen-eds or has generic equivalent (e.g., HIST 1xx) — moderate value
+// 0 = pure elective credit with no mapping — easiest to replace
 function creditPriority(result: CreditResult): number {
-  if (result.courseEquivalent) return 2;
+  // A "specific" equivalent maps to a real numbered course (MATH 124),
+  // not a generic placeholder like JAPAN 1xx or MGMT 1xx
+  const isSpecific = result.courseEquivalent && !/\dxx/i.test(result.courseEquivalent);
+  if (isSpecific) return 2;
   if (result.satisfiedGenEds.length > 0) return 1;
+  if (result.courseEquivalent) return 1; // generic 1xx — slightly better than nothing
   return 0;
 }
 
