@@ -44,7 +44,7 @@ export default function Comparison({ gameState, onBack }: Props) {
                   <th key={run.schoolId}>
                     {gameState.revealed ? school.name : run.alias}
                     <div className="th-subtitle">
-                      {gameState.revealed ? school.program : school.track === 'engineering-design' ? 'Engineering' : 'Economics'}
+                      {gameState.revealed ? school.program : school.track === 'engineering-design' ? 'Engineering' : school.track === 'ppe' ? 'PPE / PPEL' : 'Economics'}
                     </div>
                   </th>
                 );

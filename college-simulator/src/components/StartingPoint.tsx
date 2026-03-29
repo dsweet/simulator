@@ -156,7 +156,7 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
         <div className="hint-card">
           <span className="hint-label">Track</span>
           <span className="hint-value">
-            {school.track === 'engineering-design' ? 'Engineering & Design' : 'Economics'}
+            {school.track === 'engineering-design' ? 'Engineering & Design' : school.track === 'ppe' ? 'PPE / PPEL' : 'Economics'}
           </span>
         </div>
       </div>
