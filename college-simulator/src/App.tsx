@@ -9,9 +9,10 @@ import YearRating from './components/YearRating';
 import OutcomesPreview from './components/OutcomesPreview';
 import Reveal from './components/Reveal';
 import Comparison from './components/Comparison';
+import Personas from './components/Personas';
 import './App.css';
 
-type Screen = 'track-selection' | 'starting-point' | 'course-planner' | 'year-rating' | 'outcomes' | 'reveal' | 'comparison';
+type Screen = 'track-selection' | 'starting-point' | 'course-planner' | 'year-rating' | 'outcomes' | 'reveal' | 'comparison' | 'personas';
 
 function App() {
   const [gameState, setGameState] = useState<GameState>(() => {
@@ -140,6 +141,7 @@ function App() {
             onReset={handleReset}
             onPeek={handlePeek}
             onFullReveal={handleFullReveal}
+            onShowPersonas={() => setScreen('personas')}
           />
         )}
 
@@ -199,6 +201,10 @@ function App() {
             gameState={gameState}
             onBack={handleBackToTracks}
           />
+        )}
+
+        {screen === 'personas' && (
+          <Personas onBack={handleBackToTracks} />
         )}
       </main>
     </div>

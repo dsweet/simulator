@@ -238,6 +238,38 @@ export interface GameState {
   peekUsed: boolean;            // Has the peek been used?
 }
 
+// ============================================================
+// Personas
+// ============================================================
+
+export interface PersonaCareerStep {
+  years: string;              // e.g., "1-2", "3-4"
+  role: string;
+  description: string;
+}
+
+export interface PersonaTerm {
+  termLabel: string;          // e.g., "Fall Year 1"
+  courses: string[];          // Course IDs
+}
+
+export interface Persona {
+  id: string;
+  name: string;
+  archetype: string;          // e.g., "The Coder"
+  emoji: string;
+  bio: string;
+  passion: string;
+  coursesByTerm: PersonaTerm[];
+  curriculumSummary: string;
+  visionLeavingUndergrad: string;
+  careerTimeline: PersonaCareerStep[];
+  futureThinking: string;
+  techOutcome: boolean;
+  gradSchool: boolean;
+  gradSchoolType?: string;    // e.g., "PhD", "JD"
+}
+
 // School aliases for blind mode
 export const SCHOOL_ALIASES = [
   'School Alpha',

@@ -7,9 +7,10 @@ interface Props {
   onReset: () => void;
   onPeek: () => void;
   onFullReveal: () => void;
+  onShowPersonas: () => void;
 }
 
-export default function TrackSelection({ gameState, onSelectTrack, onReset, onPeek, onFullReveal }: Props) {
+export default function TrackSelection({ gameState, onSelectTrack, onReset, onPeek, onFullReveal, onShowPersonas }: Props) {
   const engineUnplayed = getUnplayedSchools(gameState, 'engineering-design');
   const econUnplayed = getUnplayedSchools(gameState, 'economics');
   const completedCount = getCompletedRunCount(gameState);
@@ -29,19 +30,24 @@ export default function TrackSelection({ gameState, onSelectTrack, onReset, onPe
       </div>
 
       <div className="tracks">
-        <button
-          className="track-card"
-          onClick={() => onSelectTrack('engineering-design')}
-        >
-          <div className="track-icon">🎨</div>
-          <h3>Engineering & Design Track</h3>
-          <p>Human-centered design, UX research, interaction design, prototyping, design thinking</p>
-          <div className="track-meta">
-            {engineUnplayed.length > 0
-              ? `${engineUnplayed.length} new school to explore`
-              : 'All schools explored — replay to try different courses'}
-          </div>
-        </button>
+        <div className="track-column">
+          <button
+            className="track-card"
+            onClick={() => onSelectTrack('engineering-design')}
+          >
+            <div className="track-icon">🎨</div>
+            <h3>Engineering & Design Track</h3>
+            <p>Human-centered design, UX research, interaction design, prototyping, design thinking</p>
+            <div className="track-meta">
+              {engineUnplayed.length > 0
+                ? `${engineUnplayed.length} new school to explore`
+                : 'All schools explored — replay to try different courses'}
+            </div>
+          </button>
+          <button className="personas-link" onClick={onShowPersonas}>
+            Meet 8 HCDE graduates &rarr;
+          </button>
+        </div>
 
         <button
           className="track-card"
