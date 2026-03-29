@@ -32,6 +32,8 @@ const mockCurriculum: Curriculum = {
 
 const emptyCreditSummary: CreditSummary = {
   totalCredits: 0,
+  uncappedTotal: 0,
+  creditCap: null,
   results: [],
   diplomaBonus: 0,
   satisfiedGenEds: [],
@@ -39,7 +41,9 @@ const emptyCreditSummary: CreditSummary = {
 
 const creditWithQuantitative: CreditSummary = {
   totalCredits: 5,
-  results: [{ examName: 'AP Stats', examType: 'AP', subject: 'Statistics', score: 4, isPending: false, creditsAwarded: 5, satisfiedGenEds: ['quantitative'] }],
+  uncappedTotal: 5,
+  creditCap: null,
+  results: [{ examName: 'AP Stats', examType: 'AP', subject: 'Statistics', score: 4, isPending: false, creditsAwarded: 5, cappedCredits: 5, satisfiedGenEds: ['quantitative'] }],
   diplomaBonus: 0,
   satisfiedGenEds: ['quantitative'],
 };
@@ -65,7 +69,9 @@ describe('initializeProgress', () => {
   it('marks major courses completed when AP/IB courseEquivalent matches', () => {
     const creditWithMajorCourse: CreditSummary = {
       totalCredits: 5,
-      results: [{ examName: 'AP Calc', examType: 'AP', subject: 'Math', score: 5, isPending: false, creditsAwarded: 4, courseEquivalent: 'MATH 101', satisfiedGenEds: [] }],
+      uncappedTotal: 5,
+      creditCap: null,
+      results: [{ examName: 'AP Calc', examType: 'AP', subject: 'Math', score: 5, isPending: false, creditsAwarded: 4, cappedCredits: 4, courseEquivalent: 'MATH 101', satisfiedGenEds: [] }],
       diplomaBonus: 0,
       satisfiedGenEds: [],
     };
@@ -77,7 +83,9 @@ describe('initializeProgress', () => {
   it('splits multi-course equivalents like "ECON 101/102" and matches both', () => {
     const creditWithMulti: CreditSummary = {
       totalCredits: 8,
-      results: [{ examName: 'IB Econ HL', examType: 'IB', subject: 'Economics', score: 6, isPending: false, creditsAwarded: 8, courseEquivalent: 'ECON 101/102', satisfiedGenEds: [] }],
+      uncappedTotal: 8,
+      creditCap: null,
+      results: [{ examName: 'IB Econ HL', examType: 'IB', subject: 'Economics', score: 6, isPending: false, creditsAwarded: 8, cappedCredits: 8, courseEquivalent: 'ECON 101/102', satisfiedGenEds: [] }],
       diplomaBonus: 0,
       satisfiedGenEds: [],
     };
@@ -90,7 +98,9 @@ describe('initializeProgress', () => {
   it('does not mark major courses when courseEquivalent is missing', () => {
     const creditWithoutEquiv: CreditSummary = {
       totalCredits: 5,
-      results: [{ examName: 'AP Stats', examType: 'AP', subject: 'Statistics', score: 4, isPending: false, creditsAwarded: 5, satisfiedGenEds: ['quantitative'] }],
+      uncappedTotal: 5,
+      creditCap: null,
+      results: [{ examName: 'AP Stats', examType: 'AP', subject: 'Statistics', score: 4, isPending: false, creditsAwarded: 5, cappedCredits: 5, satisfiedGenEds: ['quantitative'] }],
       diplomaBonus: 0,
       satisfiedGenEds: ['quantitative'],
     };

@@ -17,7 +17,8 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142. Only a stepping stone; she would still need to take CHEM 142 for ENGRUD placement.' },
       { examName: 'IB Literature HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'ENGL 107', courseDescription: 'Elective English credit — generic credit, may NOT satisfy the specific English Composition (ENGL 111/121/131) placement requirement. Verify with adviser.', satisfiesGenEd: ['arts-humanities'] },
       { examName: 'IB History HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'HIST 1xx', courseDescription: 'Elective credit in history — satisfies Social Sciences gen-ed', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I only (score 6+). Satisfies ◆ MATH 124 placement. Still needs MATH 125 and 126. Score 4-5 gives only MATH 120 (precalc).', satisfiesGenEd: ['calculus'] },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I (score 6+). Satisfies ◆ MATH 124 placement. Still needs MATH 125 and 126.', satisfiesGenEd: ['calculus'] },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MATH 120', courseDescription: 'Precalculus (score 4–5). Elective credit — does NOT satisfy Calculus placement. Still need to take MATH 124.' },
     ],
   },
   {
@@ -36,7 +37,8 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142.' },
       { examName: 'IB Literature HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'ENGL 107', courseDescription: 'Elective English credit — may NOT satisfy English Composition requirement. Verify with adviser.', satisfiesGenEd: ['arts-humanities'] },
       { examName: 'IB History HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'HIST 1xx', courseDescription: 'Elective credit in history — satisfies Social Sciences gen-ed', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I only (score 6+). Satisfies MATH 124 major requirement. Still needs MATH 125 and 126.' },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I (score 6+). Satisfies MATH 124 major requirement. Still needs MATH 125 and 126.' },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MATH 120', courseDescription: 'Precalculus (score 4–5). Elective credit — does NOT satisfy Calculus requirement. Still need to take MATH 124.' },
     ],
   },
   {
@@ -55,7 +57,8 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142.' },
       { examName: 'IB Literature HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'ENGL 107', courseDescription: 'Elective English credit — may NOT satisfy English Composition requirement. Verify with adviser.', satisfiesGenEd: ['arts-humanities'] },
       { examName: 'IB History HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'HIST 1xx', courseDescription: 'Elective credit in history — satisfies Social Sciences gen-ed', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I only (score 6+). Satisfies quantitative gen-ed requirement.', satisfiesGenEd: ['quantitative'] },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I (score 6+). Satisfies quantitative gen-ed requirement.', satisfiesGenEd: ['quantitative'] },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MATH 120', courseDescription: 'Precalculus (score 4–5). Elective credit — does NOT satisfy quantitative requirement.' },
     ],
   },
   {

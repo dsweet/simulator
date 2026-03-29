@@ -7,6 +7,7 @@ export interface CreditResult {
   score: number;
   isPending: boolean;
   creditsAwarded: number;
+  cappedCredits: number; // credits after cap adjustment (may be less than creditsAwarded)
   courseEquivalent?: string;
   courseDescription?: string;
   satisfiedGenEds: string[];
@@ -14,6 +15,8 @@ export interface CreditResult {
 
 export interface CreditSummary {
   totalCredits: number;
+  uncappedTotal: number;
+  creditCap: number | null;
   results: CreditResult[];
   diplomaBonus: number;
   satisfiedGenEds: string[];
@@ -29,6 +32,7 @@ function getEffectiveScore(exam: ExamScore, profile: StudentProfile): number | n
 
 function matchExamToPolicy(
   exam: ExamScore,
+  effectiveScore: number,
   policy: CreditPolicy
 ): { examName: string; minScore: number; creditsAwarded: number; courseEquivalent?: string; courseDescription?: string; satisfiesGenEd?: string[] } | null {
   // Build the exam name to match against policy
@@ -41,13 +45,33 @@ function matchExamToPolicy(
     return null;
   }
 
-  // Find matching award in policy
-  return policy.awards.find(award => {
-    // Flexible matching — check if the award name contains key parts of the exam name
+  // Find ALL matching awards, then pick the best tier the student qualifies for.
+  // This supports tiered awards where higher scores earn better course equivalents
+  // (e.g., Math HL 4-5 → MATH 120, Math HL 6-7 → MATH 124).
+  const matches = policy.awards.filter(award => {
     const awardNorm = award.examName.toLowerCase();
     const examNorm = examName.toLowerCase();
     return awardNorm === examNorm || awardNorm.includes(exam.subject.toLowerCase());
-  }) || null;
+  });
+
+  if (matches.length === 0) return null;
+
+  // Pick the highest-threshold award the student qualifies for
+  const qualified = matches
+    .filter(a => effectiveScore >= a.minScore)
+    .sort((a, b) => b.minScore - a.minScore);
+
+  return qualified[0] || null;
+}
+
+// Priority for keeping credits when cap is exceeded:
+// 1. Credits with course equivalents (e.g., MATH 124, CSE 121) — hardest to replace
+// 2. Credits that satisfy gen-eds — save time on requirements
+// 3. Generic elective credits — easiest to replace with any course
+function creditPriority(result: CreditResult): number {
+  if (result.courseEquivalent) return 2;
+  if (result.satisfiedGenEds.length > 0) return 1;
+  return 0;
 }
 
 export function evaluateCredits(
@@ -62,10 +86,10 @@ export function evaluateCredits(
     const effectiveScore = getEffectiveScore(exam, profile);
     if (effectiveScore === null) continue;
 
-    const award = matchExamToPolicy(exam, policy);
+    const award = matchExamToPolicy(exam, effectiveScore, policy);
     if (!award) continue;
 
-    if (effectiveScore >= award.minScore) {
+    {
       const result: CreditResult = {
         examName: exam.examType === 'AP' ? `AP ${exam.subject}` : `IB ${exam.subject} ${exam.examType === 'IB-HL' ? 'HL' : 'SL'}`,
         examType: exam.examType,
@@ -73,6 +97,7 @@ export function evaluateCredits(
         score: effectiveScore,
         isPending: exam.score === null,
         creditsAwarded: award.creditsAwarded,
+        cappedCredits: award.creditsAwarded, // will be adjusted below if cap applies
         courseEquivalent: award.courseEquivalent,
         courseDescription: award.courseDescription,
         satisfiedGenEds: award.satisfiesGenEd || [],
@@ -91,13 +116,33 @@ export function evaluateCredits(
     totalCredits += diplomaBonus;
   }
 
-  // Apply credit cap if exists
-  if (policy.creditCap && totalCredits > policy.creditCap) {
-    totalCredits = policy.creditCap;
+  const uncappedTotal = totalCredits;
+  const creditCap = policy.creditCap ?? null;
+
+  // Apply credit cap — reduce lowest-priority credits first so valuable
+  // course equivalents (e.g., Calculus, CSE) are never lost to the cap.
+  // Gen-ed satisfactions are always preserved regardless of cap.
+  if (creditCap && totalCredits > creditCap) {
+    let excess = totalCredits - creditCap;
+
+    // Sort results by priority (lowest first) so we trim generic elective
+    // credits before touching course-equivalent or gen-ed credits
+    const sortedByPriority = [...results].sort((a, b) => creditPriority(a) - creditPriority(b));
+
+    for (const result of sortedByPriority) {
+      if (excess <= 0) break;
+      const reduction = Math.min(result.cappedCredits, excess);
+      result.cappedCredits -= reduction;
+      excess -= reduction;
+    }
+
+    totalCredits = creditCap;
   }
 
   return {
     totalCredits,
+    uncappedTotal,
+    creditCap,
     results,
     diplomaBonus,
     satisfiedGenEds: Array.from(satisfiedGenEds),

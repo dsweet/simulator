@@ -235,7 +235,12 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
                     {result.isPending && <span className="pending-badge">pending</span>}
                   </span>
                   <span className="score">Score: {result.score}</span>
-                  <span className="credits">+{result.creditsAwarded} credits</span>
+                  <span className="credits">
+                    {result.cappedCredits < result.creditsAwarded
+                      ? <><s>+{result.creditsAwarded}</s> +{result.cappedCredits} credits <span className="cap-note">(capped)</span></>
+                      : `+${result.creditsAwarded} credits`
+                    }
+                  </span>
                 </div>
                 {result.creditsAwarded > 0 && (result.courseEquivalent || result.courseDescription) && (
                   <div className="credit-row-detail">
@@ -251,6 +256,18 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
                 <span className="exam-name">IB Diploma Bonus</span>
                 <span className="score">Full Diploma</span>
                 <span className="credits">+{creditSummary.diplomaBonus} credits</span>
+              </div>
+            )}
+
+            {creditSummary.creditCap && creditSummary.uncappedTotal > creditSummary.creditCap && (
+              <div className="credit-row credit-cap-notice">
+                <div className="credit-row-main">
+                  <span className="exam-name">Credit cap applied</span>
+                  <span className="course-desc">Max {creditSummary.creditCap} credits from AP/IB — {creditSummary.uncappedTotal - creditSummary.creditCap} credits over cap</span>
+                </div>
+                <div className="credit-row-detail">
+                  <span className="course-desc">Course equivalencies and gen-ed satisfactions still count even when total credits are capped.</span>
+                </div>
               </div>
             )}
           </div>

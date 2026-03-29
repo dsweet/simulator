@@ -129,18 +129,18 @@ describe('canPeek', () => {
 });
 
 describe('canFullReveal', () => {
-  it('returns false with fewer than 6 completed runs', () => {
+  it('returns false with fewer than all schools completed', () => {
     let s = state;
-    for (const id of ['uw', 'ups', 'richmond', 'rochester', 'ucsd']) {
+    for (const id of ['uw', 'ups', 'richmond', 'rochester', 'ucsd', 'ucla', 'uw-econ']) {
       s = startRun(s, id);
       s = addOutcomeRating(s, id, { appeal: 4, notes: '' });
     }
     expect(canFullReveal(s)).toBe(false);
   });
 
-  it('returns true with 6 completed runs', () => {
+  it('returns true with all schools completed', () => {
     let s = state;
-    for (const id of ['uw', 'ups', 'richmond', 'rochester', 'ucsd', 'ucla']) {
+    for (const id of ['uw', 'uw-econ', 'uw-poliecon', 'ups', 'richmond', 'rochester', 'ucsd', 'ucla']) {
       s = startRun(s, id);
       s = addOutcomeRating(s, id, { appeal: 4, notes: '' });
     }
@@ -163,7 +163,7 @@ describe('getAvailableSchools', () => {
     s = { ...s, runs: s.runs.map(r => r.schoolId === 'ups' ? { ...r, completed: true } : r) };
     const available = getAvailableSchools(s, 'economics');
     expect(available).toContain('ups');
-    expect(available.length).toBe(5);
+    expect(available.length).toBe(4); // uw-econ, ups, ucsd, ucla
   });
 
   it('returns only schools matching the track', () => {
@@ -175,7 +175,7 @@ describe('getAvailableSchools', () => {
 describe('getUnplayedSchools', () => {
   it('returns all schools when none completed', () => {
     const unplayed = getUnplayedSchools(state, 'economics');
-    expect(unplayed.length).toBe(5);
+    expect(unplayed.length).toBe(4); // uw-econ, ups, ucsd, ucla
   });
 
   it('excludes completed schools', () => {
@@ -183,12 +183,12 @@ describe('getUnplayedSchools', () => {
     s = addOutcomeRating(s, 'ups', { appeal: 4, notes: '' });
     const unplayed = getUnplayedSchools(s, 'economics');
     expect(unplayed).not.toContain('ups');
-    expect(unplayed.length).toBe(4);
+    expect(unplayed.length).toBe(3);
   });
 
   it('returns empty when all schools in track are completed', () => {
     let s = state;
-    for (const id of ['ups', 'richmond', 'rochester', 'ucsd', 'ucla']) {
+    for (const id of ['uw-econ', 'ups', 'ucsd', 'ucla']) {
       s = startRun(s, id);
       s = addOutcomeRating(s, id, { appeal: 3, notes: '' });
     }
@@ -260,7 +260,7 @@ describe('rollRandomSchool', () => {
   it('prefers unplayed schools over completed ones', () => {
     // Complete all econ schools except ucla
     let s = state;
-    for (const id of ['ups', 'richmond', 'rochester', 'ucsd']) {
+    for (const id of ['uw-econ', 'ups', 'ucsd']) {
       s = startRun(s, id);
       s = addOutcomeRating(s, id, { appeal: 3, notes: '' });
     }
