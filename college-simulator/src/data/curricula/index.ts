@@ -1,16 +1,16 @@
 import { Curriculum } from '../../types';
 import { uwHcde } from './uw-hcde';
 import { upsEcon } from './ups-econ';
-import { richmondEcon } from './richmond-econ';
-import { rochesterEcon } from './rochester-econ';
+import { richmondPpel } from './richmond-ppel';
+import { rochesterPpe } from './rochester-ppe';
 import { ucsdEcon } from './ucsd-econ';
 import { uclaEcon } from './ucla-econ';
 
 const curricula: Record<string, Curriculum> = {
   uw: uwHcde,
   ups: upsEcon,
-  richmond: richmondEcon,
-  rochester: rochesterEcon,
+  richmond: richmondPpel,
+  rochester: rochesterPpe,
   ucsd: ucsdEcon,
   ucla: uclaEcon,
 };
