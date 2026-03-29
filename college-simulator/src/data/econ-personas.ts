@@ -1,7 +1,10 @@
 import { Persona } from '../types';
 
-// All 6 Economics personas use UPS course IDs (semester-based, 4 courses per term)
-// The student enters with IB/AP credit for MATH170 (Calc I) and MATH160 (Statistics)
+// Personas 1–6 use UPS course IDs (semester-based, 4 courses per term)
+// Personas 7–8 use UCSD and UCLA course IDs (quarter-based, 4 courses per term, 12 terms)
+// UPS: student enters with IB/AP credit for MATH170 (Calc I) and MATH160 (Statistics)
+// UCSD: student enters with IB Math HL → MATH10A+10B, AP Stats → MATH11
+// UCLA: student enters with IB Math HL → MATH31A+31B, AP Stats → STATS10
 
 export const econPersonas: Persona[] = [
   // ============================================================
@@ -200,5 +203,82 @@ export const econPersonas: Persona[] = [
     techOutcome: false,
     gradSchool: true,
     gradSchoolType: 'PhD',
+  },
+
+  // ============================================================
+  // 7. THE DECISION SCIENTIST — Priya Navarro-Chatterjee (UCSD)
+  // Quarter system: 12 terms × 4 courses. Marshall College DOC sequence.
+  // ============================================================
+  {
+    id: 'econ-decision-scientist',
+    name: 'Priya Navarro-Chatterjee',
+    archetype: 'The Decision Scientist',
+    emoji: '\u{1F9E0}',
+    bio: 'Priya grew up in San Diego watching her mother \u2014 a psychiatrist \u2014 and her father \u2014 a financial advisor \u2014 have the same argument in different languages. Her mother saw bad financial decisions as symptoms of cognitive limitations: anxiety, loss aversion, present bias. Her father saw them as rational responses to bad options. By high school Priya realized both were right, but neither field had the math to model the interaction.',
+    passion: 'Building computational models of how people actually make decisions under uncertainty, because the gap between economic theory and cognitive reality is where the most important questions live.',
+    coursesByTerm: [
+      { termLabel: 'Fall Year 1', courses: ['DOC1', 'MATH10C', 'ECON1', 'COGS1'] },
+      { termLabel: 'Winter Year 1', courses: ['DOC2', 'ECON3', 'PHYS1A', 'PSYC1'] },
+      { termLabel: 'Spring Year 1', courses: ['DOC3', 'ECON100A', 'PHIL15', 'BILD1'] },
+      { termLabel: 'Fall Year 2', courses: ['ECON100B', 'ECON120A', 'MATH180A', 'HILD7A'] },
+      { termLabel: 'Winter Year 2', courses: ['ECON100C', 'ECON120B', 'MATH180B', 'VIS1'] },
+      { termLabel: 'Spring Year 2', courses: ['ECON120C', 'ECON110', 'COGS108', 'CHEM6A'] },
+      { termLabel: 'Fall Year 3', courses: ['ECON109', 'MATH180C', 'COGS101B', 'PHIL10'] },
+      { termLabel: 'Winter Year 3', courses: ['ECON171', 'MATH109', 'COGS109', 'PHIL170'] },
+      { termLabel: 'Spring Year 3', courses: ['ECON113', 'ECON160A', 'COGS101A', 'LTCS120'] },
+      { termLabel: 'Fall Year 4', courses: ['ECON160B', 'MATH181A', 'COGS107A', 'ANTH1'] },
+      { termLabel: 'Winter Year 4', courses: ['MATH181B', 'ECON173', 'COGS118A', 'PHIL28'] },
+      { termLabel: 'Spring Year 4', courses: ['MATH185', 'ECON175', 'COGS143', 'ETHN20'] },
+    ],
+    curriculumSummary: 'Priya builds the most mathematically intensive path in the economics cohort, and the only one that systematically bridges economics and cognitive science. After the Marshall College DOC writing sequence and Calc III, she runs two parallel quantitative tracks: the full UCSD probability and mathematical statistics sequence (MATH 180A\u2192180B\u2192180C\u2192181A\u2192181B) plus computational statistics (185), and the complete econometrics pipeline including applied causal inference (ECON 160A\u2192160B). Her economics electives \u2014 behavioral economics (110), game theory (109), decisions under uncertainty (171), and mathematical economics (113) \u2014 all sit at the intersection of formal theory and psychological reality. The cognitive science stack \u2014 data science (COGS 108), computational modeling (109), learning and memory (101B), sensation and perception (101A), neuroanatomy (107A), machine learning (118A), and language and brain (143) \u2014 gives her the tools to study decision-making as a neural process, not just an economic abstraction. Philosophy of mind (PHIL 170) and formal logic (PHIL 15) sharpen her thinking about what it means to model a mind mathematically.',
+    visionLeavingUndergrad: 'Priya wants to build computational models that capture how real neural circuits learn to make decisions under uncertainty \u2014 not the utility-maximizing agents of textbook economics, but the noisy, adaptive, pattern-matching systems that brains actually are. She plans to pursue a PhD in computational neuroscience or neuroeconomics.',
+    careerTimeline: [
+      { years: '1\u20132', role: 'PhD Student, Caltech (Computation & Neural Systems)', description: 'Joins a lab studying decision-making under uncertainty using computational modeling and neuroimaging. Develops a reinforcement learning model that predicts when people will deviate from expected utility theory based on the structure of the learning environment. Supported by an NSF Graduate Research Fellowship.' },
+      { years: '2\u20133', role: 'Published Researcher', description: 'Publishes a paper in Nature Human Behaviour showing that prospect theory\u2019s loss aversion parameter isn\u2019t a stable trait but varies systematically with the volatility of recent reward history \u2014 people aren\u2019t inherently loss-averse, they learn to be in uncertain environments.' },
+      { years: '3\u20134', role: 'Visiting Researcher, Riken Center for Brain Science (Tokyo)', description: 'Spends a year at Riken collaborating on cross-cultural studies of risk preference, testing whether her computational models of learned loss aversion replicate across different economic and cultural contexts.' },
+      { years: '4\u20135', role: 'Postdoctoral Scholar, Stanford Decision Neuroscience Lab', description: 'Extends her models to clinical populations, testing whether the same computational framework that predicts financial risk behavior can identify early markers of anxiety disorders \u2014 bridging her parents\u2019 professions in a way neither anticipated.' },
+    ],
+    futureThinking: 'Priya is positioning for faculty jobs at the intersection of economics, cognitive science, and neuroscience \u2014 departments that barely existed a decade ago but are now where the most interesting questions about human behavior live. She wants to build a lab that trains students to be fluent in all three languages.',
+    techOutcome: false,
+    gradSchool: true,
+    gradSchoolType: 'PhD',
+  },
+
+  // ============================================================
+  // 8. THE BEHAVIORAL STRATEGIST — Jalen Park-Okonkwo (UCLA)
+  // Quarter system: 12 terms × 4 courses.
+  // ============================================================
+  {
+    id: 'econ-behavioral-strategist',
+    name: 'Jalen Park-Okonkwo',
+    archetype: 'The Behavioral Strategist',
+    emoji: '\u{1F3AF}',
+    bio: 'Jalen grew up in Los Angeles watching his Korean grandmother clip coupons with mathematical precision while his Nigerian father \u2014 an engineering PhD \u2014 made consistently terrible investment decisions. The contrast was so stark it became a family joke, but Jalen couldn\u2019t let it go: why do smart people make predictable mistakes with money, and can you design systems that help without patronizing them?',
+    passion: 'Designing choice environments that help people make decisions aligned with their own goals, because the gap between what people want and what they choose is usually a design problem, not a character flaw.',
+    coursesByTerm: [
+      { termLabel: 'Fall Year 1', courses: ['ECON1', 'ECON11', 'ENGCOMP3', 'ASTRO3'] },
+      { termLabel: 'Winter Year 1', courses: ['ECON2', 'ECON41', 'PHILOS1', 'PSYCH10'] },
+      { termLabel: 'Spring Year 1', courses: ['ECON101', 'PHILOS7', 'ASAMST1', 'LS7A'] },
+      { termLabel: 'Fall Year 2', courses: ['ECON102', 'ECON103', 'STATS100A', 'PSYCH120A'] },
+      { termLabel: 'Winter Year 2', courses: ['ECON104', 'ECON106V', 'STATS100B', 'ENGL1A'] },
+      { termLabel: 'Spring Year 2', courses: ['ECON106G', 'STATS20', 'PSYCH130', 'PHILOS8'] },
+      { termLabel: 'Fall Year 3', courses: ['ECON106I', 'STATS101A', 'PSYCH120B', 'SOCIOL1'] },
+      { termLabel: 'Winter Year 3', courses: ['ECON145', 'ECON180', 'PSYCH124A', 'COMSCI31'] },
+      { termLabel: 'Spring Year 3', courses: ['ECON130', 'STATS140SL', 'COMSCI161', 'POLSCI10'] },
+      { termLabel: 'Fall Year 4', courses: ['ECON106H', 'PHILOS185', 'COMSCI188', 'ART11A'] },
+      { termLabel: 'Winter Year 4', courses: ['ECON171', 'DESMA10', 'ART11B', 'HIST1B'] },
+      { termLabel: 'Spring Year 4', courses: ['ECON107', 'DESMA160', 'ART11C', 'ETHNSTD1'] },
+    ],
+    curriculumSummary: 'Jalen builds the most applied behavioral path, systematically combining economic theory with cognitive science, statistics, computation, and design. His econ core is front-loaded: he finishes the full micro/macro theory and econometrics sequence (including advanced econometrics, ECON 104) by the end of sophomore year. His econ electives \u2014 behavioral economics (106V), game theory (106G), industrial organization (106I), law and economics (145), economics of technology (180), public economics (130), health economics (106H), political economy (171), and history of economic thought (107) \u2014 cover strategic behavior from every angle. The psychology sequence \u2014 cognitive psychology (120A), perception (120B), computational cognitive science (130), and language and cognition (124A) \u2014 grounds his economic intuitions in how minds actually process information. The full UCLA probability and mathematical statistics sequence (STATS 100A\u2192100B) plus applied regression (101A) and statistical consulting (140SL) gives him hands-on quantitative practice. Philosophy of mind (PHILOS 7), formal logic (PHILOS 8), and philosophy of technology and AI (PHILOS 185) push him to think about the ethics of behavioral intervention. Junior year he picks up programming (COMSCI 31), AI (COMSCI 161), and HCI (COMSCI 188) to prototype his ideas. Senior year he adds design media arts (DESMA 10, 160) for UX skills and the ceramics sequence (ART 11A\u2192B\u2192C) because he finds working with clay helps him think.',
+    visionLeavingUndergrad: 'Jalen wants to work at the intersection of behavioral economics and design \u2014 not in academia but in organizations that apply behavioral insights to real products and policies. He\u2019s particularly interested in healthcare and financial decision-making, where the stakes of poor choice architecture are highest.',
+    careerTimeline: [
+      { years: '1\u20132', role: 'Associate, ideas42 (Behavioral Design Consultancy)', description: 'Designs and runs randomized experiments testing behavioral interventions for financial services clients. Leads a project redesigning a health insurance enrollment flow that increases plan-switching rates by 23% among employees who were previously defaulting into suboptimal plans.' },
+      { years: '2\u20133', role: 'Behavioral Scientist, California Department of Health Care Services', description: 'Joins the state\u2019s behavioral insights team. Designs nudge interventions for Medi-Cal enrollment and preventive care uptake. Runs the first statewide RCT testing whether simplified renewal forms reduce Medicaid churn among eligible families.' },
+      { years: '3\u20134', role: 'Senior Behavioral Scientist, Nava PBC (Government Technology)', description: 'Leads behavioral design for government benefits platforms. Redesigns the information architecture of a state benefits portal, applying computational cognitive science to reduce cognitive load in eligibility screening. The redesign increases successful application completion by 34%.' },
+      { years: '4\u20135', role: 'Director of Behavioral Strategy, health technology startup', description: 'Leads a team applying behavioral economics and HCI research to chronic disease management tools. Designs personalized choice architectures that adapt to individual cognitive profiles \u2014 bringing together everything from game theory to perception to computational modeling.' },
+    ],
+    futureThinking: 'Jalen is wrestling with whether to stay in industry where he can see immediate impact or pursue a mid-career PhD to publish the research he keeps designing in his head. He\u2019s also increasingly interested in the ethics of behavioral intervention at scale \u2014 when does a well-designed nudge become manipulation, and who gets to decide?',
+    techOutcome: true,
+    gradSchool: false,
   },
 ];

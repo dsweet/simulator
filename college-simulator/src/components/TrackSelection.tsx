@@ -65,7 +65,7 @@ export default function TrackSelection({ gameState, onSelectTrack, onReset, onPe
             </div>
           </button>
           <button className="personas-link" onClick={() => onShowPersonas('economics')}>
-            Meet 6 Economics graduates &rarr;
+            Meet 8 Economics graduates &rarr;
           </button>
         </div>
 

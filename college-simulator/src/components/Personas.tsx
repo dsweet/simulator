@@ -5,6 +5,8 @@ import { econPersonas } from '../data/econ-personas';
 import { ppePersonas } from '../data/ppe-personas';
 import { uwHcde } from '../data/curricula/uw-hcde';
 import { upsEcon } from '../data/curricula/ups-econ';
+import { ucsdEcon } from '../data/curricula/ucsd-econ';
+import { uclaEcon } from '../data/curricula/ucla-econ';
 import { richmondPpel } from '../data/curricula/richmond-ppel';
 import { rochesterPpe } from '../data/curricula/rochester-ppe';
 
@@ -29,10 +31,10 @@ const trackConfig: Record<Track, {
   },
   'economics': {
     personas: econPersonas,
-    courses: [...upsEcon.courses],
-    title: 'Meet 6 Economics Graduates',
-    subtitle: 'Same major, six very different lives. Each of these fictional graduates took the economics core and then diverged — two into careers that use economics every day, four into PhD programs studying questions they couldn\u2019t let go of.',
-    apNote: 'Starting with IB/AP credit for Calculus I (IB Math HL) and Statistics (AP Stats).',
+    courses: [...upsEcon.courses, ...ucsdEcon.courses, ...uclaEcon.courses],
+    title: 'Meet 8 Economics Graduates',
+    subtitle: 'Same major across three schools, eight very different lives. Six from UPS, one from UCSD, one from UCLA. Each took the economics core and then diverged \u2014 three into careers that use economics every day, five into PhD programs studying questions they couldn\u2019t let go of.',
+    apNote: 'Starting with IB/AP credit for Calculus I (IB Math HL) and Statistics (AP Stats). Credit awards vary by school.',
   },
   'ppe': {
     personas: ppePersonas,
