@@ -1,4 +1,4 @@
-import { GameState, SchoolRun, TermSelection, YearRating, OutcomeRating, SCHOOL_ALIASES } from '../types';
+import { GameState, SchoolRun, TermSelection, YearRating, OutcomeRating, SCHOOL_ALIASES, Track } from '../types';
 import { schools } from '../data/schools';
 
 const STORAGE_KEY = 'college-simulator-state';
@@ -24,13 +24,13 @@ export function saveState(state: GameState): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
-export function getAvailableSchools(state: GameState, track: 'engineering-design' | 'economics'): string[] {
+export function getAvailableSchools(state: GameState, track: Track): string[] {
   return schools
     .filter(s => s.track === track)
     .map(s => s.id);
 }
 
-export function getUnplayedSchools(state: GameState, track: 'engineering-design' | 'economics'): string[] {
+export function getUnplayedSchools(state: GameState, track: Track): string[] {
   const completedIds = new Set(state.runs.filter(r => r.completed).map(r => r.schoolId));
   return schools
     .filter(s => s.track === track && !completedIds.has(s.id))
@@ -43,7 +43,7 @@ export function cleanupAbandonedRuns(state: GameState): GameState {
   return { ...state, runs: cleaned, currentRun: undefined };
 }
 
-export function rollRandomSchool(state: GameState, track: 'engineering-design' | 'economics'): string | null {
+export function rollRandomSchool(state: GameState, track: Track): string | null {
   // Prefer unplayed schools, but allow replays of completed ones
   const unplayed = getUnplayedSchools(state, track);
   const pool = unplayed.length > 0 ? unplayed : getAvailableSchools(state, track);

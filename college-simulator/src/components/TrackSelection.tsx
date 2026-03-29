@@ -13,6 +13,7 @@ interface Props {
 export default function TrackSelection({ gameState, onSelectTrack, onReset, onPeek, onFullReveal, onShowPersonas }: Props) {
   const engineUnplayed = getUnplayedSchools(gameState, 'engineering-design');
   const econUnplayed = getUnplayedSchools(gameState, 'economics');
+  const ppeUnplayed = getUnplayedSchools(gameState, 'ppe');
   const completedCount = getCompletedRunCount(gameState);
 
   const completedRuns = gameState.runs.filter(r => r.completed);
@@ -59,6 +60,20 @@ export default function TrackSelection({ gameState, onSelectTrack, onReset, onPe
           <div className="track-meta">
             {econUnplayed.length > 0
               ? `${econUnplayed.length} new school${econUnplayed.length > 1 ? 's' : ''} to explore`
+              : 'All schools explored — replay to try different courses'}
+          </div>
+        </button>
+
+        <button
+          className="track-card"
+          onClick={() => onSelectTrack('ppe')}
+        >
+          <div className="track-icon">⚖️</div>
+          <h3>PPE / PPEL Track</h3>
+          <p>Philosophy, politics, economics, law, game theory, rational choice, social policy</p>
+          <div className="track-meta">
+            {ppeUnplayed.length > 0
+              ? `${ppeUnplayed.length} new school${ppeUnplayed.length > 1 ? 's' : ''} to explore`
               : 'All schools explored — replay to try different courses'}
           </div>
         </button>

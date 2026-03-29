@@ -5,7 +5,7 @@
 export type CalendarType = 'quarter' | 'semester';
 export type SchoolSize = 'small' | 'medium' | 'large';
 export type CourseCategory = 'major-required' | 'major-elective' | 'gen-ed' | 'elective';
-export type Track = 'engineering-design' | 'economics';
+export type Track = 'engineering-design' | 'economics' | 'ppe';
 
 export interface InterestTag {
   id: string;

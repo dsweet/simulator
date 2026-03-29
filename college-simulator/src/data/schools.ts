@@ -30,7 +30,7 @@ export const schools: School[] = [
   {
     id: 'richmond',
     name: 'University of Richmond',
-    track: 'economics',
+    track: 'ppe',
     program: 'PPEL (Philosophy, Politics, Economics & Law)',
     calendar: 'semester',
     size: 'small',
@@ -43,7 +43,7 @@ export const schools: School[] = [
   {
     id: 'rochester',
     name: 'University of Rochester',
-    track: 'economics',
+    track: 'ppe',
     program: 'PPE (Politics, Philosophy & Economics)',
     calendar: 'semester',
     size: 'medium',
