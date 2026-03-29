@@ -17,6 +17,11 @@ function getCourseCredits(courseId: string): number {
   return course ? course.credits : 0;
 }
 
+function getCourseDescription(courseId: string): string {
+  const course = uwHcde.courses.find(c => c.id === courseId);
+  return course ? course.description : '';
+}
+
 function PersonaDetail({ persona, onBack }: { persona: Persona; onBack: () => void }) {
   return (
     <div className="persona-detail">
@@ -60,7 +65,7 @@ function PersonaDetail({ persona, onBack }: { persona: Persona; onBack: () => vo
                       </div>
                       <ul className="term-courses">
                         {term.courses.map(courseId => (
-                          <li key={courseId}>
+                          <li key={courseId} title={getCourseDescription(courseId)}>
                             <span className="course-id">{courseId.replace(/(\d)/, ' $1')}</span>
                             <span className="course-title">{getCourseTitle(courseId)}</span>
                             <span className="course-cr">{getCourseCredits(courseId)}</span>
