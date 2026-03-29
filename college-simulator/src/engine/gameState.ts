@@ -124,8 +124,12 @@ export function canPeek(state: GameState): boolean {
   return completedRuns >= 3 && !state.peekUsed;
 }
 
+export function getTotalSchoolCount(): number {
+  return schools.length;
+}
+
 export function canFullReveal(state: GameState): boolean {
-  return state.runs.filter(r => r.completed).length >= 6;
+  return state.runs.filter(r => r.completed).length >= schools.length;
 }
 
 export function getCompletedRunCount(state: GameState): number {

@@ -15,6 +15,32 @@ export const schools: School[] = [
     },
   },
   {
+    id: 'uw-econ',
+    name: 'University of Washington',
+    track: 'economics',
+    program: 'Economics (BA)',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
+    id: 'uw-poliecon',
+    name: 'University of Washington',
+    track: 'ppe',
+    program: 'Political Economy (Interdisciplinary)',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
     id: 'ups',
     name: 'University of Puget Sound',
     track: 'economics',

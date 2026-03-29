@@ -1,5 +1,5 @@
 import { GameState, Track } from '../types';
-import { getUnplayedSchools, canPeek, canFullReveal, getCompletedRunCount } from '../engine/gameState';
+import { getUnplayedSchools, canPeek, canFullReveal, getCompletedRunCount, getTotalSchoolCount } from '../engine/gameState';
 
 interface Props {
   gameState: GameState;
@@ -113,7 +113,7 @@ export default function TrackSelection({ gameState, onSelectTrack, onReset, onPe
         )}
         {canFullReveal(gameState) && (
           <button className="btn btn-reveal" onClick={onFullReveal}>
-            🎉 Grand Reveal — unmask all 6 schools!
+            🎉 Grand Reveal — unmask all {getTotalSchoolCount()} schools!
           </button>
         )}
         {completedCount > 0 && (

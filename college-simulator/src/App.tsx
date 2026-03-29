@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { GameState, Track } from './types';
-import { loadState, saveState, startRun, rollRandomSchool, getCompletedRunCount, canPeek, canFullReveal, addYearRating, resetState, cleanupAbandonedRuns } from './engine/gameState';
+import { loadState, saveState, startRun, rollRandomSchool, getCompletedRunCount, getTotalSchoolCount, canPeek, canFullReveal, addYearRating, resetState, cleanupAbandonedRuns } from './engine/gameState';
 import { schools } from './data/schools';
 import TrackSelection from './components/TrackSelection';
 import StartingPoint from './components/StartingPoint';
@@ -127,7 +127,7 @@ function App() {
           College Experience Simulator
         </h1>
         <div className="header-stats">
-          <span>{completedCount}/6 schools explored</span>
+          <span>{completedCount}/{getTotalSchoolCount()} schools explored</span>
           {canPeek(gameState) && <button className="btn-small" onClick={handlePeek}>Peek (3+ done)</button>}
           {canFullReveal(gameState) && <button className="btn-small btn-reveal" onClick={handleFullReveal}>Grand Reveal</button>}
           {completedCount > 0 && gameState.revealed && <button className="btn-small" onClick={handleShowComparison}>Compare</button>}

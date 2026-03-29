@@ -3,7 +3,7 @@ import { GameState } from '../types';
 import { schools } from '../data/schools';
 import { costs } from '../data/costs';
 import { studentLife } from '../data/studentLife';
-import { canFullReveal } from '../engine/gameState';
+import { canFullReveal, getTotalSchoolCount } from '../engine/gameState';
 
 interface Props {
   gameState: GameState;
@@ -36,8 +36,8 @@ export default function Reveal({ gameState, onUpdateState, onBack, onCompare }: 
       <h2>{fullReveal ? '🎉 The Grand Reveal' : '👀 Sneak Peek'}</h2>
       <p>
         {fullReveal
-          ? 'You\'ve explored all 6 schools. Time to find out which was which! Schools are revealed from your highest-rated to lowest.'
-          : 'Here\'s an early look at the schools you\'ve explored so far. Complete all 6 for the full reveal!'
+          ? `You've explored all ${getTotalSchoolCount()} schools. Time to find out which was which! Schools are revealed from your highest-rated to lowest.`
+          : `Here's an early look at the schools you've explored so far. Complete all ${getTotalSchoolCount()} for the full reveal!`
         }
       </p>
 

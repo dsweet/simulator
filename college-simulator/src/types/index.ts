@@ -287,4 +287,6 @@ export const SCHOOL_ALIASES = [
   'School Delta',
   'School Epsilon',
   'School Zeta',
+  'School Eta',
+  'School Theta',
 ] as const;
