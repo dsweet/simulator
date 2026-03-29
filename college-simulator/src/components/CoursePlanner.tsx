@@ -361,7 +361,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
             const prereqCheck = checkPrereqs(course, [...previouslyTakenIds]);
             const hasBrokenPrereq = !prereqCheck.met;
             return (
-              <div key={course.id} className={`selected-course ${lockedSlots[idx] ? 'slot-locked' : ''} ${hasBrokenPrereq ? 'prereq-broken' : ''}`}>
+              <div key={course.id} className={`selected-course ${lockedSlots[idx] ? 'slot-locked' : ''} ${hasBrokenPrereq ? 'prereq-broken' : ''}`} title={course.description}>
                 <div>
                   <span className="course-id">{course.id}</span>
                   <span className="course-title">{course.title}</span>
