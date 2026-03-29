@@ -1,28 +1,64 @@
 import { useState } from 'react';
-import { Persona } from '../types';
+import { Persona, Track, Course } from '../types';
 import { personas } from '../data/personas';
+import { econPersonas } from '../data/econ-personas';
+import { ppePersonas } from '../data/ppe-personas';
 import { uwHcde } from '../data/curricula/uw-hcde';
+import { upsEcon } from '../data/curricula/ups-econ';
+import { richmondPpel } from '../data/curricula/richmond-ppel';
+import { rochesterPpe } from '../data/curricula/rochester-ppe';
 
 interface Props {
+  track: Track;
   onBack: () => void;
 }
 
-function getCourseTitle(courseId: string): string {
-  const course = uwHcde.courses.find(c => c.id === courseId);
+const trackConfig: Record<Track, {
+  personas: Persona[];
+  courses: Course[];
+  title: string;
+  subtitle: string;
+  apNote: string;
+}> = {
+  'engineering-design': {
+    personas,
+    courses: uwHcde.courses,
+    title: 'Meet 8 HCDE Graduates',
+    subtitle: 'Same degree, eight very different lives. Each of these fictional graduates started with the same AP/IB credits your daughter will have, took the same HCDE core, and then followed their passions through different electives, interests, and career paths. Only 2 of the 8 ended up in tech.',
+    apNote: 'Starting with 45 credits from AP/IB exams (STAT 290, CSE 121, BIOL 161, and more).',
+  },
+  'economics': {
+    personas: econPersonas,
+    courses: [...upsEcon.courses],
+    title: 'Meet 6 Economics Graduates',
+    subtitle: 'Same major, six very different lives. Each of these fictional graduates took the economics core and then diverged — two into careers that use economics every day, four into PhD programs studying questions they couldn\u2019t let go of.',
+    apNote: 'Starting with IB/AP credit for Calculus I (IB Math HL) and Statistics (AP Stats).',
+  },
+  'ppe': {
+    personas: ppePersonas,
+    courses: [...richmondPpel.courses, ...rochesterPpe.courses],
+    title: 'Meet 8 PPE/PPEL Graduates',
+    subtitle: 'Four from Richmond\u2019s PPEL program, four from Rochester\u2019s PPE program. Same interdisciplinary foundation \u2014 philosophy, politics, economics \u2014 eight very different paths through law, policy, civic technology, and political theory.',
+    apNote: 'IB/AP credit varies by school. Richmond personas use JAPN 201\u2013202 (intermediate) for foreign language.',
+  },
+};
+
+function getCourseTitle(courseId: string, courses: Course[]): string {
+  const course = courses.find(c => c.id === courseId);
   return course ? course.title : courseId;
 }
 
-function getCourseCredits(courseId: string): number {
-  const course = uwHcde.courses.find(c => c.id === courseId);
+function getCourseCredits(courseId: string, courses: Course[]): number {
+  const course = courses.find(c => c.id === courseId);
   return course ? course.credits : 0;
 }
 
-function getCourseDescription(courseId: string): string {
-  const course = uwHcde.courses.find(c => c.id === courseId);
+function getCourseDescription(courseId: string, courses: Course[]): string {
+  const course = courses.find(c => c.id === courseId);
   return course ? course.description : '';
 }
 
-function PersonaDetail({ persona, onBack }: { persona: Persona; onBack: () => void }) {
+function PersonaDetail({ persona, courses, apNote, onBack }: { persona: Persona; courses: Course[]; apNote: string; onBack: () => void }) {
   return (
     <div className="persona-detail">
       <button className="btn btn-secondary persona-back" onClick={onBack}>
@@ -48,7 +84,7 @@ function PersonaDetail({ persona, onBack }: { persona: Persona; onBack: () => vo
 
       <section className="persona-section">
         <h3>Four-Year Course Plan</h3>
-        <p className="persona-note">Starting with 45 credits from AP/IB exams (STAT 290, CSE 121, BIOL 161, and more).</p>
+        <p className="persona-note">{apNote}</p>
         <div className="course-plan-grid">
           {[1, 2, 3, 4].map(year => {
             const yearTerms = persona.coursesByTerm.filter(t => t.termLabel.includes(`Year ${year}`));
@@ -56,21 +92,24 @@ function PersonaDetail({ persona, onBack }: { persona: Persona; onBack: () => vo
               <div key={year} className="course-plan-year">
                 <h4>Year {year}</h4>
                 {yearTerms.map(term => {
-                  const termCredits = term.courses.reduce((sum, id) => sum + getCourseCredits(id), 0);
+                  const termCredits = term.courses.reduce((sum, id) => sum + getCourseCredits(id, courses), 0);
                   return (
                     <div key={term.termLabel} className="course-plan-term">
                       <div className="term-header">
                         <span className="term-label">{term.termLabel.replace(` Year ${year}`, '')}</span>
-                        <span className="term-credits">{termCredits}cr</span>
+                        <span className="term-credits">{termCredits > 0 ? `${termCredits}cr` : `${term.courses.length} courses`}</span>
                       </div>
                       <ul className="term-courses">
-                        {term.courses.map(courseId => (
-                          <li key={courseId} title={getCourseDescription(courseId)}>
-                            <span className="course-id">{courseId.replace(/(\d)/, ' $1')}</span>
-                            <span className="course-title">{getCourseTitle(courseId)}</span>
-                            <span className="course-cr">{getCourseCredits(courseId)}</span>
-                          </li>
-                        ))}
+                        {term.courses.map(courseId => {
+                          const cr = getCourseCredits(courseId, courses);
+                          return (
+                            <li key={courseId} title={getCourseDescription(courseId, courses)}>
+                              <span className="course-id">{courseId.replace(/(\d)/, ' $1')}</span>
+                              <span className="course-title">{getCourseTitle(courseId, courses)}</span>
+                              {cr > 0 && <span className="course-cr">{cr}</span>}
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   );
@@ -114,15 +153,16 @@ function PersonaDetail({ persona, onBack }: { persona: Persona; onBack: () => vo
   );
 }
 
-export default function Personas({ onBack }: Props) {
+export default function Personas({ track, onBack }: Props) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const config = trackConfig[track];
 
-  const selected = selectedId ? personas.find(p => p.id === selectedId) : null;
+  const selected = selectedId ? config.personas.find(p => p.id === selectedId) : null;
 
   if (selected) {
     return (
       <div className="screen personas-screen">
-        <PersonaDetail persona={selected} onBack={() => setSelectedId(null)} />
+        <PersonaDetail persona={selected} courses={config.courses} apNote={config.apNote} onBack={() => setSelectedId(null)} />
       </div>
     );
   }
@@ -134,17 +174,12 @@ export default function Personas({ onBack }: Props) {
       </button>
 
       <div className="personas-intro">
-        <h2>Meet 8 HCDE Graduates</h2>
-        <p>
-          Same degree, eight very different lives. Each of these fictional graduates
-          started with the same AP/IB credits your daughter will have, took the same
-          HCDE core, and then followed their passions through different electives,
-          interests, and career paths. Only 2 of the 8 ended up in tech.
-        </p>
+        <h2>{config.title}</h2>
+        <p>{config.subtitle}</p>
       </div>
 
       <div className="persona-grid">
-        {personas.map(persona => (
+        {config.personas.map(persona => (
           <button
             key={persona.id}
             className="persona-card"

@@ -7,7 +7,7 @@ interface Props {
   onReset: () => void;
   onPeek: () => void;
   onFullReveal: () => void;
-  onShowPersonas: () => void;
+  onShowPersonas: (track: Track) => void;
 }
 
 export default function TrackSelection({ gameState, onSelectTrack, onReset, onPeek, onFullReveal, onShowPersonas }: Props) {
@@ -45,38 +45,48 @@ export default function TrackSelection({ gameState, onSelectTrack, onReset, onPe
                 : 'All schools explored — replay to try different courses'}
             </div>
           </button>
-          <button className="personas-link" onClick={onShowPersonas}>
+          <button className="personas-link" onClick={() => onShowPersonas('engineering-design')}>
             Meet 8 HCDE graduates &rarr;
           </button>
         </div>
 
-        <button
-          className="track-card"
-          onClick={() => onSelectTrack('economics')}
-        >
-          <div className="track-icon">📊</div>
-          <h3>Economics Track</h3>
-          <p>Microeconomics, macroeconomics, econometrics, game theory, policy analysis, finance</p>
-          <div className="track-meta">
-            {econUnplayed.length > 0
-              ? `${econUnplayed.length} new school${econUnplayed.length > 1 ? 's' : ''} to explore`
-              : 'All schools explored — replay to try different courses'}
-          </div>
-        </button>
+        <div className="track-column">
+          <button
+            className="track-card"
+            onClick={() => onSelectTrack('economics')}
+          >
+            <div className="track-icon">📊</div>
+            <h3>Economics Track</h3>
+            <p>Microeconomics, macroeconomics, econometrics, game theory, policy analysis, finance</p>
+            <div className="track-meta">
+              {econUnplayed.length > 0
+                ? `${econUnplayed.length} new school${econUnplayed.length > 1 ? 's' : ''} to explore`
+                : 'All schools explored — replay to try different courses'}
+            </div>
+          </button>
+          <button className="personas-link" onClick={() => onShowPersonas('economics')}>
+            Meet 6 Economics graduates &rarr;
+          </button>
+        </div>
 
-        <button
-          className="track-card"
-          onClick={() => onSelectTrack('ppe')}
-        >
-          <div className="track-icon">⚖️</div>
-          <h3>PPE / PPEL Track</h3>
-          <p>Philosophy, politics, economics, law, game theory, rational choice, social policy</p>
-          <div className="track-meta">
-            {ppeUnplayed.length > 0
-              ? `${ppeUnplayed.length} new school${ppeUnplayed.length > 1 ? 's' : ''} to explore`
-              : 'All schools explored — replay to try different courses'}
-          </div>
-        </button>
+        <div className="track-column">
+          <button
+            className="track-card"
+            onClick={() => onSelectTrack('ppe')}
+          >
+            <div className="track-icon">⚖️</div>
+            <h3>PPE / PPEL Track</h3>
+            <p>Philosophy, politics, economics, law, game theory, rational choice, social policy</p>
+            <div className="track-meta">
+              {ppeUnplayed.length > 0
+                ? `${ppeUnplayed.length} new school${ppeUnplayed.length > 1 ? 's' : ''} to explore`
+                : 'All schools explored — replay to try different courses'}
+            </div>
+          </button>
+          <button className="personas-link" onClick={() => onShowPersonas('ppe')}>
+            Meet 8 PPE/PPEL graduates &rarr;
+          </button>
+        </div>
       </div>
 
       {completedRuns.length > 0 && (

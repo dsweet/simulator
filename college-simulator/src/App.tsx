@@ -23,6 +23,7 @@ function App() {
   });
   const [screen, setScreen] = useState<Screen>('track-selection');
   const [currentYear, setCurrentYear] = useState(1);
+  const [personaTrack, setPersonaTrack] = useState<Track>('engineering-design');
 
   const updateState = useCallback((newState: GameState) => {
     setGameState(newState);
@@ -141,7 +142,7 @@ function App() {
             onReset={handleReset}
             onPeek={handlePeek}
             onFullReveal={handleFullReveal}
-            onShowPersonas={() => setScreen('personas')}
+            onShowPersonas={(track: Track) => { setPersonaTrack(track); setScreen('personas'); }}
           />
         )}
 
@@ -204,7 +205,7 @@ function App() {
         )}
 
         {screen === 'personas' && (
-          <Personas onBack={handleBackToTracks} />
+          <Personas track={personaTrack} onBack={handleBackToTracks} />
         )}
       </main>
     </div>

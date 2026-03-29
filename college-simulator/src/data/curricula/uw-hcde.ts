@@ -5,267 +5,357 @@ export const uwHcde: Curriculum = {
   program: 'Human Centered Design & Engineering (HCDE)',
   degreeRequirements: {
     totalCredits: 180,
-    majorCredits: 85,
-    genEdCredits: 60,
-    electiveCredits: 35,
+    majorCredits: 71, // Major Core (46) + HCDE Electives (23) + Experiential Learning (2)
+    genEdCredits: 35, // English Comp (5) + Writing (7) + A&H (10) + SSc (10) + A&H/SSc (10) + DIV (5) — with overlaps
+    electiveCredits: 74, // ENGRUD prereqs + engineering fundamentals + free electives
     majorCourses: [
-      'HCDE200', 'HCDE201', 'HCDE210', 'HCDE300', 'HCDE301',
-      'HCDE308', 'HCDE310', 'HCDE318', 'HCDE400', 'HCDE410',
-      'HCDE411', 'HCDE418', 'HCDE419', 'HCDE496',
-      'MATH124', 'MATH125', 'STAT220', 'ENGL182',
+      // HCDE Major Core (46cr)
+      'HCDE302', 'HCDE303', 'HCDE308', 'HCDE310', 'HCDE313',
+      'HCDE315', // or HCDE316 — pick one
+      'HCDE321', 'HCDE322', 'HCDE351',
+      'HCDE492', 'HCDE493',
     ],
     genEdCategories: [
-      { id: 'writing', name: 'Writing (C)', creditsRequired: 10, satisfiedBy: ['ENGL111', 'ENGL121', 'ENGL182', 'ENGL131'] },
-      { id: 'quantitative', name: 'Quantitative & Symbolic Reasoning (QSR)', creditsRequired: 5, satisfiedBy: ['MATH124', 'MATH125', 'STAT220', 'STAT290'] },
-      { id: 'natural-science', name: 'Natural World (NW)', creditsRequired: 10, satisfiedBy: ['ASTR101', 'BIOL100', 'CHEM110', 'PHYS114', 'ESS101'] },
-      { id: 'social-science', name: 'Individuals & Societies (I&S)', creditsRequired: 10, satisfiedBy: ['ECON200', 'PSYCH101', 'SOC101', 'AAS101', 'POL101', 'HIST111'] },
-      { id: 'humanities', name: 'Visual, Literary & Performing Arts (VLPA)', creditsRequired: 10, satisfiedBy: ['ART134', 'ENGL242', 'DXARTS200', 'MUSIC116', 'DRAMA101'] },
-      { id: 'diversity', name: 'Diversity (DIV)', creditsRequired: 5, satisfiedBy: ['AAS101', 'GWSS200', 'AIS200', 'ANTH215'] },
+      // === ENGRUD Placement Requirements (◆ diamond = must complete, ★ star = pick one) ===
+      { id: 'calculus', name: 'Mathematics — Calculus (◆ Placement)', creditsRequired: 15, satisfiedBy: ['MATH124', 'MATH125', 'MATH126'] },
+      { id: 'statistics', name: 'Statistics (★ Placement — pick one)', creditsRequired: 5, satisfiedBy: ['STAT220', 'STAT290', 'STAT311', 'QSCI381'] },
+      { id: 'sciences', name: 'Sciences (◆ Placement — 15cr)', creditsRequired: 15, satisfiedBy: ['CHEM142', 'PHYS121', 'CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'BIOL180'] },
+      { id: 'addl-math-sci', name: 'Additional Math/Stats/Science (★ Placement)', creditsRequired: 15, satisfiedBy: ['CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'STAT311', 'QSCI381'] },
+
+      // === General Education Requirements (35cr) ===
+      { id: 'english-comp', name: 'English Composition (◆ Placement)', creditsRequired: 5, satisfiedBy: ['ENGL111', 'ENGL121', 'ENGL131', 'ENGL182'] },
+      { id: 'writing', name: 'Writing (7cr — may overlap)', creditsRequired: 7, satisfiedBy: ['HCDE313', 'ENGL111', 'ENGL121', 'ENGL131', 'ENGL182', 'ENGL283'] },
+      { id: 'arts-humanities', name: 'Arts & Humanities (A&H)', creditsRequired: 10, satisfiedBy: ['ART134', 'ENGL242', 'ENGL243', 'ENGL260', 'ENGL283', 'ENGL302', 'DXARTS200', 'MUSIC116', 'DRAMA101', 'CLIT240', 'CLIT250', 'CLIT270', 'PHIL100', 'PHIL114', 'PHIL360'] },
+      { id: 'social-science', name: 'Social Sciences (SSc)', creditsRequired: 10, satisfiedBy: ['PSYCH101', 'SOC101', 'ECON200', 'POL101', 'HIST111', 'HIST112', 'HIST215', 'HIST225', 'AAS101', 'ANTH215', 'INFO200'] },
+      { id: 'addl-ah-ssc', name: 'Additional A&H or SSc', creditsRequired: 10, satisfiedBy: ['ART134', 'ENGL242', 'ENGL243', 'ENGL260', 'ENGL283', 'ENGL302', 'DXARTS200', 'MUSIC116', 'DRAMA101', 'CLIT240', 'CLIT250', 'CLIT270', 'PHIL100', 'PHIL114', 'PHIL360', 'PSYCH101', 'SOC101', 'ECON200', 'POL101', 'HIST111', 'HIST112', 'HIST215', 'HIST225', 'AAS101', 'ANTH215', 'INFO200'] },
+      { id: 'diversity', name: 'Diversity (DIV — may overlap)', creditsRequired: 5, satisfiedBy: ['HCDE315', 'AAS101', 'AAS320', 'GWSS200', 'AIS200', 'ANTH215', 'ENGL262'] },
+
+      // === Engineering Fundamentals (12cr) ===
+      { id: 'eng-fundamentals', name: 'Engineering Fundamentals (12cr)', creditsRequired: 12, satisfiedBy: ['CSE121', 'CSE122', 'CSE123', 'CSE160', 'CSE163', 'CSE180', 'AA210', 'AMATH301', 'BIOEN215', 'CEE220', 'EE215', 'ENGR115', 'ME123', 'ME230', 'MSE170', 'NME220'] },
     ],
   },
   recommendedSequence: {
-    years: 2,
+    years: 4,
     terms: [
-    {
-      termLabel: 'Fall Year 1',
-      courses: ['MATH124', 'HCDE200', 'ENGL111', 'ASTR101'],
-      locked: [true, true, false, false],
-      slotLabels: ['Major req (Calc I)', 'Major req (Intro HCDE)', 'Writing gen-ed (choose one)', 'NW gen-ed (choose one)'],
-    },
-    {
-      termLabel: 'Winter Year 1',
-      courses: ['MATH125', 'HCDE201', 'PSYCH101', 'ENGL242'],
-      locked: [true, true, false, false],
-      slotLabels: ['Major req (Calc II)', 'Major req (Technical Foundations)', 'I&S gen-ed (choose one)', 'VLPA gen-ed (choose one)'],
-    },
-    {
-      termLabel: 'Spring Year 1',
-      courses: ['STAT220', 'ENGL182', 'AAS101', 'MUSIC116'],
-      locked: [true, true, false, false],
-      slotLabels: ['Major req (Statistics)', 'Major req (Technical Writing)', 'I&S/DIV gen-ed (choose one)', 'VLPA gen-ed (choose one)'],
-    },
-    {
-      termLabel: 'Fall Year 2',
-      courses: ['HCDE210', 'HCDE300', 'HCDE308', 'SOC101'],
-      locked: [true, true, true, false],
-      slotLabels: ['Major req (Explorations in HCD)', 'Major req (User Research)', 'Major req (Data Visualization)', 'I&S gen-ed (choose one)'],
-    },
-    {
-      termLabel: 'Winter Year 2',
-      courses: ['HCDE301', 'HCDE310', 'HCDE400', 'HCDE411'],
-      locked: [true, true, true, true],
-      slotLabels: ['Major req (Adv Design Methods)', 'Major req (Content Strategy)', 'Major req (Directed Research)', 'Major req (Info Assurance)'],
-    },
-    {
-      termLabel: 'Spring Year 2',
-      courses: ['HCDE318', 'DXARTS200', 'ECON200', 'ENGL131'],
-      locked: [true, false, false, false],
-      slotLabels: ['Major req (UI Design)', 'VLPA gen-ed (choose one)', 'I&S gen-ed (choose one)', 'Writing gen-ed (choose one)'],
-    },
-  ],
+      // ==================== YEAR 1: ENGRUD Placement Requirements ====================
+      {
+        termLabel: 'Fall Year 1',
+        courses: ['MATH124', 'CHEM142', 'ENGR101', 'AAS101'],
+        locked: [true, true, true, false],
+        slotLabels: ['◆ Calculus I (Placement)', '◆ General Chemistry (Placement)', '◆ E-FIG: ENGR 101 + GEN ST 199', 'A&H / SSc / DIV (choose one)'],
+      },
+      {
+        termLabel: 'Winter Year 1',
+        courses: ['MATH125', 'ENGL111', 'STAT220'],
+        locked: [true, true, true],
+        slotLabels: ['◆ Calculus II (Placement)', '◆ English Composition (Placement)', '★ Statistics (Placement — pick one)'],
+      },
+      {
+        termLabel: 'Spring Year 1',
+        courses: ['MATH126', 'PHYS121', 'CSE121'],
+        locked: [true, true, true],
+        slotLabels: ['◆ Calculus III (Placement)', '◆ Mechanics (Placement)', '★ Intro Programming (Placement + Eng. Fundamentals)'],
+      },
+
+      // ==================== YEAR 2: Gen-Eds, Engineering Fundamentals, Additional Science ====================
+      {
+        termLabel: 'Fall Year 2',
+        courses: ['ENGL242', 'CHEM152', 'ENGR115', 'ECON200'],
+        locked: [false, false, false, false],
+        slotLabels: ['A&H elective (choose one)', '★ Additional Science (Placement)', 'Engineering Fundamentals (choose one)', 'SSc elective (choose one)'],
+      },
+      {
+        termLabel: 'Winter Year 2',
+        courses: ['PSYCH101', 'PHYS122', 'CSE163', 'MUSIC116'],
+        locked: [false, false, false, false],
+        slotLabels: ['SSc elective (choose one)', 'Additional Math/Stat/Science', 'Engineering Fundamentals (choose one)', 'A&H or SSc (choose one)'],
+      },
+      {
+        termLabel: 'Spring Year 2',
+        courses: ['ENGL131', 'PHYS123', 'PHIL100'],
+        locked: [false, false, false],
+        slotLabels: ['SSc / Writing course', 'Additional Math/Stat/Science', 'A&H elective (choose one)'],
+      },
+
+      // ==================== YEAR 3: HCDE Major Core ====================
+      {
+        termLabel: 'Fall Year 3',
+        courses: ['HCDE310', 'HCDE302', 'HCDE313'],
+        locked: [true, true, true],
+        slotLabels: ['Interactive Systems Design & Tech', 'Foundations of HCDE I', 'Intro to User Research (W)'],
+      },
+      {
+        termLabel: 'Winter Year 3',
+        courses: ['HCDE303', 'HCDE315', 'HCDE321', 'HCDE496'],
+        locked: [true, true, true, true],
+        slotLabels: ['Foundations of HCDE II', 'Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio', 'Directed Research (Experiential Learning)'],
+      },
+      {
+        termLabel: 'Spring Year 3',
+        courses: ['HCDE351', 'HCDE308', 'HCDE322', 'SOC101'],
+        locked: [true, true, true, false],
+        slotLabels: ['UX Prototyping Techniques', 'Visual Communication in HCDE', 'Organizational Teamwork', 'Free elective'],
+      },
+
+      // ==================== YEAR 4: Capstone, Electives, Remaining Gen-Eds ====================
+      {
+        termLabel: 'Fall Year 4',
+        courses: ['HCDE410', 'HCDE412', 'STAT311', 'DXARTS200'],
+        locked: [false, false, false, false],
+        slotLabels: ['HCDE Engineering Elective', 'HCDE Systems & Society Elective', 'Additional Math/Science', 'Free elective'],
+      },
+      {
+        termLabel: 'Winter Year 4',
+        courses: ['HCDE492', 'HCDE411', 'HCDE417'],
+        locked: [true, false, false],
+        slotLabels: ['Capstone Planning', 'HCDE Engineering Elective', 'HCDE Engineering Elective'],
+      },
+      {
+        termLabel: 'Spring Year 4',
+        courses: ['HCDE493', 'HCDE418', 'HIST215'],
+        locked: [true, false, false],
+        slotLabels: ['Senior Capstone', 'HCDE Systems & Society Elective', 'A&H / SSc elective'],
+      },
+    ],
   },
   courses: [
-    // ===== HCDE MAJOR REQUIRED =====
-    { id: 'HCDE200', title: 'Foundations of Human Centered Design', description: 'Introduction to HCD principles, user research methods, and design thinking. Students learn to identify user needs and translate them into design requirements.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: [] },
-    { id: 'HCDE201', title: 'Technical Foundations of Informatics', description: 'Web technologies, HTML/CSS/JavaScript fundamentals for building interactive prototypes and understanding technical constraints.', credits: 5, category: 'major-required', interestTags: ['design', 'video-games'], prereqs: [], genEdReqs: [] },
-    { id: 'HCDE210', title: 'Explorations in HCD', description: 'Studio-based exploration of design methods. Students work through design challenges using sketching, prototyping, and user testing.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE200'], genEdReqs: [] },
-    { id: 'HCDE300', title: 'Foundations of User Research', description: 'Qualitative and quantitative user research methods. Interviews, surveys, contextual inquiry, usability testing, and data analysis.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE200'], genEdReqs: [] },
-    { id: 'HCDE301', title: 'Advanced Design Methods', description: 'Advanced prototyping, interaction design patterns, design systems, and iterative design processes.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE210'], genEdReqs: [] },
-    { id: 'HCDE308', title: 'Data Visualization', description: 'Principles and techniques for visualizing data. Information design, interactive visualizations, and storytelling with data.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE201', 'STAT220'], genEdReqs: [] },
-    { id: 'HCDE310', title: 'Content Strategy', description: 'Information architecture, content design, writing for interfaces, and organizing information for user comprehension.', credits: 5, category: 'major-required', interestTags: ['design', 'literature'], prereqs: ['HCDE300'], genEdReqs: [] },
-    { id: 'HCDE318', title: 'Introduction to User Interface Design', description: 'UI design principles, visual hierarchy, typography, color theory, and responsive design. Students create high-fidelity mockups and prototypes.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE301'], genEdReqs: [] },
-    { id: 'HCDE400', title: 'Directed Research in HCD', description: 'Faculty-mentored research project applying HCDE methods to a real-world problem. Literature review, methodology, findings.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE300'], genEdReqs: [] },
-    { id: 'HCDE410', title: 'Inclusive Design', description: 'Designing for diverse populations, accessibility standards, assistive technologies, and universal design principles.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE318'], genEdReqs: [] },
-    { id: 'HCDE411', title: 'Information Assurance & Cybersecurity', description: 'Privacy by design, security considerations in UX, ethical implications of data collection, and trust in interactive systems.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE300'], genEdReqs: [] },
-    { id: 'HCDE418', title: 'Professional Practices in HCD', description: 'Design portfolios, professional communication, project management, working with stakeholders, and career preparation.', credits: 3, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE318'], genEdReqs: [] },
-    { id: 'HCDE419', title: 'Capstone Project', description: 'Year-long team capstone project with an industry or community partner. Full design cycle from research to final deliverable.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE400'], genEdReqs: [] },
-    { id: 'HCDE496', title: 'Capstone Seminar', description: 'Seminar accompanying capstone project. Presentations, peer review, and professional development.', credits: 2, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE419'], genEdReqs: [] },
-    { id: 'MATH124', title: 'Calculus with Analytic Geometry I', description: 'Limits, derivatives, and integrals of single-variable functions. Applications to science and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['quantitative'] },
-    { id: 'MATH125', title: 'Calculus with Analytic Geometry II', description: 'Integration techniques, applications of integrals, sequences and series.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH124'], genEdReqs: ['quantitative'] },
-    { id: 'STAT220', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['quantitative'] },
-    { id: 'ENGL182', title: 'Technical Writing', description: 'Writing for technical and professional audiences. Reports, proposals, documentation, and visual communication.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['writing'] },
+    // ===================================================================
+    // ENGRUD PLACEMENT REQUIREMENTS (Year 1)
+    // ===================================================================
 
-    // ===== HCDE ELECTIVES =====
-    { id: 'HCDE451', title: 'Prototyping Interactions', description: 'Advanced physical and digital prototyping. Arduino, sensors, and tangible interaction design.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE301'], genEdReqs: [] },
-    { id: 'HCDE452', title: 'Designing for Behavior Change', description: 'Applying behavioral science to design. Persuasive technology, gamification, and habit formation.', credits: 5, category: 'major-elective', interestTags: ['design', 'game-theory'], prereqs: ['HCDE300'], genEdReqs: [] },
-    { id: 'HCDE453', title: 'Game Design for Social Impact', description: 'Designing games and interactive experiences that address social issues. Game mechanics, narrative design, and playtesting.', credits: 5, category: 'major-elective', interestTags: ['design', 'video-games', 'game-theory'], prereqs: ['HCDE301'], genEdReqs: [] },
-    { id: 'HCDE454', title: 'Service Design', description: 'Designing end-to-end service experiences. Journey mapping, service blueprints, stakeholder ecosystems.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE300'], genEdReqs: [] },
-    { id: 'HCDE455', title: 'Design for Health', description: 'UX/UI design for healthcare applications. Patient experience, clinical workflows, health equity.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE300'], genEdReqs: [] },
-    { id: 'HCDE456', title: 'Design & AI', description: 'Designing with and for AI systems. Explainability, fairness, human-AI interaction patterns.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE301'], genEdReqs: [] },
-    { id: 'HCDE457', title: 'Accessibility Engineering', description: 'WCAG standards, screen reader testing, ARIA patterns, and building accessible web and mobile applications from the ground up.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE318'], genEdReqs: [] },
-    { id: 'HCDE458', title: 'Voice & Conversational Design', description: 'Designing voice user interfaces, chatbots, and conversational agents. Dialogue flow, error handling, and multimodal interaction.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE301'], genEdReqs: [] },
-    { id: 'HCDE459', title: 'Design Research Practicum', description: 'Advanced qualitative methods for design research. Diary studies, participatory design, co-design workshops, and ethnographic fieldwork.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE300'], genEdReqs: [] },
-    { id: 'HCDE460', title: 'Physical Computing & Tangible Interfaces', description: 'Designing beyond the screen. Embedded sensors, wearables, IoT prototyping, and the design of physical-digital hybrid experiences.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE451'], genEdReqs: [] },
-    { id: 'HCDE461', title: 'Information Visualization Studio', description: 'Advanced studio course in interactive data visualization. D3.js, narrative visualization, and dashboard design for complex datasets.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE308'], genEdReqs: [] },
+    // ◆ E-FIG
+    { id: 'ENGR101', title: 'Engineering Orientation (E-FIG)', description: 'Introduction to the College of Engineering. Explore engineering disciplines, meet faculty, and begin building your engineering identity. Taken with GEN ST 199.', credits: 2, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
 
-    // ===== CERAMICS / STUDIO ART =====
-    { id: 'ART134', title: 'Introduction to Ceramics', description: 'Hand-building and wheel-throwing techniques. Clay preparation, glazing, and kiln firing. Studio access included.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ART234', title: 'Intermediate Ceramics: Wheel Throwing', description: 'Focus on wheel-throwing skills, form development, and surface decoration. Exploration of functional pottery.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: ['ART134'], genEdReqs: ['humanities'] },
+    // ◆ Mathematics
+    { id: 'MATH124', title: 'Calculus with Analytic Geometry I', description: 'Limits, derivatives, and integrals of single-variable functions. Applications to science and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['calculus'] },
+    { id: 'MATH125', title: 'Calculus with Analytic Geometry II', description: 'Integration techniques, applications of integrals, sequences and series.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH124'], genEdReqs: ['calculus'] },
+    { id: 'MATH126', title: 'Calculus with Analytic Geometry III', description: 'Multivariable calculus: partial derivatives, multiple integrals, vector calculus, and applications to physics and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH125'], genEdReqs: ['calculus'] },
+
+    // ★ Statistics (pick one)
+    { id: 'STAT220', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals. Recommended for HCDE placement.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
+    { id: 'STAT290', title: 'Basic Statistics (AP Statistics equivalent)', description: 'Introductory probability and statistical methods. Equivalent awarded for AP Statistics score of 4+.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
+    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT220'], genEdReqs: ['statistics', 'addl-math-sci'] },
+
+    // ◆ Sciences
+    { id: 'CHEM142', title: 'General Chemistry', description: 'Atomic structure, chemical bonding, stoichiometry, thermodynamics, and equilibrium. Prerequisite: CHEM 110 or placement exam.', credits: 5, category: 'major-required', interestTags: ['science'], prereqs: [], genEdReqs: ['sciences'] },
+    { id: 'PHYS121', title: 'Mechanics', description: 'Classical mechanics: motion, forces, energy, momentum, and rotational dynamics. Calculus-based physics for engineers.', credits: 5, category: 'major-required', interestTags: ['science', 'space'], prereqs: ['MATH124'], genEdReqs: ['sciences'] },
+
+    // ★ Additional Sciences (for placement and science requirement)
+    { id: 'CHEM152', title: 'General Chemistry II', description: 'Chemical kinetics, equilibrium, acids and bases, electrochemistry, and thermodynamics.', credits: 5, category: 'elective', interestTags: ['science'], prereqs: ['CHEM142'], genEdReqs: ['sciences', 'addl-math-sci'] },
+    { id: 'CHEM162', title: 'General Chemistry III', description: 'Organic chemistry introduction, coordination chemistry, nuclear chemistry, and materials science applications.', credits: 5, category: 'elective', interestTags: ['science'], prereqs: ['CHEM152'], genEdReqs: ['sciences', 'addl-math-sci'] },
+    { id: 'PHYS122', title: 'Electromagnetism', description: 'Electric fields, circuits, magnetic fields, electromagnetic waves, and optics.', credits: 5, category: 'elective', interestTags: ['science', 'space'], prereqs: ['MATH125', 'PHYS121'], genEdReqs: ['sciences', 'addl-math-sci'] },
+    { id: 'PHYS123', title: 'Waves, Light, and Heat', description: 'Wave phenomena, geometric and physical optics, thermodynamics, and statistical mechanics.', credits: 5, category: 'elective', interestTags: ['science', 'space'], prereqs: ['MATH126', 'PHYS122'], genEdReqs: ['sciences', 'addl-math-sci'] },
+    { id: 'BIOL180', title: 'Introductory Biology', description: 'Cell biology, genetics, evolution, and ecology. How living systems function and change over time.', credits: 5, category: 'elective', interestTags: ['science'], prereqs: [], genEdReqs: ['sciences'] },
+
+    // ★ Engineering Fundamentals (12cr: one CSE course + 8cr from list)
+    { id: 'CSE121', title: 'Intro to Computer Programming I', description: 'Introduction to programming concepts, data types, control flow, and functions. Java-based. Satisfies engineering fundamentals + placement.', credits: 4, category: 'major-required', interestTags: ['video-games', 'design'], prereqs: [], genEdReqs: ['eng-fundamentals'] },
+    { id: 'CSE122', title: 'Intro to Computer Programming II', description: 'Data structures, recursion, sorting, searching, and intermediate OOP.', credits: 4, category: 'elective', interestTags: ['video-games', 'design'], prereqs: ['CSE121'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'CSE123', title: 'Intro to Computer Programming III', description: 'Advanced data structures, graphs, hashing, and algorithm analysis.', credits: 4, category: 'elective', interestTags: ['video-games'], prereqs: ['CSE122'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'CSE160', title: 'Data Programming', description: 'Introduction to programming with Python for data analysis. Working with datasets, visualization, and basic statistics.', credits: 4, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: ['eng-fundamentals'] },
+    { id: 'CSE163', title: 'Intermediate Data Programming', description: 'Data analysis with Python, pandas, and matplotlib. Working with real-world datasets, data cleaning, and basic machine learning.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE121'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'CSE180', title: 'Introduction to Data Science', description: 'Foundations of data science: data collection, analysis, visualization, and ethical considerations in computational thinking.', credits: 4, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: ['eng-fundamentals'] },
+    { id: 'ENGR115', title: 'Introduction to Engineering Design', description: 'Team-based engineering design process. Problem identification, prototyping, testing, and iteration.', credits: 4, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: ['eng-fundamentals'] },
+    { id: 'AA210', title: 'Engineering Statics', description: 'Forces, moments, equilibrium of rigid bodies. Foundation for structural and mechanical analysis.', credits: 4, category: 'elective', interestTags: ['space'], prereqs: ['MATH124', 'PHYS121'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'AMATH301', title: 'Beginning Scientific Computing', description: 'Numerical methods, interpolation, integration, ODEs, and matrix computations using MATLAB or Python.', credits: 4, category: 'elective', interestTags: [], prereqs: ['MATH126'], genEdReqs: ['eng-fundamentals', 'addl-math-sci'] },
+    { id: 'BIOEN215', title: 'Bioengineering Fundamentals', description: 'Introduction to bioengineering principles, biomaterials, and biomedical device design.', credits: 4, category: 'elective', interestTags: ['science'], prereqs: [], genEdReqs: ['eng-fundamentals'] },
+    { id: 'CEE220', title: 'Introduction to Mechanics of Materials', description: 'Stress, strain, deformation, and failure of engineering materials. Beams, columns, and torsion.', credits: 4, category: 'elective', interestTags: [], prereqs: ['PHYS121'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'EE215', title: 'Introduction to Electrical Engineering', description: 'Circuit analysis, resistors, capacitors, inductors, and basic electronics.', credits: 4, category: 'elective', interestTags: [], prereqs: ['MATH125', 'PHYS121'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'ME123', title: 'Visualization and CAD', description: 'Engineering graphics, 3D modeling, and computer-aided design using SolidWorks.', credits: 4, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: ['eng-fundamentals'] },
+    { id: 'ME230', title: 'Kinematics and Dynamics', description: 'Particle and rigid body kinematics, Newton\'s laws applied to engineering systems.', credits: 4, category: 'elective', interestTags: [], prereqs: ['MATH125', 'PHYS121'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'MSE170', title: 'Introduction to Materials Science', description: 'Atomic structure, crystal structure, defects, phase diagrams, and mechanical properties of materials.', credits: 4, category: 'elective', interestTags: ['science'], prereqs: ['CHEM142'], genEdReqs: ['eng-fundamentals'] },
+    { id: 'NME220', title: 'Introduction to Nuclear Engineering', description: 'Nuclear physics, reactor design, radiation, and applications of nuclear technology.', credits: 4, category: 'elective', interestTags: ['science', 'space'], prereqs: ['PHYS121'], genEdReqs: ['eng-fundamentals'] },
+
+    // ===================================================================
+    // HCDE MAJOR CORE REQUIREMENTS (46cr) — Year 3
+    // ===================================================================
+    { id: 'HCDE302', title: 'Foundations of HCDE I', description: 'Introduction to human-centered design principles, design thinking frameworks, and the role of technology in human experience. First course in the HCDE core sequence.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE303', title: 'Foundations of HCDE II', description: 'Continuation of HCDE 302. Deeper exploration of design methods, systems thinking, and engineering approaches to human-centered problems.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE302'], genEdReqs: [] },
+    { id: 'HCDE308', title: 'Visual Communication in HCDE', description: 'Principles of visual design for engineering communication. Typography, layout, color, data visualization, and information graphics.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE310', title: 'Interactive Systems Design & Technology', description: 'Design and implementation of interactive systems. Web technologies, prototyping tools, and the relationship between design and technical constraints.', credits: 5, category: 'major-required', interestTags: ['design', 'video-games'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE313', title: 'Introduction to User Research', description: 'Qualitative and quantitative user research methods. Interviews, surveys, contextual inquiry, usability testing, and data analysis. Fulfills Writing (W) requirement.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: ['writing'] },
+    { id: 'HCDE315', title: 'Inclusive Design', description: 'Designing for diverse populations, accessibility standards, assistive technologies, and universal design principles. Fulfills SSc and DIV requirements.', credits: 5, category: 'major-required', interestTags: ['design', 'cultural-studies'], prereqs: [], genEdReqs: ['diversity', 'social-science'] },
+    { id: 'HCDE316', title: 'Sustainable Design', description: 'Environmental impact of design decisions, lifecycle analysis, circular economy principles, and designing for sustainability.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE321', title: 'Professional Portfolio', description: 'Building a professional design portfolio. Documenting projects, presenting work, and developing a personal design brand.', credits: 2, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE322', title: 'Organizational Teamwork', description: 'Team dynamics, communication, conflict resolution, and collaborative design processes in engineering contexts.', credits: 2, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE351', title: 'User Experience Prototyping Techniques', description: 'Rapid prototyping methods from paper to digital. Wireframing, interactive mockups, and prototype testing with users.', credits: 5, category: 'major-required', interestTags: ['design', 'video-games'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE492', title: 'Capstone Planning', description: 'Planning phase of the senior capstone project. Problem definition, stakeholder analysis, research plan, and team formation.', credits: 2, category: 'major-required', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE493', title: 'Senior Capstone', description: 'Culminating team capstone project with an industry or community partner. Full design cycle from research through final deliverable and presentation.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['HCDE492'], genEdReqs: [] },
+
+    // ===================================================================
+    // EXPERIENTIAL LEARNING (2cr minimum)
+    // ===================================================================
+    { id: 'ENGR321', title: 'Engineering Internship Education', description: 'Structured reflection on engineering internship experience. Professional development, workplace culture, and applying classroom learning.', credits: 2, category: 'major-elective', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'ENGR490', title: 'Engineering Leadership', description: 'Leadership skills for engineers. Communication, ethics, project management, and leading technical teams.', credits: 2, category: 'major-elective', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE496', title: 'Directed Research in HCDE', description: 'Faculty-mentored research project applying HCDE methods to a real-world problem. Literature review, methodology, and findings.', credits: 2, category: 'major-elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE497', title: 'Study Abroad: HCDE', description: 'International study experience in human-centered design. Cross-cultural design perspectives and global design challenges.', credits: 2, category: 'major-elective', interestTags: ['design', 'cultural-studies'], prereqs: [], genEdReqs: [] },
+    { id: 'HCDE499', title: 'Individual Research', description: 'Independent research project under faculty supervision. Opportunity to pursue a specific HCDE research interest in depth.', credits: 2, category: 'major-elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+
+    // ===================================================================
+    // HCDE ENGINEERING ELECTIVES (15cr minimum from this list)
+    // ===================================================================
+    { id: 'HCDE410', title: 'Advanced Interactive Systems', description: 'Advanced topics in interactive system design. Emerging technologies, AI-powered interfaces, and novel interaction paradigms.', credits: 5, category: 'major-elective', interestTags: ['design', 'video-games'], prereqs: ['HCDE310'], genEdReqs: [] },
+    { id: 'HCDE411', title: 'Information Architecture & Data', description: 'Organizing and structuring information for complex systems. Taxonomies, metadata, content modeling, and data-driven design.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE302'], genEdReqs: [] },
+    { id: 'HCDE417', title: 'Design & Machine Learning', description: 'Designing with and for AI/ML systems. Explainability, fairness, human-AI interaction patterns, and responsible AI design.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE302'], genEdReqs: [] },
+    { id: 'HCDE438', title: 'Advanced Prototyping', description: 'Advanced physical and digital prototyping. Arduino, sensors, wearables, and tangible interaction design for engineers.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE351'], genEdReqs: [] },
+    { id: 'HCDE439', title: 'Advanced User Research Methods', description: 'Advanced qualitative methods for design research. Diary studies, participatory design, co-design workshops, and ethnographic fieldwork.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE313'], genEdReqs: [] },
+
+    // ===================================================================
+    // HCDE SYSTEMS & SOCIETY ELECTIVES (8cr minimum from this list)
+    // ===================================================================
+    { id: 'HCDE412', title: 'Ethics in Design & Engineering', description: 'Ethical frameworks for design decisions. Privacy, consent, algorithmic bias, and the social responsibility of designers and engineers.', credits: 4, category: 'major-elective', interestTags: ['design', 'philosophy'], prereqs: ['HCDE302'], genEdReqs: [] },
+    { id: 'HCDE418', title: 'Design for Social Impact', description: 'Community-engaged design methods. Co-design with underserved populations, participatory action research, and design justice.', credits: 4, category: 'major-elective', interestTags: ['design', 'cultural-studies'], prereqs: ['HCDE313'], genEdReqs: [] },
+    { id: 'HCDE419', title: 'Global Design & Technology', description: 'Cross-cultural design considerations, technology in developing contexts, and designing for global audiences.', credits: 4, category: 'major-elective', interestTags: ['design', 'cultural-studies'], prereqs: ['HCDE302'], genEdReqs: [] },
+    { id: 'HCDE450', title: 'Topics in HCDE', description: 'Special topics in human-centered design and engineering. Content varies by quarter and instructor.', credits: 4, category: 'major-elective', interestTags: ['design'], prereqs: ['HCDE302'], genEdReqs: [] },
+    { id: 'HCDE485', title: 'Design & Policy', description: 'How design intersects with public policy. Regulation of technology, accessible design mandates, and advocating for user needs in policy settings.', credits: 4, category: 'major-elective', interestTags: ['design', 'philosophy'], prereqs: ['HCDE302'], genEdReqs: [] },
+
+    // ===================================================================
+    // CERAMICS / STUDIO ART
+    // ===================================================================
+    { id: 'ART134', title: 'Introduction to Ceramics', description: 'Hand-building and wheel-throwing techniques. Clay preparation, glazing, and kiln firing. Studio access included.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ART234', title: 'Intermediate Ceramics: Wheel Throwing', description: 'Focus on wheel-throwing skills, form development, and surface decoration. Exploration of functional pottery.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: ['ART134'], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'ART334', title: 'Advanced Ceramics: Sculpture & Installation', description: 'Large-scale ceramic sculpture, mixed-media approaches, and installation art. Kiln operation and glaze chemistry.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: ['ART234'], genEdReqs: [] },
     { id: 'ART335', title: 'Ceramics: Raku & Alternative Firing', description: 'Raku, pit firing, saggar, and other alternative firing techniques. Emphasis on experimentation and process.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: ['ART234'], genEdReqs: [] },
-    { id: 'ART130', title: 'Introduction to Drawing', description: 'Observational drawing fundamentals. Line, value, composition, and perspective using various media.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ART131', title: 'Introduction to Sculpture', description: 'Three-dimensional art making using wood, metal, plaster, and found objects. Additive and subtractive processes.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: [], genEdReqs: ['humanities'] },
+    { id: 'ART130', title: 'Introduction to Drawing', description: 'Observational drawing fundamentals. Line, value, composition, and perspective using various media.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ART131', title: 'Introduction to Sculpture', description: 'Three-dimensional art making using wood, metal, plaster, and found objects. Additive and subtractive processes.', credits: 5, category: 'elective', interestTags: ['ceramics'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
 
-    // ===== ASTRONOMY / SPACE =====
-    { id: 'ASTR101', title: 'Astronomy', description: 'Survey of modern astronomy: the solar system, stars, galaxies, and cosmology. Night sky observation sessions.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'ASTR102', title: 'Introduction to Astrophysics', description: 'Physical principles governing astronomical phenomena. Light, gravity, nuclear fusion, and the evolution of stars.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: ['ASTR101'], genEdReqs: ['natural-science'] },
-    { id: 'ASTR150', title: 'The Planets', description: 'Comparative planetology: formation, geology, atmospheres, and potential for life on planets and moons in our solar system.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
+    // ===================================================================
+    // ASTRONOMY / SPACE
+    // ===================================================================
+    { id: 'ASTR101', title: 'Astronomy', description: 'Survey of modern astronomy: the solar system, stars, galaxies, and cosmology. Night sky observation sessions.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: [], genEdReqs: ['sciences'] },
+    { id: 'ASTR102', title: 'Introduction to Astrophysics', description: 'Physical principles governing astronomical phenomena. Light, gravity, nuclear fusion, and the evolution of stars.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: ['ASTR101'], genEdReqs: ['sciences'] },
+    { id: 'ASTR150', title: 'The Planets', description: 'Comparative planetology: formation, geology, atmospheres, and potential for life on planets and moons in our solar system.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: [], genEdReqs: ['sciences'] },
     { id: 'ASTR322', title: 'Astrobiology', description: 'The science of life in the universe. Origin of life on Earth, extremophiles, biosignatures, and the search for extraterrestrial life.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: ['ASTR101'], genEdReqs: [] },
-    { id: 'ESS101', title: 'Introduction to Earth Science', description: 'Earth systems, plate tectonics, minerals, rocks, geologic time, and the dynamic processes shaping our planet.', credits: 5, category: 'elective', interestTags: ['space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'ESS102', title: 'Space & Space Travel', description: 'Rocketry, orbital mechanics, space exploration history, current missions, and the future of human spaceflight.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'ATM101', title: 'Weather & Climate', description: 'Atmospheric science, weather patterns, climate systems, and climate change science.', credits: 5, category: 'elective', interestTags: ['space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
+    { id: 'ESS101', title: 'Introduction to Earth Science', description: 'Earth systems, plate tectonics, minerals, rocks, geologic time, and the dynamic processes shaping our planet.', credits: 5, category: 'elective', interestTags: ['space', 'science'], prereqs: [], genEdReqs: ['sciences'] },
+    { id: 'ESS102', title: 'Space & Space Travel', description: 'Rocketry, orbital mechanics, space exploration history, current missions, and the future of human spaceflight.', credits: 5, category: 'elective', interestTags: ['astronomy', 'space', 'science'], prereqs: [], genEdReqs: ['sciences'] },
+    { id: 'ATM101', title: 'Weather & Climate', description: 'Atmospheric science, weather patterns, climate systems, and climate change science.', credits: 5, category: 'elective', interestTags: ['space', 'science'], prereqs: [], genEdReqs: ['sciences'] },
 
-    // ===== HISTORY =====
-    { id: 'HIST111', title: 'World History: Ancient Civilizations', description: 'Major civilizations from prehistory to 1500 CE. Mesopotamia, Egypt, China, India, Greece, Rome, and the Americas.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HIST112', title: 'World History: The Modern World', description: 'Global history from 1500 to present. Colonialism, industrialization, world wars, decolonization, and globalization.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HIST215', title: 'History of East Asia', description: 'China, Japan, and Korea from ancient times to the present. Cultural, political, and economic developments.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HIST225', title: 'Japanese History', description: 'Japan from ancient times to the present. Samurai culture, Meiji modernization, WWII, and contemporary Japan.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HIST312', title: 'History of the Pacific Northwest', description: 'Indigenous peoples, exploration, settlement, timber and fishing industries, environmental history, and cultural development of the PNW.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HIST231', title: 'History of Science', description: 'Development of scientific thought from ancient Greece to modern times. Scientific revolutions, paradigm shifts, and science in society.', credits: 5, category: 'elective', interestTags: ['history', 'space'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HSTRY111', title: 'Ancient Greece & Rome', description: 'Greek city-states, Roman Republic and Empire. Democracy, philosophy, conquest, and legacy.', credits: 5, category: 'elective', interestTags: ['history', 'classics'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HSTRY112', title: 'Medieval Europe', description: 'Feudalism, the Church, Crusades, plague, Renaissance, and the transition to the modern world.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HSTRY135', title: 'Modern Europe: 1789 to Present', description: 'French Revolution through the EU. Nationalism, industrialization, world wars, and European integration.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'HSTRY213', title: 'History of the Middle East', description: 'Ottoman Empire to the Arab Spring. Colonialism, nationalism, oil, and conflict in the modern Middle East.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: [] },
-    { id: 'HSTRY231', title: 'Latin American History', description: 'Pre-Columbian civilizations through modern revolutions. Colonialism, independence, and contemporary challenges.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: [] },
+    // ===================================================================
+    // HISTORY
+    // ===================================================================
+    { id: 'HIST111', title: 'World History: Ancient Civilizations', description: 'Major civilizations from prehistory to 1500 CE. Mesopotamia, Egypt, China, India, Greece, Rome, and the Americas.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'HIST112', title: 'World History: The Modern World', description: 'Global history from 1500 to present. Colonialism, industrialization, world wars, decolonization, and globalization.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'HIST215', title: 'History of East Asia', description: 'China, Japan, and Korea from ancient times to the present. Cultural, political, and economic developments.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'HIST225', title: 'Japanese History', description: 'Japan from ancient times to the present. Samurai culture, Meiji modernization, WWII, and contemporary Japan.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'HIST312', title: 'History of the Pacific Northwest', description: 'Indigenous peoples, exploration, settlement, timber and fishing industries, environmental history, and cultural development of the PNW.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'HIST231', title: 'History of Science', description: 'Development of scientific thought from ancient Greece to modern times. Scientific revolutions, paradigm shifts, and science in society.', credits: 5, category: 'elective', interestTags: ['history', 'space'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
 
-    // ===== ASIAN AMERICAN STUDIES =====
-    { id: 'AAS101', title: 'Introduction to Asian American Studies', description: 'History, culture, and contemporary experiences of Asian Americans. Immigration, identity, community, and activism.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity'] },
-    { id: 'AAS200', title: 'Asian Americans and the Arts', description: 'Asian American artistic expression in literature, film, visual art, and performance. Identity, representation, and cultural production.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'literature'], prereqs: [], genEdReqs: ['humanities', 'diversity'] },
+    // ===================================================================
+    // ASIAN AMERICAN STUDIES / CULTURAL STUDIES
+    // ===================================================================
+    { id: 'AAS101', title: 'Introduction to Asian American Studies', description: 'History, culture, and contemporary experiences of Asian Americans. Immigration, identity, community, and activism.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
+    { id: 'AAS200', title: 'Asian Americans and the Arts', description: 'Asian American artistic expression in literature, film, visual art, and performance. Identity, representation, and cultural production.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'literature'], prereqs: [], genEdReqs: ['arts-humanities', 'diversity', 'addl-ah-ssc'] },
     { id: 'AAS310', title: 'Asian American Communities & Health', description: 'Health disparities, mental health, intergenerational trauma, and wellness in Asian American communities.', credits: 5, category: 'elective', interestTags: ['cultural-studies'], prereqs: ['AAS101'], genEdReqs: ['diversity'] },
-    { id: 'AAS320', title: 'Asian Americans in the Pacific Northwest', description: 'Japanese American incarceration, Filipino cannery workers, Chinese exclusion, and contemporary Asian American life in the PNW.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity'] },
+    { id: 'AAS320', title: 'Asian Americans in the Pacific Northwest', description: 'Japanese American incarceration, Filipino cannery workers, Chinese exclusion, and contemporary Asian American life in the PNW.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
     { id: 'AAS330', title: 'Race, Technology & Society', description: 'How race shapes and is shaped by technology. Algorithmic bias, digital divide, surveillance, and tech workforce diversity.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'design'], prereqs: [], genEdReqs: ['diversity'] },
 
-    // ===== GAME DESIGN / VIDEO GAMES =====
-    { id: 'CSE142', title: 'Computer Programming I', description: 'Introduction to programming in Java. Variables, control flow, arrays, methods, and basic object-oriented programming.', credits: 5, category: 'elective', interestTags: ['video-games'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'CSE143', title: 'Computer Programming II', description: 'Data structures, recursion, sorting, searching, and intermediate OOP. Foundation for game development.', credits: 5, category: 'elective', interestTags: ['video-games'], prereqs: ['CSE142'], genEdReqs: [] },
-    { id: 'CSE481', title: 'Game Development Capstone', description: 'Team-based game development project. Game engines, graphics, AI, physics, sound, and production pipeline.', credits: 5, category: 'elective', interestTags: ['video-games', 'design'], prereqs: ['CSE143'], genEdReqs: [] },
-    { id: 'INFO200', title: 'Intellectual Foundations of Informatics', description: 'Information in society, human-information interaction, data ethics, and the social impact of technology.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'INFO343', title: 'Client-Side Web Development', description: 'Modern web development with React, responsive design, accessibility, and interactive web applications.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSE142'], genEdReqs: [] },
-    { id: 'DXARTS200', title: 'Digital Arts: Interdisciplinary Foundations', description: 'Creative coding, interactive art, digital fabrication. Intersection of art and technology.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: [], genEdReqs: ['humanities'] },
+    // ===================================================================
+    // GAME DESIGN / VIDEO GAMES / INTERACTIVE MEDIA
+    // ===================================================================
+    { id: 'CSE340', title: 'Interaction Programming', description: 'Building interactive applications. Event-driven programming, UI toolkits, input devices, and undo/redo architectures.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSE123'], genEdReqs: [] },
+    { id: 'CSE481', title: 'Game Development Capstone', description: 'Team-based game development project. Game engines, graphics, AI, physics, sound, and production pipeline.', credits: 5, category: 'elective', interestTags: ['video-games', 'design'], prereqs: ['CSE123'], genEdReqs: [] },
+    { id: 'INFO200', title: 'Intellectual Foundations of Informatics', description: 'Information in society, human-information interaction, data ethics, and the social impact of technology.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'INFO343', title: 'Client-Side Web Development', description: 'Modern web development with React, responsive design, accessibility, and interactive web applications.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSE121'], genEdReqs: [] },
+    { id: 'DXARTS200', title: 'Digital Arts: Interdisciplinary Foundations', description: 'Creative coding, interactive art, digital fabrication. Intersection of art and technology.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'DXARTS490', title: 'Game Art & Interactive Narrative', description: 'Creating art assets for games. Narrative design, world-building, and environmental storytelling in interactive media.', credits: 5, category: 'elective', interestTags: ['video-games', 'design', 'literature'], prereqs: ['DXARTS200'], genEdReqs: [] },
     { id: 'COM271', title: 'Interactive Media Design', description: 'Designing interactive experiences for web, mobile, and emerging platforms. User engagement and interactive storytelling.', credits: 5, category: 'elective', interestTags: ['video-games', 'design'], prereqs: [], genEdReqs: [] },
 
-    // ===== LITERATURE =====
-    { id: 'ENGL242', title: 'Reading Fiction', description: 'Close reading of novels and short stories. Narrative structure, characterization, and literary analysis.', credits: 5, category: 'elective', interestTags: ['literature', 'classics'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ENGL243', title: 'Reading Poetry', description: 'Study of poetic forms, techniques, and traditions. Close reading and interpretation of poetry across periods.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ENGL262', title: 'Asian American Literature', description: 'Literature by Asian American writers exploring identity, immigration, belonging, and cultural negotiation.', credits: 5, category: 'elective', interestTags: ['literature', 'cultural-studies'], prereqs: [], genEdReqs: ['humanities', 'diversity'] },
-    { id: 'ENGL283', title: 'Introduction to Creative Writing', description: 'Workshop-based introduction to writing fiction and poetry. Peer critique and revision process.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ENGL302', title: 'Science Fiction', description: 'The genre of science fiction from its origins to present. Utopia, dystopia, technology, and social commentary.', credits: 5, category: 'elective', interestTags: ['literature', 'space'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ENGL363', title: 'Studies in World Literature', description: 'Comparative literature spanning multiple traditions. Global perspectives on storytelling and literary craft.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'CLIT270', title: 'Introduction to Graphic Narrative', description: 'Comics, manga, and graphic novels as literary and visual art forms. Storytelling through sequential art.', credits: 5, category: 'elective', interestTags: ['literature', 'video-games'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ENGL260', title: 'The Novel', description: 'History of the novel from Cervantes to contemporary fiction. Form, narrative technique, and cultural context.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'CLIT240', title: 'Classical Literature in Translation', description: 'Homer, Virgil, Ovid, and Sappho. Epic, lyric, and drama from the ancient Mediterranean world.', credits: 5, category: 'elective', interestTags: ['literature', 'classics'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'CLIT250', title: 'Russian Literature in Translation', description: 'Dostoevsky, Tolstoy, Chekhov, and Bulgakov. The Russian literary tradition and its global influence.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['humanities'] },
+    // ===================================================================
+    // LITERATURE
+    // ===================================================================
+    { id: 'ENGL242', title: 'Reading Fiction', description: 'Close reading of novels and short stories. Narrative structure, characterization, and literary analysis.', credits: 5, category: 'elective', interestTags: ['literature', 'classics'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL243', title: 'Reading Poetry', description: 'Study of poetic forms, techniques, and traditions. Close reading and interpretation of poetry across periods.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL262', title: 'Asian American Literature', description: 'Literature by Asian American writers exploring identity, immigration, belonging, and cultural negotiation.', credits: 5, category: 'elective', interestTags: ['literature', 'cultural-studies'], prereqs: [], genEdReqs: ['arts-humanities', 'diversity', 'addl-ah-ssc'] },
+    { id: 'ENGL283', title: 'Introduction to Creative Writing', description: 'Workshop-based introduction to writing fiction and poetry. Peer critique and revision process.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'writing', 'addl-ah-ssc'] },
+    { id: 'ENGL302', title: 'Science Fiction', description: 'The genre of science fiction from its origins to present. Utopia, dystopia, technology, and social commentary.', credits: 5, category: 'elective', interestTags: ['literature', 'space'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL363', title: 'Studies in World Literature', description: 'Comparative literature spanning multiple traditions. Global perspectives on storytelling and literary craft.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'CLIT270', title: 'Introduction to Graphic Narrative', description: 'Comics, manga, and graphic novels as literary and visual art forms. Storytelling through sequential art.', credits: 5, category: 'elective', interestTags: ['literature', 'video-games'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL260', title: 'The Novel', description: 'History of the novel from Cervantes to contemporary fiction. Form, narrative technique, and cultural context.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'CLIT240', title: 'Classical Literature in Translation', description: 'Homer, Virgil, Ovid, and Sappho. Epic, lyric, and drama from the ancient Mediterranean world.', credits: 5, category: 'elective', interestTags: ['literature', 'classics'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'CLIT250', title: 'Russian Literature in Translation', description: 'Dostoevsky, Tolstoy, Chekhov, and Bulgakov. The Russian literary tradition and its global influence.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
 
-    // ===== GAME THEORY (Math/Econ) =====
+    // ===================================================================
+    // GAME THEORY
+    // ===================================================================
     { id: 'ECON300', title: 'Introduction to Game Theory', description: 'Strategic decision-making. Nash equilibrium, dominant strategies, repeated games, and applications to economics and social sciences.', credits: 5, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH124'], genEdReqs: [] },
-    { id: 'MATH381', title: 'Discrete Mathematical Modeling', description: 'Graph theory, combinatorics, game theory, and network models. Mathematical approaches to strategic problems.', credits: 5, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH125'], genEdReqs: [] },
+    { id: 'MATH381', title: 'Discrete Mathematical Modeling', description: 'Graph theory, combinatorics, game theory, and network models. Mathematical approaches to strategic problems.', credits: 5, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH125'], genEdReqs: ['addl-math-sci'] },
 
-    // ===== OTHER GEN-ED OPTIONS =====
-    { id: 'PSYCH101', title: 'Introduction to Psychology', description: 'Scientific study of behavior and mental processes. Perception, learning, memory, personality, and social psychology.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'SOC101', title: 'Introduction to Sociology', description: 'Social structures, institutions, inequality, culture, and how society shapes individual behavior.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'ECON200', title: 'Introduction to Microeconomics', description: 'Supply and demand, market structures, consumer behavior, and economic efficiency.', credits: 5, category: 'gen-ed', interestTags: ['game-theory'], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'PHIL100', title: 'Introduction to Philosophy', description: 'Fundamental questions about knowledge, reality, ethics, and the good life. Reading classic and contemporary philosophers.', credits: 5, category: 'gen-ed', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'BIOL100', title: 'Introductory Biology', description: 'Cell biology, genetics, evolution, and ecology. How living systems function and change over time.', credits: 5, category: 'gen-ed', interestTags: ['science'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'CHEM110', title: 'Preparation for General Chemistry', description: 'Atomic structure, chemical bonding, stoichiometry, and basic chemistry principles.', credits: 5, category: 'gen-ed', interestTags: ['science'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'PHYS114', title: 'Mechanics', description: 'Classical mechanics: motion, forces, energy, and momentum. Algebra-based physics for non-majors.', credits: 5, category: 'gen-ed', interestTags: ['space', 'science'], prereqs: [], genEdReqs: ['natural-science'] },
-    { id: 'ENGL111', title: 'Composition: Literature', description: 'College-level writing through analysis of literary texts. Argumentation, evidence, and revision.', credits: 5, category: 'gen-ed', interestTags: ['literature'], prereqs: [], genEdReqs: ['writing'] },
-    { id: 'ENGL131', title: 'Composition: Exposition', description: 'Expository writing for academic audiences. Research, analysis, and clear argumentation.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['writing'] },
-    { id: 'POL101', title: 'Introduction to Political Science', description: 'Political systems, institutions, ideologies, and power. Comparative politics and international relations.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'MUSIC116', title: 'Introduction to Music', description: 'Elements of music, historical periods, genres, and listening skills. No musical background required.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'DRAMA101', title: 'Introduction to Theater', description: 'Theater as an art form. Acting, directing, design, and dramatic literature. Attendance at live performances.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'ANTH215', title: 'Peoples & Cultures of Southeast Asia', description: 'Cultural diversity, religions, arts, and social change in Southeast Asian societies.', credits: 5, category: 'gen-ed', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity'] },
-    { id: 'GWSS200', title: 'Introduction to Gender, Women & Sexuality Studies', description: 'Gender and sexuality as social constructs. Feminist theory, intersectionality, and social justice.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science', 'diversity'] },
-    { id: 'ENGL121', title: 'Composition: Research Writing', description: 'Research-based writing. Finding, evaluating, and synthesizing sources to construct evidence-based arguments.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['writing'] },
-    { id: 'STAT290', title: 'Basic Statistics', description: 'Introductory probability and statistical methods. Data analysis, distributions, hypothesis testing, and regression.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['quantitative'] },
-    { id: 'AIS200', title: 'Introduction to American Indian Studies', description: 'History, cultures, and contemporary issues of Indigenous peoples in the Americas. Sovereignty, identity, and representation.', credits: 5, category: 'gen-ed', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity'] },
+    // ===================================================================
+    // GEN-ED OPTIONS
+    // ===================================================================
+    { id: 'PSYCH101', title: 'Introduction to Psychology', description: 'Scientific study of behavior and mental processes. Perception, learning, memory, personality, and social psychology.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'SOC101', title: 'Introduction to Sociology', description: 'Social structures, institutions, inequality, culture, and how society shapes individual behavior.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'ECON200', title: 'Introduction to Microeconomics', description: 'Supply and demand, market structures, consumer behavior, and economic efficiency.', credits: 5, category: 'gen-ed', interestTags: ['game-theory'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'POL101', title: 'Introduction to Political Science', description: 'Political systems, institutions, ideologies, and power. Comparative politics and international relations.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'ENGL111', title: 'Composition: Literature', description: 'College-level writing through analysis of literary texts. Argumentation, evidence, and revision. Satisfies English Composition requirement.', credits: 5, category: 'gen-ed', interestTags: ['literature'], prereqs: [], genEdReqs: ['english-comp', 'writing'] },
+    { id: 'ENGL121', title: 'Composition: Research Writing', description: 'Research-based writing. Finding, evaluating, and synthesizing sources to construct evidence-based arguments.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['english-comp', 'writing'] },
+    { id: 'ENGL131', title: 'Composition: Exposition', description: 'Expository writing for academic audiences. Research, analysis, and clear argumentation.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['english-comp', 'writing'] },
+    { id: 'ENGL182', title: 'Technical Writing', description: 'Writing for technical and professional audiences. Reports, proposals, documentation, and visual communication.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['english-comp', 'writing'] },
+    { id: 'MUSIC116', title: 'Introduction to Music', description: 'Elements of music, historical periods, genres, and listening skills. No musical background required.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'DRAMA101', title: 'Introduction to Theater', description: 'Theater as an art form. Acting, directing, design, and dramatic literature. Attendance at live performances.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ANTH215', title: 'Peoples & Cultures of Southeast Asia', description: 'Cultural diversity, religions, arts, and social change in Southeast Asian societies.', credits: 5, category: 'gen-ed', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
+    { id: 'GWSS200', title: 'Introduction to Gender, Women & Sexuality Studies', description: 'Gender and sexuality as social constructs. Feminist theory, intersectionality, and social justice.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
+    { id: 'AIS200', title: 'Introduction to American Indian Studies', description: 'History, cultures, and contemporary issues of Indigenous peoples in the Americas. Sovereignty, identity, and representation.', credits: 5, category: 'gen-ed', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
+    { id: 'QSCI381', title: 'Introduction to Probability & Statistics', description: 'Probability, random variables, hypothesis testing, and regression. Quantitative methods for natural sciences.', credits: 5, category: 'gen-ed', interestTags: ['science'], prereqs: ['MATH124'], genEdReqs: ['statistics'] },
 
-    // ===== PHILOSOPHY =====
-    { id: 'PHIL100', title: 'Introduction to Philosophy', description: 'Fundamental questions about knowledge, reality, ethics, and the good life. Reading classic and contemporary philosophers.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'PHIL114', title: 'Ethics', description: 'Major moral theories and contemporary ethical dilemmas. Utilitarianism, deontology, virtue ethics, and applied ethics.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'PHIL115', title: 'Philosophy of Mind', description: 'Consciousness, artificial intelligence, personal identity, and the mind-body problem. Deeply relevant to HCDE.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'PHIL120', title: 'Introduction to Logic', description: 'Formal and informal logic, valid arguments, fallacies, and truth tables.', credits: 5, category: 'elective', interestTags: ['philosophy', 'game-theory'], prereqs: [], genEdReqs: ['humanities'] },
+    // ===================================================================
+    // PHILOSOPHY
+    // ===================================================================
+    { id: 'PHIL100', title: 'Introduction to Philosophy', description: 'Fundamental questions about knowledge, reality, ethics, and the good life. Reading classic and contemporary philosophers.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'PHIL114', title: 'Ethics', description: 'Major moral theories and contemporary ethical dilemmas. Utilitarianism, deontology, virtue ethics, and applied ethics.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'PHIL115', title: 'Philosophy of Mind', description: 'Consciousness, artificial intelligence, personal identity, and the mind-body problem. Deeply relevant to HCDE.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'PHIL120', title: 'Introduction to Logic', description: 'Formal and informal logic, valid arguments, fallacies, and truth tables.', credits: 5, category: 'elective', interestTags: ['philosophy', 'game-theory'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'PHIL240', title: 'Philosophy of Science', description: 'What makes science scientific? Theory change, realism, values in science, and scientific revolutions.', credits: 5, category: 'elective', interestTags: ['philosophy', 'space'], prereqs: [], genEdReqs: [] },
     { id: 'PHIL340', title: 'Ethics of Technology', description: 'AI ethics, algorithmic bias, privacy, surveillance, and designing ethical technology. Connects directly to HCDE practice.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['PHIL100'], genEdReqs: [] },
-    { id: 'PHIL360', title: 'Existentialism', description: 'Freedom, authenticity, and meaning. Kierkegaard, Nietzsche, Heidegger, Sartre, de Beauvoir, and Camus.', credits: 5, category: 'elective', interestTags: ['philosophy', 'literature'], prereqs: [], genEdReqs: ['humanities'] },
-    { id: 'PHIL401', title: 'Philosophy of Language', description: 'Meaning, reference, truth, and speech acts. Frege, Russell, Wittgenstein, Austin, and contemporary debates in semantics and pragmatics.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: ['PHIL100'], genEdReqs: [] },
-    { id: 'PHIL325', title: 'Epistemology', description: 'The nature of knowledge, justification, and belief. Skepticism, rationalism, empiricism, and contemporary theories of knowledge.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: ['PHIL100'], genEdReqs: [] },
-    { id: 'PHIL361', title: 'Aesthetics', description: 'Philosophy of art and beauty. What is art? Taste, interpretation, creativity, and the role of art in human life.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['PHIL100'], genEdReqs: [] },
-    { id: 'PHIL382', title: 'Political Philosophy', description: 'Justice, liberty, equality, and the state. Hobbes, Locke, Rousseau, Marx, Rawls, and Nozick.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: ['PHIL100'], genEdReqs: [] },
-    { id: 'PHIL345', title: 'Philosophy of Cognitive Science', description: 'Computation, representation, embodied cognition, and the nature of mental processes. Bridges philosophy and cognitive science.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['PHIL115'], genEdReqs: [] },
+    { id: 'PHIL360', title: 'Existentialism', description: 'Freedom, authenticity, and meaning. Kierkegaard, Nietzsche, Heidegger, Sartre, de Beauvoir, and Camus.', credits: 5, category: 'elective', interestTags: ['philosophy', 'literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
 
-    // ===== DESIGN =====
+    // ===================================================================
+    // DESIGN / DIGITAL ARTS
+    // ===================================================================
     { id: 'DXARTS310', title: 'Interactive Media Studio', description: 'Creative coding with Processing and p5.js. Generative art, interactive installations, and sensor-based artworks.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['DXARTS200'], genEdReqs: [] },
     { id: 'DXARTS380', title: 'Sound Design & Audio Interaction', description: 'Designing with sound. Audio interfaces, spatial sound, sonification of data, and sound in interactive environments.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['DXARTS200'], genEdReqs: [] },
     { id: 'DESIGN360', title: 'Visual Communication Design', description: 'Typography, layout, color systems, and visual hierarchy. Designing for print and digital media with emphasis on communication clarity.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
     { id: 'DESIGN380', title: 'Design Studio: Systems Thinking', description: 'Designing complex systems and service ecologies. Stakeholder mapping, systems diagrams, and designing for systemic change.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
     { id: 'DESIGN410', title: 'Design for Social Innovation', description: 'Community-engaged design methods. Co-design with marginalized populations, participatory action research, and design justice.', credits: 5, category: 'elective', interestTags: ['design', 'cultural-studies'], prereqs: [], genEdReqs: [] },
 
-    // ===== COGNITIVE SCIENCE =====
+    // ===================================================================
+    // COGNITIVE SCIENCE / PSYCHOLOGY
+    // ===================================================================
     { id: 'PSYCH303', title: 'Cognitive Psychology', description: 'Attention, perception, memory, language, and problem-solving. How humans process information and make decisions.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH101'], genEdReqs: [] },
     { id: 'PSYCH306', title: 'Perception', description: 'Visual, auditory, and haptic perception. Psychophysics, illusions, and the neural basis of sensory experience.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH101'], genEdReqs: [] },
     { id: 'PSYCH355', title: 'Human Memory', description: 'Encoding, storage, and retrieval processes. Working memory, long-term memory, forgetting, and memory distortion.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH101'], genEdReqs: [] },
     { id: 'PSYCH345', title: 'Judgment & Decision Making', description: 'Heuristics, biases, prospect theory, and rational choice. How people make decisions under uncertainty.', credits: 5, category: 'elective', interestTags: ['design', 'game-theory'], prereqs: ['PSYCH101'], genEdReqs: [] },
-    { id: 'PSYCH421', title: 'Cognitive Neuroscience', description: 'Brain mechanisms underlying cognition. Neuroimaging, lesion studies, and neural correlates of attention, memory, and language.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH303'], genEdReqs: [] },
-    { id: 'PSYCH315', title: 'Psychology of Human Factors', description: 'Human performance in complex systems. Workload, situational awareness, error analysis, and designing for human limitations in aviation, medicine, and technology.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH101'], genEdReqs: [] },
-    { id: 'PSYCH333', title: 'Psychology of Attention', description: 'Selective attention, divided attention, inattentional blindness, and attentional control. How attention shapes interaction with designed environments.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH303'], genEdReqs: [] },
-    { id: 'PSYCH440', title: 'Cognitive Development', description: 'How thinking, reasoning, and problem-solving develop from infancy through adulthood. Piaget, Vygotsky, and contemporary theories of cognitive growth.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH303'], genEdReqs: [] },
-    { id: 'PSYCH360', title: 'Social Cognition', description: 'How people perceive, interpret, and remember social information. Stereotyping, attribution, attitudes, and persuasion through a cognitive lens.', credits: 5, category: 'elective', interestTags: ['design', 'cultural-studies'], prereqs: ['PSYCH101'], genEdReqs: [] },
-    { id: 'PSYCH425', title: 'Computational Models of Cognition', description: 'Modeling human cognition using neural networks, Bayesian inference, and reinforcement learning. UW research bridges cognitive science and machine learning.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH303'], genEdReqs: [] },
+    { id: 'PSYCH315', title: 'Psychology of Human Factors', description: 'Human performance in complex systems. Workload, situational awareness, error analysis, and designing for human limitations.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['PSYCH101'], genEdReqs: [] },
 
-    // ===== COMPUTER SCIENCE (Applied / Accessible) =====
-    { id: 'CSE163', title: 'Intermediate Data Programming', description: 'Data analysis with Python, pandas, and matplotlib. Working with real-world datasets, data cleaning, and basic machine learning.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE142'], genEdReqs: [] },
-    { id: 'CSE340', title: 'Interaction Programming', description: 'Building interactive applications. Event-driven programming, UI toolkits, input devices, and undo/redo architectures.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSE143'], genEdReqs: [] },
-    { id: 'CSE344', title: 'Introduction to Data Management', description: 'Relational databases, SQL, data modeling, query optimization, and NoSQL systems. Managing data at scale.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE143'], genEdReqs: [] },
-    { id: 'CSE416', title: 'Introduction to Machine Learning', description: 'Regression, classification, clustering, and recommender systems. Practical ML with real-world applications and ethical considerations.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE143', 'STAT220'], genEdReqs: [] },
-    { id: 'CSE440', title: 'Introduction to HCI', description: 'Human-computer interaction methods. Needfinding, prototyping, and evaluation. Closely aligned with HCDE but from a CS perspective.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE143'], genEdReqs: [] },
-    { id: 'CSE442', title: 'Data Visualization', description: 'Computational techniques for creating interactive visualizations. Perception, design principles, and scalable rendering of complex datasets using D3 and Vega.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE143'], genEdReqs: [] },
-    { id: 'CSE446', title: 'Machine Learning', description: 'Supervised and unsupervised learning, deep neural networks, optimization, and generalization theory. UW\'s Allen School is a global leader in ML research.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE143', 'STAT220'], genEdReqs: [] },
-    { id: 'CSE455', title: 'Computer Vision', description: 'Image recognition, object detection, segmentation, and generative models. How computers interpret visual information with applications in AR and accessibility.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE143'], genEdReqs: [] },
-    { id: 'CSE154', title: 'Web Programming', description: 'Full-stack web development with HTML, CSS, JavaScript, Node.js, and SQL. Building dynamic, data-driven web applications from scratch.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSE142'], genEdReqs: [] },
-    { id: 'CSE478', title: 'Autonomous Robotics', description: 'Perception, planning, and control for autonomous systems. Sensor fusion, SLAM, and human-robot interaction design in UW\'s world-class robotics labs.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE143'], genEdReqs: [] },
+    // ===================================================================
+    // COMPUTER SCIENCE (Applied)
+    // ===================================================================
+    { id: 'CSE154', title: 'Web Programming', description: 'Full-stack web development with HTML, CSS, JavaScript, Node.js, and SQL. Building dynamic, data-driven web applications.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSE121'], genEdReqs: [] },
+    { id: 'CSE344', title: 'Introduction to Data Management', description: 'Relational databases, SQL, data modeling, query optimization, and NoSQL systems.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123'], genEdReqs: [] },
+    { id: 'CSE414', title: 'Introduction to Database Systems', description: 'Database design, SQL, transactions, and data modeling. Core data management for engineers.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123'], genEdReqs: [] },
+    { id: 'CSE416', title: 'Introduction to Machine Learning', description: 'Regression, classification, clustering, and recommender systems. Practical ML with ethical considerations.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123', 'STAT220'], genEdReqs: [] },
+    { id: 'CSE440', title: 'Introduction to HCI', description: 'Human-computer interaction methods. Needfinding, prototyping, and evaluation from a CS perspective.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123'], genEdReqs: [] },
 
-    // ===== STATISTICS =====
-    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT220'], genEdReqs: [] },
-    { id: 'STAT342', title: 'Introduction to Probability and Mathematical Statistics', description: 'Probability distributions, random variables, expected values, central limit theorem, and maximum likelihood estimation.', credits: 5, category: 'elective', interestTags: [], prereqs: ['MATH125', 'STAT220'], genEdReqs: [] },
-    { id: 'STAT390', title: 'Statistical Data Visualization', description: 'Visualizing data distributions, relationships, and uncertainty. R and ggplot2 for statistical graphics and exploratory data analysis.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT220'], genEdReqs: [] },
-    { id: 'STAT423', title: 'Applied Regression and Analysis of Variance', description: 'Multiple regression, model selection, diagnostics, and ANOVA. Applications to experimental and observational data.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT311'], genEdReqs: [] },
-    { id: 'STAT425', title: 'Introduction to Bayesian Statistics', description: 'Prior distributions, posterior inference, Markov chain Monte Carlo, and Bayesian model comparison. Modern approaches to statistical reasoning.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT342'], genEdReqs: [] },
-    { id: 'STAT340', title: 'Introduction to Data Science', description: 'End-to-end data science workflow: data wrangling, exploratory analysis, modeling, and communication. Python and R for reproducible research.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT220'], genEdReqs: [] },
-    { id: 'STAT395', title: 'Design of Experiments', description: 'Planning and analyzing experiments. Randomization, blocking, factorial designs, and A/B testing methods widely used in UX research.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT311'], genEdReqs: [] },
-    { id: 'STAT435', title: 'Introduction to Statistical Learning', description: 'Classification, regression trees, random forests, boosting, and support vector machines. Statistical foundations of modern predictive modeling.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT311'], genEdReqs: [] },
-    { id: 'STAT412', title: 'Survey Sampling', description: 'Probability sampling methods, estimation from complex surveys, stratification, clustering, and nonresponse adjustment. Essential for user research at scale.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT311'], genEdReqs: [] },
-    { id: 'STAT428', title: 'Multivariate Analysis', description: 'Principal component analysis, factor analysis, multidimensional scaling, and cluster analysis. Techniques for understanding high-dimensional user data.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT342'], genEdReqs: [] },
+    // ===================================================================
+    // STATISTICS (Advanced)
+    // ===================================================================
+    { id: 'STAT342', title: 'Intro to Probability & Mathematical Statistics', description: 'Probability distributions, random variables, expected values, central limit theorem, and maximum likelihood estimation.', credits: 5, category: 'elective', interestTags: [], prereqs: ['MATH125', 'STAT220'], genEdReqs: ['addl-math-sci'] },
+    { id: 'STAT390', title: 'Statistical Data Visualization', description: 'Visualizing data distributions, relationships, and uncertainty. R and ggplot2 for statistical graphics.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT220'], genEdReqs: ['addl-math-sci'] },
+    { id: 'STAT340', title: 'Introduction to Data Science', description: 'End-to-end data science workflow: data wrangling, exploratory analysis, modeling, and communication.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT220'], genEdReqs: ['addl-math-sci'] },
+    { id: 'STAT395', title: 'Design of Experiments', description: 'Planning and analyzing experiments. Randomization, blocking, factorial designs, and A/B testing methods used in UX research.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT311'], genEdReqs: ['addl-math-sci'] },
 
-    // ===== POLITICAL SCIENCE =====
-    { id: 'POL320', title: 'International Relations', description: 'Theories of international politics. Realism, liberalism, constructivism, and their application to conflict, trade, and cooperation.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POL335', title: 'Political Economy', description: 'Interaction of politics and economics. Trade policy, development, inequality, and the politics of globalization.', credits: 5, category: 'elective', interestTags: ['game-theory'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POL358', title: 'Public Policy Analysis', description: 'Policy formation, implementation, and evaluation. Cost-benefit analysis, regulatory politics, and evidence-based policymaking.', credits: 5, category: 'elective', interestTags: [], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POL372', title: 'Environmental Politics & Policy', description: 'Climate change governance, environmental justice, sustainability politics, and international environmental agreements.', credits: 5, category: 'elective', interestTags: [], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POL409', title: 'Technology & Information Policy', description: 'Internet governance, platform regulation, AI policy, data privacy law, and the politics of emerging technologies.', credits: 5, category: 'elective', interestTags: ['design', 'philosophy'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POLS301', title: 'American Political Institutions', description: 'Congress, the presidency, courts, and bureaucracy. How institutional design shapes policy outcomes and democratic accountability.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POLS352', title: 'Comparative Politics of Developing Countries', description: 'Democratization, authoritarianism, ethnic conflict, and development strategies across Latin America, Africa, and Asia.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POLS380', title: 'International Security', description: 'War, deterrence, alliances, arms control, and emerging security challenges including cyber warfare and climate security.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POLS416', title: 'Constitutional Law', description: 'Judicial review, separation of powers, federalism, and individual rights. Landmark Supreme Court cases and their lasting impact.', credits: 5, category: 'elective', interestTags: ['history', 'philosophy'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POLS395', title: 'Politics of Race & Ethnicity', description: 'Racial formation, voting rights, immigration policy, and the politics of identity in American democracy.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: ['POL101'], genEdReqs: [] },
-
-    // ===== MATH =====
-    { id: 'MATH308', title: 'Matrix Algebra with Applications', description: 'Systems of linear equations, vector spaces, eigenvalues, and applications to data science, graphics, and engineering.', credits: 3, category: 'elective', interestTags: [], prereqs: ['MATH125'], genEdReqs: [] },
-    { id: 'MATH300', title: 'Introduction to Mathematical Reasoning', description: 'Proof techniques, set theory, relations, and functions. Bridge course to upper-division mathematics.', credits: 3, category: 'elective', interestTags: [], prereqs: ['MATH125'], genEdReqs: [] },
-    { id: 'MATH394', title: 'Probability I', description: 'Sample spaces, conditional probability, random variables, distributions, expectation, and the law of large numbers.', credits: 3, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH125'], genEdReqs: [] },
-    { id: 'MATH310', title: 'Mathematical Modeling', description: 'Formulating and analyzing mathematical models for real-world problems. Optimization, simulation, and dynamical systems.', credits: 3, category: 'elective', interestTags: [], prereqs: ['MATH125'], genEdReqs: [] },
-    { id: 'MATH407', title: 'Introduction to Operations Research', description: 'Linear programming, network flows, integer programming, and queuing theory. Optimization for decision-making.', credits: 3, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH308'], genEdReqs: [] },
-
-    // ===== INFORMATION SCIENCE =====
+    // ===================================================================
+    // INFORMATION SCIENCE
+    // ===================================================================
     { id: 'INFO310', title: 'Information Ethics & Policy', description: 'Intellectual property, privacy, censorship, digital rights, and the ethical responsibilities of information professionals.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['INFO200'], genEdReqs: [] },
     { id: 'INFO360', title: 'Information Architecture', description: 'Organizing and structuring information for findability and usability. Taxonomies, metadata, navigation systems, and search design.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200'], genEdReqs: [] },
-    { id: 'INFO371', title: 'Social Media Analysis', description: 'Computational methods for analyzing social media data. Network analysis, sentiment analysis, and online community dynamics.', credits: 5, category: 'elective', interestTags: ['design', 'cultural-studies'], prereqs: ['INFO200'], genEdReqs: [] },
-    { id: 'INFO380', title: 'Digital Humanities', description: 'Computational approaches to humanistic inquiry. Text mining, digital archives, spatial humanities, and data-driven cultural analysis.', credits: 5, category: 'elective', interestTags: ['literature', 'history'], prereqs: ['INFO200'], genEdReqs: [] },
-    { id: 'INFO430', title: 'Information Assurance & Data Governance', description: 'Data governance frameworks, compliance, risk management, and organizational information security practices.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200'], genEdReqs: [] },
-    { id: 'INFO340', title: 'Client-Side Development', description: 'Building modern interactive web applications with React, state management, and API integration. Emphasis on accessible, responsive user interfaces.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['INFO200'], genEdReqs: [] },
-    { id: 'INFO370', title: 'Core Methods in Data Science', description: 'Statistical modeling, data wrangling, and machine learning fundamentals using Python. UW iSchool\'s gateway to data science practice.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200', 'STAT220'], genEdReqs: [] },
-    { id: 'INFO350', title: 'Information Ethics & Policy', description: 'Algorithmic accountability, platform governance, intellectual property, and the social responsibilities of technologists in an era of AI.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['INFO200'], genEdReqs: [] },
-    { id: 'INFO442', title: 'Cooperative Software Development', description: 'Team-based software engineering with agile methods, version control, code review, and continuous integration. Building production-quality applications.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO340'], genEdReqs: [] },
-    { id: 'INFO474', title: 'Interactive Information Visualization', description: 'Designing and building interactive data visualizations for the web. Perception science, D3.js, and narrative data storytelling at UW\'s top-ranked iSchool.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200'], genEdReqs: [] },
+    { id: 'INFO340', title: 'Client-Side Development', description: 'Building modern interactive web applications with React, state management, and API integration.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['INFO200'], genEdReqs: [] },
+    { id: 'INFO370', title: 'Core Methods in Data Science', description: 'Statistical modeling, data wrangling, and machine learning fundamentals using Python.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200', 'STAT220'], genEdReqs: [] },
+    { id: 'INFO474', title: 'Interactive Information Visualization', description: 'Designing and building interactive data visualizations for the web. D3.js and narrative data storytelling.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200'], genEdReqs: [] },
+
+    // ===================================================================
+    // MATH (Additional)
+    // ===================================================================
+    { id: 'MATH308', title: 'Matrix Algebra with Applications', description: 'Systems of linear equations, vector spaces, eigenvalues, and applications to data science, graphics, and engineering.', credits: 3, category: 'elective', interestTags: [], prereqs: ['MATH125'], genEdReqs: ['addl-math-sci'] },
+    { id: 'MATH394', title: 'Probability I', description: 'Sample spaces, conditional probability, random variables, distributions, expectation, and the law of large numbers.', credits: 3, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH125'], genEdReqs: ['addl-math-sci'] },
   ],
 };
