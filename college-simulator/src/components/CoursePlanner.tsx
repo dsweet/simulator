@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { School, SchoolRun, GameState, INTEREST_TAGS } from '../types';
 import { getCurriculum } from '../data/curricula/index';
 import { studentProfile } from '../data/student';
@@ -37,6 +37,8 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   const [hasPrePopulated, setHasPrePopulated] = useState(false);
   // Stashed future terms when rewinding (so we can restore previous selections)
   const [stashedTerms, setStashedTerms] = useState<Array<{ termLabel: string; courses: string[] }>>([]);
+  // Skip the year-change effect reset when navigating via progress bar
+  const skipYearResetRef = useRef(false);
 
   const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
 
@@ -155,7 +157,12 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   }, [curriculum, currentTerm, previouslyTaken, hasPrePopulated, stashedTerms]);
 
   // Reset term index when year changes (e.g., year 1 → year 2)
+  // Skip when navigating via progress bar (handleGoToTerm sets the ref)
   useEffect(() => {
+    if (skipYearResetRef.current) {
+      skipYearResetRef.current = false;
+      return;
+    }
     setCurrentTermIndex(0);
     setHasPrePopulated(false);
   }, [year]);
@@ -239,6 +246,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
       const targetYear = Math.floor(globalIdx / termsPerYear) + 1;
       const targetTermIndex = globalIdx % termsPerYear;
       if (targetYear !== year) {
+        skipYearResetRef.current = true;
         onUpdateYear(targetYear);
       }
       setCurrentTermIndex(targetTermIndex);
@@ -267,6 +275,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
       const targetYear = Math.floor(globalIdx / termsPerYear) + 1;
       const targetTermIndex = globalIdx % termsPerYear;
       if (targetYear !== year) {
+        skipYearResetRef.current = true;
         onUpdateYear(targetYear);
       }
       setCurrentTermIndex(targetTermIndex);
@@ -302,11 +311,13 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
       // If we're at a year boundary (all terms for that year done), trigger year complete
       if (restoredTermIdx === 0) {
         if (restoredYear !== year) {
+          skipYearResetRef.current = true;
           onUpdateYear(restoredYear);
         }
         onYearComplete();
       } else {
         if (restoredYear !== year) {
+          skipYearResetRef.current = true;
           onUpdateYear(restoredYear);
         }
         setCurrentTermIndex(restoredTermIdx);
