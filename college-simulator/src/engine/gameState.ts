@@ -96,6 +96,17 @@ export function addTermSelection(state: GameState, schoolId: string, term: TermS
   };
 }
 
+export function addMultipleTermSelections(state: GameState, schoolId: string, terms: TermSelection[]): GameState {
+  return {
+    ...state,
+    runs: state.runs.map(run =>
+      run.schoolId === schoolId
+        ? { ...run, termSelections: [...run.termSelections, ...terms] }
+        : run
+    ),
+  };
+}
+
 export function addYearRating(state: GameState, schoolId: string, rating: YearRating): GameState {
   return {
     ...state,

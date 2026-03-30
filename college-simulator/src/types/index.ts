@@ -279,6 +279,32 @@ export interface Persona {
   gradSchoolType?: string;    // e.g., "PhD", "JD"
 }
 
+// ============================================================
+// Saved Curricula
+// ============================================================
+
+export interface CurriculumSummary {
+  narrative: string;
+  topInterests: string[];
+  careerPaths: string[];
+  skillsHighlight: string;
+}
+
+export interface SavedCurriculum {
+  id: string;
+  savedAt: string;
+  schoolId: string;
+  schoolName?: string;
+  alias: string;
+  track: Track;
+  program: string;
+  calendar: CalendarType;
+  termSelections: TermSelection[];
+  yearRatings: YearRating[];
+  outcomeRating?: OutcomeRating;
+  summary: CurriculumSummary;
+}
+
 // School aliases for blind mode
 export const SCHOOL_ALIASES = [
   'School Alpha',

@@ -4,7 +4,7 @@ import { getCurriculum } from '../data/curricula/index';
 import { studentProfile } from '../data/student';
 import { creditPolicies } from '../data/creditPolicies';
 import { evaluateCredits } from '../engine/creditEvaluator';
-import { addTermSelection, rewindToTerm } from '../engine/gameState';
+import { addTermSelection, addMultipleTermSelections, rewindToTerm } from '../engine/gameState';
 import { checkPrereqs } from '../engine/progressTracker';
 import DegreeProgress from './DegreeProgress';
 
@@ -231,11 +231,44 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   };
 
   const handleConfirmTerm = () => {
-    const newState = addTermSelection(gameState, school.id, {
+    let newState = addTermSelection(gameState, school.id, {
       termLabel: currentTerm,
       courses: selectedCourses,
     });
+
+    // If we have stashed terms from a rewind, restore all terms after the re-planned one
+    if (stashedTerms.length > 1) {
+      const remainingStashed = stashedTerms.slice(1);
+      newState = addMultipleTermSelections(newState, school.id, remainingStashed);
+      onUpdateState(newState);
+      setStashedTerms([]);
+      setSelectedCourses([]);
+      setLockedSlots([]);
+      setSlotLabels([]);
+
+      // Jump back to where the user was (first unplanned term)
+      const restoredCount = newState.runs.find(r => r.schoolId === school.id)!.termSelections.length;
+      const restoredYear = Math.floor((restoredCount - 1) / termsPerYear) + 1;
+      const restoredTermIdx = restoredCount % termsPerYear;
+
+      // If we're at a year boundary (all terms for that year done), trigger year complete
+      if (restoredTermIdx === 0) {
+        if (restoredYear !== year) {
+          onUpdateYear(restoredYear);
+        }
+        onYearComplete();
+      } else {
+        if (restoredYear !== year) {
+          onUpdateYear(restoredYear);
+        }
+        setCurrentTermIndex(restoredTermIdx);
+      }
+      return;
+    }
+
+    // Normal flow (no stashed terms to restore)
     onUpdateState(newState);
+    setStashedTerms([]);
     setSelectedCourses([]);
     setLockedSlots([]);
     setSlotLabels([]);

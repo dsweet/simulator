@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { School, GameState, OutcomeRating } from '../types';
 import { outcomes } from '../data/outcomes';
 import { addOutcomeRating } from '../engine/gameState';
+import { getCurriculum } from '../data/curricula/index';
+import { buildSavedCurriculum, saveCurriculumToStorage } from '../engine/curriculumExport';
 
 interface Props {
   school: School;
@@ -15,6 +17,7 @@ interface Props {
 export default function OutcomesPreview({ school, alias, gameState, onUpdateState, onDone, onContinueYear }: Props) {
   const [appeal, setAppeal] = useState(0);
   const [notes, setNotes] = useState('');
+  const [saved, setSaved] = useState(false);
 
   const outcomeData = outcomes.find(o => o.schoolId === school.id);
 
@@ -27,6 +30,15 @@ export default function OutcomesPreview({ school, alias, gameState, onUpdateStat
     const newState = addOutcomeRating(gameState, school.id, rating);
     onUpdateState(newState);
     onDone();
+  };
+
+  const handleSave = () => {
+    const curriculum = getCurriculum(school.id);
+    const run = gameState.runs.find(r => r.schoolId === school.id);
+    if (!curriculum || !outcomeData || !run) return;
+    const savedCurriculum = buildSavedCurriculum(run, school, curriculum, outcomeData, gameState.revealed);
+    saveCurriculumToStorage(savedCurriculum);
+    setSaved(true);
   };
 
   return (
@@ -136,6 +148,9 @@ export default function OutcomesPreview({ school, alias, gameState, onUpdateStat
       <div className="actions">
         <button className="btn btn-primary" disabled={appeal === 0} onClick={handleSubmit}>
           Submit & Return to Track Selection →
+        </button>
+        <button className="btn btn-secondary" disabled={saved} onClick={handleSave}>
+          {saved ? 'Curriculum Saved!' : 'Save This Curriculum'}
         </button>
         {onContinueYear && (
           <button className="btn btn-secondary" onClick={onContinueYear}>

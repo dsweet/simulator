@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { GameState, Track } from './types';
 import { loadState, saveState, startRun, rollRandomSchool, getCompletedRunCount, getTotalSchoolCount, canPeek, canFullReveal, addYearRating, resetState, cleanupAbandonedRuns } from './engine/gameState';
 import { schools } from './data/schools';
+import { loadSavedCurricula } from './engine/curriculumExport';
 import TrackSelection from './components/TrackSelection';
 import StartingPoint from './components/StartingPoint';
 import CoursePlanner from './components/CoursePlanner';
@@ -10,9 +11,10 @@ import OutcomesPreview from './components/OutcomesPreview';
 import Reveal from './components/Reveal';
 import Comparison from './components/Comparison';
 import Personas from './components/Personas';
+import SavedCurricula from './components/SavedCurricula';
 import './App.css';
 
-type Screen = 'track-selection' | 'starting-point' | 'course-planner' | 'year-rating' | 'outcomes' | 'reveal' | 'comparison' | 'personas';
+type Screen = 'track-selection' | 'starting-point' | 'course-planner' | 'year-rating' | 'outcomes' | 'reveal' | 'comparison' | 'personas' | 'saved-curricula';
 
 function App() {
   const [gameState, setGameState] = useState<GameState>(() => {
@@ -119,6 +121,7 @@ function App() {
   };
 
   const completedCount = getCompletedRunCount(gameState);
+  const hasSavedCurricula = loadSavedCurricula().length > 0;
 
   return (
     <div className="app">
@@ -128,6 +131,7 @@ function App() {
         </h1>
         <div className="header-stats">
           <span>{completedCount}/{getTotalSchoolCount()} schools explored</span>
+          {hasSavedCurricula && <button className="btn-small" onClick={() => setScreen('saved-curricula')}>Saved Plans</button>}
           {canPeek(gameState) && <button className="btn-small" onClick={handlePeek}>Peek (3+ done)</button>}
           {canFullReveal(gameState) && <button className="btn-small btn-reveal" onClick={handleFullReveal}>Grand Reveal</button>}
           {completedCount > 0 && gameState.revealed && <button className="btn-small" onClick={handleShowComparison}>Compare</button>}
@@ -206,6 +210,10 @@ function App() {
 
         {screen === 'personas' && (
           <Personas track={personaTrack} onBack={handleBackToTracks} />
+        )}
+
+        {screen === 'saved-curricula' && (
+          <SavedCurricula onBack={handleBackToTracks} />
         )}
       </main>
     </div>
