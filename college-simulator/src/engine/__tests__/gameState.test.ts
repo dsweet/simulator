@@ -132,6 +132,7 @@ describe('autofillPlan', () => {
     satisfiedGenEds: [],
     diplomaBonus: 0,
     uncappedTotal: 0,
+    creditCap: null,
   };
 
   const makeCurriculum = (): Curriculum => ({

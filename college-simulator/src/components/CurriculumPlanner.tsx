@@ -227,18 +227,26 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
                     className={`term-cell ${isActive ? 'term-cell-active' : ''} ${courses.length > 0 ? 'term-cell-filled' : ''} ${hasIssue ? 'term-cell-warning' : ''}`}
                     onClick={() => setActiveTerm(isActive ? null : label)}
                   >
-                    <div className="term-cell-label">{seasonLabel}</div>
-                    <div className="term-cell-count">
-                      {courses.length > 0 ? `${courses.length} course${courses.length !== 1 ? 's' : ''}` : 'empty'}
+                    <div className="term-cell-header">
+                      <span className="term-cell-label">{seasonLabel}{hasIssue && ' ⚠️'}</span>
+                      <span className="term-cell-count">
+                        {courses.length > 0 ? `${courses.length}` : '—'}
+                      </span>
                     </div>
                     {courses.length > 0 && (
                       <div className="term-cell-courses">
-                        {courses.map(cid => (
-                          <span key={cid} className="term-cell-course-id">{cid}</span>
-                        ))}
+                        {courses.map(cid => {
+                          const c = curriculum.courses.find(co => co.id === cid);
+                          return (
+                            <span
+                              key={cid}
+                              className="term-cell-course-id"
+                              title={c ? `${c.title}\n${c.description}` : cid}
+                            >{cid}</span>
+                          );
+                        })}
                       </div>
                     )}
-                    {hasIssue && <span className="term-cell-issue">⚠️</span>}
                   </button>
                 );
               })}
