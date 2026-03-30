@@ -38,12 +38,18 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   // Stashed future terms when rewinding (so we can restore previous selections)
   const [stashedTerms, setStashedTerms] = useState<Array<{ termLabel: string; courses: string[] }>>([]);
 
-  // Show all terms from year 1 through current year
+  const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
+
+  // Show terms covering current year AND any stashed terms beyond it
+  const stashedMaxTerms = stashedTerms.length > 0
+    ? run.termSelections.length + stashedTerms.length
+    : 0;
+  const maxYear = Math.max(year, Math.ceil(stashedMaxTerms / termsPerYear));
+
   const allTermLabels: string[] = [];
-  for (let y = 1; y <= year; y++) {
+  for (let y = 1; y <= maxYear; y++) {
     allTermLabels.push(...getTermLabels(school.calendar, y));
   }
-  const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
   // The "global" index into allTermLabels for the currently active term
   const globalTermIndex = (year - 1) * termsPerYear + currentTermIndex;
   const currentTerm = allTermLabels[globalTermIndex];
@@ -208,26 +214,58 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   // Total confirmed terms across all years
   const totalConfirmedTerms = run.termSelections.length;
 
+  // When stashed terms exist, the "navigable" range extends beyond confirmed terms
+  // stashedTerms[0] corresponds to globalTermIndex (the term being re-edited),
+  // so stashed terms cover globalTermIndex through globalTermIndex + stashedTerms.length - 1
+  const stashedEndIndex = stashedTerms.length > 0
+    ? totalConfirmedTerms + stashedTerms.length
+    : totalConfirmedTerms;
+
   const handleGoToTerm = (globalIdx: number) => {
-    if (globalIdx >= totalConfirmedTerms || globalIdx === globalTermIndex) return;
-    // Stash future terms (from the clicked term onward)
-    const futureTerms = run.termSelections.slice(globalIdx);
-    setStashedTerms(futureTerms);
-    // Rewind game state
-    const newState = rewindToTerm(gameState, school.id, globalIdx);
-    onUpdateState(newState);
-    // Update year and term index
-    const targetYear = Math.floor(globalIdx / termsPerYear) + 1;
-    const targetTermIndex = globalIdx % termsPerYear;
-    if (targetYear !== year) {
-      // Need to change year — call onUpdateYear
-      onUpdateYear(targetYear);
+    if (globalIdx === globalTermIndex) return;
+
+    // Navigating within stashed range (forward into stashed terms)
+    if (stashedTerms.length > 0 && globalIdx >= totalConfirmedTerms && globalIdx < stashedEndIndex) {
+      const targetYear = Math.floor(globalIdx / termsPerYear) + 1;
+      const targetTermIndex = globalIdx % termsPerYear;
+      if (targetYear !== year) {
+        onUpdateYear(targetYear);
+      }
+      setCurrentTermIndex(targetTermIndex);
+      setSelectedCourses([]);
+      setLockedSlots([]);
+      setSlotLabels([]);
+      setHasPrePopulated(false);
+      return;
     }
-    setCurrentTermIndex(targetTermIndex);
-    setSelectedCourses([]);
-    setLockedSlots([]);
-    setSlotLabels([]);
-    setHasPrePopulated(false);
+
+    // Navigating backward into confirmed terms
+    if (globalIdx < totalConfirmedTerms) {
+      // If we don't already have a stash, create one from confirmed terms
+      if (stashedTerms.length === 0) {
+        const futureTerms = run.termSelections.slice(globalIdx);
+        setStashedTerms(futureTerms);
+      } else {
+        // We already have a stash — merge: confirmed terms from globalIdx onward + existing stash
+        const confirmedPortion = run.termSelections.slice(globalIdx);
+        const newStash = [...confirmedPortion, ...stashedTerms];
+        setStashedTerms(newStash);
+      }
+      // Rewind game state
+      const newState = rewindToTerm(gameState, school.id, globalIdx);
+      onUpdateState(newState);
+      const targetYear = Math.floor(globalIdx / termsPerYear) + 1;
+      const targetTermIndex = globalIdx % termsPerYear;
+      if (targetYear !== year) {
+        onUpdateYear(targetYear);
+      }
+      setCurrentTermIndex(targetTermIndex);
+      setSelectedCourses([]);
+      setLockedSlots([]);
+      setSlotLabels([]);
+      setHasPrePopulated(false);
+      return;
+    }
   };
 
   const handleConfirmTerm = () => {
@@ -289,14 +327,15 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
         <h2>{run.alias} — {currentTerm}</h2>
         <div className="term-progress">
           {allTermLabels.map((label, i) => {
-            const isDone = i < totalConfirmedTerms && i !== globalTermIndex;
+            const isDone = (i < totalConfirmedTerms || (i < stashedEndIndex && stashedTerms.length > 0)) && i !== globalTermIndex;
             const isActive = i === globalTermIndex;
-            const canClick = i < totalConfirmedTerms && i !== globalTermIndex;
-            const isFuture = i > globalTermIndex && i >= totalConfirmedTerms;
+            const isStashed = stashedTerms.length > 0 && i >= totalConfirmedTerms && i < stashedEndIndex && i !== globalTermIndex;
+            const canClick = isDone && !isActive;
+            const isFuture = i >= stashedEndIndex;
             return (
               <span
                 key={label}
-                className={`term-dot ${isDone ? 'done' : ''} ${isActive ? 'active' : ''} ${canClick ? 'clickable' : ''} ${isFuture ? 'future' : ''}`}
+                className={`term-dot ${isDone ? 'done' : ''} ${isActive ? 'active' : ''} ${canClick ? 'clickable' : ''} ${isFuture ? 'future' : ''} ${isStashed ? 'stashed' : ''}`}
                 onClick={canClick ? () => handleGoToTerm(i) : undefined}
               >
                 {label}
