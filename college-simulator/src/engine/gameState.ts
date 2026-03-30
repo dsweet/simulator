@@ -1,153 +1,62 @@
-import { GameState, SchoolRun, TermSelection, YearRating, OutcomeRating, SCHOOL_ALIASES, Track } from '../types';
-import { schools } from '../data/schools';
+import { CurriculumPlan, Curriculum } from '../types';
 
-const STORAGE_KEY = 'college-simulator-state';
+const PLAN_KEY = 'college-simulator-current-plan';
 
-export function createInitialState(): GameState {
+export function createPlan(schoolId: string): CurriculumPlan {
   return {
-    runs: [],
-    currentRun: undefined,
-    revealed: false,
-    peekUsed: false,
-  };
-}
-
-export function loadState(): GameState {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved);
-  } catch { /* ignore parse errors */ }
-  return createInitialState();
-}
-
-export function saveState(state: GameState): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-export function getAvailableSchools(state: GameState, track: Track): string[] {
-  return schools
-    .filter(s => s.track === track)
-    .map(s => s.id);
-}
-
-export function getUnplayedSchools(state: GameState, track: Track): string[] {
-  const completedIds = new Set(state.runs.filter(r => r.completed).map(r => r.schoolId));
-  return schools
-    .filter(s => s.track === track && !completedIds.has(s.id))
-    .map(s => s.id);
-}
-
-export function cleanupAbandonedRuns(state: GameState): GameState {
-  const cleaned = state.runs.filter(r => r.completed);
-  if (cleaned.length === state.runs.length) return state;
-  return { ...state, runs: cleaned, currentRun: undefined };
-}
-
-export function rollRandomSchool(state: GameState, track: Track): string | null {
-  // Prefer unplayed schools, but allow replays of completed ones
-  const unplayed = getUnplayedSchools(state, track);
-  const pool = unplayed.length > 0 ? unplayed : getAvailableSchools(state, track);
-  if (pool.length === 0) return null;
-  return pool[Math.floor(Math.random() * pool.length)];
-}
-
-export function getNextAlias(state: GameState): string {
-  return SCHOOL_ALIASES[state.runs.length] || `School ${state.runs.length + 1}`;
-}
-
-export function startRun(state: GameState, schoolId: string): GameState {
-  const alias = getNextAlias(state);
-  const newRun: SchoolRun = {
     schoolId,
-    alias,
-    termSelections: [],
-    yearRatings: [],
-    outcomeRating: undefined,
-    yearsCompleted: 0,
-    completed: false,
+    termCourses: {},
+    createdAt: new Date().toISOString(),
   };
+}
 
+export function setTermCourses(plan: CurriculumPlan, termLabel: string, courseIds: string[]): CurriculumPlan {
   return {
-    ...state,
-    runs: [...state.runs, newRun],
-    currentRun: schoolId,
+    ...plan,
+    termCourses: { ...plan.termCourses, [termLabel]: courseIds },
   };
 }
 
-export function rewindToTerm(state: GameState, schoolId: string, keepTermCount: number): GameState {
-  return {
-    ...state,
-    runs: state.runs.map(run =>
-      run.schoolId === schoolId
-        ? { ...run, termSelections: run.termSelections.slice(0, keepTermCount) }
-        : run
-    ),
-  };
+export function prefillFromRecommended(plan: CurriculumPlan, curriculum: Curriculum, creditedCourseIds: Set<string>): CurriculumPlan {
+  if (!curriculum.recommendedSequence) return plan;
+
+  const newTermCourses: Record<string, string[]> = {};
+  for (const term of curriculum.recommendedSequence.terms) {
+    const validCourses = term.courses.filter(
+      id => curriculum.courses.some(c => c.id === id) && !creditedCourseIds.has(id)
+    );
+    newTermCourses[term.termLabel] = validCourses;
+  }
+  return { ...plan, termCourses: newTermCourses };
 }
 
-export function addTermSelection(state: GameState, schoolId: string, term: TermSelection): GameState {
-  return {
-    ...state,
-    runs: state.runs.map(run =>
-      run.schoolId === schoolId
-        ? { ...run, termSelections: [...run.termSelections, term] }
-        : run
-    ),
-  };
+export function loadCurrentPlan(): CurriculumPlan | null {
+  try {
+    const saved = localStorage.getItem(PLAN_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch { /* ignore */ }
+  return null;
 }
 
-export function addMultipleTermSelections(state: GameState, schoolId: string, terms: TermSelection[]): GameState {
-  return {
-    ...state,
-    runs: state.runs.map(run =>
-      run.schoolId === schoolId
-        ? { ...run, termSelections: [...run.termSelections, ...terms] }
-        : run
-    ),
-  };
+export function saveCurrentPlan(plan: CurriculumPlan): void {
+  localStorage.setItem(PLAN_KEY, JSON.stringify(plan));
 }
 
-export function addYearRating(state: GameState, schoolId: string, rating: YearRating): GameState {
-  return {
-    ...state,
-    runs: state.runs.map(run =>
-      run.schoolId === schoolId
-        ? { ...run, yearRatings: [...run.yearRatings, rating], yearsCompleted: rating.year }
-        : run
-    ),
-  };
+export function clearCurrentPlan(): void {
+  localStorage.removeItem(PLAN_KEY);
 }
 
-export function addOutcomeRating(state: GameState, schoolId: string, rating: OutcomeRating): GameState {
-  return {
-    ...state,
-    runs: state.runs.map(run =>
-      run.schoolId === schoolId
-        ? { ...run, outcomeRating: rating, completed: true }
-        : run
-    ),
-    currentRun: undefined,
-  };
+export function getTermLabels(calendar: 'quarter' | 'semester', year: number): string[] {
+  if (calendar === 'quarter') {
+    return [`Fall Year ${year}`, `Winter Year ${year}`, `Spring Year ${year}`];
+  }
+  return [`Fall Year ${year}`, `Spring Year ${year}`];
 }
 
-export function canPeek(state: GameState): boolean {
-  const completedRuns = state.runs.filter(r => r.completed).length;
-  return completedRuns >= 3 && !state.peekUsed;
-}
-
-export function getTotalSchoolCount(): number {
-  return schools.length;
-}
-
-export function canFullReveal(state: GameState): boolean {
-  return state.runs.filter(r => r.completed).length >= schools.length;
-}
-
-export function getCompletedRunCount(state: GameState): number {
-  return state.runs.filter(r => r.completed).length;
-}
-
-export function resetState(): GameState {
-  localStorage.removeItem(STORAGE_KEY);
-  return createInitialState();
+export function getAllTermLabels(calendar: 'quarter' | 'semester'): string[] {
+  const labels: string[] = [];
+  for (let y = 1; y <= 4; y++) {
+    labels.push(...getTermLabels(calendar, y));
+  }
+  return labels;
 }

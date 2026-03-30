@@ -1,37 +1,21 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 import { School, ExamScore } from '../types';
 import { studentProfile } from '../data/student';
 import { creditPolicies } from '../data/creditPolicies';
 import { evaluateCredits } from '../engine/creditEvaluator';
 import { getCurriculum } from '../data/curricula/index';
 
-const DICE_FACES = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
-function randomDiceFace() {
-  return DICE_FACES[Math.floor(Math.random() * DICE_FACES.length)];
-}
-
 interface Props {
   school: School;
-  alias: string;
   onContinue: () => void;
-  onReroll?: () => void;
+  onBack: () => void;
 }
 
-// Build a key for an exam to use in the overrides map
 function examKey(exam: ExamScore): string {
   return `${exam.examType}:${exam.subject}`;
 }
 
-export default function StartingPoint({ school, alias, onContinue, onReroll }: Props) {
-  const [diceFace, setDiceFace] = useState(randomDiceFace);
-  const [diceKey, setDiceKey] = useState(0);
-
-  const handleReroll = useCallback(() => {
-    setDiceFace(randomDiceFace());
-    setDiceKey(k => k + 1);
-    if (onReroll) onReroll();
-  }, [onReroll]);
-  // Track per-exam score overrides for pending exams
+export default function SchoolDetail({ school, onContinue, onBack }: Props) {
   const [scoreOverrides, setScoreOverrides] = useState<Record<string, number>>(() => {
     const defaults: Record<string, number> = {};
     for (const exam of studentProfile.exams) {
@@ -44,7 +28,6 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
     return defaults;
   });
 
-  // Build a modified profile with the overrides applied
   const adjustedProfile = useMemo(() => ({
     ...studentProfile,
     exams: studentProfile.exams.map(exam => {
@@ -58,28 +41,21 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
   const policy = creditPolicies.find(p => p.schoolId === school.id);
   const creditSummary = policy ? evaluateCredits(adjustedProfile, policy) : null;
   const curriculum = getCurriculum(school.id);
-
   const pendingExams = studentProfile.exams.filter(e => e.score === null);
 
-  // Compute degree context metrics
   const degreeContext = useMemo(() => {
     if (!curriculum || !creditSummary) return null;
     const { degreeRequirements } = curriculum;
-    const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
-    const creditsPerYear = degreeRequirements.totalCredits / 4; // 4-year degree
+    const creditsPerYear = degreeRequirements.totalCredits / 4;
     const yearsWorth = creditSummary.totalCredits / creditsPerYear;
 
-    // Find which major-required courses are satisfied by AP/IB credit
-    // courseEquivalent is like "STAT 290" and majorCourses has "STAT290" — normalize both
     const normalize = (s: string) => s.replace(/\s+/g, '').toUpperCase();
     const majorCourseIds = new Set(degreeRequirements.majorCourses.map(normalize));
     const satisfiedMajorCourses: { examName: string; courseEquivalent: string }[] = [];
     for (const result of creditSummary.results) {
       if (result.creditsAwarded > 0 && result.courseEquivalent) {
-        // courseEquivalent might be "MATH 124/125" — check each part
         const parts = result.courseEquivalent.split('/').map(p => p.trim());
-        // For "MATH 124/125", first part is "MATH 124", second is just "125" — expand
-        const prefix = parts[0].replace(/\s*\d+.*$/, ''); // e.g., "MATH"
+        const prefix = parts[0].replace(/\s*\d+.*$/, '');
         for (const part of parts) {
           const full = part.includes(prefix) ? part : `${prefix} ${part}`;
           if (majorCourseIds.has(normalize(full))) {
@@ -93,34 +69,28 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
       totalCredits: degreeRequirements.totalCredits,
       majorCredits: degreeRequirements.majorCredits,
       creditsPerYear,
-      termsPerYear,
       yearsWorth,
       satisfiedMajorCourses,
     };
-  }, [curriculum, creditSummary, school.calendar]);
+  }, [curriculum, creditSummary]);
 
-  // Generate a short plain-English summary of the credit policy
   const policySummaryText = useMemo(() => {
     if (!policy) return null;
     const parts: string[] = [];
-
     if (policy.slExamsAccepted) {
       parts.push(`Accepts both HL and SL IB exams (score of ${policy.slMinScore ?? policy.hlMinScore}+)`);
     } else {
       parts.push(`HL exams only (score of ${policy.hlMinScore}+) — no credit for SL exams`);
     }
-
     if (policy.creditCap) {
       parts.push(`Maximum ${policy.creditCap} credits from AP/IB combined`);
     } else {
       parts.push('No hard cap on AP/IB credits');
     }
-
     if (policy.diplomaBonus) {
       const minNote = policy.diplomaBonusMinScore ? ` (if total IB score is ${policy.diplomaBonusMinScore}+)` : '';
       parts.push(`IB Diploma bonus: ${policy.diplomaBonus} extra credits${minNote}`);
     }
-
     return parts;
   }, [policy]);
 
@@ -130,18 +100,9 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
 
   return (
     <div className="screen starting-point">
-      <div className="dice-result">
-        <div
-          key={diceKey}
-          className={`dice-animation ${onReroll ? 'dice-clickable' : ''}`}
-          onClick={onReroll ? handleReroll : undefined}
-          title={onReroll ? 'Click to re-roll a different school' : undefined}
-        >
-          {diceFace}
-        </div>
-        <h2>You've been assigned to...</h2>
-        <h1 className="alias-name">{alias}</h1>
-        {onReroll && <p className="reroll-hint">Click the die to re-roll</p>}
+      <div className="school-identity">
+        <h1>{school.name}</h1>
+        <h2>{school.program}</h2>
       </div>
 
       <div className="school-hints">
@@ -196,7 +157,7 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
 
       {creditSummary && degreeContext && (
         <div className="credit-summary">
-          <h3>Degree Requirements at This School</h3>
+          <h3>Degree Requirements</h3>
           <div className="degree-overview">
             <div className="degree-stat">
               <span className="degree-stat-value">{degreeContext.totalCredits}</span>
@@ -212,7 +173,7 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
             </div>
           </div>
 
-          <h3>Your AP/IB Credits at This School</h3>
+          <h3>Your AP/IB Credits</h3>
           {policySummaryText && (
             <ul className="policy-summary">
               {policySummaryText.map((line, i) => (
@@ -296,9 +257,14 @@ export default function StartingPoint({ school, alias, onContinue, onReroll }: P
         </div>
       )}
 
-      <button className="btn btn-primary" onClick={onContinue}>
-        Start Planning Your First {school.calendar === 'quarter' ? 'Quarter' : 'Semester'} →
-      </button>
+      <div className="actions">
+        <button className="btn btn-primary" onClick={onContinue}>
+          Start Planning Your Curriculum →
+        </button>
+        <button className="btn btn-secondary" onClick={onBack}>
+          ← Back to Schools
+        </button>
+      </div>
     </div>
   );
 }

@@ -41,22 +41,21 @@ export const INTEREST_TAGS: InterestTag[] = [
 // ============================================================
 
 export interface School {
-  id: string;                   // e.g., "school_a"
-  name: string;                 // Real name (hidden until reveal)
+  id: string;
+  name: string;
   track: Track;
-  program: string;              // e.g., "HCDE" or "Economics"
+  program: string;
   calendar: CalendarType;
   size: SchoolSize;
   enrollmentTotal: number;
-  // Anonymized hints (shown before reveal)
   hints: {
-    calendarLabel: string;      // "Quarters" or "Semesters"
-    sizeLabel: string;          // "Small school (~3,000)", etc.
+    calendarLabel: string;
+    sizeLabel: string;
   };
 }
 
 export interface Course {
-  id: string;                   // e.g., "ECON101"
+  id: string;
   title: string;
   description: string;
   credits: number;
@@ -66,7 +65,7 @@ export interface Course {
   genEdReqs?: string[];         // Which gen-ed requirements this satisfies
   termAvailability?: string[];  // e.g., ["fall", "winter", "spring"] or ["fall", "spring"]
   yearLevel?: number;           // 1-4, for sorting/filtering
-  clusterGroup?: string;        // For Rochester-style clusters: department grouping (e.g., 'astronomy', 'philosophy')
+  clusterGroup?: string;        // For Rochester-style clusters
 }
 
 export interface DegreeRequirements {
@@ -80,21 +79,21 @@ export interface DegreeRequirements {
 
 export interface GenEdCategory {
   id: string;
-  name: string;                 // e.g., "Writing", "Quantitative Reasoning"
+  name: string;
   creditsRequired: number;
   satisfiedBy: string[];        // Course IDs that can satisfy this
 }
 
 export interface RecommendedTermSlot {
-  termLabel: string;                // e.g., "Fall Year 1"
-  courses: string[];                // Course IDs for the standard path
-  locked: boolean[];                // Parallel array: true = required this term, false = swappable
-  slotLabels?: string[];            // Hint per slot, e.g., "NW Gen-Ed elective"
+  termLabel: string;
+  courses: string[];
+  locked: boolean[];
+  slotLabels?: string[];
 }
 
 export interface RecommendedSequence {
-  years: number;                    // How many years covered (typically 2)
-  terms: RecommendedTermSlot[];     // One entry per term in chronological order
+  years: number;
+  terms: RecommendedTermSlot[];
 }
 
 export interface Curriculum {
@@ -113,9 +112,9 @@ export interface CreditAward {
   examName: string;
   minScore: number;
   creditsAwarded: number;
-  courseEquivalent?: string;     // e.g., "STAT 290"
-  courseDescription?: string;    // Brief description of the equivalent course
-  satisfiesGenEd?: string[];    // Gen-ed category IDs satisfied
+  courseEquivalent?: string;
+  courseDescription?: string;
+  satisfiesGenEd?: string[];
 }
 
 export interface CreditPolicy {
@@ -135,13 +134,13 @@ export interface CreditPolicy {
 
 export interface CostData {
   schoolId: string;
-  tuitionAndFees: number;       // Annual
-  roomAndBoard: number;         // Annual
-  totalCOA: number;             // Annual
-  aidAmount: number;            // Annual aid/scholarship
-  netCost: number;              // Annual after aid
-  fourYearNet: number;          // Estimated 4-year total
-  aidDescription: string;       // e.g., "In-state tuition", "$42K off tuition"
+  tuitionAndFees: number;
+  roomAndBoard: number;
+  totalCOA: number;
+  aidAmount: number;
+  netCost: number;
+  fourYearNet: number;
+  aidDescription: string;
 }
 
 // ============================================================
@@ -156,11 +155,11 @@ export interface OutcomeData {
   topEmployers: string[];
   commonJobTitles: string[];
   commonIndustries: string[];
-  gradSchoolRate?: number;      // Percentage
+  gradSchoolRate?: number;
   commonGradPrograms: string[];
-  internshipCulture: string;    // Description
-  quantitativePrep: string;     // How program's quant rigor affects career options
-  gradSchoolNotes: string;      // Grad school readiness given this program's structure
+  internshipCulture: string;
+  quantitativePrep: string;
+  gradSchoolNotes: string;
 }
 
 // ============================================================
@@ -172,7 +171,7 @@ export interface StudentLifeData {
   location: {
     city: string;
     state: string;
-    urbanSetting: string;       // "urban", "suburban", "college town"
+    urbanSetting: string;
     climate: string;
     distanceFromSeattle: string;
     transit: string;
@@ -197,7 +196,7 @@ export interface StudentLifeData {
 export interface ExamScore {
   examType: 'AP' | 'IB-HL' | 'IB-SL';
   subject: string;
-  score: number | null;         // null = pending
+  score: number | null;
 }
 
 export interface StudentProfile {
@@ -210,41 +209,13 @@ export interface StudentProfile {
 }
 
 // ============================================================
-// Game State
+// Curriculum Plan (replaces GameState/SchoolRun)
 // ============================================================
 
-export interface TermSelection {
-  termLabel: string;            // e.g., "Fall Year 1"
-  courses: string[];            // Course IDs selected
-}
-
-export interface YearRating {
-  year: number;
-  courseInterest: number;       // 1-5
-  overallAppeal: number;
-  notes: string;
-}
-
-export interface OutcomeRating {
-  appeal: number;               // 1-5
-  notes: string;
-}
-
-export interface SchoolRun {
+export interface CurriculumPlan {
   schoolId: string;
-  alias: string;                // "School Alpha", "School Beta", etc.
-  termSelections: TermSelection[];
-  yearRatings: YearRating[];
-  outcomeRating?: OutcomeRating;
-  yearsCompleted: number;
-  completed: boolean;           // True when she's done rating
-}
-
-export interface GameState {
-  runs: SchoolRun[];
-  currentRun?: string;          // schoolId of active run
-  revealed: boolean;            // Has the grand reveal happened?
-  peekUsed: boolean;            // Has the peek been used?
+  termCourses: Record<string, string[]>;  // "Fall Year 1" → ["ECON101", "MATH124"]
+  createdAt: string;
 }
 
 // ============================================================
@@ -252,20 +223,20 @@ export interface GameState {
 // ============================================================
 
 export interface PersonaCareerStep {
-  years: string;              // e.g., "1-2", "3-4"
+  years: string;
   role: string;
   description: string;
 }
 
 export interface PersonaTerm {
-  termLabel: string;          // e.g., "Fall Year 1"
-  courses: string[];          // Course IDs
+  termLabel: string;
+  courses: string[];
 }
 
 export interface Persona {
   id: string;
   name: string;
-  archetype: string;          // e.g., "The Coder"
+  archetype: string;
   emoji: string;
   bio: string;
   passion: string;
@@ -276,7 +247,7 @@ export interface Persona {
   futureThinking: string;
   techOutcome: boolean;
   gradSchool: boolean;
-  gradSchoolType?: string;    // e.g., "PhD", "JD"
+  gradSchoolType?: string;
 }
 
 // ============================================================
@@ -290,29 +261,19 @@ export interface CurriculumSummary {
   skillsHighlight: string;
 }
 
+export interface TermSelection {
+  termLabel: string;
+  courses: string[];
+}
+
 export interface SavedCurriculum {
   id: string;
   savedAt: string;
   schoolId: string;
-  schoolName?: string;
-  alias: string;
+  schoolName: string;
   track: Track;
   program: string;
   calendar: CalendarType;
   termSelections: TermSelection[];
-  yearRatings: YearRating[];
-  outcomeRating?: OutcomeRating;
   summary: CurriculumSummary;
 }
-
-// School aliases for blind mode
-export const SCHOOL_ALIASES = [
-  'School Alpha',
-  'School Beta',
-  'School Gamma',
-  'School Delta',
-  'School Epsilon',
-  'School Zeta',
-  'School Eta',
-  'School Theta',
-] as const;

@@ -8,7 +8,6 @@ interface Props {
 
 export default function CurriculumCard({ saved, onDownload, onDelete }: Props) {
   const termsPerYear = saved.calendar === 'quarter' ? 3 : 2;
-  const displayName = saved.schoolName || saved.alias;
   const totalYears = Math.ceil(saved.termSelections.length / termsPerYear);
 
   // Group terms by year
@@ -24,7 +23,7 @@ export default function CurriculumCard({ saved, onDownload, onDelete }: Props) {
     <div className="curriculum-card">
       <div className="curriculum-card-header">
         <div>
-          <h3>{displayName}</h3>
+          <h3>{saved.schoolName}</h3>
           <span className="curriculum-meta">{saved.program} · {saved.track} · {saved.calendar}s</span>
           <span className="curriculum-date">Saved {new Date(saved.savedAt).toLocaleDateString()}</span>
         </div>
@@ -35,42 +34,26 @@ export default function CurriculumCard({ saved, onDownload, onDelete }: Props) {
       </div>
 
       <div className="curriculum-grid">
-        {years.map(({ year, terms }) => {
-          const rating = saved.yearRatings.find(r => r.year === year);
-          return (
-            <div key={year} className="curriculum-year">
-              <div className="curriculum-year-header">
-                <strong>Year {year}</strong>
-                {rating && (
-                  <span className="year-rating-compact">
-                    {'★'.repeat(rating.overallAppeal)}{'☆'.repeat(5 - rating.overallAppeal)}
-                  </span>
-                )}
-              </div>
-              <div className="curriculum-terms">
-                {terms.map(term => (
-                  <div key={term.termLabel} className="curriculum-term">
-                    <div className="term-label">{term.termLabel.replace(/ Year \d+/, '')}</div>
-                    <ul className="term-courses">
-                      {term.courses.map(cid => (
-                        <li key={cid}>{cid}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              {rating?.notes && <div className="year-notes-compact">{rating.notes}</div>}
+        {years.map(({ year, terms }) => (
+          <div key={year} className="curriculum-year">
+            <div className="curriculum-year-header">
+              <strong>Year {year}</strong>
             </div>
-          );
-        })}
+            <div className="curriculum-terms">
+              {terms.map(term => (
+                <div key={term.termLabel} className="curriculum-term">
+                  <div className="term-label">{term.termLabel.replace(/ Year \d+/, '')}</div>
+                  <ul className="term-courses">
+                    {term.courses.map(cid => (
+                      <li key={cid}>{cid}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-
-      {saved.outcomeRating && (
-        <div className="outcome-rating-compact">
-          Outcomes: {'★'.repeat(saved.outcomeRating.appeal)}{'☆'.repeat(5 - saved.outcomeRating.appeal)}
-          {saved.outcomeRating.notes && <span> — {saved.outcomeRating.notes}</span>}
-        </div>
-      )}
 
       <div className="curriculum-summary">
         <p>{saved.summary.narrative}</p>

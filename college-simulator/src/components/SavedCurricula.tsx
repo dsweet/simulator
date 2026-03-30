@@ -28,7 +28,7 @@ export default function SavedCurricula({ onBack }: Props) {
 
       {curricula.length === 0 ? (
         <div className="empty-saved">
-          <p>No saved curricula yet. Complete a school run and save your curriculum from the outcomes screen.</p>
+          <p>No saved curricula yet. Plan a curriculum for any school and save it from the summary screen.</p>
         </div>
       ) : (
         <div className="curricula-list">

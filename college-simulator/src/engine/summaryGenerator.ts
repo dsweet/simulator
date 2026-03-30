@@ -1,4 +1,4 @@
-import { SchoolRun, Curriculum, OutcomeData, School, Course, INTEREST_TAGS } from '../types';
+import { Curriculum, OutcomeData, School, Course, INTEREST_TAGS, TermSelection } from '../types';
 
 export interface CurriculumSummary {
   narrative: string;
@@ -67,8 +67,7 @@ function describeBalance(breakdown: ReturnType<typeof getCategoryBreakdown>): st
 
 function describePacing(
   allCourses: Course[],
-  termSelections: SchoolRun['termSelections'],
-  termsPerYear: number,
+  termSelections: TermSelection[],
 ): string {
   const courseMap = new Map(allCourses.map(c => [c.id, c]));
   let earlyMajor = 0, earlyTotal = 0, lateMajor = 0, lateTotal = 0;
@@ -104,11 +103,9 @@ function describePacing(
 }
 
 function pickRelevantCareers(topTags: string[], outcomeData: OutcomeData): string[] {
-  // Return a curated subset of job titles that feel most relevant to the interest pattern
   const tagSet = new Set(topTags);
   const relevant: string[] = [];
 
-  // Prioritize jobs that connect to the student's interests
   for (const title of outcomeData.commonJobTitles) {
     const lower = title.toLowerCase();
     if (tagSet.has('design') && (lower.includes('design') || lower.includes('ux'))) relevant.push(title);
@@ -118,7 +115,6 @@ function pickRelevantCareers(topTags: string[], outcomeData: OutcomeData): strin
     else if (tagSet.has('environmental') && lower.includes('sustain')) relevant.push(title);
   }
 
-  // Fill to 3 if needed
   for (const title of outcomeData.commonJobTitles) {
     if (relevant.length >= 3) break;
     if (!relevant.includes(title)) relevant.push(title);
@@ -149,16 +145,32 @@ function pickRelevantGradPrograms(topTags: string[], outcomeData: OutcomeData): 
 }
 
 export function generateCurriculumSummary(
-  run: SchoolRun,
+  termCourses: Record<string, string[]>,
   curriculum: Curriculum,
   outcomeData: OutcomeData,
   school: School,
 ): CurriculumSummary {
-  // Resolve all selected courses
   const courseMap = new Map(curriculum.courses.map(c => [c.id, c]));
+
+  // Convert to ordered TermSelection[] for pacing analysis
+  const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
+  const allLabels: string[] = [];
+  for (let y = 1; y <= 4; y++) {
+    if (school.calendar === 'quarter') {
+      allLabels.push(`Fall Year ${y}`, `Winter Year ${y}`, `Spring Year ${y}`);
+    } else {
+      allLabels.push(`Fall Year ${y}`, `Spring Year ${y}`);
+    }
+  }
+
+  const termSelections: TermSelection[] = allLabels
+    .filter(label => (termCourses[label] || []).length > 0)
+    .map(label => ({ termLabel: label, courses: termCourses[label] }));
+
+  // Resolve all selected courses
   const allSelectedCourses: Course[] = [];
-  for (const term of run.termSelections) {
-    for (const cid of term.courses) {
+  for (const ts of termSelections) {
+    for (const cid of ts.courses) {
       const c = courseMap.get(cid);
       if (c) allSelectedCourses.push(c);
     }
@@ -170,10 +182,8 @@ export function generateCurriculumSummary(
   const topTagLabels = topTags.map(t => INTEREST_TAGS.find(it => it.id === t.id)?.label || t.id);
 
   const balanceDesc = describeBalance(breakdown);
-  const termsPerYear = school.calendar === 'quarter' ? 3 : 2;
-  const pacingDesc = describePacing(curriculum.courses, run.termSelections, termsPerYear);
+  const pacingDesc = describePacing(curriculum.courses, termSelections);
 
-  // Build interest narrative
   const interestPhrases = topTags
     .map(t => INTEREST_NARRATIVES[t.id] || t.id)
     .filter(Boolean);
@@ -199,7 +209,7 @@ export function generateCurriculumSummary(
     : '';
 
   const totalCourses = allSelectedCourses.length;
-  const totalTerms = run.termSelections.length;
+  const totalTerms = termSelections.length;
   const years = Math.ceil(totalTerms / termsPerYear);
 
   const opening = `Over ${years} year${years !== 1 ? 's' : ''} and ${totalCourses} courses, this curriculum is ${balanceDesc}.`;

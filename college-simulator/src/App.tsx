@@ -1,222 +1,112 @@
 import { useState, useCallback, useMemo } from 'react';
-import { GameState, Track } from './types';
-import { loadState, saveState, startRun, rollRandomSchool, getCompletedRunCount, getTotalSchoolCount, canPeek, canFullReveal, addYearRating, resetState, cleanupAbandonedRuns } from './engine/gameState';
-import { schools } from './data/schools';
+import { CurriculumPlan, Track } from './types';
+import { createPlan, loadCurrentPlan, saveCurrentPlan, clearCurrentPlan } from './engine/gameState';
 import { loadSavedCurricula } from './engine/curriculumExport';
-import TrackSelection from './components/TrackSelection';
-import StartingPoint from './components/StartingPoint';
-import CoursePlanner from './components/CoursePlanner';
-import YearRating from './components/YearRating';
-import OutcomesPreview from './components/OutcomesPreview';
-import Reveal from './components/Reveal';
-import Comparison from './components/Comparison';
+import { schools } from './data/schools';
+import SchoolBrowser from './components/SchoolBrowser';
+import SchoolDetail from './components/SchoolDetail';
+import CurriculumPlanner from './components/CurriculumPlanner';
+import Summary from './components/Summary';
 import Personas from './components/Personas';
 import SavedCurricula from './components/SavedCurricula';
 import './App.css';
 
-type Screen = 'track-selection' | 'starting-point' | 'course-planner' | 'year-rating' | 'outcomes' | 'reveal' | 'comparison' | 'personas' | 'saved-curricula';
+type Screen = 'school-browser' | 'school-detail' | 'curriculum-planner' | 'summary' | 'personas' | 'saved-curricula';
 
 function App() {
-  const [gameState, setGameState] = useState<GameState>(() => {
-    const loaded = loadState();
-    const cleaned = cleanupAbandonedRuns(loaded);
-    if (cleaned !== loaded) saveState(cleaned);
-    return cleaned;
-  });
-  const [screen, setScreen] = useState<Screen>('track-selection');
-  const [currentYear, setCurrentYear] = useState(1);
+  const [plan, setPlan] = useState<CurriculumPlan | null>(() => loadCurrentPlan());
+  const [screen, setScreen] = useState<Screen>('school-browser');
   const [personaTrack, setPersonaTrack] = useState<Track>('engineering-design');
 
-  const updateState = useCallback((newState: GameState) => {
-    setGameState(newState);
-    saveState(newState);
+  const currentSchool = plan ? schools.find(s => s.id === plan.schoolId) : null;
+
+  const updatePlan = useCallback((newPlan: CurriculumPlan) => {
+    setPlan(newPlan);
+    saveCurrentPlan(newPlan);
   }, []);
 
-  // Use findLast so replays (same schoolId) pick the newest run, not the old completed one
-  const currentRun = gameState.currentRun
-    ? [...gameState.runs].reverse().find(r => r.schoolId === gameState.currentRun)
-    : undefined;
-  const currentSchool = currentRun ? schools.find(s => s.id === currentRun.schoolId) : null;
-
-  const handleTrackSelect = (track: Track) => {
-    const schoolId = rollRandomSchool(gameState, track);
-    if (!schoolId) {
-      alert(`You've already played all schools in the ${track} track!`);
-      return;
-    }
-    const newState = startRun(gameState, schoolId);
-    updateState(newState);
-    setCurrentYear(1);
-    setScreen('starting-point');
-  };
-
-  const handleReroll = () => {
-    if (!currentSchool) return;
-    const track = currentSchool.track;
-    // Pick a different school from the same track
-    const schoolId = rollRandomSchool(gameState, track);
-    if (!schoolId || schoolId === currentSchool.id) {
-      // If we got the same school or null, try all schools in the track
-      const allInTrack = schools.filter(s => s.track === track && s.id !== currentSchool.id);
-      if (allInTrack.length === 0) return; // only one school in track
-      const pick = allInTrack[Math.floor(Math.random() * allInTrack.length)];
-      const newState = startRun(gameState, pick.id);
-      updateState(newState);
-      return;
-    }
-    const newState = startRun(gameState, schoolId);
-    updateState(newState);
+  const handleSelectSchool = (schoolId: string) => {
+    const newPlan = createPlan(schoolId);
+    updatePlan(newPlan);
+    setScreen('school-detail');
   };
 
   const handleStartPlanning = () => {
-    setScreen('course-planner');
+    setScreen('curriculum-planner');
   };
 
-  const handleYearComplete = () => {
-    if (currentYear < 2) {
-      // Skip rating after year 1, go straight to year 2
-      setCurrentYear(prev => prev + 1);
-      setScreen('course-planner');
-    } else {
-      setScreen('year-rating');
-    }
+  const handleFinish = () => {
+    setScreen('summary');
   };
 
-  const handleRatingSubmit = (rating: import('./types').YearRating) => {
-    const newState = addYearRating(gameState, gameState.currentRun!, rating);
-    updateState(newState);
-    setScreen('outcomes');
+  const handleDone = () => {
+    clearCurrentPlan();
+    setPlan(null);
+    setScreen('school-browser');
   };
 
-  const handleContinueYear = () => {
-    if (currentYear < 4) {
-      setCurrentYear(prev => prev + 1);
-      setScreen('course-planner');
-    }
+  const handleBackToBrowser = () => {
+    clearCurrentPlan();
+    setPlan(null);
+    setScreen('school-browser');
   };
 
-  const handleOutcomeRated = () => {
-    setScreen('track-selection');
-  };
-
-  const handlePeek = () => {
-    setScreen('reveal');
-  };
-
-  const handleFullReveal = () => {
-    setScreen('reveal');
-  };
-
-  const handleShowComparison = () => {
-    setScreen('comparison');
-  };
-
-  const handleBackToTracks = () => {
-    updateState(cleanupAbandonedRuns(gameState));
-    setScreen('track-selection');
-  };
-
-  const handleReset = () => {
-    const newState = resetState();
-    setGameState(newState);
-    setScreen('track-selection');
-    setCurrentYear(1);
-  };
-
-  const completedCount = getCompletedRunCount(gameState);
-  const hasSavedCurricula = useMemo(() => loadSavedCurricula().length > 0, [gameState]);
+  const hasSavedCurricula = useMemo(() => loadSavedCurricula().length > 0, [screen]);
 
   return (
     <div className="app">
       <header className="app-header">
-        <h1 onClick={() => { updateState(cleanupAbandonedRuns(gameState)); setScreen('track-selection'); }} style={{ cursor: 'pointer' }}>
+        <h1 onClick={() => { clearCurrentPlan(); setPlan(null); setScreen('school-browser'); }} style={{ cursor: 'pointer' }}>
           College Experience Simulator
         </h1>
         <div className="header-stats">
-          <span>{completedCount}/{getTotalSchoolCount()} schools explored</span>
           {hasSavedCurricula && <button className="btn-small" onClick={() => setScreen('saved-curricula')}>Saved Plans</button>}
-          {canPeek(gameState) && <button className="btn-small" onClick={handlePeek}>Peek (3+ done)</button>}
-          {canFullReveal(gameState) && <button className="btn-small btn-reveal" onClick={handleFullReveal}>Grand Reveal</button>}
-          {completedCount > 0 && gameState.revealed && <button className="btn-small" onClick={handleShowComparison}>Compare</button>}
         </div>
       </header>
 
       <main>
-        {screen === 'track-selection' && (
-          <TrackSelection
-            gameState={gameState}
-            onSelectTrack={handleTrackSelect}
-            onReset={handleReset}
-            onPeek={handlePeek}
-            onFullReveal={handleFullReveal}
+        {screen === 'school-browser' && (
+          <SchoolBrowser
+            onSelectSchool={handleSelectSchool}
             onShowPersonas={(track: Track) => { setPersonaTrack(track); setScreen('personas'); }}
+            onShowSaved={() => setScreen('saved-curricula')}
+            hasSavedCurricula={hasSavedCurricula}
           />
         )}
 
-        {screen === 'starting-point' && currentSchool && currentRun && (
-          <StartingPoint
+        {screen === 'school-detail' && currentSchool && (
+          <SchoolDetail
             school={currentSchool}
-            alias={currentRun.alias}
             onContinue={handleStartPlanning}
-            onReroll={handleReroll}
+            onBack={handleBackToBrowser}
           />
         )}
 
-        {screen === 'course-planner' && currentSchool && currentRun && (
-          <CoursePlanner
+        {screen === 'curriculum-planner' && currentSchool && plan && (
+          <CurriculumPlanner
             school={currentSchool}
-            run={currentRun}
-            year={currentYear}
-            gameState={gameState}
-            onUpdateState={updateState}
-            onYearComplete={handleYearComplete}
-            onUpdateYear={setCurrentYear}
+            plan={plan}
+            onUpdatePlan={updatePlan}
+            onFinish={handleFinish}
+            onBack={() => setScreen('school-detail')}
           />
         )}
 
-        {screen === 'year-rating' && currentRun && (
-          <YearRating
-            alias={currentRun.alias}
-            year={currentYear}
-            onSubmit={handleRatingSubmit}
-            onContinue={currentYear < 4 ? handleContinueYear : undefined}
-            canFinish={currentYear >= 2}
-          />
-        )}
-
-        {screen === 'outcomes' && currentSchool && currentRun && (
-          <OutcomesPreview
+        {screen === 'summary' && currentSchool && plan && (
+          <Summary
             school={currentSchool}
-            alias={currentRun.alias}
-            gameState={gameState}
-            onUpdateState={updateState}
-            onDone={handleOutcomeRated}
-            onContinueYear={currentYear < 4 ? handleContinueYear : undefined}
-          />
-        )}
-
-        {screen === 'reveal' && (
-          <Reveal
-            gameState={gameState}
-            onUpdateState={updateState}
-            onBack={handleBackToTracks}
-            onCompare={handleShowComparison}
-          />
-        )}
-
-        {screen === 'comparison' && (
-          <Comparison
-            gameState={gameState}
-            onBack={handleBackToTracks}
+            plan={plan}
+            onBack={() => setScreen('curriculum-planner')}
+            onDone={handleDone}
           />
         )}
 
         {screen === 'personas' && (
-          <Personas track={personaTrack} onBack={handleBackToTracks} />
+          <Personas track={personaTrack} onBack={handleBackToBrowser} />
         )}
 
         {screen === 'saved-curricula' && (
-          <SavedCurricula onBack={handleBackToTracks} />
+          <SavedCurricula onBack={handleBackToBrowser} />
         )}
       </main>
     </div>

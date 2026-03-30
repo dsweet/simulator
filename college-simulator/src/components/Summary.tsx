@@ -1,50 +1,55 @@
-import { useState } from 'react';
-import { School, GameState, OutcomeRating } from '../types';
+import { useState, useMemo } from 'react';
+import { School, CurriculumPlan } from '../types';
 import { outcomes } from '../data/outcomes';
-import { addOutcomeRating } from '../engine/gameState';
 import { getCurriculum } from '../data/curricula/index';
+import { generateCurriculumSummary } from '../engine/summaryGenerator';
 import { buildSavedCurriculum, saveCurriculumToStorage } from '../engine/curriculumExport';
 
 interface Props {
   school: School;
-  alias: string;
-  gameState: GameState;
-  onUpdateState: (state: GameState) => void;
+  plan: CurriculumPlan;
+  onBack: () => void;
   onDone: () => void;
-  onContinueYear?: () => void;
 }
 
-export default function OutcomesPreview({ school, alias, gameState, onUpdateState, onDone, onContinueYear }: Props) {
-  const [appeal, setAppeal] = useState(0);
-  const [notes, setNotes] = useState('');
+export default function Summary({ school, plan, onBack, onDone }: Props) {
   const [saved, setSaved] = useState(false);
 
   const outcomeData = outcomes.find(o => o.schoolId === school.id);
+  const curriculum = getCurriculum(school.id);
 
-  if (!outcomeData) {
-    return <div className="screen"><h2>Outcome data not available</h2></div>;
+  const summary = useMemo(() => {
+    if (!curriculum || !outcomeData) return null;
+    return generateCurriculumSummary(plan.termCourses, curriculum, outcomeData, school);
+  }, [plan.termCourses, curriculum, outcomeData, school]);
+
+  if (!outcomeData || !curriculum) {
+    return <div className="screen"><h2>Data not available</h2></div>;
   }
 
-  const handleSubmit = () => {
-    const rating: OutcomeRating = { appeal, notes };
-    const newState = addOutcomeRating(gameState, school.id, rating);
-    onUpdateState(newState);
-    onDone();
-  };
-
   const handleSave = () => {
-    const curriculum = getCurriculum(school.id);
-    const run = gameState.runs.find(r => r.schoolId === school.id);
-    if (!curriculum || !outcomeData || !run) return;
-    const savedCurriculum = buildSavedCurriculum(run, school, curriculum, outcomeData, gameState.revealed);
+    const savedCurriculum = buildSavedCurriculum(plan, school, curriculum, outcomeData);
     saveCurriculumToStorage(savedCurriculum);
     setSaved(true);
   };
 
   return (
     <div className="screen outcomes-preview">
-      <h2>Career Outcomes for {alias}</h2>
-      <p>Here's what students who follow this path typically achieve. Remember — you still don't know which school this is!</p>
+      <h2>{school.name} — Curriculum Summary</h2>
+
+      {summary && (
+        <div className="curriculum-narrative">
+          <p className="narrative-text">{summary.narrative}</p>
+          <div className="summary-meta">
+            <span>{summary.skillsHighlight}</span>
+            {summary.careerPaths.length > 0 && (
+              <span>Career paths: {summary.careerPaths.join(', ')}</span>
+            )}
+          </div>
+        </div>
+      )}
+
+      <h3>Career Outcomes for {school.program} Graduates</h3>
 
       <div className="outcomes-grid">
         {outcomeData.medianStartingSalary && (
@@ -123,40 +128,16 @@ export default function OutcomesPreview({ school, alias, gameState, onUpdateStat
         <p>{outcomeData.internshipCulture}</p>
       </div>
 
-      <div className="rating-section">
-        <h3>How appealing are these outcomes?</h3>
-        <div className="stars">
-          {[1, 2, 3, 4, 5].map(star => (
-            <button
-              key={star}
-              className={`star ${star <= appeal ? 'filled' : ''}`}
-              onClick={() => setAppeal(star)}
-            >
-              {star <= appeal ? '★' : '☆'}
-            </button>
-          ))}
-        </div>
-        <textarea
-          value={notes}
-          onChange={e => setNotes(e.target.value)}
-          placeholder="Any thoughts on these career outcomes?"
-          rows={2}
-          className="notes-input"
-        />
-      </div>
-
       <div className="actions">
-        <button className="btn btn-primary" disabled={appeal === 0} onClick={handleSubmit}>
-          Submit & Return to Track Selection →
-        </button>
-        <button className="btn btn-secondary" disabled={saved} onClick={handleSave}>
+        <button className="btn btn-primary" disabled={saved} onClick={handleSave}>
           {saved ? 'Curriculum Saved!' : 'Save This Curriculum'}
         </button>
-        {onContinueYear && (
-          <button className="btn btn-secondary" onClick={onContinueYear}>
-            Go Back & Continue Another Year First
-          </button>
-        )}
+        <button className="btn btn-secondary" onClick={onBack}>
+          ← Back to Planner
+        </button>
+        <button className="btn btn-secondary" onClick={onDone}>
+          Choose Another School
+        </button>
       </div>
     </div>
   );

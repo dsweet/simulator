@@ -1,5 +1,6 @@
-import { SavedCurriculum, SchoolRun, School, Curriculum, OutcomeData } from '../types';
+import { SavedCurriculum, CurriculumPlan, School, Curriculum, OutcomeData, TermSelection } from '../types';
 import { generateCurriculumSummary } from './summaryGenerator';
+import { getAllTermLabels } from './gameState';
 
 const SAVED_KEY = 'college-simulator-saved-curricula';
 
@@ -23,27 +24,30 @@ export function deleteSavedCurriculum(id: string): void {
   localStorage.setItem(SAVED_KEY, JSON.stringify(filtered));
 }
 
+function planToTermSelections(plan: CurriculumPlan, calendar: 'quarter' | 'semester'): TermSelection[] {
+  const allLabels = getAllTermLabels(calendar);
+  return allLabels
+    .filter(label => (plan.termCourses[label] || []).length > 0)
+    .map(label => ({ termLabel: label, courses: plan.termCourses[label] }));
+}
+
 export function buildSavedCurriculum(
-  run: SchoolRun,
+  plan: CurriculumPlan,
   school: School,
   curriculum: Curriculum,
   outcomeData: OutcomeData,
-  revealed: boolean,
 ): SavedCurriculum {
-  const summary = generateCurriculumSummary(run, curriculum, outcomeData, school);
+  const summary = generateCurriculumSummary(plan.termCourses, curriculum, outcomeData, school);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     savedAt: new Date().toISOString(),
     schoolId: school.id,
-    schoolName: revealed ? school.name : undefined,
-    alias: run.alias,
+    schoolName: school.name,
     track: school.track,
     program: school.program,
     calendar: school.calendar,
-    termSelections: run.termSelections,
-    yearRatings: run.yearRatings,
-    outcomeRating: run.outcomeRating,
+    termSelections: planToTermSelections(plan, school.calendar),
     summary,
   };
 }
@@ -51,11 +55,9 @@ export function buildSavedCurriculum(
 export function exportCurriculumAsFile(saved: SavedCurriculum): void {
   const termsPerYear = saved.calendar === 'quarter' ? 3 : 2;
 
-  // Build readable text format
   const lines: string[] = [];
-  const displayName = saved.schoolName || saved.alias;
   lines.push(`${'='.repeat(60)}`);
-  lines.push(`${displayName} — ${saved.program}`);
+  lines.push(`${saved.schoolName} — ${saved.program}`);
   lines.push(`Track: ${saved.track} | Calendar: ${saved.calendar}`);
   lines.push(`Saved: ${new Date(saved.savedAt).toLocaleDateString()}`);
   lines.push(`${'='.repeat(60)}`);
@@ -72,20 +74,6 @@ export function exportCurriculumAsFile(saved: SavedCurriculum): void {
         lines.push(`    - ${courseId}`);
       }
     }
-
-    // Year rating if available
-    const rating = saved.yearRatings.find(r => r.year === yearNum);
-    if (rating) {
-      lines.push(`  Rating: ${'*'.repeat(rating.overallAppeal)}/5 appeal, ${'*'.repeat(rating.courseInterest)}/5 interest`);
-      if (rating.notes) lines.push(`  Notes: ${rating.notes}`);
-    }
-    lines.push('');
-  }
-
-  if (saved.outcomeRating) {
-    lines.push(`--- Outcomes ---`);
-    lines.push(`  Appeal: ${'*'.repeat(saved.outcomeRating.appeal)}/5`);
-    if (saved.outcomeRating.notes) lines.push(`  Notes: ${saved.outcomeRating.notes}`);
     lines.push('');
   }
 
@@ -102,7 +90,7 @@ export function exportCurriculumAsFile(saved: SavedCurriculum): void {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `curriculum-${displayName.replace(/\s+/g, '-').toLowerCase()}-${new Date(saved.savedAt).toISOString().slice(0, 10)}.txt`;
+  a.download = `curriculum-${saved.schoolName.replace(/\s+/g, '-').toLowerCase()}-${new Date(saved.savedAt).toISOString().slice(0, 10)}.txt`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
