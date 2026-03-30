@@ -40,9 +40,9 @@ export const uwHcde: Curriculum = {
       // ==================== YEAR 1: ENGRUD Placement Requirements ====================
       {
         termLabel: 'Fall Year 1',
-        courses: ['MATH124', 'CHEM142', 'ENGR101', 'AAS101'],
-        locked: [true, true, true, false],
-        slotLabels: ['◆ Calculus I (Placement)', '◆ General Chemistry (Placement)', '◆ E-FIG: ENGR 101 + GEN ST 199', 'A&H / SSc / DIV (choose one)'],
+        courses: ['MATH124', 'CHEM142', 'ENGR101'],
+        locked: [true, true, true],
+        slotLabels: ['◆ Calculus I (Placement)', '◆ General Chemistry (Placement)', '◆ E-FIG: ENGR 101 + GEN ST 199'],
       },
       {
         termLabel: 'Winter Year 1',
@@ -60,15 +60,15 @@ export const uwHcde: Curriculum = {
       // ==================== YEAR 2: Gen-Eds, Engineering Fundamentals, Additional Science ====================
       {
         termLabel: 'Fall Year 2',
-        courses: ['ENGL242', 'CHEM152', 'ENGR115', 'ECON200'],
-        locked: [false, false, false, false],
-        slotLabels: ['A&H elective (choose one)', '★ Additional Science (Placement)', 'Engineering Fundamentals (choose one)', 'SSc elective (choose one)'],
+        courses: ['CHEM152', 'ENGR115', 'ECON200'],
+        locked: [false, false, false],
+        slotLabels: ['★ Additional Science (Placement)', 'Engineering Fundamentals (choose one)', 'SSc elective (choose one)'],
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['PSYCH101', 'PHYS122', 'CSE163', 'MUSIC116'],
-        locked: [false, false, false, false],
-        slotLabels: ['SSc elective (choose one)', 'Additional Math/Stat/Science', 'Engineering Fundamentals (choose one)', 'A&H or SSc (choose one)'],
+        courses: ['PSYCH101', 'PHYS122', 'CSE163'],
+        locked: [false, false, false],
+        slotLabels: ['SSc elective (choose one)', 'Additional Math/Stat/Science', 'Engineering Fundamentals (choose one)'],
       },
       {
         termLabel: 'Spring Year 2',
@@ -86,23 +86,23 @@ export const uwHcde: Curriculum = {
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['HCDE303', 'HCDE315', 'HCDE321', 'HCDE496'],
-        locked: [true, true, true, true],
-        slotLabels: ['Foundations of HCDE II', 'Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio', 'Directed Research (Experiential Learning)'],
+        courses: ['HCDE303', 'HCDE315', 'HCDE321'],
+        locked: [true, true, true],
+        slotLabels: ['Foundations of HCDE II', 'Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio'],
       },
       {
         termLabel: 'Spring Year 3',
-        courses: ['HCDE351', 'HCDE308', 'HCDE322', 'SOC101'],
-        locked: [true, true, true, false],
-        slotLabels: ['UX Prototyping Techniques', 'Visual Communication in HCDE', 'Organizational Teamwork', 'Free elective'],
+        courses: ['HCDE351', 'HCDE308', 'HCDE322'],
+        locked: [true, true, true],
+        slotLabels: ['UX Prototyping Techniques', 'Visual Communication in HCDE', 'Organizational Teamwork'],
       },
 
       // ==================== YEAR 4: Capstone, Electives, Remaining Gen-Eds ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['HCDE410', 'HCDE412', 'STAT311', 'DXARTS200'],
-        locked: [false, false, false, false],
-        slotLabels: ['HCDE Engineering Elective', 'HCDE Systems & Society Elective', 'Additional Math/Science', 'Free elective'],
+        courses: ['HCDE410', 'HCDE412', 'STAT311'],
+        locked: [false, false, false],
+        slotLabels: ['HCDE Engineering Elective', 'HCDE Systems & Society Elective', 'Additional Math/Science'],
       },
       {
         termLabel: 'Winter Year 4',
