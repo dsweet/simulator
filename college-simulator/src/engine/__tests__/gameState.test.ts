@@ -3,10 +3,12 @@ import {
   createPlan,
   setTermCourses,
   prefillFromRecommended,
+  autofillPlan,
   getTermLabels,
   getAllTermLabels,
 } from '../gameState';
 import { CurriculumPlan, Curriculum } from '../../types';
+import { CreditSummary } from '../creditEvaluator';
 
 describe('createPlan', () => {
   it('creates a plan with the given school ID', () => {
@@ -120,6 +122,98 @@ describe('prefillFromRecommended', () => {
 
     const result = prefillFromRecommended(plan, curriculum, new Set());
     expect(result).toBe(plan);
+  });
+});
+
+describe('autofillPlan', () => {
+  const emptyCreditSummary: CreditSummary = {
+    totalCredits: 0,
+    results: [],
+    satisfiedGenEds: [],
+    diplomaBonus: 0,
+    uncappedTotal: 0,
+  };
+
+  const makeCurriculum = (): Curriculum => ({
+    schoolId: 'test',
+    program: 'Test',
+    degreeRequirements: {
+      totalCredits: 32,
+      majorCredits: 10,
+      genEdCredits: 6,
+      electiveCredits: 16,
+      majorCourses: ['ECON101', 'ECON201', 'ECON301'],
+      genEdCategories: [
+        { id: 'writing', name: 'Writing', creditsRequired: 1, satisfiedBy: ['WRT100'] },
+      ],
+    },
+    courses: [
+      { id: 'ECON101', title: 'Intro', description: '', credits: 1, category: 'major-required', interestTags: [], prereqs: [] },
+      { id: 'ECON201', title: 'Intermediate', description: '', credits: 1, category: 'major-required', interestTags: [], prereqs: ['ECON101'] },
+      { id: 'ECON301', title: 'Advanced', description: '', credits: 1, category: 'major-required', interestTags: [], prereqs: ['ECON201'] },
+      { id: 'WRT100', title: 'Writing', description: '', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['writing'] },
+      { id: 'ART100', title: 'Art', description: '', credits: 1, category: 'elective', interestTags: [], prereqs: [] },
+      { id: 'ART200', title: 'Art II', description: '', credits: 1, category: 'elective', interestTags: [], prereqs: ['ART100'] },
+    ],
+    recommendedSequence: {
+      years: 1,
+      terms: [
+        { termLabel: 'Fall Year 1', courses: ['ECON101'], locked: [true] },
+      ],
+    },
+  });
+
+  it('places recommended courses and fills remaining major/gen-ed/electives', () => {
+    const plan = createPlan('test');
+    const curriculum = makeCurriculum();
+    const filled = autofillPlan(plan, curriculum, new Set(), emptyCreditSummary, 'semester');
+
+    // ECON101 should be in Fall Year 1 (from recommended)
+    expect(filled.termCourses['Fall Year 1']).toContain('ECON101');
+
+    // ECON201 needs ECON101 as prereq, so it must come after Fall Year 1
+    const allLabels = getAllTermLabels('semester');
+    const econ201Term = allLabels.find(l => filled.termCourses[l]?.includes('ECON201'));
+    expect(econ201Term).toBeTruthy();
+    expect(allLabels.indexOf(econ201Term!)).toBeGreaterThan(allLabels.indexOf('Fall Year 1'));
+
+    // ECON301 needs ECON201, so it must come even later
+    const econ301Term = allLabels.find(l => filled.termCourses[l]?.includes('ECON301'));
+    expect(econ301Term).toBeTruthy();
+    expect(allLabels.indexOf(econ301Term!)).toBeGreaterThan(allLabels.indexOf(econ201Term!));
+
+    // Gen-ed (WRT100) should be placed somewhere
+    const wrtTerm = allLabels.find(l => filled.termCourses[l]?.includes('WRT100'));
+    expect(wrtTerm).toBeTruthy();
+  });
+
+  it('skips credited courses', () => {
+    const plan = createPlan('test');
+    const curriculum = makeCurriculum();
+    const filled = autofillPlan(plan, curriculum, new Set(['ECON101']), emptyCreditSummary, 'semester');
+
+    // ECON101 should NOT be placed (it's credited)
+    const allLabels = getAllTermLabels('semester');
+    const hasEcon101 = allLabels.some(l => filled.termCourses[l]?.includes('ECON101'));
+    expect(hasEcon101).toBe(false);
+
+    // ECON201 should still be placeable (its prereq ECON101 is credited)
+    const econ201Term = allLabels.find(l => filled.termCourses[l]?.includes('ECON201'));
+    expect(econ201Term).toBeTruthy();
+  });
+
+  it('respects prereq chains for electives', () => {
+    const plan = createPlan('test');
+    const curriculum = makeCurriculum();
+    const filled = autofillPlan(plan, curriculum, new Set(), emptyCreditSummary, 'semester');
+
+    const allLabels = getAllTermLabels('semester');
+    const art100Term = allLabels.find(l => filled.termCourses[l]?.includes('ART100'));
+    const art200Term = allLabels.find(l => filled.termCourses[l]?.includes('ART200'));
+
+    if (art100Term && art200Term) {
+      expect(allLabels.indexOf(art200Term)).toBeGreaterThan(allLabels.indexOf(art100Term));
+    }
   });
 });
 

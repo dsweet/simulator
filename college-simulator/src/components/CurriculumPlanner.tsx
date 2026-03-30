@@ -4,7 +4,7 @@ import { getCurriculum } from '../data/curricula/index';
 import { studentProfile } from '../data/student';
 import { creditPolicies } from '../data/creditPolicies';
 import { evaluateCredits } from '../engine/creditEvaluator';
-import { setTermCourses, prefillFromRecommended, getAllTermLabels } from '../engine/gameState';
+import { setTermCourses, autofillPlan, getAllTermLabels } from '../engine/gameState';
 import { checkPrereqs } from '../engine/progressTracker';
 import DegreeProgress from './DegreeProgress';
 
@@ -154,7 +154,8 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
   };
 
   const handlePrefill = () => {
-    onUpdatePlan(prefillFromRecommended(plan, curriculum, creditedCourseIds));
+    if (!creditSummary) return;
+    onUpdatePlan(autofillPlan(plan, curriculum, creditedCourseIds, creditSummary, school.calendar));
   };
 
   const handleClearAll = () => {
@@ -195,8 +196,8 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
         <div className="planner-title-row">
           <h2>{school.name} — {school.program}</h2>
           <div className="planner-actions-top">
-            {curriculum.recommendedSequence && (
-              <button className="btn-small" onClick={handlePrefill}>Pre-fill Recommended</button>
+            {creditSummary && (
+              <button className="btn-small" onClick={handlePrefill}>Auto-fill Schedule</button>
             )}
             {totalCourseCount > 0 && (
               <button className="btn-small btn-danger" onClick={handleClearAll}>Clear All</button>
