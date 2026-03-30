@@ -341,7 +341,7 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
             const isActive = i === globalTermIndex;
             const isStashed = stashedTerms.length > 0 && i >= totalConfirmedTerms && i < stashedEndIndex && i !== globalTermIndex;
             const canClick = isDone && !isActive;
-            const isFuture = i >= stashedEndIndex;
+            const isFuture = i > globalTermIndex && i >= stashedEndIndex;
             return (
               <span
                 key={label}

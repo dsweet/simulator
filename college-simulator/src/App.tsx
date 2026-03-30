@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { GameState, Track } from './types';
 import { loadState, saveState, startRun, rollRandomSchool, getCompletedRunCount, getTotalSchoolCount, canPeek, canFullReveal, addYearRating, resetState, cleanupAbandonedRuns } from './engine/gameState';
 import { schools } from './data/schools';
@@ -32,7 +32,10 @@ function App() {
     saveState(newState);
   }, []);
 
-  const currentRun = gameState.runs.find(r => r.schoolId === gameState.currentRun);
+  // Use findLast so replays (same schoolId) pick the newest run, not the old completed one
+  const currentRun = gameState.currentRun
+    ? [...gameState.runs].reverse().find(r => r.schoolId === gameState.currentRun)
+    : undefined;
   const currentSchool = currentRun ? schools.find(s => s.id === currentRun.schoolId) : null;
 
   const handleTrackSelect = (track: Track) => {
@@ -121,7 +124,7 @@ function App() {
   };
 
   const completedCount = getCompletedRunCount(gameState);
-  const hasSavedCurricula = loadSavedCurricula().length > 0;
+  const hasSavedCurricula = useMemo(() => loadSavedCurricula().length > 0, [gameState]);
 
   return (
     <div className="app">
