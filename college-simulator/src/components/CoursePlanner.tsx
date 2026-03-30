@@ -87,6 +87,9 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
     return ids;
   }, [creditSummary, curriculum]);
 
+  // Total confirmed terms across all years
+  const totalConfirmedTerms = run.termSelections.length;
+
   // Courses already taken in previous terms (including stashed terms before current)
   const previouslyTaken = useMemo(() => {
     const taken = new Set<string>();
@@ -220,9 +223,6 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
   const handleResetToRecommended = () => {
     setHasPrePopulated(false);
   };
-
-  // Total confirmed terms across all years
-  const totalConfirmedTerms = run.termSelections.length;
 
   // When stashed terms exist, the "navigable" range extends beyond confirmed terms
   // stashedTerms[0] corresponds to globalTermIndex (the term being re-edited),
