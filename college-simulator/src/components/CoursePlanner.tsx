@@ -87,16 +87,26 @@ export default function CoursePlanner({ school, run, year, gameState, onUpdateSt
     return ids;
   }, [creditSummary, curriculum]);
 
-  // Courses already taken in previous terms
+  // Courses already taken in previous terms (including stashed terms before current)
   const previouslyTaken = useMemo(() => {
     const taken = new Set<string>();
     for (const term of run.termSelections) {
       term.courses.forEach(c => taken.add(c));
     }
+    // Include stashed terms that come before the current term
+    if (stashedTerms.length > 0) {
+      // stashedTerms[0] starts at totalConfirmedTerms (the rewind point)
+      const stashStartIdx = totalConfirmedTerms;
+      for (let i = 0; i < stashedTerms.length; i++) {
+        const stashGlobalIdx = stashStartIdx + i;
+        if (stashGlobalIdx >= globalTermIndex) break; // only include terms before current
+        stashedTerms[i].courses.forEach(c => taken.add(c));
+      }
+    }
     // Also include courses already credited via AP/IB
     creditedCourseIds.forEach(id => taken.add(id));
     return taken;
-  }, [run.termSelections, creditedCourseIds]);
+  }, [run.termSelections, creditedCourseIds, stashedTerms, totalConfirmedTerms, globalTermIndex]);
 
   const previouslyTakenIds = useMemo(() => Array.from(previouslyTaken), [previouslyTaken]);
 
