@@ -1,4 +1,6 @@
-import { SavedCurriculum } from '../types';
+import { useMemo } from 'react';
+import { SavedCurriculum, Course } from '../types';
+import { getCurriculum } from '../data/curricula';
 
 interface Props {
   saved: SavedCurriculum;
@@ -9,6 +11,12 @@ interface Props {
 export default function CurriculumCard({ saved, onDownload, onDelete }: Props) {
   const termsPerYear = saved.calendar === 'quarter' ? 3 : 2;
   const totalYears = Math.ceil(saved.termSelections.length / termsPerYear);
+
+  const courseMap = useMemo(() => {
+    const curriculum = getCurriculum(saved.schoolId);
+    if (!curriculum) return new Map<string, Course>();
+    return new Map(curriculum.courses.map(c => [c.id, c]));
+  }, [saved.schoolId]);
 
   // Group terms by year
   const years: { year: number; terms: typeof saved.termSelections }[] = [];
@@ -44,9 +52,12 @@ export default function CurriculumCard({ saved, onDownload, onDelete }: Props) {
                 <div key={term.termLabel} className="curriculum-term">
                   <div className="term-label">{term.termLabel.replace(/ Year \d+/, '')}</div>
                   <ul className="term-courses">
-                    {term.courses.map(cid => (
-                      <li key={cid}>{cid}</li>
-                    ))}
+                    {term.courses.map(cid => {
+                      const course = courseMap.get(cid);
+                      return (
+                        <li key={cid} title={course ? `${course.title}\n${course.description}` : cid}>{cid}</li>
+                      );
+                    })}
                   </ul>
                 </div>
               ))}
