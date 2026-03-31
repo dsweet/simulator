@@ -68,10 +68,56 @@ export const creditPolicies: CreditPolicy[] = [
     creditCap: 16, // counts toward 16 unit transfer credit maximum
     diplomaBonus: 1, // TOK credit (1 elective unit, only if IB Diploma earned)
     awards: [
-      // === AP Exams ===
-      { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in statistics — data analysis and statistical reasoning' },
-      { examName: 'AP Computer Science A', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CSCI 161', courseDescription: 'Credit in computer science — programming fundamentals' },
-      // === Group 1: Language & Literature (HL only; max one English exam incl. AP) ===
+      // === AP Capstone ===
+      { examName: 'AP Research', minScore: 4, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit (pending review of Academic Paper)' },
+      { examName: 'AP Seminar', minScore: 4, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit (pending review of Individual Research Report & Written Argument)' },
+      // === AP Arts ===
+      { examName: 'AP Art History', minScore: 4, creditsAwarded: 1, courseEquivalent: 'ARTH 275/276', courseDescription: 'Credit in art history', satisfiesGenEd: ['humanities'] },
+      { examName: 'AP 2-D Art & Design', minScore: 4, creditsAwarded: 1, courseEquivalent: 'ART 1xx', courseDescription: 'Non-majors studio elective', satisfiesGenEd: ['arts'] },
+      { examName: 'AP 3-D Art & Design', minScore: 4, creditsAwarded: 1, courseEquivalent: 'ART 1xx', courseDescription: 'Non-majors studio elective', satisfiesGenEd: ['arts'] },
+      { examName: 'AP Drawing', minScore: 4, creditsAwarded: 1, courseEquivalent: 'ART 1xx', courseDescription: 'Non-majors studio elective', satisfiesGenEd: ['arts'] },
+      { examName: 'AP Music Theory (Aural Subscore)', minScore: 4, creditsAwarded: 0.5, courseEquivalent: 'MUS 101', courseDescription: 'Credit in music (pending diagnostic keyboard exam)', satisfiesGenEd: ['arts'] },
+      { examName: 'AP Music Theory (Non-aural Subscore)', minScore: 4, creditsAwarded: 0.5, courseEquivalent: 'MUS 103', courseDescription: 'Credit in music theory' },
+      // === AP English (max one English exam incl. IB) ===
+      { examName: 'AP English Language & Composition', minScore: 4, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit in English' },
+      { examName: 'AP English Literature & Composition', minScore: 4, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit in English' },
+      // === AP History & Social Science ===
+      { examName: 'AP African American Studies', minScore: 4, creditsAwarded: 1, courseEquivalent: 'AFAM xxx', courseDescription: 'Non-majors African American studies elective', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP Macroeconomics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'ECON 170', courseDescription: 'Credit in macroeconomics', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP Microeconomics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'ECON 171', courseDescription: 'Credit in microeconomics', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP US History', minScore: 4, creditsAwarded: 1, courseEquivalent: 'HIST 152/153', courseDescription: 'Credit in US history', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP European History', minScore: 4, creditsAwarded: 1, courseEquivalent: 'HIST 102/103', courseDescription: 'Credit in European history', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP World History: Modern', minScore: 4, creditsAwarded: 1, courseEquivalent: 'HIST xxx', courseDescription: 'Non-majors history elective', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP Human Geography', minScore: 4, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP US Government & Politics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'POL 101', courseDescription: 'Credit in US government', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP Comparative Government & Politics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'POL 102', courseDescription: 'Credit in comparative government', satisfiesGenEd: ['social-science'] },
+      { examName: 'AP Psychology', minScore: 4, creditsAwarded: 1, courseEquivalent: 'PSYCH 101', courseDescription: 'Credit in psychology', satisfiesGenEd: ['social-science'] },
+      // === AP Math & Computer Science ===
+      { examName: 'AP Precalculus', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 110', courseDescription: 'Credit in precalculus', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Calculus AB', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in Calculus I', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Calculus BC', minScore: 4, creditsAwarded: 2, courseEquivalent: 'MATH 170/180', courseDescription: 'Credit in Calculus I & II (no duplicate credit with AB)', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Calculus BC (AB Subscore)', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in Calculus I', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Computer Science Principles', minScore: 3, creditsAwarded: 1, courseEquivalent: 'CSCI xxx', courseDescription: 'Non-majors computer science elective', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 1, courseEquivalent: 'CSCI 161', courseDescription: 'Credit in computer science', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in statistics', satisfiesGenEd: ['quantitative'] },
+      // === AP Sciences ===
+      { examName: 'AP Biology', minScore: 4, creditsAwarded: 1, courseEquivalent: 'BIOL 101', courseDescription: 'Credit in biology', satisfiesGenEd: ['natural-science'] },
+      { examName: 'AP Chemistry', minScore: 4, creditsAwarded: 2, courseEquivalent: 'CHEM 110/120', courseDescription: 'Credit in chemistry — General Chemistry I & II', satisfiesGenEd: ['natural-science'] },
+      { examName: 'AP Environmental Science', minScore: 4, creditsAwarded: 1, courseEquivalent: 'ENVS xxx', courseDescription: 'Non-majors earth & environmental science elective', satisfiesGenEd: ['natural-science'] },
+      { examName: 'AP Physics 1: Algebra-Based', minScore: 4, creditsAwarded: 1, courseEquivalent: 'PHYS 110', courseDescription: 'Credit in physics (no duplicate with C: Mech)', satisfiesGenEd: ['natural-science'] },
+      { examName: 'AP Physics 2: Algebra-Based', minScore: 4, creditsAwarded: 1, courseEquivalent: 'PHYS 112', courseDescription: 'Credit in physics (no duplicate with C: E&M)', satisfiesGenEd: ['natural-science'] },
+      { examName: 'AP Physics C: Mechanics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'PHYS 121', courseDescription: 'Credit in physics (no duplicate with Physics 1)', satisfiesGenEd: ['natural-science'] },
+      { examName: 'AP Physics C: Electricity & Magnetism', minScore: 4, creditsAwarded: 1, courseEquivalent: 'PHYS 122', courseDescription: 'Credit in physics (no duplicate with Physics 2)', satisfiesGenEd: ['natural-science'] },
+      // === AP World Languages & Cultures ===
+      { examName: 'AP Chinese Language & Culture', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CHIN 2xx', courseDescription: '200-level Chinese elective' },
+      { examName: 'AP French Language & Culture', minScore: 4, creditsAwarded: 1, courseEquivalent: 'FREN 2xx', courseDescription: '200-level French elective' },
+      { examName: 'AP German Language & Culture', minScore: 4, creditsAwarded: 1, courseEquivalent: 'GERM 2xx', courseDescription: '200-level German elective' },
+      { examName: 'AP Italian Language & Culture', minScore: 4, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: '200-level language elective' },
+      { examName: 'AP Japanese Language & Culture', minScore: 4, creditsAwarded: 1, courseEquivalent: 'JAPN 2xx', courseDescription: '200-level Japanese elective' },
+      { examName: 'AP Latin', minScore: 3, creditsAwarded: 1, courseEquivalent: 'LAT 2xx', courseDescription: 'Score 3 = LAT 102; score 4+ = 200-level Latin elective' },
+      { examName: 'AP Spanish Language & Culture', minScore: 4, creditsAwarded: 1, courseEquivalent: 'SPAN 2xx', courseDescription: '200-level Spanish elective' },
+      { examName: 'AP Spanish Literature & Culture', minScore: 4, creditsAwarded: 1, courseEquivalent: 'SPAN 2xx', courseDescription: '200-level Spanish elective' },
+      // === IB Group 1: Language & Literature (HL only; max one English exam incl. AP) ===
       { examName: 'IB Language A: Literature (English) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Elective credit in English' },
       { examName: 'IB Language A: Literature (Other) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: '200-level language elective' },
       { examName: 'IB Language A: Language & Literature (English) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Elective credit in English' },
