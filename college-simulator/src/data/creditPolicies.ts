@@ -63,59 +63,49 @@ export const creditPolicies: CreditPolicy[] = [
   },
   {
     schoolId: 'ups',
-    slExamsAccepted: true,
+    slExamsAccepted: false, // HL only per official 2025 policy
     hlMinScore: 5,
-    slMinScore: 5,
-    creditCap: 6, // 6 units from IB exams alone; 16 units combined AP + IB transfer maximum
-    diplomaBonus: 1, // TOK credit
+    creditCap: 16, // counts toward 16 unit transfer credit maximum
+    diplomaBonus: 1, // TOK credit (1 elective unit, only if IB Diploma earned)
     awards: [
       // === AP Exams ===
       { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in statistics — data analysis and statistical reasoning' },
       { examName: 'AP Computer Science A', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CSCI 161', courseDescription: 'Credit in computer science — programming fundamentals' },
-      // === IB Mathematics ===
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in mathematics — Calculus I' },
-      { examName: 'IB Mathematics Analysis & Approaches SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in mathematics — Calculus I' },
-      { examName: 'IB Mathematics Applications & Interpretation HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in mathematics — Applied Statistics' },
-      { examName: 'IB Mathematics Applications & Interpretation SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in mathematics — Applied Statistics' },
-      // === IB Sciences ===
-      { examName: 'IB Biology HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'BIOL 101', courseDescription: 'Credit in biology', satisfiesGenEd: ['natural-science'] },
-      { examName: 'IB Biology SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'BIOL 101', courseDescription: 'Credit in biology', satisfiesGenEd: ['natural-science'] },
-      { examName: 'IB Chemistry HL', minScore: 6, creditsAwarded: 2, courseEquivalent: 'CHEM 110/120', courseDescription: 'Credit in chemistry — General Chemistry I & II (score 6+)', satisfiesGenEd: ['natural-science'] },
-      { examName: 'IB Chemistry SL', minScore: 6, creditsAwarded: 2, courseEquivalent: 'CHEM 110/120', courseDescription: 'Credit in chemistry — General Chemistry I & II (score 6+)', satisfiesGenEd: ['natural-science'] },
-      { examName: 'IB Physics HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PHYS 110', courseDescription: 'Credit in physics', satisfiesGenEd: ['natural-science'] },
-      { examName: 'IB Physics SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PHYS 110', courseDescription: 'Credit in physics', satisfiesGenEd: ['natural-science'] },
-      // === IB Humanities & Social Sciences ===
+      // === Group 1: Language & Literature (HL only; max one English exam incl. AP) ===
+      { examName: 'IB Language A: Literature (English) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Elective credit in English' },
+      { examName: 'IB Language A: Literature (Other) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: '200-level language elective' },
+      { examName: 'IB Language A: Language & Literature (English) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Elective credit in English' },
+      { examName: 'IB Language A: Language & Literature (Other) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: '200-level language elective' },
+      // === Group 2: Language Acquisition (HL only) ===
+      { examName: 'IB Language B (English) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Elective credit in English' },
+      { examName: 'IB Language B (Other) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: '200-level language elective' },
+      { examName: 'IB Classical Languages HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: '200-level Latin/Greek elective' },
+      // === Group 3: Individuals & Societies (HL only) ===
+      { examName: 'IB Business Management HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'BUS 1xx', courseDescription: 'Non-majors business elective', satisfiesGenEd: ['social-science'] },
+      { examName: 'IB Digital Society HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit' },
       { examName: 'IB Economics HL', minScore: 5, creditsAwarded: 2, courseEquivalent: 'ECON 170/171', courseDescription: 'Credit in economics — Principles of Micro & Macro', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Economics SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ECON 170', courseDescription: 'Credit in economics — Principles of Micro', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB History HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'HIST 1xx', courseDescription: 'Credit in history', satisfiesGenEd: ['humanities'] },
-      { examName: 'IB History SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'HIST 1xx', courseDescription: 'Credit in history', satisfiesGenEd: ['humanities'] },
+      { examName: 'IB Geography HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit' },
+      { examName: 'IB Global Politics HL', minScore: 6, creditsAwarded: 1, courseEquivalent: 'POL 1xx', courseDescription: 'Non-majors politics & government elective', satisfiesGenEd: ['social-science'] },
+      { examName: 'IB History HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'HIST 1xx', courseDescription: '100-level history elective', satisfiesGenEd: ['social-science'] },
+      { examName: 'IB History (European/Islamic) HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'HIST 1xx', courseDescription: '100-level history elective', satisfiesGenEd: ['social-science'] },
       { examName: 'IB Philosophy HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PHIL 101', courseDescription: 'Credit in philosophy', satisfiesGenEd: ['humanities'] },
-      { examName: 'IB Philosophy SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PHIL 101', courseDescription: 'Credit in philosophy', satisfiesGenEd: ['humanities'] },
       { examName: 'IB Psychology HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PSYCH 101', courseDescription: 'Credit in psychology', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Psychology SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PSYCH 101', courseDescription: 'Credit in psychology', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Global Politics HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'POL 101', courseDescription: 'Credit in political science', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Global Politics SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'POL 101', courseDescription: 'Credit in political science', satisfiesGenEd: ['social-science'] },
-      { examName: 'IB Business Management HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'BUS 1xx', courseDescription: 'Elective credit in business' },
-      { examName: 'IB Business Management SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'BUS 1xx', courseDescription: 'Elective credit in business' },
-      // === IB English ===
-      { examName: 'IB English A: Literature HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Credit in English — literary analysis' },
-      { examName: 'IB English A: Literature SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Credit in English — literary analysis' },
-      { examName: 'IB English A: Language & Literature HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Credit in English — language and literary analysis' },
-      { examName: 'IB English A: Language & Literature SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Credit in English — language and literary analysis' },
-      // === IB Languages ===
-      { examName: 'IB Japanese B HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: 'Credit in Japanese — 200-level language placement' },
-      { examName: 'IB Japanese B SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: 'Credit in Japanese — 200-level language placement' },
-      { examName: 'IB French B HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: 'Credit in French — 200-level language placement' },
-      { examName: 'IB French B SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: 'Credit in French — 200-level language placement' },
-      { examName: 'IB Spanish B HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: 'Credit in Spanish — 200-level language placement' },
-      { examName: 'IB Spanish B SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'LANG 2xx', courseDescription: 'Credit in Spanish — 200-level language placement' },
-      // === IB Arts ===
-      { examName: 'IB Visual Arts HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ART 1xx', courseDescription: 'Credit in studio art', satisfiesGenEd: ['arts'] },
-      { examName: 'IB Visual Arts SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ART 1xx', courseDescription: 'Credit in studio art', satisfiesGenEd: ['arts'] },
+      { examName: 'IB Social & Cultural Anthropology HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'SOAN 1xx', courseDescription: 'Non-majors sociology & anthropology elective', satisfiesGenEd: ['social-science'] },
+      // === Group 4: Sciences (HL only) ===
+      { examName: 'IB Biology HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'BIOL 101', courseDescription: 'Credit in biology', satisfiesGenEd: ['natural-science'] },
+      { examName: 'IB Chemistry HL', minScore: 6, creditsAwarded: 2, courseEquivalent: 'CHEM 110/120', courseDescription: 'Credit in chemistry — General Chemistry I & II (score 6+)', satisfiesGenEd: ['natural-science'] },
+      { examName: 'IB Computer Science HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'CSCI 161', courseDescription: 'Credit in computer science', satisfiesGenEd: ['natural-science'] },
+      { examName: 'IB Physics HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PHYS 110', courseDescription: 'Credit in physics', satisfiesGenEd: ['natural-science'] },
+      { examName: 'IB Sports, Exercise & Health Science HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'EXSC 1xx', courseDescription: 'Non-majors exercise science elective', satisfiesGenEd: ['natural-science'] },
+      // === Group 5: Mathematics (HL only) ===
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in mathematics — Calculus I', satisfiesGenEd: ['quantitative'] },
+      { examName: 'IB Mathematics Applications & Interpretation HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in mathematics — Applied Statistics', satisfiesGenEd: ['quantitative'] },
+      // === Group 6: Arts (HL only) ===
+      { examName: 'IB Dance HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit' },
+      { examName: 'IB Film HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit' },
       { examName: 'IB Music HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MUS 101', courseDescription: 'Credit in music', satisfiesGenEd: ['arts'] },
-      { examName: 'IB Music SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MUS 101', courseDescription: 'Credit in music', satisfiesGenEd: ['arts'] },
-      { examName: 'IB Theatre HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'THTR 101', courseDescription: 'Credit in theatre', satisfiesGenEd: ['arts'] },
-      { examName: 'IB Theatre SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'THTR 101', courseDescription: 'Credit in theatre', satisfiesGenEd: ['arts'] },
+      { examName: 'IB Theatre HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'THTR 1xx', courseDescription: 'Non-majors theatre elective', satisfiesGenEd: ['arts'] },
+      { examName: 'IB Visual Arts HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ART 1xx', courseDescription: 'Non-majors studio elective', satisfiesGenEd: ['arts'] },
     ],
   },
   {
