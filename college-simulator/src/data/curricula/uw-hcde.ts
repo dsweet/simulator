@@ -40,9 +40,9 @@ export const uwHcde: Curriculum = {
       // ==================== YEAR 1: ENGRUD Placement Requirements ====================
       {
         termLabel: 'Fall Year 1',
-        courses: ['MATH124', 'CHEM142', 'ENGR101'],
-        locked: [true, true, true],
-        slotLabels: ['◆ Calculus I (Placement)', '◆ General Chemistry (Placement)', '◆ E-FIG: ENGR 101 + GEN ST 199'],
+        courses: ['MATH124', 'CHEM142', 'PSYCH101', 'ENGR101'],
+        locked: [true, true, false, true],
+        slotLabels: ['◆ Calculus I (Placement)', '◆ General Chemistry (Placement)', 'Gen-ed elective (choose one)', '◆ E-FIG: ENGR 101 + GEN ST 199 (2cr)'],
       },
       {
         termLabel: 'Winter Year 1',
@@ -66,7 +66,7 @@ export const uwHcde: Curriculum = {
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['PSYCH101', 'PHYS122', 'CSE163'],
+        courses: ['SOC101', 'PHYS122', 'CSE163'],
         locked: [false, false, false],
         slotLabels: ['SSc elective (choose one)', 'Additional Math/Stat/Science', 'Engineering Fundamentals (choose one)'],
       },
