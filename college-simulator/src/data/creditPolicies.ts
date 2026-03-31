@@ -63,8 +63,9 @@ export const creditPolicies: CreditPolicy[] = [
   },
   {
     schoolId: 'ups',
-    slExamsAccepted: false,
+    slExamsAccepted: true,
     hlMinScore: 5,
+    slMinScore: 5,
     creditCap: 16, // 16 units total (AP + IB combined)
     diplomaBonus: 1, // TOK credit
     awards: [
@@ -72,7 +73,10 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'AP Computer Science A', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CSCI 1xx', courseDescription: 'Elective credit in computer science — object-oriented programming fundamentals' },
       { examName: 'IB Literature HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENGL 1xx', courseDescription: 'Credit in English — critical analysis of literary texts across genres and periods' },
       { examName: 'IB History HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'HIST 1xx', courseDescription: 'Credit in history — comparative and thematic historical analysis' },
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170/180', courseDescription: 'Credit in mathematics — Calculus I & II' },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in mathematics — Calculus I' },
+      { examName: 'IB Mathematics Analysis & Approaches SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in mathematics — Calculus I' },
+      { examName: 'IB Mathematics Applications & Interpretation HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in mathematics — Applied Statistics' },
+      { examName: 'IB Mathematics Applications & Interpretation SL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in mathematics — Applied Statistics' },
     ],
   },
   {
