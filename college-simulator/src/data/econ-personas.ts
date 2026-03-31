@@ -2,7 +2,7 @@ import { Persona } from '../types';
 
 // Personas 1–6 use UPS course IDs (semester-based, 4 courses per term)
 // Personas 7–8 use UCSD and UCLA course IDs (quarter-based, 4 courses per term, 12 terms)
-// UPS: student enters with IB/AP credit for MATH170 (Calc I) and MATH160 (Statistics)
+// UPS: student enters with IB/AP credit for MATH180 (Calc I) and MATH160 (Statistics)
 // UCSD: student enters with IB Math HL → MATH10A+10B, AP Stats → MATH11
 // UCLA: student enters with IB Math HL → MATH31A+31B, AP Stats → STATS10
 

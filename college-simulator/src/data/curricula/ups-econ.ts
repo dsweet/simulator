@@ -10,11 +10,11 @@ export const upsEcon: Curriculum = {
     electiveCredits: 7,
     majorCourses: [
       'ECON170', 'ECON171', 'ECON272', 'ECON273', 'ECON399',
-      'MATH160', 'MATH170', 'MATH180',
+      'MATH160', 'MATH180', 'MATH181',
     ],
     genEdCategories: [
       { id: 'writing', name: 'Written Communication (Seminars in Scholarly Inquiry)', creditsRequired: 2, satisfiedBy: ['SSI101', 'SSI102'] },
-      { id: 'quantitative', name: 'Mathematical Reasoning', creditsRequired: 1, satisfiedBy: ['MATH160', 'MATH170', 'MATH180'] },
+      { id: 'quantitative', name: 'Mathematical Reasoning', creditsRequired: 1, satisfiedBy: ['MATH160', 'MATH180', 'MATH181'] },
       { id: 'natural-science', name: 'Natural Scientific Approaches', creditsRequired: 2, satisfiedBy: ['PHYS109', 'BIOL101', 'CHEM110', 'GEOL101'] },
       { id: 'social-science', name: 'Social Scientific Approaches', creditsRequired: 2, satisfiedBy: ['ECON170', 'SOC100', 'PSYCH101', 'POL101'] },
       { id: 'humanities', name: 'Humanistic Approaches', creditsRequired: 2, satisfiedBy: ['ENGL220', 'PHIL101', 'HIST200', 'RELS101'] },
@@ -29,13 +29,13 @@ export const upsEcon: Curriculum = {
       // YEAR 1 — Intro econ + calculus sequence, SSI writing seminars, gen-ed electives
       {
         termLabel: 'Fall Year 1',
-        courses: ['ECON170', 'MATH170', 'SSI101', 'PHYS109'],
+        courses: ['ECON170', 'MATH180', 'SSI101', 'PHYS109'],
         locked: [true, true, true, false],
         slotLabels: ['Major req (Intro Micro)', 'Major req (Calculus I)', 'Writing gen-ed (SSI sequence)', 'Natural Science gen-ed (choose one)'],
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['ECON171', 'MATH180', 'SSI102', 'BIOL101'],
+        courses: ['ECON171', 'MATH181', 'SSI102', 'BIOL101'],
         locked: [true, true, true, false],
         slotLabels: ['Major req (Intro Macro)', 'Major req (Calculus II)', 'Writing gen-ed (SSI sequence)', 'Natural Science gen-ed (choose one)'],
       },
@@ -58,12 +58,12 @@ export const upsEcon: Curriculum = {
     // ===== ECONOMICS MAJOR REQUIRED =====
     { id: 'ECON170', title: 'Principles of Economics: Markets', description: 'Microeconomic principles: supply and demand, consumer choice, firm behavior, market structures, and market failures.', credits: 1, category: 'major-required', interestTags: ['game-theory'], prereqs: [], genEdReqs: ['social-science'] },
     { id: 'ECON171', title: 'Principles of Economics: National & Global', description: 'Macroeconomic principles: GDP, inflation, unemployment, monetary/fiscal policy, and international trade.', credits: 1, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['social-science'] },
-    { id: 'ECON272', title: 'Intermediate Microeconomic Theory', description: 'Consumer optimization, producer theory, general equilibrium, welfare economics, and market failure analysis with mathematical rigor.', credits: 1, category: 'major-required', interestTags: ['game-theory'], prereqs: ['ECON170', 'MATH170'], genEdReqs: [] },
-    { id: 'ECON273', title: 'Intermediate Macroeconomic Theory', description: 'IS-LM model, aggregate supply/demand, growth theory, business cycles, and monetary policy in open economies.', credits: 1, category: 'major-required', interestTags: [], prereqs: ['ECON171', 'MATH170'], genEdReqs: [] },
+    { id: 'ECON272', title: 'Intermediate Microeconomic Theory', description: 'Consumer optimization, producer theory, general equilibrium, welfare economics, and market failure analysis with mathematical rigor.', credits: 1, category: 'major-required', interestTags: ['game-theory'], prereqs: ['ECON170', 'MATH180'], genEdReqs: [] },
+    { id: 'ECON273', title: 'Intermediate Macroeconomic Theory', description: 'IS-LM model, aggregate supply/demand, growth theory, business cycles, and monetary policy in open economies.', credits: 1, category: 'major-required', interestTags: [], prereqs: ['ECON171', 'MATH180'], genEdReqs: [] },
     { id: 'ECON399', title: 'Senior Thesis Seminar', description: 'Capstone research project. Original economic analysis using data and theory. Presentation and defense of findings.', credits: 1, category: 'major-required', interestTags: [], prereqs: ['ECON272', 'ECON273'], genEdReqs: [] },
     { id: 'MATH160', title: 'Statistics', description: 'Descriptive statistics, probability, inference, regression. Applications to social science research.', credits: 1, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['quantitative'] },
-    { id: 'MATH170', title: 'Calculus I', description: 'Limits, derivatives, and applications. Optimization and rate-of-change problems.', credits: 1, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['quantitative'] },
-    { id: 'MATH180', title: 'Calculus II', description: 'Integration, techniques of integration, infinite series, and applications.', credits: 1, category: 'major-required', interestTags: [], prereqs: ['MATH170'], genEdReqs: ['quantitative'] },
+    { id: 'MATH180', title: 'Calculus I', description: 'Limits, derivatives, and applications. Optimization and rate-of-change problems.', credits: 1, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['quantitative'] },
+    { id: 'MATH181', title: 'Calculus II', description: 'Integration, techniques of integration, infinite series, and applications.', credits: 1, category: 'major-required', interestTags: [], prereqs: ['MATH180'], genEdReqs: ['quantitative'] },
 
     // ===== ECONOMICS ELECTIVES =====
     { id: 'ECON310', title: 'Game Theory', description: 'Strategic interaction and decision-making. Nash equilibrium, bargaining, auctions, mechanism design, and evolutionary game theory.', credits: 1, category: 'major-elective', interestTags: ['game-theory'], prereqs: ['ECON272'], genEdReqs: [] },
@@ -185,7 +185,7 @@ export const upsEcon: Curriculum = {
     { id: 'CSCI301', title: 'Data Science', description: 'Data wrangling, visualization, and machine learning fundamentals using Python. Real-world datasets and reproducible analysis.', credits: 1, category: 'elective', interestTags: ['design'], prereqs: ['CSCI161', 'MATH160'], genEdReqs: [] },
     { id: 'CSCI321', title: 'Database Systems', description: 'Relational databases, SQL, data modeling, normalization, and introduction to NoSQL systems.', credits: 1, category: 'elective', interestTags: ['design'], prereqs: ['CSCI161'], genEdReqs: [] },
     { id: 'CSCI341', title: 'Web Development', description: 'Full-stack web development. HTML, CSS, JavaScript, server-side programming, and deployment.', credits: 1, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSCI161'], genEdReqs: [] },
-    { id: 'CSCI351', title: 'Algorithms', description: 'Algorithm design and analysis. Sorting, searching, graph algorithms, dynamic programming, and computational complexity.', credits: 1, category: 'elective', interestTags: ['game-theory'], prereqs: ['CSCI261', 'MATH170'], genEdReqs: [] },
+    { id: 'CSCI351', title: 'Algorithms', description: 'Algorithm design and analysis. Sorting, searching, graph algorithms, dynamic programming, and computational complexity.', credits: 1, category: 'elective', interestTags: ['game-theory'], prereqs: ['CSCI261', 'MATH180'], genEdReqs: [] },
     { id: 'CSCI311', title: 'Introduction to Artificial Intelligence', description: 'Search, knowledge representation, machine learning, and natural language processing. Build intelligent agents in small collaborative teams using Python.', credits: 1, category: 'elective', interestTags: ['game-theory', 'video-games'], prereqs: ['CSCI261'], genEdReqs: [] },
     { id: 'CSCI331', title: 'Human-Computer Interaction', description: 'User-centered design, usability testing, prototyping, and accessibility. Design and evaluate interfaces through iterative projects with real users from the campus community.', credits: 1, category: 'elective', interestTags: ['design'], prereqs: ['CSCI161'], genEdReqs: [] },
     { id: 'CSCI361', title: 'Software Engineering', description: 'Agile development, version control, testing, and team-based project management. Build a real application for a campus or community partner over the semester.', credits: 1, category: 'elective', interestTags: ['design'], prereqs: ['CSCI261'], genEdReqs: [] },
@@ -193,8 +193,8 @@ export const upsEcon: Curriculum = {
     { id: 'CSCI381', title: 'Programming Languages', description: 'Paradigms of computation: functional, object-oriented, and logic programming. Language design, type systems, and interpreters built from scratch in a small seminar.', credits: 1, category: 'elective', interestTags: ['philosophy'], prereqs: ['CSCI261'], genEdReqs: [] },
 
     // ===== STATISTICS / MATH UPPER-DIVISION =====
-    { id: 'MATH260', title: 'Linear Algebra', description: 'Vectors, matrices, linear transformations, eigenvalues, and applications to data science and economics.', credits: 1, category: 'elective', interestTags: [], prereqs: ['MATH170'], genEdReqs: [] },
-    { id: 'MATH310', title: 'Probability Theory', description: 'Axioms of probability, random variables, distributions, expectation, and the central limit theorem.', credits: 1, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH180'], genEdReqs: [] },
+    { id: 'MATH260', title: 'Linear Algebra', description: 'Vectors, matrices, linear transformations, eigenvalues, and applications to data science and economics.', credits: 1, category: 'elective', interestTags: [], prereqs: ['MATH180'], genEdReqs: [] },
+    { id: 'MATH310', title: 'Probability Theory', description: 'Axioms of probability, random variables, distributions, expectation, and the central limit theorem.', credits: 1, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH181'], genEdReqs: [] },
     { id: 'MATH320', title: 'Mathematical Statistics', description: 'Estimation, hypothesis testing, confidence intervals, and regression theory with mathematical rigor.', credits: 1, category: 'elective', interestTags: [], prereqs: ['MATH310'], genEdReqs: [] },
     { id: 'MATH330', title: 'Applied Statistics & Data Analysis', description: 'Advanced regression, ANOVA, nonparametric methods, and statistical computing with R.', credits: 1, category: 'elective', interestTags: [], prereqs: ['MATH160'], genEdReqs: [] },
     { id: 'MATH340', title: 'Operations Research', description: 'Linear programming, optimization, queuing theory, and decision analysis. Applications to business and economics.', credits: 1, category: 'elective', interestTags: ['game-theory'], prereqs: ['MATH260'], genEdReqs: [] },

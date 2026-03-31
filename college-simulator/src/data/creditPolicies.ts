@@ -94,9 +94,9 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'AP Psychology', minScore: 4, creditsAwarded: 1, courseEquivalent: 'PSYCH 101', courseDescription: 'Credit in psychology', satisfiesGenEd: ['social-science'] },
       // === AP Math & Computer Science ===
       { examName: 'AP Precalculus', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 110', courseDescription: 'Credit in precalculus', satisfiesGenEd: ['quantitative'] },
-      { examName: 'AP Calculus AB', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in Calculus I', satisfiesGenEd: ['quantitative'] },
-      { examName: 'AP Calculus BC', minScore: 4, creditsAwarded: 2, courseEquivalent: 'MATH 170/180', courseDescription: 'Credit in Calculus I & II (no duplicate credit with AB)', satisfiesGenEd: ['quantitative'] },
-      { examName: 'AP Calculus BC (AB Subscore)', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in Calculus I', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Calculus AB', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 180', courseDescription: 'Credit in Calculus I', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Calculus BC', minScore: 4, creditsAwarded: 2, courseEquivalent: 'MATH 180/181', courseDescription: 'Credit in Calculus I & II (no duplicate credit with AB)', satisfiesGenEd: ['quantitative'] },
+      { examName: 'AP Calculus BC (AB Subscore)', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 180', courseDescription: 'Credit in Calculus I', satisfiesGenEd: ['quantitative'] },
       { examName: 'AP Computer Science Principles', minScore: 3, creditsAwarded: 1, courseEquivalent: 'CSCI xxx', courseDescription: 'Non-majors computer science elective', satisfiesGenEd: ['quantitative'] },
       { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 1, courseEquivalent: 'CSCI 161', courseDescription: 'Credit in computer science', satisfiesGenEd: ['quantitative'] },
       { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in statistics', satisfiesGenEd: ['quantitative'] },
@@ -144,7 +144,7 @@ export const creditPolicies: CreditPolicy[] = [
       { examName: 'IB Physics HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'PHYS 110', courseDescription: 'Credit in physics', satisfiesGenEd: ['natural-science'] },
       { examName: 'IB Sports, Exercise & Health Science HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'EXSC 1xx', courseDescription: 'Non-majors exercise science elective', satisfiesGenEd: ['natural-science'] },
       // === Group 5: Mathematics (HL only) ===
-      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 170', courseDescription: 'Credit in mathematics — Calculus I', satisfiesGenEd: ['quantitative'] },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 180', courseDescription: 'Credit in mathematics — Calculus I', satisfiesGenEd: ['quantitative'] },
       { examName: 'IB Mathematics Applications & Interpretation HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MATH 160', courseDescription: 'Credit in mathematics — Applied Statistics', satisfiesGenEd: ['quantitative'] },
       // === Group 6: Arts (HL only) ===
       { examName: 'IB Dance HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'TRNF xxx', courseDescription: 'Elective credit' },
