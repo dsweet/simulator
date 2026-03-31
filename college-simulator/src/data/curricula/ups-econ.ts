@@ -20,7 +20,7 @@ export const upsEcon: Curriculum = {
       { id: 'humanities', name: 'Humanistic Approaches', creditsRequired: 2, satisfiedBy: ['ENGL220', 'PHIL101', 'HIST200', 'RELS101'] },
       { id: 'arts', name: 'Fine Arts', creditsRequired: 1, satisfiedBy: ['ART110', 'ART140', 'MUS101', 'THTR101'] },
       { id: 'diversity', name: 'Knowledge, Identity & Power', creditsRequired: 2, satisfiedBy: ['AAS200', 'AFAM200', 'GWSS201', 'HISP200'] },
-      { id: 'connections', name: 'Connections', creditsRequired: 2, satisfiedBy: [] },
+      { id: 'connections', name: 'Connections', creditsRequired: 2, satisfiedBy: ['CONN210', 'CONN215', 'CONN220', 'CONN250', 'CONN305', 'CONN310', 'CONN350', 'CONN360'] },
     ],
   },
   recommendedSequence: {
@@ -142,7 +142,6 @@ export const upsEcon: Curriculum = {
     { id: 'GWSS201', title: 'Introduction to Gender & Queer Studies', description: 'Gender, sexuality, and power. Feminist and queer theory, intersectionality, and social justice.', credits: 1, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['diversity'] },
 
     // ===== PHILOSOPHY =====
-    { id: 'PHIL101', title: 'Introduction to Philosophy', description: 'Core philosophical questions: free will, knowledge, ethics, and the nature of reality. Classic and contemporary thinkers.', credits: 1, category: 'elective', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['humanities'] },
     { id: 'PHIL201', title: 'Ethics', description: 'Major moral theories and their application to real-world problems. Small seminar format with discussion.', credits: 1, category: 'elective', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['humanities'] },
     { id: 'PHIL210', title: 'Logic', description: 'Formal logic: propositional and predicate logic, truth tables, and proof methods.', credits: 1, category: 'elective', interestTags: ['philosophy', 'game-theory'], prereqs: [], genEdReqs: ['humanities'] },
     { id: 'PHIL220', title: 'Philosophy of Mind', description: 'Mind-body problem, consciousness, AI, and personal identity. What is it like to be a mind?', credits: 1, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['PHIL101'], genEdReqs: [] },
@@ -223,5 +222,15 @@ export const upsEcon: Curriculum = {
     { id: 'BUS320', title: 'Marketing Strategy', description: 'Consumer behavior, market segmentation, branding, pricing, and digital marketing strategy.', credits: 1, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
     { id: 'BUS330', title: 'Organizational Leadership', description: 'Leadership theory, team dynamics, organizational culture, and strategic management in diverse organizations.', credits: 1, category: 'elective', interestTags: [], prereqs: [], genEdReqs: [] },
     { id: 'BUS340', title: 'Entrepreneurship & Innovation', description: 'Opportunity identification, business model design, lean startup methods, and social entrepreneurship.', credits: 1, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+
+    // ===== CONNECTIONS (interdisciplinary upper-division seminars) =====
+    { id: 'CONN210', title: 'Science & Economics of Climate Change', description: 'Interdisciplinary examination of climate change through economic models and natural science. Carbon markets, cost-benefit analysis, and climate data interpretation.', credits: 1, category: 'elective', interestTags: ['science'], prereqs: [], genEdReqs: ['connections'] },
+    { id: 'CONN215', title: 'Math and Music', description: 'Mathematical structures in music: frequency ratios, symmetry, group theory, and algorithmic composition. Combines music theory with mathematical reasoning.', credits: 1, category: 'elective', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['connections'] },
+    { id: 'CONN220', title: 'City and Society', description: 'Urban life through sociological, historical, and economic lenses. Urbanization, public space, inequality, and community in cities from ancient Rome to modern Tacoma.', credits: 1, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: [], genEdReqs: ['connections'] },
+    { id: 'CONN250', title: 'Art-Science', description: 'Creative intersections of art and science. Visualization of data, scientific illustration, bio-art, and collaborative projects bridging studio practice and laboratory inquiry.', credits: 1, category: 'elective', interestTags: ['design', 'science'], prereqs: [], genEdReqs: ['connections'] },
+    { id: 'CONN305', title: 'Hooch: Natural & Social Science of Liquor', description: 'Chemistry of fermentation and distillation meets the history, economics, and cultural politics of alcohol. Team-taught by faculty in chemistry and history.', credits: 1, category: 'elective', interestTags: ['science', 'history'], prereqs: [], genEdReqs: ['connections'] },
+    { id: 'CONN310', title: 'The Psychedelic Renaissance', description: 'Neuroscience, philosophy, and cultural history of psychedelics. Consciousness research, therapeutic applications, and the politics of altered states.', credits: 1, category: 'elective', interestTags: ['philosophy', 'science'], prereqs: [], genEdReqs: ['connections'] },
+    { id: 'CONN350', title: 'Modeling Earth\'s Climate', description: 'Build and analyze computational climate models. Combines mathematics, physics, and environmental science to understand past and future climate change.', credits: 1, category: 'elective', interestTags: ['science'], prereqs: [], genEdReqs: ['connections'] },
+    { id: 'CONN360', title: 'Food, Culture & Society', description: 'Food systems examined through anthropology, economics, and environmental science. Agriculture, global food trade, food justice, and sustainable eating.', credits: 1, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['connections'] },
   ],
 };
