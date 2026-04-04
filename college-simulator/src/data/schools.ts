@@ -55,6 +55,19 @@ export const schools: School[] = [
     },
   },
   {
+    id: 'uw-me-art',
+    name: 'University of Washington',
+    track: 'uw-paths',
+    program: 'Mechanical Engineering + Art/Design',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
     id: 'uw-econ-bs',
     name: 'University of Washington',
     track: 'uw-paths',

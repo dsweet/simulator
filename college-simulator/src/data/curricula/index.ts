@@ -12,12 +12,14 @@ import { richmondPpel } from './richmond-ppel';
 import { rochesterPpe } from './rochester-ppe';
 import { ucsdEcon } from './ucsd-econ';
 import { uclaEcon } from './ucla-econ';
+import { uwMeArt } from './uw-me-art';
 
 const curricula: Record<string, Curriculum> = {
   'uw-hcde-lite': uwHcdeLite,
   'uw-explore-complit': uwExploreComplit,
   'uw-explore-polisci': uwExplorePolisci,
   'uw-explore-cogsci': uwExploreCogsci,
+  'uw-me-art': uwMeArt,
   'uw-econ-bs': uwEconBs,
   uw: uwHcde,
   'uw-econ': uwEcon,

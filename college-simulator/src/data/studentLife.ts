@@ -27,6 +27,7 @@ export const studentLife: StudentLifeData[] = [
   { schoolId: 'uw-explore-complit', ...uwStudentLife },
   { schoolId: 'uw-explore-polisci', ...uwStudentLife },
   { schoolId: 'uw-explore-cogsci', ...uwStudentLife },
+  { schoolId: 'uw-me-art', ...uwStudentLife },
   { schoolId: 'uw-econ-bs', ...uwStudentLife },
   {
     schoolId: 'uw',

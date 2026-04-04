@@ -42,6 +42,16 @@ export const costs: CostData[] = [
     aidDescription: 'In-state tuition (WA resident)',
   },
   {
+    schoolId: 'uw-me-art',
+    tuitionAndFees: 12643,
+    roomAndBoard: 15201,
+    totalCOA: 27844,
+    aidAmount: 0,
+    netCost: 27844,
+    fourYearNet: 117000,
+    aidDescription: 'In-state tuition (WA resident)',
+  },
+  {
     schoolId: 'uw-econ-bs',
     tuitionAndFees: 12643,
     roomAndBoard: 15201,

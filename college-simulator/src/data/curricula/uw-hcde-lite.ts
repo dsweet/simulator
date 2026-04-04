@@ -66,9 +66,9 @@ export const uwHcdeLite: Curriculum = {
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['PHYS123', 'CHEM152', 'PSYCH345'],
-        locked: [false, false, false],
-        slotLabels: ['Additional Math/Science', '★ Additional Science (Placement)', '🟢 Judgment & Decision Making — connects to HCDE user research'],
+        courses: ['PHYS123', 'HCDE302', 'PSYCH345'],
+        locked: [false, true, false],
+        slotLabels: ['Additional Math/Science', 'Foundations of HCDE I — early taste before committing to full junior core', '🟢 Judgment & Decision Making — connects to HCDE user research'],
       },
       {
         termLabel: 'Spring Year 2',
@@ -80,9 +80,9 @@ export const uwHcdeLite: Curriculum = {
       // ==================== YEAR 3: HCDE Major Core (all locked) ====================
       {
         termLabel: 'Fall Year 3',
-        courses: ['HCDE310', 'HCDE302', 'HCDE313'],
-        locked: [true, true, true],
-        slotLabels: ['Interactive Systems Design & Tech', 'Foundations of HCDE I', 'Intro to User Research (W)'],
+        courses: ['HCDE310', 'HCDE410', 'HCDE313'],
+        locked: [true, false, true],
+        slotLabels: ['Interactive Systems Design & Tech', 'HCDE Engineering Elective (minimum needed)', 'Intro to User Research (W)'],
       },
       {
         termLabel: 'Winter Year 3',
@@ -100,9 +100,9 @@ export const uwHcdeLite: Curriculum = {
       // ==================== YEAR 4: Capstone + CogSci depth + one fun elective ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['HCDE410', 'PSYCH355', 'PSYCH315'],
+        courses: ['INFO200', 'PSYCH355', 'PSYCH315'],
         locked: [false, false, false],
-        slotLabels: ['HCDE Engineering Elective (minimum needed)', '🟢 Human Memory — CogSci depth', '🟢 Psychology of Human Factors — directly complements HCDE'],
+        slotLabels: ['🟢 Intellectual Foundations of Informatics — bridges CogSci & HCDE', '🟢 Human Memory — CogSci depth', '🟢 Psychology of Human Factors — directly complements HCDE'],
       },
       {
         termLabel: 'Winter Year 4',
