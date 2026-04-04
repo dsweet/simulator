@@ -49,9 +49,9 @@ export const uwExplorePolisci: Curriculum = {
       // ==================== YEAR 2: POL Core + Methods ====================
       {
         termLabel: 'Fall Year 2',
-        courses: ['POL201', 'POL203', 'STAT220'],
-        locked: [true, true, true],
-        slotLabels: ['American Politics', 'International Relations', 'Statistics (methods prereq)'],
+        courses: ['POL201', 'POL203', 'AAS101'],
+        locked: [true, true, false],
+        slotLabels: ['American Politics', 'International Relations', '🟢 Intro Asian American Studies — DIV + SSc (AP Stats covers stats)'],
       },
       {
         termLabel: 'Winter Year 2',
@@ -116,7 +116,7 @@ export const uwExplorePolisci: Curriculum = {
     { id: 'POL203', title: 'International Relations', description: 'Theories of war and peace, alliances, international institutions, globalization, and human rights.', credits: 5, category: 'major-required', interestTags: ['politics', 'history'], prereqs: ['POL101'], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'POL204', title: 'Comparative Politics', description: 'How political systems differ across countries. Regime types, democratization, and parliamentary vs. presidential systems.', credits: 5, category: 'major-required', interestTags: ['politics', 'history'], prereqs: ['POL101'], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'POL220', title: 'Introduction to Political Economy', description: 'How political institutions shape economic outcomes. Markets, property rights, redistribution, and collective action.', credits: 5, category: 'major-required', interestTags: ['politics', 'economics', 'game-theory'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POL370', title: 'Quantitative Methods in Political Science', description: 'Survey design, regression, causal inference, and data visualization applied to political questions.', credits: 5, category: 'major-required', interestTags: ['politics', 'game-theory'], prereqs: ['POL101', 'STAT220'], genEdReqs: [] },
+    { id: 'POL370', title: 'Quantitative Methods in Political Science', description: 'Survey design, regression, causal inference, and data visualization applied to political questions.', credits: 5, category: 'major-required', interestTags: ['politics', 'game-theory'], prereqs: ['POL101', 'STAT290'], genEdReqs: [] },
     { id: 'POL490', title: 'Senior Seminar in Political Science', description: 'Capstone research seminar. Students design and execute an original research project on a political science topic, culminating in a thesis-length paper.', credits: 5, category: 'major-required', interestTags: ['politics'], prereqs: ['POL370'], genEdReqs: [] },
 
     // ===================================================================
@@ -139,8 +139,8 @@ export const uwExplorePolisci: Curriculum = {
     // ===================================================================
     // METHODS & STATISTICS
     // ===================================================================
-    { id: 'STAT220', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
-    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'major-elective', interestTags: [], prereqs: ['STAT220'], genEdReqs: [] },
+    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'major-elective', interestTags: [], prereqs: ['STAT290'], genEdReqs: [] },
 
     // ===================================================================
     // ECONOMICS (supporting electives for Pol Sci)
@@ -262,7 +262,7 @@ export const uwExplorePolisci: Curriculum = {
     { id: 'SOC221', title: 'Social Inequality', description: 'Class, race, gender, and their intersections. Theories of stratification, mobility, and the reproduction of privilege.', credits: 5, category: 'elective', interestTags: ['sociology', 'cultural-studies'], prereqs: ['SOC101'], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'SOC225', title: 'Race & Ethnicity', description: 'Racial formation, systemic racism, immigration, and multiracial identity. Quantitative and qualitative approaches.', credits: 5, category: 'elective', interestTags: ['sociology', 'cultural-studies'], prereqs: ['SOC101'], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
     { id: 'SOC270', title: 'Urban Sociology', description: 'Cities as social systems. Gentrification, segregation, community organizing, and the sociology of neighborhoods.', credits: 5, category: 'elective', interestTags: ['sociology', 'cultural-studies'], prereqs: ['SOC101'], genEdReqs: [] },
-    { id: 'SOC300', title: 'Social Research Methods', description: 'Survey design, interviews, ethnography, content analysis, and mixed methods for social science research.', credits: 5, category: 'elective', interestTags: ['sociology'], prereqs: ['SOC101', 'STAT220'], genEdReqs: [] },
+    { id: 'SOC300', title: 'Social Research Methods', description: 'Survey design, interviews, ethnography, content analysis, and mixed methods for social science research.', credits: 5, category: 'elective', interestTags: ['sociology'], prereqs: ['SOC101', 'STAT290'], genEdReqs: [] },
 
     // ===================================================================
     // MUSIC

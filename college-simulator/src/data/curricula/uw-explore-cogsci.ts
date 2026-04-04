@@ -10,7 +10,7 @@ export const uwExploreCogsci: Curriculum = {
     electiveCredits: 85,
     majorCourses: [
       'PSYCH101', 'PSYCH202', 'PSYCH209', 'PSYCH303', 'PSYCH306',
-      'PSYCH345', 'PSYCH355', 'PSYCH315', 'STAT220', 'PSYCH490',
+      'PSYCH345', 'PSYCH355', 'PSYCH315', 'PSYCH490',
     ],
     genEdCategories: [
       // === General Education Requirements (35cr) ===
@@ -49,9 +49,9 @@ export const uwExploreCogsci: Curriculum = {
       // ==================== YEAR 2: PSYCH Core + CogSci Foundations ====================
       {
         termLabel: 'Fall Year 2',
-        courses: ['PSYCH202', 'PSYCH209', 'STAT220'],
-        locked: [true, true, true],
-        slotLabels: ['Biopsychology', 'Fundamentals of Psych Research', 'Statistics (methods prereq)'],
+        courses: ['PSYCH202', 'PSYCH209', 'ECON200'],
+        locked: [true, true, false],
+        slotLabels: ['Biopsychology', 'Fundamentals of Psych Research', '🟢 Intro Microeconomics — SSc gen-ed (AP Stats covers stats)'],
       },
       {
         termLabel: 'Winter Year 2',
@@ -119,8 +119,8 @@ export const uwExploreCogsci: Curriculum = {
     { id: 'PSYCH345', title: 'Judgment & Decision Making', description: 'Heuristics, biases, prospect theory, and rational choice. How people make decisions under uncertainty.', credits: 5, category: 'major-required', interestTags: ['design', 'game-theory'], prereqs: ['PSYCH101'], genEdReqs: [] },
     { id: 'PSYCH355', title: 'Human Memory', description: 'Encoding, storage, and retrieval processes. Working memory, long-term memory, forgetting, and memory distortion.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['PSYCH101'], genEdReqs: [] },
     { id: 'PSYCH315', title: 'Psychology of Human Factors', description: 'Human performance in complex systems. Workload, situational awareness, error analysis, and designing for human limitations.', credits: 5, category: 'major-required', interestTags: ['design'], prereqs: ['PSYCH101'], genEdReqs: [] },
-    { id: 'STAT220', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
-    { id: 'PSYCH490', title: 'Senior Research Seminar', description: 'Capstone research experience in psychology. Students design, conduct, analyze, and present an original empirical study in cognitive science or related area.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['PSYCH209', 'STAT220'], genEdReqs: [] },
+    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'PSYCH490', title: 'Senior Research Seminar', description: 'Capstone research experience in psychology. Students design, conduct, analyze, and present an original empirical study in cognitive science or related area.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['PSYCH209', 'STAT290'], genEdReqs: [] },
 
     // ===================================================================
     // MAJOR ELECTIVES — Upper-Division Psychology + CogSci Cross-Lists
@@ -132,7 +132,7 @@ export const uwExploreCogsci: Curriculum = {
     { id: 'PSYCH410', title: 'Learning & Behavior', description: 'Classical and operant conditioning, reinforcement schedules, observational learning, and computational models of learning.', credits: 5, category: 'major-elective', interestTags: [], prereqs: ['PSYCH101'], genEdReqs: [] },
     { id: 'PSYCH425', title: 'Cognitive Neuroscience', description: 'Brain mechanisms underlying cognition. fMRI, EEG, lesion studies, and what neuroimaging reveals about thinking, memory, and attention.', credits: 5, category: 'major-elective', interestTags: ['science'], prereqs: ['PSYCH303'], genEdReqs: [] },
     { id: 'PSYCH440', title: 'Attention & Performance', description: 'Selective attention, divided attention, automaticity, and the cognitive limits of multitasking. Eye-tracking and reaction time methods.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['PSYCH303'], genEdReqs: [] },
-    { id: 'PSYCH450', title: 'Computational Cognitive Science', description: 'Formal models of cognition: Bayesian inference, connectionism, reinforcement learning, and rational analysis applied to human behavior.', credits: 5, category: 'major-elective', interestTags: ['design', 'game-theory'], prereqs: ['PSYCH303', 'STAT220'], genEdReqs: [] },
+    { id: 'PSYCH450', title: 'Computational Cognitive Science', description: 'Formal models of cognition: Bayesian inference, connectionism, reinforcement learning, and rational analysis applied to human behavior.', credits: 5, category: 'major-elective', interestTags: ['design', 'game-theory'], prereqs: ['PSYCH303', 'STAT290'], genEdReqs: [] },
     { id: 'PSYCH460', title: 'Emotion & Cognition', description: 'How emotions influence memory, attention, reasoning, and decision-making. Affective neuroscience and appraisal theories.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['PSYCH303'], genEdReqs: [] },
     { id: 'PSYCH470', title: 'Psychology of Reasoning', description: 'Deductive and inductive reasoning, logical fallacies, bounded rationality, and dual-process theories of thought.', credits: 5, category: 'major-elective', interestTags: ['philosophy', 'game-theory'], prereqs: ['PSYCH303'], genEdReqs: [] },
     { id: 'PSYCH480', title: 'Human-Computer Interaction: Cognitive Perspectives', description: 'Cognitive models of user behavior, mental models, cognitive load, and usability from a psychology perspective.', credits: 5, category: 'major-elective', interestTags: ['design'], prereqs: ['PSYCH303'], genEdReqs: [] },
@@ -153,8 +153,8 @@ export const uwExploreCogsci: Curriculum = {
     // ===================================================================
     // STATISTICS / METHODS
     // ===================================================================
-    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT220'], genEdReqs: [] },
-    { id: 'STAT390', title: 'Statistical Data Visualization', description: 'Visualizing data distributions, relationships, and uncertainty. R and ggplot2 for statistical graphics.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT220'], genEdReqs: [] },
+    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'elective', interestTags: [], prereqs: ['STAT290'], genEdReqs: [] },
+    { id: 'STAT390', title: 'Statistical Data Visualization', description: 'Visualizing data distributions, relationships, and uncertainty. R and ggplot2 for statistical graphics.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT290'], genEdReqs: [] },
 
     // ===================================================================
     // GEN-ED OPTIONS

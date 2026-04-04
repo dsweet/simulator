@@ -18,7 +18,7 @@ export const uwHcdeLite: Curriculum = {
     genEdCategories: [
       // === ENGRUD Placement Requirements (◆ diamond = must complete, ★ star = pick one) ===
       { id: 'calculus', name: 'Mathematics — Calculus (◆ Placement)', creditsRequired: 15, satisfiedBy: ['MATH124', 'MATH125', 'MATH126'] },
-      { id: 'statistics', name: 'Statistics (★ Placement — pick one)', creditsRequired: 5, satisfiedBy: ['STAT220', 'STAT290', 'STAT311', 'QSCI381'] },
+      { id: 'statistics', name: 'Statistics (★ Placement — pick one)', creditsRequired: 5, satisfiedBy: ['STAT290', 'STAT290', 'STAT311', 'QSCI381'] },
       { id: 'sciences', name: 'Sciences (◆ Placement — 15cr)', creditsRequired: 15, satisfiedBy: ['CHEM142', 'PHYS121', 'CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'BIOL180', 'ENVIR100'] },
       { id: 'addl-math-sci', name: 'Additional Math/Stats/Science (★ Placement)', creditsRequired: 15, satisfiedBy: ['CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'STAT311', 'QSCI381'] },
 
@@ -132,9 +132,9 @@ export const uwHcdeLite: Curriculum = {
     { id: 'MATH126', title: 'Calculus with Analytic Geometry III', description: 'Multivariable calculus: partial derivatives, multiple integrals, vector calculus, and applications to physics and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH125'], genEdReqs: ['calculus'] },
 
     // ★ Statistics (pick one)
-    { id: 'STAT220', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals. Recommended for HCDE placement.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
+    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals. Recommended for HCDE placement.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
     { id: 'STAT290', title: 'Basic Statistics (AP Statistics equivalent)', description: 'Introductory probability and statistical methods. Equivalent awarded for AP Statistics score of 4+.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
-    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: ['STAT220'], genEdReqs: ['statistics', 'addl-math-sci'] },
+    { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: ['STAT290'], genEdReqs: ['statistics', 'addl-math-sci'] },
 
     // ◆ Sciences
     { id: 'CHEM142', title: 'General Chemistry', description: 'Atomic structure, chemical bonding, stoichiometry, thermodynamics, and equilibrium. Prerequisite: CHEM 110 or placement exam.', credits: 5, category: 'major-required', interestTags: ['science'], prereqs: [], genEdReqs: ['sciences'] },
@@ -332,15 +332,15 @@ export const uwHcdeLite: Curriculum = {
     { id: 'CSE154', title: 'Web Programming', description: 'Full-stack web development with HTML, CSS, JavaScript, Node.js, and SQL. Building dynamic, data-driven web applications.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['CSE121'], genEdReqs: [] },
     { id: 'CSE344', title: 'Introduction to Data Management', description: 'Relational databases, SQL, data modeling, query optimization, and NoSQL systems.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123'], genEdReqs: [] },
     { id: 'CSE414', title: 'Introduction to Database Systems', description: 'Database design, SQL, transactions, and data modeling. Core data management for engineers.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123'], genEdReqs: [] },
-    { id: 'CSE416', title: 'Introduction to Machine Learning', description: 'Regression, classification, clustering, and recommender systems. Practical ML with ethical considerations.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123', 'STAT220'], genEdReqs: [] },
+    { id: 'CSE416', title: 'Introduction to Machine Learning', description: 'Regression, classification, clustering, and recommender systems. Practical ML with ethical considerations.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123', 'STAT290'], genEdReqs: [] },
     { id: 'CSE440', title: 'Introduction to HCI', description: 'Human-computer interaction methods. Needfinding, prototyping, and evaluation from a CS perspective.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['CSE123'], genEdReqs: [] },
 
     // ===================================================================
     // STATISTICS (Advanced)
     // ===================================================================
-    { id: 'STAT342', title: 'Intro to Probability & Mathematical Statistics', description: 'Probability distributions, random variables, expected values, central limit theorem, and maximum likelihood estimation.', credits: 5, category: 'elective', interestTags: [], prereqs: ['MATH125', 'STAT220'], genEdReqs: ['addl-math-sci'] },
-    { id: 'STAT390', title: 'Statistical Data Visualization', description: 'Visualizing data distributions, relationships, and uncertainty. R and ggplot2 for statistical graphics.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT220'], genEdReqs: ['addl-math-sci'] },
-    { id: 'STAT340', title: 'Introduction to Data Science', description: 'End-to-end data science workflow: data wrangling, exploratory analysis, modeling, and communication.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT220'], genEdReqs: ['addl-math-sci'] },
+    { id: 'STAT342', title: 'Intro to Probability & Mathematical Statistics', description: 'Probability distributions, random variables, expected values, central limit theorem, and maximum likelihood estimation.', credits: 5, category: 'elective', interestTags: [], prereqs: ['MATH125', 'STAT290'], genEdReqs: ['addl-math-sci'] },
+    { id: 'STAT390', title: 'Statistical Data Visualization', description: 'Visualizing data distributions, relationships, and uncertainty. R and ggplot2 for statistical graphics.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT290'], genEdReqs: ['addl-math-sci'] },
+    { id: 'STAT340', title: 'Introduction to Data Science', description: 'End-to-end data science workflow: data wrangling, exploratory analysis, modeling, and communication.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT290'], genEdReqs: ['addl-math-sci'] },
     { id: 'STAT395', title: 'Design of Experiments', description: 'Planning and analyzing experiments. Randomization, blocking, factorial designs, and A/B testing methods used in UX research.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['STAT311'], genEdReqs: ['addl-math-sci'] },
 
     // ===================================================================
@@ -349,7 +349,7 @@ export const uwHcdeLite: Curriculum = {
     { id: 'INFO310', title: 'Information Ethics & Policy', description: 'Intellectual property, privacy, censorship, digital rights, and the ethical responsibilities of information professionals.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['INFO200'], genEdReqs: [] },
     { id: 'INFO360', title: 'Information Architecture', description: 'Organizing and structuring information for findability and usability. Taxonomies, metadata, navigation systems, and search design.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200'], genEdReqs: [] },
     { id: 'INFO340', title: 'Client-Side Development', description: 'Building modern interactive web applications with React, state management, and API integration.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: ['INFO200'], genEdReqs: [] },
-    { id: 'INFO370', title: 'Core Methods in Data Science', description: 'Statistical modeling, data wrangling, and machine learning fundamentals using Python.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200', 'STAT220'], genEdReqs: [] },
+    { id: 'INFO370', title: 'Core Methods in Data Science', description: 'Statistical modeling, data wrangling, and machine learning fundamentals using Python.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200', 'STAT290'], genEdReqs: [] },
     { id: 'INFO474', title: 'Interactive Information Visualization', description: 'Designing and building interactive data visualizations for the web. D3.js and narrative data storytelling.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: ['INFO200'], genEdReqs: [] },
 
     // ===================================================================
@@ -389,7 +389,7 @@ export const uwHcdeLite: Curriculum = {
     { id: 'POL340', title: 'Game Theory and Politics', description: 'Formal models of political behavior: voting, coalition formation, bargaining, and strategic interaction among political actors.', credits: 5, category: 'elective', interestTags: ['politics', 'game-theory'], prereqs: ['POL101', 'ECON300'], genEdReqs: [] },
     { id: 'POL355', title: 'Democratic Theory', description: 'Deliberative democracy, populism, epistemic democracy, and the tension between majority rule and minority rights.', credits: 5, category: 'elective', interestTags: ['politics', 'philosophy'], prereqs: ['POL101'], genEdReqs: [] },
     { id: 'POL360', title: 'Politics of Immigration', description: 'Immigration policy, border politics, citizenship, refugee crises, and the political economy of migration.', credits: 5, category: 'elective', interestTags: ['politics', 'cultural-studies'], prereqs: ['POL101'], genEdReqs: [] },
-    { id: 'POL370', title: 'Quantitative Methods in Political Science', description: 'Survey design, regression, causal inference, and data visualization applied to political questions.', credits: 5, category: 'elective', interestTags: ['politics', 'game-theory'], prereqs: ['POL101', 'STAT220'], genEdReqs: [] },
+    { id: 'POL370', title: 'Quantitative Methods in Political Science', description: 'Survey design, regression, causal inference, and data visualization applied to political questions.', credits: 5, category: 'elective', interestTags: ['politics', 'game-theory'], prereqs: ['POL101', 'STAT290'], genEdReqs: [] },
 
     // ===================================================================
     // PHILOSOPHY (Expanded)
@@ -407,7 +407,7 @@ export const uwHcdeLite: Curriculum = {
     { id: 'SOC221', title: 'Social Inequality', description: 'Class, race, gender, and their intersections. Theories of stratification, mobility, and the reproduction of privilege.', credits: 5, category: 'elective', interestTags: ['sociology', 'cultural-studies'], prereqs: ['SOC101'], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'SOC225', title: 'Race & Ethnicity', description: 'Racial formation, systemic racism, immigration, and multiracial identity. Quantitative and qualitative approaches.', credits: 5, category: 'elective', interestTags: ['sociology', 'cultural-studies'], prereqs: ['SOC101'], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
     { id: 'SOC270', title: 'Urban Sociology', description: 'Cities as social systems. Gentrification, segregation, community organizing, and the sociology of neighborhoods.', credits: 5, category: 'elective', interestTags: ['sociology', 'cultural-studies'], prereqs: ['SOC101'], genEdReqs: [] },
-    { id: 'SOC300', title: 'Social Research Methods', description: 'Survey design, interviews, ethnography, content analysis, and mixed methods for social science research.', credits: 5, category: 'elective', interestTags: ['sociology'], prereqs: ['SOC101', 'STAT220'], genEdReqs: [] },
+    { id: 'SOC300', title: 'Social Research Methods', description: 'Survey design, interviews, ethnography, content analysis, and mixed methods for social science research.', credits: 5, category: 'elective', interestTags: ['sociology'], prereqs: ['SOC101', 'STAT290'], genEdReqs: [] },
     { id: 'SOC316', title: 'Sociology of Education', description: 'How schools reproduce and challenge social inequality. Tracking, cultural capital, and education reform.', credits: 5, category: 'elective', interestTags: ['sociology', 'cultural-studies'], prereqs: ['SOC101'], genEdReqs: [] },
 
     // ===================================================================

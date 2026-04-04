@@ -316,7 +316,7 @@ export const uwExploreComplit: Curriculum = {
     // ===================================================================
     // STATISTICS
     // ===================================================================
-    { id: 'STAT220', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'elective', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'elective', interestTags: [], prereqs: [], genEdReqs: [] },
 
     // ===================================================================
     // DESIGN / DIGITAL ARTS
