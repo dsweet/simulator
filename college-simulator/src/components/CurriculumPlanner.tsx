@@ -254,8 +254,10 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
                 }, 0);
                 const isHeavyLoad = courses.length > 0 && termCredits > 16;
                 return (
-                  <button
+                  <div
                     key={label}
+                    role="button"
+                    tabIndex={0}
                     className={`term-cell ${isActive ? 'term-cell-active' : ''} ${courses.length > 0 ? 'term-cell-filled' : ''} ${isHeavyLoad ? 'term-cell-heavy' : ''} ${hasIssue ? 'term-cell-warning' : ''}`}
                     onClick={() => setActiveTerm(isActive ? null : label)}
                   >
@@ -281,7 +283,7 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
                         })}
                       </div>
                     )}
-                  </button>
+                  </div>
                 );
               })}
             </div>
