@@ -79,7 +79,7 @@ export default function SchoolBrowser({ onSelectSchool, onShowPersonas, onShowSa
                 {trackSchools.map(school => (
                   <button
                     key={school.id}
-                    className="school-card"
+                    className={`school-card${school.id === 'ups' ? ' school-eliminated' : ''}`}
                     onClick={() => onSelectSchool(school.id)}
                   >
                     <div className="school-name">{school.name}</div>
