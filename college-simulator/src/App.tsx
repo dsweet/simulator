@@ -57,7 +57,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1 onClick={() => { clearCurrentPlan(); setPlan(null); setScreen('school-browser'); }} style={{ cursor: 'pointer' }}>
-          College Experience Simulator
+          College Curriculum Planner
         </h1>
         <div className="header-stats">
           {hasSavedCurricula && <button className="btn-small" onClick={() => setScreen('saved-curricula')}>Saved Plans</button>}
