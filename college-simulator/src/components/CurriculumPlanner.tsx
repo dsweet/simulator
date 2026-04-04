@@ -271,7 +271,8 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
                           const c = curriculum.courses.find(co => co.id === cid);
                           return (
                             <div key={cid} className="term-cell-course-row">
-                              <span className={`term-cell-course-id${c ? ` course-cat-${c.category}` : ''}`}>{cid}<span className="course-cr">{c ? ` ${c.credits}cr` : ''}</span></span>
+                              <span className={`term-cell-course-id${c ? ` course-cat-${c.category}` : ''}`}>{cid}</span>
+                              {c && <span className="course-cr">{c.credits}cr</span>}
                               {c && <span className="term-cell-course-desc"><strong>{c.title}</strong> — {c.description}</span>}
                             </div>
                           );
