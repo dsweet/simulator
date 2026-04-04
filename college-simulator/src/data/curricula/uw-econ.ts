@@ -5,12 +5,12 @@ export const uwEcon: Curriculum = {
   program: 'Economics (BA)',
   degreeRequirements: {
     totalCredits: 180,
-    majorCredits: 70, // ECON core (25) + math/stats prereqs (20) + 5 ECON electives (25)
+    majorCredits: 50, // ECON prereqs (ECON200+201+MATH124+STAT311 = 20) + core (ECON300+301+382 = 15) + 5 ECON 400-level electives (25) — only MATH124 required for BA
     genEdCredits: 35,
-    electiveCredits: 75,
+    electiveCredits: 95, // 20cr freed vs old schedule (no MATH125/126, no ECON302)
     majorCourses: [
-      'ECON200', 'ECON201', 'ECON301', 'ECON302', 'ECON411',
-      'MATH124', 'MATH125', 'MATH126', 'STAT311',
+      'ECON200', 'ECON201', 'ECON300', 'ECON301', 'ECON382',
+      'MATH124', 'STAT311',
     ],
     genEdCategories: [
       // === General Education Requirements (35cr) ===
@@ -31,39 +31,39 @@ export const uwEcon: Curriculum = {
         termLabel: 'Fall Year 1',
         courses: ['MATH124', 'ECON200', 'ENGL111'],
         locked: [true, true, true],
-        slotLabels: ['Calculus I', 'Intro Microeconomics', 'English Comp'],
+        slotLabels: ['Calculus I (only calc needed for BA)', 'Intro Microeconomics', 'English Comp'],
       },
       {
         termLabel: 'Winter Year 1',
-        courses: ['MATH125', 'ECON201', 'POL101'],
-        locked: [true, true, false],
-        slotLabels: ['Calculus II', 'Intro Macroeconomics', 'SSc elective'],
+        courses: ['ECON201', 'PHIL100', 'POL101'],
+        locked: [true, false, false],
+        slotLabels: ['Intro Macroeconomics', '🟢 Intro Philosophy — prereq for PHIL200/250/340', '🟢 Intro Political Science — SSc gen-ed'],
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['MATH126', 'PHIL100', 'ENGL283'],
+        courses: ['STAT311', 'ENGL283', 'ASTR101'],
         locked: [true, false, false],
-        slotLabels: ['Calculus III', '🟢 Intro Philosophy — prereq for PHIL200/250/340 (AP Stats covers stats req)', 'Writing elective'],
+        slotLabels: ['Statistics (major prereq, AP Stats as foundation)', '🟢 Creative Writing — Writing req', '🟢 Astronomy — NW gen-ed'],
       },
 
       // ==================== YEAR 2 ====================
       {
         termLabel: 'Fall Year 2',
-        courses: ['ECON301', 'STAT311', 'POL203'],
-        locked: [true, true, false],
-        slotLabels: ['Intermediate Micro', 'Stats for Econ', 'SSc elective'],
+        courses: ['ECON300', 'POL203', 'HIST111'],
+        locked: [true, false, false],
+        slotLabels: ['Intermediate Microeconomics', '🟢 International Relations — SSc gen-ed', '🟢 World History — SSc gen-ed'],
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['ECON302', 'ECON300', 'PHIL200'],
+        courses: ['ECON301', 'PHIL200', 'COM270'],
         locked: [true, false, false],
-        slotLabels: ['Intermediate Macro', 'ECON elective', 'A&H elective'],
+        slotLabels: ['Intermediate Macroeconomics', '🟢 Political Philosophy — A&H gen-ed', '🟢 Film Studies — A&H gen-ed'],
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['ECON411', 'POL220', 'PHIL120'],
+        courses: ['ECON382', 'POL220', 'PHIL120'],
         locked: [true, false, false],
-        slotLabels: ['Econometrics', 'ECON/elective', 'elective'],
+        slotLabels: ['Econometrics', '🟢 Game Theory & Politics', '🟢 Intro Logic'],
       },
 
       // ==================== YEAR 3 ====================
@@ -89,7 +89,7 @@ export const uwEcon: Curriculum = {
       // ==================== YEAR 4 ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['ECON460', 'ECON424', 'COM270'],
+        courses: ['ECON460', 'ECON424', 'PSYCH101'],
         locked: [false, false, false],
         slotLabels: ['ECON elective', 'ECON elective', 'elective'],
       },
@@ -112,10 +112,10 @@ export const uwEcon: Curriculum = {
     // MAJOR REQUIRED — ECON Core + Math/Stats Prerequisites
     // ===================================================================
 
-    // Mathematics
-    { id: 'MATH124', title: 'Calculus with Analytic Geometry I', description: 'Limits, derivatives, and integrals of single-variable functions. Applications to science and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
-    { id: 'MATH125', title: 'Calculus with Analytic Geometry II', description: 'Integration techniques, applications of integrals, sequences and series.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH124'], genEdReqs: [] },
-    { id: 'MATH126', title: 'Calculus with Analytic Geometry III', description: 'Multivariable calculus: partial derivatives, multiple integrals, vector calculus, and applications to physics and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH125'], genEdReqs: [] },
+    // Mathematics (only MATH124 required for BA — BS requires full sequence)
+    { id: 'MATH124', title: 'Calculus with Analytic Geometry I', description: 'Limits, derivatives, and integrals of single-variable functions. The only calculus course required for the Econ BA.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'MATH125', title: 'Calculus with Analytic Geometry II', description: 'Integration techniques, applications of integrals, sequences and series. Not required for BA but useful for quant electives.', credits: 5, category: 'elective', interestTags: [], prereqs: ['MATH124'], genEdReqs: [] },
+    { id: 'MATH126', title: 'Calculus with Analytic Geometry III', description: 'Multivariable calculus: partial derivatives, multiple integrals, vector calculus. Required for BS, not BA.', credits: 5, category: 'elective', interestTags: [], prereqs: ['MATH125'], genEdReqs: [] },
 
     // Statistics
     { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['STAT290'], genEdReqs: [] },
@@ -123,24 +123,24 @@ export const uwEcon: Curriculum = {
     // Economics Core
     { id: 'ECON200', title: 'Introduction to Microeconomics', description: 'Supply and demand, market structures, consumer behavior, and economic efficiency.', credits: 5, category: 'major-required', interestTags: ['game-theory', 'economics'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'ECON201', title: 'Introduction to Macroeconomics', description: 'GDP, inflation, unemployment, monetary and fiscal policy, and international trade.', credits: 5, category: 'major-required', interestTags: ['economics'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
-    { id: 'ECON301', title: 'Intermediate Microeconomics', description: 'Consumer theory, producer theory, general equilibrium, welfare analysis, and market failure.', credits: 5, category: 'major-required', interestTags: ['economics', 'game-theory'], prereqs: ['ECON200', 'MATH124'], genEdReqs: [] },
-    { id: 'ECON302', title: 'Intermediate Macroeconomics', description: 'Economic growth, business cycles, monetary and fiscal policy models, and open-economy macroeconomics.', credits: 5, category: 'major-required', interestTags: ['economics'], prereqs: ['ECON201', 'MATH124'], genEdReqs: [] },
-    { id: 'ECON411', title: 'Introduction to Econometrics', description: 'Regression analysis, hypothesis testing, instrumental variables, and causal inference with economic data.', credits: 5, category: 'major-required', interestTags: ['economics'], prereqs: ['ECON301', 'STAT311'], genEdReqs: [] },
+    { id: 'ECON300', title: 'Intermediate Microeconomics', description: 'Consumer theory, producer theory, general equilibrium, welfare analysis, and market failure.', credits: 5, category: 'major-required', interestTags: ['economics', 'game-theory'], prereqs: ['ECON200', 'MATH124'], genEdReqs: [] },
+    { id: 'ECON301', title: 'Intermediate Macroeconomics', description: 'Economic growth, business cycles, monetary and fiscal policy models, and open-economy macroeconomics.', credits: 5, category: 'major-required', interestTags: ['economics'], prereqs: ['ECON201', 'ECON300'], genEdReqs: [] },
+    { id: 'ECON382', title: 'Econometrics', description: 'Regression analysis, hypothesis testing, instrumental variables, and causal inference with economic data.', credits: 5, category: 'major-required', interestTags: ['economics'], prereqs: ['ECON300', 'STAT311'], genEdReqs: [] },
 
     // ===================================================================
     // MAJOR ELECTIVES — Economics Electives + Supporting Math/Stats
     // ===================================================================
-    { id: 'ECON300', title: 'Introduction to Game Theory', description: 'Strategic decision-making. Nash equilibrium, dominant strategies, repeated games, and applications to economics and social sciences.', credits: 5, category: 'major-elective', interestTags: ['game-theory', 'economics'], prereqs: ['MATH124'], genEdReqs: [] },
-    { id: 'ECON400', title: 'Advanced Microeconomics', description: 'General equilibrium, mechanism design, information economics, and advanced game theory.', credits: 5, category: 'major-elective', interestTags: ['economics', 'game-theory'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON420', title: 'International Economics', description: 'Trade theory, comparative advantage, trade policy, exchange rates, and capital flows.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON424', title: 'Development Economics', description: 'Poverty, growth, institutions, health, education, and aid effectiveness in developing countries.', credits: 5, category: 'major-elective', interestTags: ['economics', 'cultural-studies'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON425', title: 'Public Finance', description: 'Taxation, public expenditure, externalities, public goods, social insurance, and fiscal federalism.', credits: 5, category: 'major-elective', interestTags: ['economics', 'politics'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON431', title: 'Labor Economics', description: 'Labor supply and demand, human capital, wage determination, discrimination, unions, and labor market policy.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON441', title: 'Environmental Economics', description: 'Market failure and the environment, cap-and-trade, carbon taxation, cost-benefit analysis, and sustainability.', credits: 5, category: 'major-elective', interestTags: ['economics', 'environmental'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON450', title: 'Behavioral Economics', description: 'Cognitive biases, prospect theory, intertemporal choice, social preferences, and nudge policy design.', credits: 5, category: 'major-elective', interestTags: ['economics', 'game-theory'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON460', title: 'Financial Economics', description: 'Asset pricing, portfolio theory, risk management, derivatives, and financial market microstructure.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON482', title: 'Health Economics', description: 'Healthcare markets, insurance, moral hazard, physician behavior, and the economics of public health interventions.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON301'], genEdReqs: [] },
-    { id: 'ECON484', title: 'Law and Economics', description: 'Economic analysis of legal rules: property, contracts, torts, crime, and regulation.', credits: 5, category: 'major-elective', interestTags: ['economics', 'game-theory'], prereqs: ['ECON301'], genEdReqs: [] },
+    { id: 'ECON411', title: 'Introduction to Econometrics (advanced)', description: 'Advanced regression analysis, time series, panel data, and causal inference methods beyond ECON 382.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON382'], genEdReqs: [] },
+    { id: 'ECON400', title: 'Advanced Microeconomics', description: 'General equilibrium, mechanism design, information economics, and advanced game theory.', credits: 5, category: 'major-elective', interestTags: ['economics', 'game-theory'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON420', title: 'International Economics', description: 'Trade theory, comparative advantage, trade policy, exchange rates, and capital flows.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON424', title: 'Development Economics', description: 'Poverty, growth, institutions, health, education, and aid effectiveness in developing countries.', credits: 5, category: 'major-elective', interestTags: ['economics', 'cultural-studies'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON425', title: 'Public Finance', description: 'Taxation, public expenditure, externalities, public goods, social insurance, and fiscal federalism.', credits: 5, category: 'major-elective', interestTags: ['economics', 'politics'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON431', title: 'Labor Economics', description: 'Labor supply and demand, human capital, wage determination, discrimination, unions, and labor market policy.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON441', title: 'Environmental Economics', description: 'Market failure and the environment, cap-and-trade, carbon taxation, cost-benefit analysis, and sustainability.', credits: 5, category: 'major-elective', interestTags: ['economics', 'environmental'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON450', title: 'Behavioral Economics', description: 'Cognitive biases, prospect theory, intertemporal choice, social preferences, and nudge policy design.', credits: 5, category: 'major-elective', interestTags: ['economics', 'game-theory'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON460', title: 'Financial Economics', description: 'Asset pricing, portfolio theory, risk management, derivatives, and financial market microstructure.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON482', title: 'Health Economics', description: 'Healthcare markets, insurance, moral hazard, physician behavior, and the economics of public health interventions.', credits: 5, category: 'major-elective', interestTags: ['economics'], prereqs: ['ECON300'], genEdReqs: [] },
+    { id: 'ECON484', title: 'Law and Economics', description: 'Economic analysis of legal rules: property, contracts, torts, crime, and regulation.', credits: 5, category: 'major-elective', interestTags: ['economics', 'game-theory'], prereqs: ['ECON300'], genEdReqs: [] },
     { id: 'STAT342', title: 'Intro to Probability & Mathematical Statistics', description: 'Probability distributions, random variables, expected values, central limit theorem, and maximum likelihood estimation.', credits: 5, category: 'major-elective', interestTags: [], prereqs: ['MATH125', 'STAT290'], genEdReqs: [] },
     { id: 'MATH308', title: 'Matrix Algebra with Applications', description: 'Systems of linear equations, vector spaces, eigenvalues, and applications to data science, graphics, and engineering.', credits: 3, category: 'major-elective', interestTags: [], prereqs: ['MATH125'], genEdReqs: [] },
     { id: 'MATH381', title: 'Discrete Mathematical Modeling', description: 'Graph theory, combinatorics, game theory, and network models. Mathematical approaches to strategic problems.', credits: 5, category: 'major-elective', interestTags: ['game-theory'], prereqs: ['MATH125'], genEdReqs: [] },
@@ -162,7 +162,6 @@ export const uwEcon: Curriculum = {
     { id: 'GWSS200', title: 'Introduction to Gender, Women & Sexuality Studies', description: 'Gender and sexuality as social constructs. Feminist theory, intersectionality, and social justice.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
     { id: 'AIS200', title: 'Introduction to American Indian Studies', description: 'History, cultures, and contemporary issues of Indigenous peoples in the Americas. Sovereignty, identity, and representation.', credits: 5, category: 'gen-ed', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
     { id: 'QSCI381', title: 'Introduction to Probability & Statistics', description: 'Probability, random variables, hypothesis testing, and regression. Quantitative methods for natural sciences.', credits: 5, category: 'gen-ed', interestTags: ['science'], prereqs: ['MATH124'], genEdReqs: [] },
-    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals. Recommended for HCDE placement.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: [] },
     { id: 'STAT290', title: 'Basic Statistics (AP Statistics equivalent)', description: 'Introductory probability and statistical methods. Equivalent awarded for AP Statistics score of 4+.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: [] },
 
     // ===================================================================
