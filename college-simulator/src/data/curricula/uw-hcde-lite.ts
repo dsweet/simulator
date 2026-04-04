@@ -18,7 +18,7 @@ export const uwHcdeLite: Curriculum = {
     genEdCategories: [
       // === ENGRUD Placement Requirements (◆ diamond = must complete, ★ star = pick one) ===
       { id: 'calculus', name: 'Mathematics — Calculus (◆ Placement)', creditsRequired: 15, satisfiedBy: ['MATH124', 'MATH125', 'MATH126'] },
-      { id: 'statistics', name: 'Statistics (★ Placement — pick one)', creditsRequired: 5, satisfiedBy: ['STAT290', 'STAT290', 'STAT311', 'QSCI381'] },
+      { id: 'statistics', name: 'Statistics (★ Placement — pick one)', creditsRequired: 5, satisfiedBy: ['STAT290', 'STAT311', 'QSCI381'] },
       { id: 'sciences', name: 'Sciences (◆ Placement — 15cr)', creditsRequired: 15, satisfiedBy: ['CHEM142', 'PHYS121', 'CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'BIOL180', 'ENVIR100'] },
       { id: 'addl-math-sci', name: 'Additional Math/Stats/Science (★ Placement)', creditsRequired: 15, satisfiedBy: ['CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'STAT311', 'QSCI381'] },
 
@@ -132,7 +132,6 @@ export const uwHcdeLite: Curriculum = {
     { id: 'MATH126', title: 'Calculus with Analytic Geometry III', description: 'Multivariable calculus: partial derivatives, multiple integrals, vector calculus, and applications to physics and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH125'], genEdReqs: ['calculus'] },
 
     // ★ Statistics (pick one)
-    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals. Recommended for HCDE placement.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
     { id: 'STAT290', title: 'Basic Statistics (AP Statistics equivalent)', description: 'Introductory probability and statistical methods. Equivalent awarded for AP Statistics score of 4+.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
     { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: ['STAT290'], genEdReqs: ['statistics', 'addl-math-sci'] },
 

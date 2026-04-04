@@ -18,7 +18,7 @@ export const uwHcde: Curriculum = {
     genEdCategories: [
       // === ENGRUD Placement Requirements (◆ diamond = must complete, ★ star = pick one) ===
       { id: 'calculus', name: 'Mathematics — Calculus (◆ Placement)', creditsRequired: 15, satisfiedBy: ['MATH124', 'MATH125', 'MATH126'] },
-      { id: 'statistics', name: 'Statistics (★ Placement — pick one)', creditsRequired: 5, satisfiedBy: ['STAT290', 'STAT290', 'STAT311', 'QSCI381'] },
+      { id: 'statistics', name: 'Statistics (★ Placement — pick one)', creditsRequired: 5, satisfiedBy: ['STAT290', 'STAT311', 'QSCI381'] },
       { id: 'sciences', name: 'Sciences (◆ Placement — 15cr)', creditsRequired: 15, satisfiedBy: ['CHEM142', 'PHYS121', 'CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'BIOL180', 'ENVIR100'] },
       { id: 'addl-math-sci', name: 'Additional Math/Stats/Science (★ Placement)', creditsRequired: 15, satisfiedBy: ['CHEM152', 'CHEM162', 'PHYS122', 'PHYS123', 'STAT311', 'QSCI381'] },
 
@@ -57,38 +57,38 @@ export const uwHcde: Curriculum = {
         slotLabels: ['◆ Calculus III (Placement)', '◆ Mechanics (Placement)', '★ Intro Programming (Placement + Eng. Fundamentals)'],
       },
 
-      // ==================== YEAR 2: Gen-Eds, Engineering Fundamentals, Additional Science ====================
+      // ==================== YEAR 2: ENGRUD completion + early HCDE taste ====================
       {
         termLabel: 'Fall Year 2',
-        courses: ['CHEM152', 'ENGR115', 'ECON200'],
+        courses: ['STAT311', 'PHYS122', 'ENGR115'],
         locked: [false, false, false],
-        slotLabels: ['★ Additional Science (Placement)', 'Engineering Fundamentals (choose one)', 'SSc elective (choose one)'],
+        slotLabels: ['Additional Math/Science (also satisfies statistics)', 'Additional Math/Science (Placement)', 'Engineering Fundamentals (choose one)'],
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['SOC101', 'PHYS122', 'CSE163'],
-        locked: [false, false, false],
-        slotLabels: ['SSc elective (choose one)', 'Additional Math/Stat/Science', 'Engineering Fundamentals (choose one)'],
+        courses: ['HCDE302', 'PHYS123', 'CSE163'],
+        locked: [true, false, false],
+        slotLabels: ['Foundations of HCDE I — early taste before full junior core', 'Additional Math/Science', 'Engineering Fundamentals (choose one)'],
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['ENGL131', 'PHYS123', 'PHIL100'],
-        locked: [false, false, false],
-        slotLabels: ['SSc / Writing course', 'Additional Math/Stat/Science', 'A&H elective (choose one)'],
+        courses: ['HCDE303', 'ECON200', 'PHIL100'],
+        locked: [true, false, false],
+        slotLabels: ['Foundations of HCDE II — continues from HCDE302', 'SSc gen-ed (choose one)', '🟢 Intro Philosophy — A&H gen-ed'],
       },
 
       // ==================== YEAR 3: HCDE Major Core ====================
       {
         termLabel: 'Fall Year 3',
-        courses: ['HCDE310', 'HCDE302', 'HCDE313'],
-        locked: [true, true, true],
-        slotLabels: ['Interactive Systems Design & Tech', 'Foundations of HCDE I', 'Intro to User Research (W)'],
+        courses: ['HCDE310', 'HCDE313', 'SOC101'],
+        locked: [true, true, false],
+        slotLabels: ['Interactive Systems Design & Tech', 'Intro to User Research (W)', '🟢 Intro Sociology — SSc gen-ed'],
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['HCDE303', 'HCDE315', 'HCDE321'],
-        locked: [true, true, true],
-        slotLabels: ['Foundations of HCDE II', 'Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio'],
+        courses: ['HCDE315', 'HCDE321', 'ENGL131'],
+        locked: [true, true, false],
+        slotLabels: ['Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio', 'Expository Writing — Writing gen-ed'],
       },
       {
         termLabel: 'Spring Year 3',
@@ -97,12 +97,12 @@ export const uwHcde: Curriculum = {
         slotLabels: ['UX Prototyping Techniques', 'Visual Communication in HCDE', 'Organizational Teamwork'],
       },
 
-      // ==================== YEAR 4: Capstone, Electives, Remaining Gen-Eds ====================
+      // ==================== YEAR 4: Capstone + HCDE Electives ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['HCDE410', 'STAT311', 'HCDE412'],
+        courses: ['HCDE410', 'HCDE412', 'HIST215'],
         locked: [false, false, false],
-        slotLabels: ['HCDE Engineering Elective', 'Additional Math/Science', 'HCDE Systems & Society Elective'],
+        slotLabels: ['HCDE Engineering Elective', 'HCDE Systems & Society Elective', '🟢 History of East Asia — SSc elective'],
       },
       {
         termLabel: 'Winter Year 4',
@@ -112,9 +112,9 @@ export const uwHcde: Curriculum = {
       },
       {
         termLabel: 'Spring Year 4',
-        courses: ['HCDE493', 'HCDE418', 'HIST215'],
+        courses: ['HCDE493', 'HCDE418', 'ART134'],
         locked: [true, false, false],
-        slotLabels: ['Senior Capstone', 'HCDE Systems & Society Elective', 'A&H / SSc elective'],
+        slotLabels: ['Senior Capstone', 'HCDE Systems & Society Elective', '🟢 Intro Ceramics — hands-on studio elective'],
       },
     ],
   },
@@ -132,7 +132,6 @@ export const uwHcde: Curriculum = {
     { id: 'MATH126', title: 'Calculus with Analytic Geometry III', description: 'Multivariable calculus: partial derivatives, multiple integrals, vector calculus, and applications to physics and engineering.', credits: 5, category: 'major-required', interestTags: [], prereqs: ['MATH125'], genEdReqs: ['calculus'] },
 
     // ★ Statistics (pick one)
-    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals. Recommended for HCDE placement.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
     { id: 'STAT290', title: 'Basic Statistics (AP Statistics equivalent)', description: 'Introductory probability and statistical methods. Equivalent awarded for AP Statistics score of 4+.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: ['statistics'] },
     { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: ['STAT290'], genEdReqs: ['statistics', 'addl-math-sci'] },
 
