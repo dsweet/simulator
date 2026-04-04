@@ -1,7 +1,20 @@
 import { School } from '../types';
 
 export const schools: School[] = [
-  // ==================== UW Paths ====================
+  // ==================== Engineering & Design ====================
+  {
+    id: 'uw',
+    name: 'University of Washington',
+    track: 'engineering-design',
+    program: 'Human Centered Design & Engineering (HCDE)',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
   {
     id: 'uw-hcde-lite',
     name: 'University of Washington',
@@ -67,38 +80,25 @@ export const schools: School[] = [
       sizeLabel: 'Large university (~47,000 students)',
     },
   },
-  {
-    id: 'uw-econ-bs',
-    name: 'University of Washington',
-    track: 'economics',
-    program: 'Economics (BS)',
-    calendar: 'quarter',
-    size: 'large',
-    enrollmentTotal: 47000,
-    hints: {
-      calendarLabel: 'Quarters (3 terms/year)',
-      sizeLabel: 'Large university (~47,000 students)',
-    },
-  },
-  // ==================== Original Schools ====================
-  {
-    id: 'uw',
-    name: 'University of Washington',
-    track: 'engineering-design',
-    program: 'Human Centered Design & Engineering (HCDE)',
-    calendar: 'quarter',
-    size: 'large',
-    enrollmentTotal: 47000,
-    hints: {
-      calendarLabel: 'Quarters (3 terms/year)',
-      sizeLabel: 'Large university (~47,000 students)',
-    },
-  },
+  // ==================== Economics ====================
   {
     id: 'uw-econ',
     name: 'University of Washington',
     track: 'economics',
     program: 'Economics (BA)',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
+    id: 'uw-econ-bs',
+    name: 'University of Washington',
+    track: 'economics',
+    program: 'Economics (BS)',
     calendar: 'quarter',
     size: 'large',
     enrollmentTotal: 47000,
