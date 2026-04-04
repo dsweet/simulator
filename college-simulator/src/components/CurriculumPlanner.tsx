@@ -132,6 +132,20 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
   const filledTermCount = Object.values(plan.termCourses).filter(c => c.length > 0).length;
   const totalCourseCount = allSelectedIds.length;
 
+  // Category breakdown
+  const categoryCounts = useMemo(() => {
+    if (!curriculum) return { major: 0, genEd: 0, elective: 0 };
+    let major = 0, genEd = 0, elective = 0;
+    for (const id of allSelectedIds) {
+      const c = curriculum.courses.find(course => course.id === id);
+      if (!c) continue;
+      if (c.category === 'major-required' || c.category === 'major-elective') major++;
+      else if (c.category === 'gen-ed') genEd++;
+      else elective++;
+    }
+    return { major, genEd, elective };
+  }, [curriculum, allSelectedIds]);
+
   if (!curriculum) {
     return (
       <div className="screen course-planner">
@@ -207,6 +221,13 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
         <div className="planner-stats">
           <span>{filledTermCount} / {allTermLabels.length} terms planned</span>
           <span>{totalCourseCount} courses selected</span>
+          {totalCourseCount > 0 && (
+            <span className="category-breakdown">
+              <span className="cat-stat cat-major">{categoryCounts.major} major ({Math.round(categoryCounts.major / totalCourseCount * 100)}%)</span>
+              <span className="cat-stat cat-gened">{categoryCounts.genEd} gen-ed ({Math.round(categoryCounts.genEd / totalCourseCount * 100)}%)</span>
+              <span className="cat-stat cat-elective">{categoryCounts.elective} elective ({Math.round(categoryCounts.elective / totalCourseCount * 100)}%)</span>
+            </span>
+          )}
         </div>
       </div>
 
