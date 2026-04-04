@@ -139,7 +139,7 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
     for (const id of allSelectedIds) {
       const c = curriculum.courses.find(course => course.id === id);
       if (!c) continue;
-      if (c.category === 'major-required' || c.category === 'major-elective') major++;
+      if (c.category === 'major-required') major++;
       else if (c.category === 'gen-ed') genEd++;
       else elective++;
     }
