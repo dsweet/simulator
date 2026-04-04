@@ -37,44 +37,44 @@ export const uwHcdeLite: Curriculum = {
   recommendedSequence: {
     years: 4,
     terms: [
-      // ==================== YEAR 1: ENGRUD + Electives (AP/IB credits free up slots) ====================
+      // ==================== YEAR 1: ENGRUD + CogSci-flavored electives ====================
       {
         termLabel: 'Fall Year 1',
-        courses: ['MATH124', 'CHEM142', 'DRAMA101'],
+        courses: ['MATH124', 'CHEM142', 'PSYCH101'],
         locked: [true, true, false],
-        slotLabels: ['◆ Calculus I (Placement)', '◆ General Chemistry (Placement)', '🟢 A&H elective — AP Stats + AP CS A free up Year 1 slots'],
+        slotLabels: ['◆ Calculus I (Placement)', '◆ General Chemistry (Placement)', '🟢 Intro Psychology — prereq for all upper-div PSYCH (AP/IB freed this slot)'],
       },
       {
         termLabel: 'Winter Year 1',
-        courses: ['MATH125', 'ENGL111', 'MUSIC116'],
+        courses: ['MATH125', 'ENGL111', 'LING200'],
         locked: [true, true, false],
-        slotLabels: ['◆ Calculus II (Placement)', '◆ English Composition (Placement)', '🟢 A&H elective — AP Stats covers statistics req'],
+        slotLabels: ['◆ Calculus II (Placement)', '◆ English Composition (Placement)', '🟢 Intro Linguistics — CogSci foundation (AP Stats covers stats req)'],
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['MATH126', 'PHYS121', 'ART134'],
+        courses: ['MATH126', 'PHYS121', 'PHIL115'],
         locked: [true, true, false],
-        slotLabels: ['◆ Calculus III (Placement)', '◆ Mechanics (Placement)', '🟢 A&H elective — AP CS A covers CSE121 req'],
+        slotLabels: ['◆ Calculus III (Placement)', '◆ Mechanics (Placement)', '🟢 Philosophy of Mind — CogSci foundation (AP CS A covers CSE121 req)'],
       },
 
-      // ==================== YEAR 2: Remaining ENGRUD + Electives mixed in ====================
+      // ==================== YEAR 2: Remaining ENGRUD + CogSci electives ====================
       {
         termLabel: 'Fall Year 2',
-        courses: ['PHYS122', 'ENGR115', 'CLIT270'],
+        courses: ['PHYS122', 'ENGR115', 'PSYCH303'],
         locked: [false, false, false],
-        slotLabels: ['Additional Math/Science (Placement)', 'Engineering Fundamentals (choose one)', '🟢 A&H elective (your choice)'],
+        slotLabels: ['Additional Math/Science (Placement)', 'Engineering Fundamentals (choose one)', '🟢 Cognitive Psychology — builds on PSYCH101'],
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['PHYS123', 'CHEM152', 'ENGL242'],
+        courses: ['PHYS123', 'CHEM152', 'PSYCH345'],
         locked: [false, false, false],
-        slotLabels: ['Additional Math/Science', '★ Additional Science (Placement)', '🟢 A&H elective (your choice)'],
+        slotLabels: ['Additional Math/Science', '★ Additional Science (Placement)', '🟢 Judgment & Decision Making — connects to HCDE user research'],
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['STAT311', 'CSE163', 'PHIL100'],
+        courses: ['STAT311', 'CSE163', 'PSYCH306'],
         locked: [false, false, false],
-        slotLabels: ['Additional Math/Science (also satisfies statistics)', 'Engineering Fundamentals (choose one)', '🟢 A&H elective (your choice)'],
+        slotLabels: ['Additional Math/Science (also satisfies statistics)', 'Engineering Fundamentals (choose one)', '🟢 Perception — directly relevant to HCDE design work'],
       },
 
       // ==================== YEAR 3: HCDE Major Core (all locked) ====================
@@ -97,24 +97,24 @@ export const uwHcdeLite: Curriculum = {
         slotLabels: ['UX Prototyping Techniques', 'Visual Communication in HCDE', 'Organizational Teamwork'],
       },
 
-      // ==================== YEAR 4: Capstone + Max Electives ====================
+      // ==================== YEAR 4: Capstone + CogSci depth + one fun elective ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['HCDE410', 'COM270', 'HIST215'],
+        courses: ['HCDE410', 'PSYCH355', 'PSYCH315'],
         locked: [false, false, false],
-        slotLabels: ['HCDE Engineering Elective (minimum needed)', '🟢 A&H elective (your choice)', '🟢 SSc elective (your choice)'],
+        slotLabels: ['HCDE Engineering Elective (minimum needed)', '🟢 Human Memory — CogSci depth', '🟢 Psychology of Human Factors — directly complements HCDE'],
       },
       {
         termLabel: 'Winter Year 4',
-        courses: ['HCDE492', 'ENGL320', 'SOC221'],
+        courses: ['HCDE492', 'LING461', 'ART134'],
         locked: [true, false, false],
-        slotLabels: ['Capstone Planning', '🟢 A&H elective (your choice)', '🟢 SSc elective (your choice)'],
+        slotLabels: ['Capstone Planning', '🟢 Sociolinguistics — language & identity', '🟢 Intro Ceramics — hands-on studio elective'],
       },
       {
         termLabel: 'Spring Year 4',
-        courses: ['HCDE493', 'CLIT280', 'AAS101'],
+        courses: ['HCDE493', 'MUSIC364', 'SOC225'],
         locked: [true, false, false],
-        slotLabels: ['Senior Capstone', '🟢 A&H elective (your choice)', '🟢 SSc / DIV elective (your choice)'],
+        slotLabels: ['Senior Capstone', '🟢 Music Cognition — perception & brain science', '🟢 Race & Ethnicity — DIV requirement'],
       },
     ],
   },
