@@ -9,6 +9,12 @@ interface Props {
 }
 
 const TRACK_INFO: Record<Track, { icon: string; title: string; description: string; personaLabel: string }> = {
+  'uw-paths': {
+    icon: '🏔️',
+    title: 'UW — Your Paths',
+    description: 'Compare different 4-year approaches at UW: HCDE with electives, exploration into new majors, or economics',
+    personaLabel: '',
+  },
   'engineering-design': {
     icon: '🎨',
     title: 'Engineering & Design',
@@ -29,10 +35,10 @@ const TRACK_INFO: Record<Track, { icon: string; title: string; description: stri
   },
 };
 
-const TRACK_ORDER: Track[] = ['engineering-design', 'economics', 'ppe'];
+const TRACK_ORDER: Track[] = ['uw-paths', 'engineering-design', 'economics', 'ppe'];
 
 function groupByTrack(allSchools: School[]): Record<Track, School[]> {
-  const groups: Record<Track, School[]> = { 'engineering-design': [], 'economics': [], 'ppe': [] };
+  const groups: Record<Track, School[]> = { 'uw-paths': [], 'engineering-design': [], 'economics': [], 'ppe': [] };
   for (const s of allSchools) {
     groups[s.track].push(s);
   }
@@ -84,9 +90,11 @@ export default function SchoolBrowser({ onSelectSchool, onShowPersonas, onShowSa
                   </button>
                 ))}
               </div>
-              <button className="personas-link" onClick={() => onShowPersonas(track)}>
-                {info.personaLabel} &rarr;
-              </button>
+              {info.personaLabel && (
+                <button className="personas-link" onClick={() => onShowPersonas(track)}>
+                  {info.personaLabel} &rarr;
+                </button>
+              )}
             </div>
           );
         })}

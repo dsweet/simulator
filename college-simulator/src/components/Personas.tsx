@@ -43,6 +43,13 @@ const trackConfig: Record<Track, {
     subtitle: 'Four from Richmond\u2019s PPEL program, four from Rochester\u2019s PPE program. Same interdisciplinary foundation \u2014 philosophy, politics, economics \u2014 eight very different paths through law, policy, civic technology, and political theory.',
     apNote: 'IB/AP credit varies by school. Richmond personas use JAPN 201\u2013202 (intermediate) for foreign language.',
   },
+  'uw-paths': {
+    personas: [],
+    courses: [],
+    title: 'UW Paths',
+    subtitle: '',
+    apNote: '',
+  },
 };
 
 function getCourseTitle(courseId: string, courses: Course[]): string {

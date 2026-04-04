@@ -210,6 +210,12 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
         </div>
       </div>
 
+      <div className="color-legend">
+        <span className="legend-item"><span className="legend-swatch swatch-major"></span> Major Required</span>
+        <span className="legend-item"><span className="legend-swatch swatch-gened"></span> Gen-Ed</span>
+        <span className="legend-item"><span className="legend-swatch swatch-elective"></span> Elective / Choice</span>
+      </div>
+
       {/* 4-year term grid */}
       <div className="term-grid">
         {years.map(({ year, terms }) => (
@@ -240,7 +246,7 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
                           return (
                             <span
                               key={cid}
-                              className="term-cell-course-id"
+                              className={`term-cell-course-id${c ? ` course-cat-${c.category}` : ''}`}
                               title={c ? `${c.title}\n${c.description}` : cid}
                             >{cid}</span>
                           );

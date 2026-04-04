@@ -1,6 +1,73 @@
 import { School } from '../types';
 
 export const schools: School[] = [
+  // ==================== UW Paths ====================
+  {
+    id: 'uw-hcde-lite',
+    name: 'University of Washington',
+    track: 'uw-paths',
+    program: 'HCDE (Elective Focus)',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
+    id: 'uw-explore-complit',
+    name: 'University of Washington',
+    track: 'uw-paths',
+    program: 'Exploration → Comparative Literature',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
+    id: 'uw-explore-polisci',
+    name: 'University of Washington',
+    track: 'uw-paths',
+    program: 'Exploration → Political Science',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
+    id: 'uw-explore-cogsci',
+    name: 'University of Washington',
+    track: 'uw-paths',
+    program: 'Exploration → Cognitive Science',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  {
+    id: 'uw-econ-bs',
+    name: 'University of Washington',
+    track: 'uw-paths',
+    program: 'Economics (BS)',
+    calendar: 'quarter',
+    size: 'large',
+    enrollmentTotal: 47000,
+    hints: {
+      calendarLabel: 'Quarters (3 terms/year)',
+      sizeLabel: 'Large university (~47,000 students)',
+    },
+  },
+  // ==================== Original Schools ====================
   {
     id: 'uw',
     name: 'University of Washington',

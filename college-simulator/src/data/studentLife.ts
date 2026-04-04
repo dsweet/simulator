@@ -1,6 +1,33 @@
 import { StudentLifeData } from '../types';
 
+const uwStudentLife = {
+  location: {
+    city: 'Seattle',
+    state: 'WA',
+    urbanSetting: 'urban',
+    climate: 'Mild, rainy winters (40-50°F). Warm, dry summers (70-80°F). ~150 rainy days/year. Stunning when sunny.',
+    distanceFromSeattle: 'Home — 0 miles',
+    transit: 'Excellent. Light rail station on campus, extensive bus network. Walkable University District. Easy access to downtown.',
+  },
+  housing: {
+    guaranteedYears: 1,
+    description: 'Housing guaranteed for first year only. Competitive lottery after that. Many sophomores+ live off-campus in U-District apartments. Dorms are large and social.',
+  },
+  campusCulture: {
+    greekLife: 'Large Greek system (~15% of students). Greek Row is iconic. Not required for social life but visible presence.',
+    sportsCulture: 'D1 Pac-12 (now Big Ten). Husky football is a big deal — Husky Stadium on Lake Washington. Basketball, rowing also popular. Strong school spirit.',
+    clubsDescription: '1,000+ registered student organizations. Everything from anime club to entrepreneurship. Very easy to find your niche in a large school.',
+    diversity: 'Very diverse. ~25% Asian American, 20% international. Strong multicultural community. Active cultural centers.',
+    campusVibe: 'Big school energy with pockets of intimacy. Beautiful campus with cherry blossoms, views of Mt. Rainier. Can feel overwhelming at first but most students find their community.',
+  },
+};
+
 export const studentLife: StudentLifeData[] = [
+  { schoolId: 'uw-hcde-lite', ...uwStudentLife },
+  { schoolId: 'uw-explore-complit', ...uwStudentLife },
+  { schoolId: 'uw-explore-polisci', ...uwStudentLife },
+  { schoolId: 'uw-explore-cogsci', ...uwStudentLife },
+  { schoolId: 'uw-econ-bs', ...uwStudentLife },
   {
     schoolId: 'uw',
     location: {

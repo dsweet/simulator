@@ -1,6 +1,54 @@
 import { CreditPolicy } from '../types';
 
+// Shared UW AP/IB awards for non-engineering programs (no ENGRUD-specific gen-ed mappings)
+const uwNonEngAwards = [
+  { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — introductory probability and statistical methods.' },
+  { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — elective credit.' },
+  { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+  { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — satisfies Natural World gen-ed', satisfiesGenEd: ['natural-world'] },
+  { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
+  { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142.' },
+  { examName: 'IB Literature HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'ENGL 107', courseDescription: 'Elective English credit — may NOT satisfy English Composition requirement. Verify with adviser.', satisfiesGenEd: ['arts-humanities'] },
+  { examName: 'IB History HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'HIST 1xx', courseDescription: 'Elective credit in history — satisfies Social Sciences gen-ed', satisfiesGenEd: ['social-science'] },
+  { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I (score 6+). Satisfies MATH 124 requirement if applicable.' },
+  { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MATH 120', courseDescription: 'Precalculus (score 4–5). Elective credit — does NOT satisfy Calculus requirement.' },
+];
+
+const uwNonEngPolicy = {
+  slExamsAccepted: true,
+  hlMinScore: 4,
+  slMinScore: 4,
+  creditCap: 45,
+  diplomaBonus: 5,
+  awards: uwNonEngAwards,
+};
+
 export const creditPolicies: CreditPolicy[] = [
+  // UW Paths — new entries
+  {
+    schoolId: 'uw-hcde-lite',
+    slExamsAccepted: true,
+    hlMinScore: 4,
+    slMinScore: 4,
+    creditCap: 45,
+    diplomaBonus: 5,
+    awards: [
+      { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — introductory probability and statistical methods. Satisfies ★ statistics placement requirement for ENGRUD.', satisfiesGenEd: ['statistics'] },
+      { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — fundamentals in Java. Satisfies ★ CSE placement + counts toward engineering fundamentals (4 of 12cr).', satisfiesGenEd: ['eng-fundamentals'] },
+      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+      { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — counts as one of HCDE\'s 3 required science courses', satisfiesGenEd: ['sciences'] },
+      { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
+      { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142. Only a stepping stone; she would still need to take CHEM 142 for ENGRUD placement.' },
+      { examName: 'IB Literature HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'ENGL 107', courseDescription: 'Elective English credit — generic credit, may NOT satisfy the specific English Composition (ENGL 111/121/131) placement requirement. Verify with adviser.', satisfiesGenEd: ['arts-humanities'] },
+      { examName: 'IB History HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'HIST 1xx', courseDescription: 'Elective credit in history — satisfies Social Sciences gen-ed', satisfiesGenEd: ['social-science'] },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 6, creditsAwarded: 5, courseEquivalent: 'MATH 124', courseDescription: 'Calculus I (score 6+). Satisfies ◆ MATH 124 placement. Still needs MATH 125 and 126.', satisfiesGenEd: ['calculus'] },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MATH 120', courseDescription: 'Precalculus (score 4–5). Elective credit — does NOT satisfy Calculus placement. Still need to take MATH 124.' },
+    ],
+  },
+  { schoolId: 'uw-explore-complit', ...uwNonEngPolicy },
+  { schoolId: 'uw-explore-polisci', ...uwNonEngPolicy },
+  { schoolId: 'uw-explore-cogsci', ...uwNonEngPolicy },
+  { schoolId: 'uw-econ-bs', ...uwNonEngPolicy },
   {
     schoolId: 'uw',
     slExamsAccepted: true,
