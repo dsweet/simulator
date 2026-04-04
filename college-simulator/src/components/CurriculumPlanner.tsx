@@ -267,7 +267,7 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
                           return (
                             <div key={cid} className="term-cell-course-row">
                               <span className={`term-cell-course-id${c ? ` course-cat-${c.category}` : ''}`}>{cid}</span>
-                              {c && <span className="term-cell-course-desc">{c.title} — {c.description}</span>}
+                              {c && <span className="term-cell-course-desc"><strong>{c.title}</strong> — {c.description}</span>}
                             </div>
                           );
                         })}
