@@ -1,6 +1,10 @@
 import { useState, useCallback, useMemo } from 'react';
 import { CurriculumPlan, Track } from './types';
-import { createPlan, loadCurrentPlan, saveCurrentPlan, clearCurrentPlan } from './engine/gameState';
+import { createPlan, loadCurrentPlan, saveCurrentPlan, clearCurrentPlan, autofillPlan } from './engine/gameState';
+import { getCurriculum } from './data/curricula/index';
+import { creditPolicies } from './data/creditPolicies';
+import { studentProfile } from './data/student';
+import { evaluateCredits } from './engine/creditEvaluator';
 import { loadSavedCurricula } from './engine/curriculumExport';
 import { schools } from './data/schools';
 import SchoolBrowser from './components/SchoolBrowser';
@@ -26,7 +30,26 @@ function App() {
   }, []);
 
   const handleSelectSchool = (schoolId: string) => {
-    const newPlan = createPlan(schoolId);
+    let newPlan = createPlan(schoolId);
+    const curriculum = getCurriculum(schoolId);
+    const school = schools.find(s => s.id === schoolId);
+    const policy = creditPolicies.find(p => p.schoolId === schoolId);
+    if (curriculum && policy && school) {
+      const creditSummary = evaluateCredits(studentProfile, policy);
+      const catalogIds = new Set(curriculum.courses.map(c => c.id));
+      const creditedCourseIds = new Set<string>();
+      for (const result of creditSummary.results) {
+        if (result.creditsAwarded <= 0 || !result.courseEquivalent) continue;
+        const parts = result.courseEquivalent.split('/').map(p => p.trim());
+        const prefix = parts[0].replace(/\s*\d+.*$/, '');
+        for (const part of parts) {
+          const full = part.includes(prefix) ? part : `${prefix} ${part}`;
+          const normalized = full.replace(/\s+/g, '').toUpperCase();
+          if (catalogIds.has(normalized)) creditedCourseIds.add(normalized);
+        }
+      }
+      newPlan = autofillPlan(newPlan, curriculum, creditedCourseIds, creditSummary, school.calendar);
+    }
     updatePlan(newPlan);
     setScreen('school-detail');
   };
