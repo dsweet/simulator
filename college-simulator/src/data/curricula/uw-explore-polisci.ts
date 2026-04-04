@@ -139,7 +139,7 @@ export const uwExplorePolisci: Curriculum = {
     // ===================================================================
     // METHODS & STATISTICS
     // ===================================================================
-    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'STAT290', title: 'Basic Statistics (AP Statistics equivalent)', description: 'Introductory probability and statistical methods. Equivalent awarded for AP Statistics score of 4+.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: [] },
     { id: 'STAT311', title: 'Elements of Statistical Methods', description: 'Estimation, hypothesis testing, ANOVA, and simple linear regression. Applied statistics for science and engineering.', credits: 5, category: 'major-elective', interestTags: [], prereqs: ['STAT290'], genEdReqs: [] },
 
     // ===================================================================
@@ -204,7 +204,7 @@ export const uwExplorePolisci: Curriculum = {
     // ===================================================================
     // ASIAN AMERICAN STUDIES / CULTURAL STUDIES
     // ===================================================================
-    { id: 'AAS101', title: 'Introduction to Asian American Studies', description: 'History, culture, and contemporary experiences of Asian Americans. Immigration, identity, community, and activism.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
+    { id: 'AAS101', title: 'Introduction to Asian American Studies', description: 'History, culture, and contemporary experiences of Asian Americans. Immigration, identity, community, and activism.', credits: 5, category: 'gen-ed', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
     { id: 'AAS200', title: 'Asian Americans and the Arts', description: 'Asian American artistic expression in literature, film, visual art, and performance. Identity, representation, and cultural production.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'literature'], prereqs: [], genEdReqs: ['arts-humanities', 'diversity', 'addl-ah-ssc'] },
     { id: 'AAS310', title: 'Asian American Communities & Health', description: 'Health disparities, mental health, intergenerational trauma, and wellness in Asian American communities.', credits: 5, category: 'elective', interestTags: ['cultural-studies'], prereqs: ['AAS101'], genEdReqs: ['diversity'] },
     { id: 'AAS320', title: 'Asian Americans in the Pacific Northwest', description: 'Japanese American incarceration, Filipino cannery workers, Chinese exclusion, and contemporary Asian American life in the PNW.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },

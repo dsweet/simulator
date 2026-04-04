@@ -118,7 +118,7 @@ export const uwPoliecon: Curriculum = {
     { id: 'ECON301', title: 'Intermediate Microeconomics', description: 'Consumer theory, producer theory, general equilibrium, welfare analysis, and market failure.', credits: 5, category: 'major-required', interestTags: ['economics', 'game-theory'], prereqs: ['ECON200', 'MATH124'], genEdReqs: [] },
     { id: 'POL220', title: 'Introduction to Political Economy', description: 'How political institutions shape economic outcomes. Markets, property rights, redistribution, and collective action.', credits: 5, category: 'major-required', interestTags: ['politics', 'economics', 'game-theory'], prereqs: ['POL101'], genEdReqs: [] },
     { id: 'PHIL114', title: 'Ethics', description: 'Major moral theories and contemporary ethical dilemmas. Utilitarianism, deontology, virtue ethics, and applied ethics.', credits: 5, category: 'major-required', interestTags: ['philosophy'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'STAT290', title: 'Principles of Statistical Reasoning', description: 'Statistical literacy, probability, distributions, hypothesis testing, confidence intervals. Recommended for HCDE placement.', credits: 5, category: 'major-required', interestTags: [], prereqs: [], genEdReqs: [] },
+    { id: 'STAT290', title: 'Basic Statistics (AP Statistics equivalent)', description: 'Introductory probability and statistical methods. Equivalent awarded for AP Statistics score of 4+.', credits: 5, category: 'gen-ed', interestTags: [], prereqs: [], genEdReqs: [] },
 
     // ===================================================================
     // MAJOR ELECTIVES — Economics 3xx/4xx
