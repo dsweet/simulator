@@ -35,9 +35,9 @@ export const uwEcon: Curriculum = {
       },
       {
         termLabel: 'Winter Year 1',
-        courses: ['ECON201', 'PHIL100', 'POL101'],
+        courses: ['ECON201', 'POL101', 'PHIL100'],
         locked: [true, false, false],
-        slotLabels: ['Intro Macroeconomics', '🟢 Intro Philosophy — prereq for PHIL200/250/340', '🟢 Intro Political Science — SSc gen-ed'],
+        slotLabels: ['Intro Macroeconomics', '🟢 Intro Political Science — SSc gen-ed', '🟢 Intro Philosophy — prereq for PHIL200/250/340'],
       },
       {
         termLabel: 'Spring Year 1',
@@ -89,9 +89,9 @@ export const uwEcon: Curriculum = {
       // ==================== YEAR 4 ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['ECON460', 'ECON424', 'PSYCH101'],
+        courses: ['PSYCH101', 'ECON460', 'ECON424'],
         locked: [false, false, false],
-        slotLabels: ['ECON elective', 'ECON elective', 'elective'],
+        slotLabels: ['🟢 Intro Psychology — SSc gen-ed', 'ECON elective', 'ECON elective'],
       },
       {
         termLabel: 'Winter Year 4',

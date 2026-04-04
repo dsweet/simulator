@@ -41,9 +41,9 @@ export const uwExplorePolisci: Curriculum = {
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['DRAMA101', 'ART134', 'POL101'],
-        locked: [false, false, true],
-        slotLabels: ['Exploration: Theater', 'Exploration: Ceramics', 'Intro to Political Science (major prereq)'],
+        courses: ['POL101', 'DRAMA101', 'ART134'],
+        locked: [true, false, false],
+        slotLabels: ['Intro to Political Science (major prereq)', 'Exploration: Theater', 'Exploration: Ceramics'],
       },
 
       // ==================== YEAR 2: POL Core + Methods ====================

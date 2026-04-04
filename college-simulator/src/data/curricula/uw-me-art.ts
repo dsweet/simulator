@@ -44,9 +44,9 @@ export const uwMeArt: Curriculum = {
       },
       {
         termLabel: 'Winter Year 1',
-        courses: ['MATH125', 'ENGL111', 'ME123'],
+        courses: ['ME123', 'MATH125', 'ENGL111'],
         locked: [true, true, true],
-        slotLabels: ['◆ Calculus II (Placement)', '◆ English Composition (Placement)', '◆ Visualization & CAD — 3D modeling in SolidWorks, counts as A&H (4cr)'],
+        slotLabels: ['◆ Visualization & CAD — 3D modeling in SolidWorks, counts as A&H (4cr)', '◆ Calculus II (Placement)', '◆ English Composition (Placement)'],
       },
       {
         termLabel: 'Spring Year 1',
@@ -64,15 +64,15 @@ export const uwMeArt: Curriculum = {
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['PHYS123', 'AA210', 'ME230'],
+        courses: ['AA210', 'ME230', 'PHYS123'],
         locked: [true, true, true],
-        slotLabels: ['◆ Waves, Light & Heat (Sciences)', '◆ Statics (ME prereq)', '◆ Kinematics & Dynamics (ME prereq)'],
+        slotLabels: ['◆ Statics (ME prereq)', '◆ Kinematics & Dynamics (ME prereq)', '◆ Waves, Light & Heat (Sciences)'],
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['MATH209', 'CEE220', 'MSE170', 'ART253'],
+        courses: ['CEE220', 'MSE170', 'MATH209', 'ART253'],
         locked: [true, true, true, false],
-        slotLabels: ['◆ Linear Analysis (ME prereq, needs 207+208)', '◆ Mechanics of Materials (ME prereq)', '◆ Intro Materials Science (ME prereq)', '🟢 Intro Ceramics — hands-on making, A&H gen-ed'],
+        slotLabels: ['◆ Mechanics of Materials (ME prereq)', '◆ Intro Materials Science (ME prereq)', '◆ Linear Analysis (ME prereq, needs 207+208)', '🟢 Intro Ceramics — hands-on making, A&H gen-ed'],
       },
 
       // ==================== YEAR 3: ME Major Core ====================
@@ -98,9 +98,9 @@ export const uwMeArt: Curriculum = {
       // ==================== YEAR 4: Capstone + ME Electives + Art ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['ME493', 'ME480', 'DXARTS470', 'PSYCH101'],
+        courses: ['ME493', 'PSYCH101', 'ME480', 'DXARTS470'],
         locked: [true, false, false, false],
-        slotLabels: ['Capstone Design I (W)', '🟢 ME Elective: Computer-Aided Manufacturing', '🟢 Sensing & Control for Digital Arts — bridges ME into art/fabrication', '🟢 Intro Psychology — SSc gen-ed'],
+        slotLabels: ['Capstone Design I (W)', '🟢 Intro Psychology — SSc gen-ed', '🟢 ME Elective: Computer-Aided Manufacturing', '🟢 Sensing & Control for Digital Arts — bridges ME into art/fabrication'],
       },
       {
         termLabel: 'Winter Year 4',

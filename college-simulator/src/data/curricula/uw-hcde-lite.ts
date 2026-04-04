@@ -66,29 +66,29 @@ export const uwHcdeLite: Curriculum = {
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['PHYS123', 'HCDE302', 'PSYCH345'],
-        locked: [false, true, false],
-        slotLabels: ['Additional Math/Science', 'Foundations of HCDE I — early taste before committing to full junior core', '🟢 Judgment & Decision Making — connects to HCDE user research'],
+        courses: ['HCDE302', 'PHYS123', 'PSYCH345'],
+        locked: [true, false, false],
+        slotLabels: ['Foundations of HCDE I — early taste before committing to full junior core', 'Additional Math/Science', '🟢 Judgment & Decision Making — connects to HCDE user research'],
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['STAT311', 'CSE163', 'HCDE303'],
-        locked: [false, false, true],
-        slotLabels: ['Additional Math/Science (also satisfies statistics)', 'Engineering Fundamentals (choose one)', 'Foundations of HCDE II — continues from HCDE302'],
+        courses: ['HCDE303', 'STAT311', 'CSE163'],
+        locked: [true, false, false],
+        slotLabels: ['Foundations of HCDE II — continues from HCDE302', 'Additional Math/Science (also satisfies statistics)', 'Engineering Fundamentals (choose one)'],
       },
 
       // ==================== YEAR 3: HCDE Major Core (all locked) ====================
       {
         termLabel: 'Fall Year 3',
-        courses: ['HCDE310', 'INFO200', 'HCDE313'],
-        locked: [true, false, true],
-        slotLabels: ['Interactive Systems Design & Tech', '🟢 Intellectual Foundations of Informatics — bridges CogSci & HCDE', 'Intro to User Research (W)'],
+        courses: ['HCDE310', 'HCDE313', 'INFO200'],
+        locked: [true, true, false],
+        slotLabels: ['Interactive Systems Design & Tech', 'Intro to User Research (W)', '🟢 Intellectual Foundations of Informatics — bridges CogSci & HCDE'],
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['PSYCH306', 'HCDE315', 'HCDE321'],
-        locked: [false, true, true],
-        slotLabels: ['🟢 Perception — directly relevant to HCDE design work', 'Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio'],
+        courses: ['HCDE315', 'HCDE321', 'PSYCH306'],
+        locked: [true, true, false],
+        slotLabels: ['Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio', '🟢 Perception — directly relevant to HCDE design work'],
       },
       {
         termLabel: 'Spring Year 3',

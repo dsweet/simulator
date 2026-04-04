@@ -75,9 +75,9 @@ export const uwExploreComplit: Curriculum = {
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['CLIT370', 'CLIT265', 'ENGL320'],
+        courses: ['CLIT370', 'ENGL320', 'CLIT265'],
         locked: [false, false, false],
-        slotLabels: ['Major seminar elective', 'East Asian Cinema', 'Literature elective'],
+        slotLabels: ['Major seminar elective', 'Literature elective', 'East Asian Cinema'],
       },
       {
         termLabel: 'Spring Year 3',

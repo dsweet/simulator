@@ -29,9 +29,9 @@ export const uwExploreCogsci: Curriculum = {
       // ==================== YEAR 1: Broad Exploration (Shared) ====================
       {
         termLabel: 'Fall Year 1',
-        courses: ['ENGL111', 'SOC101', 'PSYCH101'],
-        locked: [true, false, true],
-        slotLabels: ['English Composition', 'Exploration: Sociology', 'Intro Psychology (major prereq)'],
+        courses: ['PSYCH101', 'ENGL111', 'SOC101'],
+        locked: [true, true, false],
+        slotLabels: ['Intro Psychology (major prereq)', 'English Composition', 'Exploration: Sociology'],
       },
       {
         termLabel: 'Winter Year 1',
@@ -41,9 +41,9 @@ export const uwExploreCogsci: Curriculum = {
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['DRAMA101', 'ART134', 'LING200'],
+        courses: ['DRAMA101', 'LING200', 'ART134'],
         locked: [false, false, false],
-        slotLabels: ['Exploration: Theater', 'Exploration: Ceramics', 'Intro Linguistics (CogSci cross-list)'],
+        slotLabels: ['Exploration: Theater', 'Intro Linguistics (CogSci cross-list)', 'Exploration: Ceramics'],
       },
 
       // ==================== YEAR 2: PSYCH Core + CogSci Foundations ====================
