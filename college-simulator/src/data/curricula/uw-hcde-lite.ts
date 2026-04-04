@@ -114,7 +114,7 @@ export const uwHcdeLite: Curriculum = {
         termLabel: 'Spring Year 4',
         courses: ['HCDE493', 'MUSIC364', 'SOC225'],
         locked: [true, false, false],
-        slotLabels: ['Senior Capstone', '🟢 Music Cognition — perception & brain science', '🟢 Race & Ethnicity — DIV requirement'],
+        slotLabels: ['Senior Capstone', '🟢 Music Cognition — perception & brain science', '🟢 Race & Ethnicity — free elective (HCDE315 already covers DIV)'],
       },
     ],
   },
