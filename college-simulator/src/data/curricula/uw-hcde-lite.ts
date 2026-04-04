@@ -72,9 +72,9 @@ export const uwHcdeLite: Curriculum = {
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['STAT311', 'CSE163', 'PSYCH306'],
-        locked: [false, false, false],
-        slotLabels: ['Additional Math/Science (also satisfies statistics)', 'Engineering Fundamentals (choose one)', '🟢 Perception — directly relevant to HCDE design work'],
+        courses: ['STAT311', 'CSE163', 'HCDE303'],
+        locked: [false, false, true],
+        slotLabels: ['Additional Math/Science (also satisfies statistics)', 'Engineering Fundamentals (choose one)', 'Foundations of HCDE II — continues from HCDE302'],
       },
 
       // ==================== YEAR 3: HCDE Major Core (all locked) ====================
@@ -86,9 +86,9 @@ export const uwHcdeLite: Curriculum = {
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['HCDE303', 'HCDE315', 'HCDE321'],
-        locked: [true, true, true],
-        slotLabels: ['Foundations of HCDE II', 'Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio'],
+        courses: ['PSYCH306', 'HCDE315', 'HCDE321'],
+        locked: [false, true, true],
+        slotLabels: ['🟢 Perception — directly relevant to HCDE design work', 'Inclusive Design (DIV) — or HCDE 316', 'Professional Portfolio'],
       },
       {
         termLabel: 'Spring Year 3',
