@@ -52,9 +52,9 @@ export const uwHcde: Curriculum = {
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['MATH126', 'PHYS121', 'CSE121'],
-        locked: [true, true, true],
-        slotLabels: ['◆ Calculus III (Placement)', '◆ Mechanics (Placement)', '★ Intro Programming (Placement + Eng. Fundamentals)'],
+        courses: ['MATH126', 'PHYS121', 'HIST215'],
+        locked: [true, true, false],
+        slotLabels: ['◆ Calculus III (Placement)', '◆ Mechanics (Placement)', '🟢 History of East Asia — SSc gen-ed (AP CS A covers CSE121)'],
       },
 
       // ==================== YEAR 2: ENGRUD completion + early HCDE taste ====================
@@ -100,9 +100,9 @@ export const uwHcde: Curriculum = {
       // ==================== YEAR 4: Capstone + HCDE Electives ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['HCDE410', 'HCDE412', 'HIST215'],
+        courses: ['HCDE410', 'HCDE412', 'INFO200'],
         locked: [false, false, false],
-        slotLabels: ['HCDE Engineering Elective', 'HCDE Systems & Society Elective', '🟢 History of East Asia — SSc elective'],
+        slotLabels: ['HCDE Engineering Elective', 'HCDE Systems & Society Elective', '🟢 Intellectual Foundations of Informatics — bridges design & society'],
       },
       {
         termLabel: 'Winter Year 4',
