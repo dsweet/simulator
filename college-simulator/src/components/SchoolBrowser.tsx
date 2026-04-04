@@ -10,15 +10,15 @@ interface Props {
 
 const TRACK_INFO: Record<Track, { icon: string; title: string; description: string; personaLabel: string }> = {
   'uw-paths': {
-    icon: '🏔️',
-    title: 'UW — Your Paths',
-    description: 'Compare different 4-year approaches at UW: HCDE with electives, exploration into new majors, or economics',
+    icon: '🧭',
+    title: 'UW — Exploration',
+    description: 'Start broad, then declare a major: comparative literature, political science, or cognitive science',
     personaLabel: '',
   },
   'engineering-design': {
     icon: '🎨',
     title: 'Engineering & Design',
-    description: 'Human-centered design, UX research, interaction design, prototyping, design thinking',
+    description: 'HCDE, mechanical engineering, UX research, product design, prototyping, art & fabrication',
     personaLabel: 'Meet 8 HCDE graduates',
   },
   'economics': {

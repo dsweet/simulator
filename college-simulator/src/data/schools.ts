@@ -5,7 +5,7 @@ export const schools: School[] = [
   {
     id: 'uw-hcde-lite',
     name: 'University of Washington',
-    track: 'uw-paths',
+    track: 'engineering-design',
     program: 'HCDE (Elective Focus)',
     calendar: 'quarter',
     size: 'large',
@@ -57,7 +57,7 @@ export const schools: School[] = [
   {
     id: 'uw-me-art',
     name: 'University of Washington',
-    track: 'uw-paths',
+    track: 'engineering-design',
     program: 'Mechanical Engineering + Art/Design',
     calendar: 'quarter',
     size: 'large',
@@ -70,7 +70,7 @@ export const schools: School[] = [
   {
     id: 'uw-econ-bs',
     name: 'University of Washington',
-    track: 'uw-paths',
+    track: 'economics',
     program: 'Economics (BS)',
     calendar: 'quarter',
     size: 'large',
