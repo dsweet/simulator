@@ -80,9 +80,9 @@ export const uwHcdeLite: Curriculum = {
       // ==================== YEAR 3: HCDE Major Core (all locked) ====================
       {
         termLabel: 'Fall Year 3',
-        courses: ['HCDE310', 'HCDE410', 'HCDE313'],
+        courses: ['HCDE310', 'INFO200', 'HCDE313'],
         locked: [true, false, true],
-        slotLabels: ['Interactive Systems Design & Tech', 'HCDE Engineering Elective (minimum needed)', 'Intro to User Research (W)'],
+        slotLabels: ['Interactive Systems Design & Tech', '🟢 Intellectual Foundations of Informatics — bridges CogSci & HCDE', 'Intro to User Research (W)'],
       },
       {
         termLabel: 'Winter Year 3',
@@ -100,9 +100,9 @@ export const uwHcdeLite: Curriculum = {
       // ==================== YEAR 4: Capstone + CogSci depth + one fun elective ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['INFO200', 'PSYCH355', 'PSYCH315'],
+        courses: ['HCDE410', 'PSYCH355', 'PSYCH315'],
         locked: [false, false, false],
-        slotLabels: ['🟢 Intellectual Foundations of Informatics — bridges CogSci & HCDE', '🟢 Human Memory — CogSci depth', '🟢 Psychology of Human Factors — directly complements HCDE'],
+        slotLabels: ['HCDE Engineering Elective (prereq: HCDE310)', '🟢 Human Memory — CogSci depth', '🟢 Psychology of Human Factors — directly complements HCDE'],
       },
       {
         termLabel: 'Winter Year 4',
