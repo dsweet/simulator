@@ -248,16 +248,21 @@ export default function CurriculumPlanner({ school, plan, onUpdatePlan, onFinish
                 const isActive = label === activeTerm;
                 const hasIssue = termHasPrereqIssue(label);
                 const seasonLabel = label.replace(/ Year \d+/, '');
+                const termCredits = courses.reduce((sum, cid) => {
+                  const c = curriculum.courses.find(co => co.id === cid);
+                  return sum + (c?.credits || 0);
+                }, 0);
+                const isHeavyLoad = courses.length > 0 && termCredits > 16;
                 return (
                   <button
                     key={label}
-                    className={`term-cell ${isActive ? 'term-cell-active' : ''} ${courses.length > 0 ? 'term-cell-filled' : ''} ${hasIssue ? 'term-cell-warning' : ''}`}
+                    className={`term-cell ${isActive ? 'term-cell-active' : ''} ${courses.length > 0 ? 'term-cell-filled' : ''} ${isHeavyLoad ? 'term-cell-heavy' : ''} ${hasIssue ? 'term-cell-warning' : ''}`}
                     onClick={() => setActiveTerm(isActive ? null : label)}
                   >
                     <div className="term-cell-header">
                       <span className="term-cell-label">{seasonLabel}{hasIssue && ' ⚠️'}</span>
                       <span className="term-cell-count">
-                        {courses.length > 0 ? `${courses.length}` : '—'}
+                        {courses.length > 0 ? `${courses.length} · ${termCredits}cr` : '—'}
                       </span>
                     </div>
                     {courses.length > 0 && (
