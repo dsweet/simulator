@@ -4,7 +4,7 @@ import { CreditPolicy } from '../types';
 const uwNonEngAwards = [
   { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — introductory probability and statistical methods.' },
   { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — elective credit.' },
-  { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+  { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'First-year Japanese equivalent — satisfies foreign language requirements (e.g. Comp Lit language req)' },
   { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — satisfies Natural World gen-ed', satisfiesGenEd: ['natural-world'] },
   { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
   { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142.' },
@@ -35,7 +35,7 @@ export const creditPolicies: CreditPolicy[] = [
     awards: [
       { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — introductory probability and statistical methods. Satisfies ★ statistics placement requirement for ENGRUD.', satisfiesGenEd: ['statistics'] },
       { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — fundamentals in Java. Satisfies ★ CSE placement + counts toward engineering fundamentals (4 of 12cr).', satisfiesGenEd: ['eng-fundamentals'] },
-      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'First-year Japanese equivalent — satisfies foreign language requirements (e.g. Comp Lit language req)' },
       { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — counts as one of HCDE\'s 3 required science courses', satisfiesGenEd: ['sciences'] },
       { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142. Only a stepping stone; she would still need to take CHEM 142 for ENGRUD placement.' },
@@ -58,7 +58,7 @@ export const creditPolicies: CreditPolicy[] = [
     awards: [
       { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — satisfies statistics requirement for ME (replaces IND E 315).', satisfiesGenEd: ['statistics'] },
       { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — counts toward engineering fundamentals.', satisfiesGenEd: ['eng-fundamentals'] },
-      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'First-year Japanese equivalent — satisfies foreign language requirements (e.g. Comp Lit language req)' },
       { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — free elective credit for ME (not a required science).', },
       { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142.' },
@@ -79,7 +79,7 @@ export const creditPolicies: CreditPolicy[] = [
     awards: [
       { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — introductory probability and statistical methods. Satisfies ★ statistics placement requirement for ENGRUD.', satisfiesGenEd: ['statistics'] },
       { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — fundamentals in Java. Satisfies ★ CSE placement + counts toward engineering fundamentals (4 of 12cr).', satisfiesGenEd: ['eng-fundamentals'] },
-      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'First-year Japanese equivalent — satisfies foreign language requirements (e.g. Comp Lit language req)' },
       { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — counts as one of HCDE\'s 3 required science courses', satisfiesGenEd: ['sciences'] },
       { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142. Only a stepping stone; she would still need to take CHEM 142 for ENGRUD placement.' },
@@ -99,7 +99,7 @@ export const creditPolicies: CreditPolicy[] = [
     awards: [
       { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — introductory probability and statistical methods.' },
       { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — elective credit.' },
-      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'First-year Japanese equivalent — satisfies foreign language requirements (e.g. Comp Lit language req)' },
       { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — satisfies Natural World gen-ed', satisfiesGenEd: ['natural-world'] },
       { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142.' },
@@ -119,7 +119,7 @@ export const creditPolicies: CreditPolicy[] = [
     awards: [
       { examName: 'AP Statistics', minScore: 3, creditsAwarded: 5, courseEquivalent: 'STAT 290', courseDescription: 'Basic Statistics — introductory probability and statistical methods.' },
       { examName: 'AP Computer Science A', minScore: 3, creditsAwarded: 4, courseEquivalent: 'CSE 121', courseDescription: 'Intro to Computer Programming I — elective credit.' },
-      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'Elective credit in Japanese language — free elective only' },
+      { examName: 'IB Japanese SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'JAPAN 1xx', courseDescription: 'First-year Japanese equivalent — satisfies foreign language requirements (e.g. Comp Lit language req)' },
       { examName: 'IB Biology SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'BIOL 161', courseDescription: 'Introductory Biology — satisfies Natural World gen-ed', satisfiesGenEd: ['natural-world'] },
       { examName: 'IB Business Management SL', minScore: 4, creditsAwarded: 5, courseEquivalent: 'MGMT 1xx', courseDescription: 'General elective credit in business — free elective only' },
       { examName: 'IB Chemistry SL', minScore: 4, creditsAwarded: 3, courseEquivalent: 'CHEM 110', courseDescription: 'Prep for General Chemistry (3cr) — does NOT satisfy CHEM 142.' },

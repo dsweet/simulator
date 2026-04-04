@@ -5,9 +5,9 @@ export const uwExploreComplit: Curriculum = {
   program: 'Exploration → Comparative Literature',
   degreeRequirements: {
     totalCredits: 180,
-    majorCredits: 60, // CLIT core (30) + upper-division lit seminars (15) + language (10) + capstone (5)
+    majorCredits: 50, // CLIT core (30) + upper-division lit seminars (15) + capstone (5) — IB Japanese SL satisfies language req
     genEdCredits: 35,
-    electiveCredits: 85,
+    electiveCredits: 95, // 10cr freed by IB Japanese SL satisfying language req
     majorCourses: [
       'CLIT240', 'CLIT250', 'CLIT270', 'CLIT280', 'CLIT290',
       'ENGL340', 'CLIT490',
@@ -46,24 +46,24 @@ export const uwExploreComplit: Curriculum = {
         slotLabels: ['Exploration: Theater', 'Exploration: Ceramics', 'Exploration: Astronomy'],
       },
 
-      // ==================== YEAR 2: Begin Comp Lit + Language ====================
+      // ==================== YEAR 2: Begin Comp Lit (IB Japanese SL covers language req) ====================
       {
         termLabel: 'Fall Year 2',
-        courses: ['CLIT240', 'JAPAN201', 'ENGL283'],
-        locked: [true, true, false],
-        slotLabels: ['Classical Literature in Translation', 'Second-Year Japanese I', 'Creative Writing / Writing req'],
+        courses: ['CLIT240', 'ENGL283', 'CLIT260'],
+        locked: [true, false, false],
+        slotLabels: ['Classical Literature in Translation', 'Creative Writing / Writing req', '🟢 Japanese Literature in Translation — builds on IB Japanese'],
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['CLIT250', 'JAPAN202', 'CLIT270'],
-        locked: [true, true, true],
-        slotLabels: ['Russian Literature in Translation', 'Second-Year Japanese II', 'Intro to Graphic Narrative'],
+        courses: ['CLIT250', 'CLIT270', 'HIST225'],
+        locked: [true, true, false],
+        slotLabels: ['Russian Literature in Translation', 'Intro to Graphic Narrative', '🟢 Japanese History — cultural depth elective'],
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['CLIT280', 'JAPAN203', 'ENGL242'],
-        locked: [true, true, false],
-        slotLabels: ['Comparative Literature', 'Second-Year Japanese III', 'A&H / literature elective'],
+        courses: ['CLIT280', 'ENGL242', 'ENGL262'],
+        locked: [true, false, false],
+        slotLabels: ['Comparative Literature', '🟢 Reading Fiction — A&H elective', '🟢 Asian American Literature — A&H + DIV elective'],
       },
 
       // ==================== YEAR 3: Upper-Division Lit + Theory ====================
@@ -75,15 +75,15 @@ export const uwExploreComplit: Curriculum = {
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['CLIT370', 'CLIT260', 'ENGL320'],
+        courses: ['CLIT370', 'CLIT265', 'ENGL320'],
         locked: [false, false, false],
-        slotLabels: ['Major seminar elective', 'Japanese Literature in Translation', 'Literature elective'],
+        slotLabels: ['Major seminar elective', 'East Asian Cinema', 'Literature elective'],
       },
       {
         termLabel: 'Spring Year 3',
-        courses: ['CLIT380', 'ENGL310', 'HIST225'],
+        courses: ['CLIT380', 'ENGL310', 'HIST215'],
         locked: [false, false, false],
-        slotLabels: ['Major seminar elective', 'Literature elective', 'SSc / cultural elective'],
+        slotLabels: ['Major seminar elective', 'Literature elective', '🟢 History of East Asia — SSc / cultural elective'],
       },
 
       // ==================== YEAR 4: Senior Thesis + Electives ====================
@@ -101,9 +101,9 @@ export const uwExploreComplit: Curriculum = {
       },
       {
         termLabel: 'Spring Year 4',
-        courses: ['ENGL363', 'CLIT265', 'SOC225'],
+        courses: ['ENGL363', 'AAS101', 'SOC225'],
         locked: [false, false, false],
-        slotLabels: ['Literature elective', 'Elective', 'DIV elective'],
+        slotLabels: ['Literature elective', '🟢 Intro Asian American Studies — SSc + DIV', 'DIV elective'],
       },
     ],
   },
