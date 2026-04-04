@@ -41,9 +41,9 @@ export const uwEcon: Curriculum = {
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['MATH126', 'HIST111', 'ENGL283'],
+        courses: ['MATH126', 'PHIL100', 'ENGL283'],
         locked: [true, false, false],
-        slotLabels: ['Calculus III', '🟢 World History — SSc gen-ed (AP Stats covers stats req)', 'Writing elective'],
+        slotLabels: ['Calculus III', '🟢 Intro Philosophy — prereq for PHIL200/250/340 (AP Stats covers stats req)', 'Writing elective'],
       },
 
       // ==================== YEAR 2 ====================
