@@ -236,6 +236,32 @@ export const creditPolicies: CreditPolicy[] = [
     ],
   },
   {
+    schoolId: 'rochester-econ',
+    slExamsAccepted: false,
+    hlMinScore: 5,
+    creditCap: 16,
+    awards: [
+      { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'STT 211', courseDescription: 'Introduction to Statistics — satisfies stats prerequisite for Econ major' },
+      { examName: 'AP Computer Science A', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CSC 171', courseDescription: 'The Science of Programming — elective credit' },
+      { examName: 'IB Literature HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENG 1xx', courseDescription: 'Elective credit in English' },
+      { examName: 'IB History HL', minScore: 6, creditsAwarded: 1, courseEquivalent: 'HIS 1xx', courseDescription: 'Elective credit in history — requires score of 6+' },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MTH 161', courseDescription: 'Calculus IA — satisfies first calc requirement for Econ major' },
+    ],
+  },
+  {
+    schoolId: 'rochester-bcs',
+    slExamsAccepted: false,
+    hlMinScore: 5,
+    creditCap: 16,
+    awards: [
+      { examName: 'AP Statistics', minScore: 4, creditsAwarded: 1, courseEquivalent: 'STT 211', courseDescription: 'Introduction to Statistics — elective credit (BCS requires STT 212)' },
+      { examName: 'AP Computer Science A', minScore: 4, creditsAwarded: 1, courseEquivalent: 'CSC 171', courseDescription: 'The Science of Programming — may satisfy programming foundation' },
+      { examName: 'IB Literature HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'ENG 1xx', courseDescription: 'Elective credit in English' },
+      { examName: 'IB History HL', minScore: 6, creditsAwarded: 1, courseEquivalent: 'HIS 1xx', courseDescription: 'Elective credit in history — requires score of 6+' },
+      { examName: 'IB Mathematics Analysis & Approaches HL', minScore: 5, creditsAwarded: 1, courseEquivalent: 'MTH 161', courseDescription: 'Calculus IA — satisfies calc requirement for BCS' },
+    ],
+  },
+  {
     schoolId: 'rochester',
     slExamsAccepted: false,
     hlMinScore: 5,

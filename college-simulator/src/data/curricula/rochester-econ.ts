@@ -1,8 +1,8 @@
 import { Curriculum } from '../../types';
 
 export const rochesterEcon: Curriculum = {
-  schoolId: 'rochester',
-  program: 'Economics',
+  schoolId: 'rochester-econ',
+  program: 'Economics (BA)',
   degreeRequirements: {
     totalCredits: 32, // 128 credit hours, ~32 courses
     majorCredits: 11,
@@ -19,33 +19,59 @@ export const rochesterEcon: Curriculum = {
     ],
   },
   recommendedSequence: {
-    years: 2,
+    years: 4,
     terms: [
-      // YEAR 1 — Intro econ, calc, writing requirement, begin cluster exploration
+      // YEAR 1 — Intro econ, calc, writing, begin clusters
       {
         termLabel: 'Fall Year 1',
-        courses: ['ECO108', 'MTH161', 'WRT105', 'HIS100'],
-        locked: [true, true, false, false],
-        slotLabels: ['Major req (Principles of Econ)', 'Major req (Calculus IA)', 'Writing requirement (recommended first semester)', 'Cluster 1 course (choose a 3-course cluster)'],
+        courses: ['ECO108', 'MTH161', 'WRT105', 'SA100'],
+        locked: [true, true, true, false],
+        slotLabels: ['Principles of Economics', 'Calculus IA', 'Writing requirement', '🟢 Intro Studio Art — Humanities cluster'],
       },
       {
         termLabel: 'Spring Year 1',
-        courses: ['STT211', 'MTH162', 'HIS150', 'PSY101'],
+        courses: ['STT211', 'MTH162', 'SA161', 'AST104'],
         locked: [true, true, false, false],
-        slotLabels: ['Major req (Intro Statistics)', 'Major req (Calculus IIA)', 'Cluster 1 course (continue cluster)', 'Cluster 2 course (choose a 3-course cluster)'],
+        slotLabels: ['Intro Statistics', 'Calculus IIA', '🟢 Ceramics I — Humanities cluster', '🟢 Astronomy Survey — Natural Sciences cluster'],
       },
-      // YEAR 2 — Intermediate econ core, econometrics sequence, finish clusters
+      // YEAR 2 — Intermediate econ core, econometrics, finish clusters
       {
         termLabel: 'Fall Year 2',
-        courses: ['ECO207', 'ECO209', 'ECO230', 'HIS205'],
-        locked: [true, true, true, false],
-        slotLabels: ['Major req (Intermediate Micro)', 'Major req (Intermediate Macro)', 'Major req (Economic Statistics)', 'Cluster 1 course (complete cluster)'],
+        courses: ['ECO207', 'ECO230', 'SA110', 'AST106'],
+        locked: [true, true, false, false],
+        slotLabels: ['Intermediate Microeconomics', 'Economic Statistics', '🟢 Drawing I — Humanities cluster (complete)', '🟢 The Solar System — Natural Sciences cluster'],
       },
       {
         termLabel: 'Spring Year 2',
-        courses: ['ECO231W', 'PHL101', 'PHL201', 'AST104'],
-        locked: [true, false, false, false],
-        slotLabels: ['Major req (Econometrics — writing-intensive)', 'Cluster 2 course (continue cluster)', 'Cluster 2 course (complete cluster)', 'Free elective'],
+        courses: ['ECO209', 'ECO231W', 'AST203', 'PHL203'],
+        locked: [true, true, false, false],
+        slotLabels: ['Intermediate Macroeconomics', 'Econometrics (writing-intensive)', '🟢 Origins: Big Bang to Life — Nat Sci cluster (complete)', '🟢 Philosophy of Mind — free elective'],
+      },
+      // YEAR 3 — Econ electives + allied fields
+      {
+        termLabel: 'Fall Year 3',
+        courses: ['ECO260', 'ECO265', 'CSC211', 'DMS103'],
+        locked: [false, false, false, false],
+        slotLabels: ['🟢 Game Theory — econ elective', '🟢 Behavioral Economics — econ elective', '🟢 Computational Thinking — allied field', '🟢 Digital Media & Visual Culture — free elective'],
+      },
+      {
+        termLabel: 'Spring Year 3',
+        courses: ['ECO290', 'ECO340', 'DMS250', 'ENG275'],
+        locked: [false, false, false, false],
+        slotLabels: ['🟢 Development Economics — econ elective', '🟢 Environmental Economics — econ elective', '🟢 Data Visualization — allied field', '🟢 Science Fiction — free elective'],
+      },
+      // YEAR 4 — Senior courses + free electives
+      {
+        termLabel: 'Fall Year 4',
+        courses: ['ECO450', 'ECO280', 'PHL275', 'BCS380'],
+        locked: [false, false, false, false],
+        slotLabels: ['🟢 Senior Seminar — capstone research', '🟢 Financial Economics — econ elective', '🟢 Philosophy of Technology — free elective', '🟢 Judgment & Decision-Making — free elective'],
+      },
+      {
+        termLabel: 'Spring Year 4',
+        courses: ['ECO305', 'ECO410', 'DMS310', 'AAS100'],
+        locked: [false, false, false, false],
+        slotLabels: ['🟢 Labor Economics — econ elective', '🟢 Advanced Econometrics — econ elective', '🟢 UX/UI Design Studio — free elective', '🟢 Intro Asian American Studies — free elective'],
       },
     ],
   },

@@ -140,6 +140,18 @@ export const studentLife: StudentLifeData[] = [
     },
   },
   {
+    schoolId: 'rochester-econ',
+    location: { city: 'Rochester', state: 'NY', urbanSetting: 'suburban', climate: 'Cold, snowy winters (20-35°F, 100+ inches of snow). Beautiful but short springs and falls. Warm summers (75-85°F). Gray and overcast Oct-April.', distanceFromSeattle: '2,700 miles (~5.5 hour flight)', transit: 'Campus is walkable and self-contained. Limited city transit. Campus shuttles available. Car helpful for off-campus exploration. 75 min to Buffalo, 5.5 hrs to NYC.' },
+    housing: { guaranteedYears: 2, description: 'First two years on campus required. Strong residential community. River Campus housing with suite-style options. Off-campus housing available and affordable nearby.' },
+    campusCulture: { greekLife: 'Present (~20% of students). Not dominant. Social life is diverse — music, arts, academics drive community more than Greek life.', sportsCulture: 'D3 athletics. "Meliora" spirit. No big-time sports pressure — students are scholars first. Strong club sports and intramurals.', clubsDescription: '~275 clubs. Exceptional music scene (Eastman School of Music connection). Strong entrepreneurship, engineering, and performing arts communities.', diversity: 'Diverse student body. ~20% international students. Strong Asian American and South Asian communities. Inclusive culture.', campusVibe: 'Intellectually quirky, collaborative, diverse. "The Rochester Curriculum" means no required gen-eds — you design your own path.' },
+  },
+  {
+    schoolId: 'rochester-bcs',
+    location: { city: 'Rochester', state: 'NY', urbanSetting: 'suburban', climate: 'Cold, snowy winters (20-35°F, 100+ inches of snow). Beautiful but short springs and falls. Warm summers (75-85°F). Gray and overcast Oct-April.', distanceFromSeattle: '2,700 miles (~5.5 hour flight)', transit: 'Campus is walkable and self-contained. Limited city transit. Campus shuttles available. Car helpful for off-campus exploration. 75 min to Buffalo, 5.5 hrs to NYC.' },
+    housing: { guaranteedYears: 2, description: 'First two years on campus required. Strong residential community. River Campus housing with suite-style options. Off-campus housing available and affordable nearby.' },
+    campusCulture: { greekLife: 'Present (~20% of students). Not dominant. Social life is diverse — music, arts, academics drive community more than Greek life.', sportsCulture: 'D3 athletics. "Meliora" spirit. No big-time sports pressure — students are scholars first. Strong club sports and intramurals.', clubsDescription: '~275 clubs. Exceptional music scene (Eastman School of Music connection). Strong entrepreneurship, engineering, and performing arts communities.', diversity: 'Diverse student body. ~20% international students. Strong Asian American and South Asian communities. Inclusive culture.', campusVibe: 'Intellectually quirky, collaborative, diverse. "The Rochester Curriculum" means no required gen-eds — you design your own path.' },
+  },
+  {
     schoolId: 'rochester',
     location: {
       city: 'Rochester',

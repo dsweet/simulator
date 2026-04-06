@@ -10,6 +10,8 @@ import { uwPoliecon } from './uw-poliecon';
 import { upsEcon } from './ups-econ';
 import { richmondPpel } from './richmond-ppel';
 import { rochesterPpe } from './rochester-ppe';
+import { rochesterEcon } from './rochester-econ';
+import { rochesterBcs } from './rochester-bcs';
 import { ucsdEcon } from './ucsd-econ';
 import { uclaEcon } from './ucla-econ';
 import { uwMeArt } from './uw-me-art';
@@ -27,6 +29,8 @@ const curricula: Record<string, Curriculum> = {
   ups: upsEcon,
   richmond: richmondPpel,
   rochester: rochesterPpe,
+  'rochester-econ': rochesterEcon,
+  'rochester-bcs': rochesterBcs,
   ucsd: ucsdEcon,
   ucla: uclaEcon,
 };

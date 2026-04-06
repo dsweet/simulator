@@ -147,6 +147,32 @@ export const schools: School[] = [
     },
   },
   {
+    id: 'rochester-econ',
+    name: 'University of Rochester',
+    track: 'economics',
+    program: 'Economics (BA)',
+    calendar: 'semester',
+    size: 'medium',
+    enrollmentTotal: 6800,
+    hints: {
+      calendarLabel: 'Semesters (2 terms/year)',
+      sizeLabel: 'Medium university (~6,800 students)',
+    },
+  },
+  {
+    id: 'rochester-bcs',
+    name: 'University of Rochester',
+    track: 'ppe',
+    program: 'Brain & Cognitive Sciences (BS)',
+    calendar: 'semester',
+    size: 'medium',
+    enrollmentTotal: 6800,
+    hints: {
+      calendarLabel: 'Semesters (2 terms/year)',
+      sizeLabel: 'Medium university (~6,800 students)',
+    },
+  },
+  {
     id: 'rochester',
     name: 'University of Rochester',
     track: 'ppe',
