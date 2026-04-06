@@ -55,9 +55,9 @@ export const uwEconBs: Curriculum = {
       },
       {
         termLabel: 'Winter Year 2',
-        courses: ['ECON302', 'MATH394', 'PHIL200'],
+        courses: ['ECON302', 'MATH394', 'PHIL100'],
         locked: [true, true, false],
-        slotLabels: ['Intermediate Macro', 'Probability I', 'A&H elective'],
+        slotLabels: ['Intermediate Macro', 'Probability I', '🟢 Intro Philosophy — prereq for PHIL200/250'],
       },
       {
         termLabel: 'Spring Year 2',
@@ -89,15 +89,15 @@ export const uwEconBs: Curriculum = {
       // ==================== YEAR 4 ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['ECON460', 'ECON424', 'PHIL100'],
+        courses: ['ECON460', 'ECON424', 'PHIL200'],
         locked: [false, false, false],
-        slotLabels: ['ECON elective', 'ECON elective', 'A&H elective'],
+        slotLabels: ['ECON elective', 'ECON elective', '🟢 Political Philosophy — builds on PHIL100'],
       },
       {
         termLabel: 'Winter Year 4',
-        courses: ['ECON482', 'SOC221', 'DXARTS200'],
+        courses: ['ECON482', 'ART134', 'DXARTS200'],
         locked: [false, false, false],
-        slotLabels: ['ECON elective', 'elective', 'elective'],
+        slotLabels: ['ECON elective', '🟢 Intro Ceramics — hands-on studio', '🟢 Digital Arts'],
       },
       {
         termLabel: 'Spring Year 4',

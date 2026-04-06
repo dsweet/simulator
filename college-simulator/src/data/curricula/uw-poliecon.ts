@@ -101,9 +101,9 @@ export const uwPoliecon: Curriculum = {
       },
       {
         termLabel: 'Spring Year 4',
-        courses: ['ECON420', 'PHIL250', 'SOC225'],
+        courses: ['ECON420', 'PHIL250', 'ASTR150'],
         locked: [false, false, false],
-        slotLabels: ['concentration elective', 'elective', 'DIV elective'],
+        slotLabels: ['concentration elective', 'elective', '🟢 The Planets — comparative planetology'],
       },
     ],
   },

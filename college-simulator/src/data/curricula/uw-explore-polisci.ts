@@ -75,7 +75,7 @@ export const uwExplorePolisci: Curriculum = {
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['POL325', 'POL340', 'ENVIR100'],
+        courses: ['POL325', 'POL420', 'ENVIR100'],
         locked: [false, false, false],
         slotLabels: ['Major seminar elective', 'Major seminar elective', 'NW elective'],
       },
@@ -89,9 +89,9 @@ export const uwExplorePolisci: Curriculum = {
       // ==================== YEAR 4: Senior Seminar + Electives ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['POL490', 'POL360', 'ECON450'],
+        courses: ['POL490', 'POL360', 'ASTR150'],
         locked: [true, false, false],
-        slotLabels: ['Senior Seminar in Political Science', 'Major seminar elective', 'Elective'],
+        slotLabels: ['Senior Seminar in Political Science', 'Major seminar elective', '🟢 The Planets — comparative planetology'],
       },
       {
         termLabel: 'Winter Year 4',

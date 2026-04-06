@@ -95,9 +95,9 @@ export const uwEcon: Curriculum = {
       },
       {
         termLabel: 'Winter Year 4',
-        courses: ['ECON482', 'SOC221', 'DXARTS200'],
+        courses: ['ECON482', 'ASTR150', 'DXARTS200'],
         locked: [false, false, false],
-        slotLabels: ['ECON elective', 'elective', 'elective'],
+        slotLabels: ['ECON elective', '🟢 The Planets — comparative planetology', '🟢 Digital Arts'],
       },
       {
         termLabel: 'Spring Year 4',

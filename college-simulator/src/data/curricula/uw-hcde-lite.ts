@@ -112,9 +112,9 @@ export const uwHcdeLite: Curriculum = {
       },
       {
         termLabel: 'Spring Year 4',
-        courses: ['HCDE493', 'MUSIC364', 'SOC225'],
+        courses: ['HCDE493', 'MUSIC364', 'ASTR101'],
         locked: [true, false, false],
-        slotLabels: ['Senior Capstone', '🟢 Music Cognition — perception & brain science', '🟢 Race & Ethnicity — free elective (HCDE315 already covers DIV)'],
+        slotLabels: ['Senior Capstone', '🟢 Music Cognition — perception & brain science', '🟢 Astronomy — the solar system, stars, galaxies, and cosmology'],
       },
     ],
   },
