@@ -81,7 +81,7 @@ export const ucsdEcon: Curriculum = {
     { id: 'MATH10C', title: 'Calculus III', description: 'Multivariable calculus: partial derivatives, multiple integrals, and vector calculus.', credits: 4, category: 'major-required', interestTags: [], prereqs: ['MATH10B'], genEdReqs: [] },
 
     // ===== ECONOMICS ELECTIVES =====
-    { id: 'ECON109', title: 'Game Theory', description: 'Formal study of strategic interaction. Nash equilibrium, sequential games, incomplete information, repeated games, and evolutionary game theory.', credits: 4, category: 'major-elective', interestTags: ['game-theory'], prereqs: ['ECON100B'], genEdReqs: [] },
+    { id: 'ECON109', title: 'Game Theory', description: 'Formal study of strategic interaction. Nash equilibrium, sequential games, incomplete information, repeated games, and evolutionary game theory.', credits: 4, category: 'major-elective', interestTags: ['game-theory'], prereqs: ['ECON100C'], genEdReqs: [] },
     { id: 'ECON110', title: 'Behavioral Economics', description: 'Psychological foundations of economic behavior. Biases, heuristics, prospect theory, and policy nudges.', credits: 4, category: 'major-elective', interestTags: ['game-theory'], prereqs: ['ECON100A'], genEdReqs: [] },
     { id: 'ECON113', title: 'Mathematical Economics', description: 'Optimization, dynamic programming, and mathematical methods for advanced economic analysis.', credits: 4, category: 'major-elective', interestTags: ['game-theory'], prereqs: ['ECON100C', 'MATH10C'], genEdReqs: [] },
     { id: 'ECON130', title: 'Public Economics', description: 'Government policy, taxation, public goods, externalities, and social insurance programs.', credits: 4, category: 'major-elective', interestTags: [], prereqs: ['ECON100B'], genEdReqs: [] },
