@@ -311,7 +311,7 @@ export const uwExploreComplit: Curriculum = {
     // ECONOMICS (as electives)
     // ===================================================================
     { id: 'ECON200', title: 'Introduction to Microeconomics', description: 'Supply and demand, market structures, consumer behavior, and economic efficiency.', credits: 5, category: 'elective', interestTags: ['game-theory', 'economics'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
-    { id: 'ECON201', title: 'Introduction to Macroeconomics', description: 'GDP, inflation, unemployment, monetary and fiscal policy, and international trade.', credits: 5, category: 'elective', interestTags: ['economics'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'ECON201', title: 'Introduction to Macroeconomics', description: 'GDP, inflation, unemployment, monetary and fiscal policy, and international trade.', credits: 5, category: 'elective', interestTags: ['economics'], prereqs: ['ECON200'], genEdReqs: ['social-science', 'addl-ah-ssc'] },
 
     // ===================================================================
     // STATISTICS
