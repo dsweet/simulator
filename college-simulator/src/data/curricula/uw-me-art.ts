@@ -26,7 +26,7 @@ export const uwMeArt: Curriculum = {
       { id: 'arts-humanities', name: 'Arts & Humanities (A&H — ME 123 gives 4cr)', creditsRequired: 10, satisfiedBy: ['ME123', 'DXARTS200', 'ART253', 'ART272', 'ART190', 'ART131', 'ART134', 'ART281', 'ART351', 'DESIGN150', 'DESIGN165', 'MUSIC116', 'DRAMA101', 'ENGL242', 'PHIL100'] },
       { id: 'social-science', name: 'Social Sciences (SSc)', creditsRequired: 10, satisfiedBy: ['PSYCH101', 'SOC101', 'ECON200', 'POL101', 'HIST111', 'AAS101', 'ANTH215', 'INFO200'] },
       { id: 'addl-ah-ssc', name: 'Additional A&H or SSc', creditsRequired: 4, satisfiedBy: ['ME123', 'DXARTS200', 'ART253', 'ART272', 'ART190', 'ART131', 'ART134', 'DESIGN150', 'DESIGN165', 'PSYCH101', 'SOC101', 'ECON200', 'POL101', 'HIST111', 'AAS101', 'ANTH215', 'INFO200'] },
-      { id: 'diversity', name: 'Diversity (DIV — may overlap)', creditsRequired: 5, satisfiedBy: ['AAS101', 'AAS320', 'GWSS200', 'AIS200', 'ANTH215', 'SOC225'] },
+      { id: 'diversity', name: 'Diversity (DIV — may overlap)', creditsRequired: 5, satisfiedBy: ['AAS101', 'AAS310', 'GWSS200', 'AIS200', 'ANTH215', 'SOC225'] },
 
       // === Engineering Fundamentals (ME-specific) ===
       { id: 'eng-fundamentals', name: 'Engineering Fundamentals', creditsRequired: 12, satisfiedBy: ['CSE121', 'CSE163', 'ENGR115', 'AA210', 'AMATH301', 'CEE220', 'EE215', 'ME123', 'ME230', 'MSE170'] },

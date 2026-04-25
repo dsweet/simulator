@@ -10,17 +10,17 @@ export const uwExploreComplit: Curriculum = {
     electiveCredits: 95, // 10cr freed by IB Japanese SL satisfying language req
     majorCourses: [
       'CLIT240', 'CLIT250', 'CLIT270', 'CLIT280', 'CLIT290',
-      'ENGL340', 'CLIT490',
+      'ENGL303', 'CLIT490',
     ],
     genEdCategories: [
       // === General Education Requirements (35cr) ===
       { id: 'english-comp', name: 'English Composition (5cr)', creditsRequired: 5, satisfiedBy: ['ENGL111', 'ENGL121', 'ENGL131', 'ENGL182'] },
       { id: 'writing', name: 'Writing (7cr — may overlap)', creditsRequired: 7, satisfiedBy: ['ENGL111', 'ENGL121', 'ENGL131', 'ENGL182', 'ENGL283'] },
-      { id: 'arts-humanities', name: 'Arts & Humanities (A&H)', creditsRequired: 10, satisfiedBy: ['ART134', 'ENGL242', 'ENGL243', 'ENGL260', 'ENGL283', 'ENGL302', 'DXARTS200', 'MUSIC116', 'DRAMA101', 'CLIT240', 'CLIT250', 'CLIT270', 'PHIL100', 'PHIL114', 'PHIL360', 'MUSIC120', 'MUSIC162', 'MUSIC185', 'MUSIC280', 'LING200', 'COM270', 'COM382', 'RELIG101', 'CLASS205', 'PHIL200', 'PHIL344', 'ENGL220', 'ENGL230', 'ENGL240', 'ENGL250', 'ENGL310', 'ENGL320', 'CLIT260', 'CLIT265', 'CLIT280', 'CLIT290'] },
+      { id: 'arts-humanities', name: 'Arts & Humanities (A&H)', creditsRequired: 10, satisfiedBy: ['ART134', 'ENGL242', 'ENGL243', 'ENGL260', 'ENGL283', 'ENGL349', 'DXARTS200', 'MUSIC116', 'DRAMA101', 'CLIT240', 'CLIT250', 'CLIT270', 'PHIL100', 'PHIL114', 'PHIL149', 'MUSIC120', 'MUSIC162', 'MUSIC185', 'MUSIC280', 'LING200', 'COM270', 'JAPAN325', 'RELIG101', 'CLASS205', 'PHIL200', 'PHIL242', 'ENGL220', 'ENGL230', 'ENGL240', 'ENGL250', 'ENGL336', 'ENGL342', 'CLIT260', 'CLIT265', 'CLIT280', 'CLIT290'] },
       { id: 'social-science', name: 'Social Sciences (SSc)', creditsRequired: 10, satisfiedBy: ['PSYCH101', 'SOC101', 'ECON200', 'POL101', 'HIST111', 'HIST112', 'HIST215', 'HIST225', 'AAS101', 'ANTH215', 'INFO200', 'ECON201', 'POL201', 'POL203', 'POL204', 'POL325', 'SOC221', 'SOC225'] },
       { id: 'natural-world', name: 'Natural World (NW)', creditsRequired: 10, satisfiedBy: ['CHEM142', 'CHEM152', 'PHYS121', 'BIOL180', 'ASTR101', 'ASTR102', 'ASTR150', 'ESS101', 'ESS102', 'ATM101', 'ENVIR100', 'BIOL200', 'BIOL220'] },
-      { id: 'addl-ah-ssc', name: 'Additional A&H or SSc', creditsRequired: 10, satisfiedBy: ['ART134', 'ENGL242', 'ENGL243', 'ENGL260', 'ENGL283', 'ENGL302', 'DXARTS200', 'MUSIC116', 'DRAMA101', 'CLIT240', 'CLIT250', 'CLIT270', 'PHIL100', 'PHIL114', 'PHIL360', 'PSYCH101', 'SOC101', 'ECON200', 'POL101', 'HIST111', 'HIST112', 'HIST215', 'HIST225', 'AAS101', 'ANTH215', 'INFO200', 'MUSIC120', 'MUSIC162', 'MUSIC185', 'MUSIC280', 'LING200', 'COM270', 'COM382', 'RELIG101', 'CLASS205', 'PHIL200', 'PHIL344', 'ENGL220', 'ENGL230', 'ENGL240', 'ENGL250', 'ENGL310', 'ENGL320', 'CLIT260', 'CLIT265', 'CLIT280', 'CLIT290', 'ECON201', 'POL201', 'POL203', 'POL204', 'POL325', 'SOC221', 'SOC225'] },
-      { id: 'diversity', name: 'Diversity (DIV — may overlap)', creditsRequired: 5, satisfiedBy: ['AAS101', 'AAS320', 'GWSS200', 'AIS200', 'ANTH215', 'ENGL262', 'SOC225', 'ENVIR310'] },
+      { id: 'addl-ah-ssc', name: 'Additional A&H or SSc', creditsRequired: 10, satisfiedBy: ['ART134', 'ENGL242', 'ENGL243', 'ENGL260', 'ENGL283', 'ENGL349', 'DXARTS200', 'MUSIC116', 'DRAMA101', 'CLIT240', 'CLIT250', 'CLIT270', 'PHIL100', 'PHIL114', 'PHIL149', 'PSYCH101', 'SOC101', 'ECON200', 'POL101', 'HIST111', 'HIST112', 'HIST215', 'HIST225', 'AAS101', 'ANTH215', 'INFO200', 'MUSIC120', 'MUSIC162', 'MUSIC185', 'MUSIC280', 'LING200', 'COM270', 'JAPAN325', 'RELIG101', 'CLASS205', 'PHIL200', 'PHIL242', 'ENGL220', 'ENGL230', 'ENGL240', 'ENGL250', 'ENGL336', 'ENGL342', 'CLIT260', 'CLIT265', 'CLIT280', 'CLIT290', 'ECON201', 'POL201', 'POL203', 'POL204', 'POL325', 'SOC221', 'SOC225'] },
+      { id: 'diversity', name: 'Diversity (DIV — may overlap)', creditsRequired: 5, satisfiedBy: ['AAS101', 'AAS310', 'GWSS200', 'AIS200', 'ANTH215', 'ENGL262', 'SOC225', 'ENVIR361'] },
     ],
   },
   recommendedSequence: {
@@ -69,19 +69,19 @@ export const uwExploreComplit: Curriculum = {
       // ==================== YEAR 3: Upper-Division Lit + Theory ====================
       {
         termLabel: 'Fall Year 3',
-        courses: ['ENGL340', 'CLIT290', 'CLIT350'],
+        courses: ['ENGL303', 'CLIT290', 'CLIT350'],
         locked: [true, true, false],
         slotLabels: ['Literary Theory & Criticism', 'Literature & Philosophy', 'Major seminar elective'],
       },
       {
         termLabel: 'Winter Year 3',
-        courses: ['CLIT370', 'ENGL320', 'CLIT265'],
+        courses: ['CLIT370', 'ENGL342', 'CLIT265'],
         locked: [false, false, false],
         slotLabels: ['Major seminar elective', 'Literature elective', 'East Asian Cinema'],
       },
       {
         termLabel: 'Spring Year 3',
-        courses: ['CLIT380', 'ENGL310', 'HIST215'],
+        courses: ['CLIT380', 'ENGL336', 'HIST215'],
         locked: [false, false, false],
         slotLabels: ['Major seminar elective', 'Literature elective', '🟢 History of East Asia — SSc / cultural elective'],
       },
@@ -89,19 +89,19 @@ export const uwExploreComplit: Curriculum = {
       // ==================== YEAR 4: Senior Thesis + Electives ====================
       {
         termLabel: 'Fall Year 4',
-        courses: ['CLIT490', 'CLIT400', 'PHIL360'],
+        courses: ['CLIT490', 'CLIT400', 'PHIL149'],
         locked: [true, false, false],
         slotLabels: ['Senior Thesis Seminar', 'Major seminar elective', 'Elective'],
       },
       {
         termLabel: 'Winter Year 4',
-        courses: ['CLIT410', 'ENGL355', 'COM382'],
+        courses: ['CLIT410', 'ENGL355', 'JAPAN325'],
         locked: [false, false, false],
         slotLabels: ['Major seminar elective', 'Elective', 'Elective'],
       },
       {
         termLabel: 'Spring Year 4',
-        courses: ['ENGL363', 'AAS101', 'SOC225'],
+        courses: ['ENGL313', 'AAS101', 'SOC225'],
         locked: [false, false, false],
         slotLabels: ['Literature elective', '🟢 Intro Asian American Studies — SSc + DIV', 'DIV elective'],
       },
@@ -116,8 +116,8 @@ export const uwExploreComplit: Curriculum = {
     { id: 'CLIT270', title: 'Introduction to Graphic Narrative', description: 'Comics, manga, and graphic novels as literary and visual art forms. Storytelling through sequential art.', credits: 5, category: 'major-required', interestTags: ['literature', 'video-games'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'CLIT280', title: 'Comparative Literature', description: 'Reading across languages, cultures, and traditions. How literary forms travel, transform, and speak to each other across borders.', credits: 5, category: 'major-required', interestTags: ['literature', 'cultural-studies'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'CLIT290', title: 'Literature & Philosophy', description: 'The novel as philosophy, philosophy as literature. Dostoevsky, Sartre, Beauvoir, Borges, and the fiction of ideas.', credits: 5, category: 'major-required', interestTags: ['literature', 'philosophy'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'ENGL340', title: 'Literary Theory & Criticism', description: 'How we read and why it matters. Structuralism, deconstruction, feminism, postcolonialism, queer theory, and the politics of interpretation.', credits: 5, category: 'major-required', interestTags: ['literature', 'philosophy'], prereqs: [], genEdReqs: [] },
-    { id: 'CLIT490', title: 'Senior Thesis Seminar', description: 'Capstone research seminar in comparative literature. Students develop and present an original thesis on a topic spanning at least two literary traditions.', credits: 5, category: 'major-required', interestTags: ['literature'], prereqs: ['CLIT280', 'ENGL340'], genEdReqs: [] },
+    { id: 'ENGL303', title: 'History of Literary Criticism and Theory', description: 'Literary criticism and theory from Plato through the early twentieth century.', credits: 5, category: 'major-required', interestTags: ['literature', 'philosophy'], prereqs: [], genEdReqs: [] },
+    { id: 'CLIT490', title: 'Senior Thesis Seminar', description: 'Capstone research seminar in comparative literature. Students develop and present an original thesis on a topic spanning at least two literary traditions.', credits: 5, category: 'major-required', interestTags: ['literature'], prereqs: ['CLIT280', 'ENGL303'], genEdReqs: [] },
 
     // ===================================================================
     // MAJOR ELECTIVES — Upper-Division Literature Seminars
@@ -130,10 +130,10 @@ export const uwExploreComplit: Curriculum = {
     { id: 'CLIT420', title: 'Seminar: Literature & Human Rights', description: 'Testimony, witness, and storytelling in the context of atrocity, genocide, and political repression. Literature as ethical practice.', credits: 5, category: 'major-elective', interestTags: ['literature', 'politics', 'philosophy'], prereqs: ['CLIT280'], genEdReqs: [] },
     { id: 'CLIT430', title: 'Seminar: East Asian Literature in Global Context', description: 'Chinese, Japanese, and Korean literary traditions in dialogue with Western literatures. Classical and modern texts in translation.', credits: 5, category: 'major-elective', interestTags: ['literature', 'cultural-studies'], prereqs: ['CLIT280'], genEdReqs: [] },
     { id: 'CLIT440', title: 'Seminar: Mediterranean Literatures', description: 'Literary traditions of the Mediterranean basin from antiquity to the present. Greek, Arabic, Italian, and Spanish texts in dialogue.', credits: 5, category: 'major-elective', interestTags: ['literature', 'history', 'classics'], prereqs: ['CLIT280'], genEdReqs: [] },
-    { id: 'ENGL302', title: 'Science Fiction', description: 'The genre of science fiction from its origins to present. Utopia, dystopia, technology, and social commentary.', credits: 5, category: 'major-elective', interestTags: ['literature', 'space'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'ENGL363', title: 'Studies in World Literature', description: 'Comparative literature spanning multiple traditions. Global perspectives on storytelling and literary craft.', credits: 5, category: 'major-elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'ENGL310', title: 'Modern British Literature', description: 'Woolf, Joyce, Lawrence, Forster, Orwell, and Beckett. Stream of consciousness, formal experiment, and literature between the wars.', credits: 5, category: 'major-elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'ENGL320', title: 'Contemporary Fiction', description: 'Fiction since 1980. Globalization, identity, technology, and literary form in the work of Ishiguro, Lahiri, Egan, Ferrante, and others.', credits: 5, category: 'major-elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL349', title: 'Science Fiction and Fantasy', description: 'Historical developments and debates within science fiction and fantasy genres.', credits: 5, category: 'major-elective', interestTags: ['literature', 'space'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL313', title: 'Literature in Translation', description: 'Selected fiction, poetry, drama, film, and nonfiction in translation.', credits: 5, category: 'major-elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL336', title: 'English Literature: Early Twentieth Century', description: 'Fiction, poetry, and drama 1900-1945. Modernism, realism, imperialism.', credits: 5, category: 'major-elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'ENGL342', title: 'Contemporary Novel', description: 'Study of recent fiction by diverse writers.', credits: 5, category: 'major-elective', interestTags: ['literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
 
     // ===================================================================
     // LANGUAGE REQUIREMENT — Japanese
@@ -189,7 +189,7 @@ export const uwExploreComplit: Curriculum = {
     { id: 'HIST112', title: 'World History: The Modern World', description: 'Global history from 1500 to present. Colonialism, industrialization, world wars, decolonization, and globalization.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'HIST215', title: 'History of East Asia', description: 'China, Japan, and Korea from ancient times to the present. Cultural, political, and economic developments.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'HIST225', title: 'Japanese History', description: 'Japan from ancient times to the present. Samurai culture, Meiji modernization, WWII, and contemporary Japan.', credits: 5, category: 'elective', interestTags: ['history', 'cultural-studies'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
-    { id: 'HIST312', title: 'History of the Pacific Northwest', description: 'Indigenous peoples, exploration, settlement, timber and fishing industries, environmental history, and cultural development of the PNW.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
+    { id: 'HSTAA432', title: 'History of Washington and the Pacific Northwest', description: 'Exploration and settlement, economic development, growth of government and social institutions, and statehood.', credits: 5, category: 'elective', interestTags: ['history'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
     { id: 'HIST231', title: 'History of Science', description: 'Development of scientific thought from ancient Greece to modern times. Scientific revolutions, paradigm shifts, and science in society.', credits: 5, category: 'elective', interestTags: ['history', 'space'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
 
     // ===================================================================
@@ -197,9 +197,8 @@ export const uwExploreComplit: Curriculum = {
     // ===================================================================
     { id: 'AAS101', title: 'Introduction to Asian American Studies', description: 'History, culture, and contemporary experiences of Asian Americans. Immigration, identity, community, and activism.', credits: 5, category: 'gen-ed', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
     { id: 'AAS200', title: 'Asian Americans and the Arts', description: 'Asian American artistic expression in literature, film, visual art, and performance. Identity, representation, and cultural production.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'literature'], prereqs: [], genEdReqs: ['arts-humanities', 'diversity', 'addl-ah-ssc'] },
-    { id: 'AAS310', title: 'Asian American Communities & Health', description: 'Health disparities, mental health, intergenerational trauma, and wellness in Asian American communities.', credits: 5, category: 'elective', interestTags: ['cultural-studies'], prereqs: ['AAS101'], genEdReqs: ['diversity'] },
-    { id: 'AAS320', title: 'Asian Americans in the Pacific Northwest', description: 'Japanese American incarceration, Filipino cannery workers, Chinese exclusion, and contemporary Asian American life in the PNW.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: [], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
-    { id: 'AAS330', title: 'Race, Technology & Society', description: 'How race shapes and is shaped by technology. Algorithmic bias, digital divide, surveillance, and tech workforce diversity.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'design'], prereqs: [], genEdReqs: ['diversity'] },
+    { id: 'AAS310', title: 'Asian Americans and Pacific Islanders in the Pacific Northwest', description: 'Japanese American incarceration, Filipino cannery workers, Chinese exclusion, and contemporary Asian American life in the PNW.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'history'], prereqs: ['AAS101'], genEdReqs: ['social-science', 'diversity', 'addl-ah-ssc'] },
+    { id: 'AAS330', title: 'Asian American Theater', description: 'Asian American theatrical traditions, performance, identity, and representation on stage. Contemporary playwrights and productions.', credits: 5, category: 'elective', interestTags: ['cultural-studies', 'design'], prereqs: [], genEdReqs: ['diversity'] },
 
     // ===================================================================
     // LITERATURE (Extended)
@@ -215,10 +214,10 @@ export const uwExploreComplit: Curriculum = {
     { id: 'ENGL230', title: 'American Literature: 1900 to Present', description: 'Fitzgerald, Faulkner, Morrison, Pynchon, and contemporary voices. Modernism, the Harlem Renaissance, postmodernism, and multicultural American fiction.', credits: 5, category: 'elective', interestTags: ['literature', 'history'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'ENGL240', title: 'British Romanticism', description: 'Blake, Wordsworth, Coleridge, Byron, Shelley, Keats. Revolution, imagination, nature, and the birth of the modern self.', credits: 5, category: 'elective', interestTags: ['literature', 'history'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'ENGL250', title: 'Victorian Literature', description: 'Dickens, the Brontës, Eliot, Hardy, and Wilde. Industrialization, empire, gender, class, and the novel as social mirror.', credits: 5, category: 'elective', interestTags: ['literature', 'history'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'ENGL330', title: 'Creative Nonfiction', description: 'The art of the essay, memoir, and literary journalism. Narrative structure, scene-building, and the ethics of writing about real life. Workshop format.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: [] },
+    { id: 'ENGL347', title: 'Studies in Non-Fiction Prose', description: 'Autobiography, biography, personal essay, reflective writing.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: [] },
     { id: 'ENGL350', title: 'Poetry Workshop', description: 'Writing and revising original poetry. Prosody, image, voice, and line. Close reading of contemporary poets. Small workshop format with intensive peer critique.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: ['ENGL283'], genEdReqs: [] },
     { id: 'ENGL355', title: 'Fiction Workshop', description: 'Workshop in short fiction. Craft elements — voice, structure, dialogue, and revision. Peer critique and close reading of published fiction.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: ['ENGL283'], genEdReqs: [] },
-    { id: 'ENGL380', title: 'Children\'s & Young Adult Literature', description: 'Literature for young readers from fairy tales to The Hunger Games. Innocence, power, identity, and the cultural work of children\'s books.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: [] },
+    { id: 'ENGL277', title: 'Introduction to Children\'s and Young Adult Literature', description: 'Literature for young readers from fairy tales to The Hunger Games. Innocence, power, identity, and the cultural work of children\'s books.', credits: 5, category: 'elective', interestTags: ['literature'], prereqs: [], genEdReqs: [] },
 
     // ===================================================================
     // PHILOSOPHY
@@ -228,13 +227,13 @@ export const uwExploreComplit: Curriculum = {
     { id: 'PHIL120', title: 'Introduction to Logic', description: 'Formal and informal logic, valid arguments, fallacies, and truth tables.', credits: 5, category: 'elective', interestTags: ['philosophy', 'game-theory'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'PHIL200', title: 'Political Philosophy', description: 'Justice, rights, liberty, and equality. Hobbes, Locke, Rousseau, Rawls, Nozick, and contemporary debates about the legitimate scope of state power.', credits: 5, category: 'elective', interestTags: ['philosophy', 'politics', 'history'], prereqs: ['PHIL100'], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'PHIL230', title: 'Philosophy of Language', description: 'Meaning, reference, truth, speech acts, and the relationship between language and thought. Frege, Russell, Wittgenstein, and Kripke.', credits: 5, category: 'elective', interestTags: ['philosophy', 'linguistics'], prereqs: ['PHIL100'], genEdReqs: [] },
-    { id: 'PHIL240', title: 'Philosophy of Science', description: 'What makes science scientific? Theory change, realism, values in science, and scientific revolutions.', credits: 5, category: 'elective', interestTags: ['philosophy', 'space'], prereqs: [], genEdReqs: [] },
+    { id: 'PHIL360', title: 'Introductory Topics in Philosophy of Science', description: 'What makes science scientific? Theory change, realism, values in science, and scientific revolutions.', credits: 5, category: 'elective', interestTags: ['philosophy', 'space'], prereqs: ['PHIL100'], genEdReqs: [] },
     { id: 'PHIL250', title: 'Metaphysics', description: 'Fundamental nature of reality: existence, identity, causation, time, free will, and possible worlds.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: ['PHIL100'], genEdReqs: [] },
     { id: 'PHIL300', title: 'Formal Logic', description: 'Predicate logic, natural deduction, completeness, soundness, and an introduction to modal logic.', credits: 5, category: 'elective', interestTags: ['philosophy', 'game-theory'], prereqs: ['PHIL120'], genEdReqs: [] },
     { id: 'PHIL320', title: 'Advanced Ethics: Moral Theory', description: 'Consequentialism, contractualism, moral realism, and metaethics. Contemporary debates in normative theory.', credits: 5, category: 'elective', interestTags: ['philosophy'], prereqs: ['PHIL114'], genEdReqs: [] },
     { id: 'PHIL340', title: 'Ethics of Technology', description: 'AI ethics, algorithmic bias, privacy, surveillance, and designing ethical technology. Connects directly to HCDE practice.', credits: 5, category: 'elective', interestTags: ['philosophy', 'design'], prereqs: ['PHIL100'], genEdReqs: [] },
-    { id: 'PHIL344', title: 'Bioethics', description: 'Ethical issues in medicine and biological sciences. Genetic engineering, euthanasia, reproductive rights, and research ethics.', credits: 5, category: 'elective', interestTags: ['philosophy', 'science'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'PHIL360', title: 'Existentialism', description: 'Freedom, authenticity, and meaning. Kierkegaard, Nietzsche, Heidegger, Sartre, de Beauvoir, and Camus.', credits: 5, category: 'elective', interestTags: ['philosophy', 'literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'PHIL242', title: 'Introduction to Medical Ethics', description: 'Ethical issues in medicine and biological sciences. Genetic engineering, euthanasia, reproductive rights, and research ethics.', credits: 5, category: 'elective', interestTags: ['philosophy', 'science'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'PHIL149', title: 'Existentialism and Film', description: 'Freedom, authenticity, and meaning. Kierkegaard, Nietzsche, Heidegger, Sartre, de Beauvoir, and Camus.', credits: 5, category: 'elective', interestTags: ['philosophy', 'literature'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
 
     // ===================================================================
     // SCIENCES (for NW requirement)
@@ -265,8 +264,8 @@ export const uwExploreComplit: Curriculum = {
     { id: 'MUSIC162', title: 'History of Jazz', description: 'Jazz from its origins to the present. Blues, swing, bebop, modal jazz, free jazz, and fusion.', credits: 5, category: 'elective', interestTags: ['music', 'history'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'MUSIC185', title: 'World Music', description: 'Musical traditions from across the globe. West African drumming, Indian raga, Indonesian gamelan, and cross-cultural study.', credits: 5, category: 'elective', interestTags: ['music', 'cultural-studies'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'MUSIC280', title: 'History of Western Music', description: 'Medieval chant to contemporary classical. Bach, Mozart, Beethoven, Wagner, Stravinsky, and minimalism in cultural context.', credits: 5, category: 'elective', interestTags: ['music', 'history'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'MUSIC320', title: 'Digital Music Production', description: 'Recording, editing, mixing, and producing music using DAWs. Sound design, sampling, synthesis, and electronic composition.', credits: 5, category: 'elective', interestTags: ['music', 'design'], prereqs: [], genEdReqs: [] },
-    { id: 'MUSIC364', title: 'Music Cognition', description: 'How the brain perceives, remembers, and responds to music. Pitch perception, rhythm, emotion, and musical training effects.', credits: 5, category: 'elective', interestTags: ['music', 'philosophy', 'science'], prereqs: [], genEdReqs: [] },
+    { id: 'MUSIC401', title: 'Digital Sound Synthesis', description: 'Wavetable, additive, FM, granular, and subtractive synthesis. Digital sound design and electronic music creation.', credits: 5, category: 'elective', interestTags: ['music', 'design'], prereqs: [], genEdReqs: [] },
+    { id: 'MUSIC344', title: 'Psychology of Music: Cognition', description: 'Critical examination of research in music cognition including perception, performance, musical development, affect, preference, social psychology, and neuroscience.', credits: 5, category: 'elective', interestTags: ['music', 'philosophy', 'science'], prereqs: [], genEdReqs: [] },
 
     // ===================================================================
     // LINGUISTICS
@@ -283,19 +282,19 @@ export const uwExploreComplit: Curriculum = {
     { id: 'COM270', title: 'Introduction to Film Studies', description: 'The language of cinema: mise-en-scene, cinematography, editing, sound, and narrative structure.', credits: 5, category: 'elective', interestTags: ['film', 'design'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'COM361', title: 'Film Theory', description: 'Major theoretical frameworks: formalism, realism, auteur theory, feminism, psychoanalysis, and postcolonial approaches.', credits: 5, category: 'elective', interestTags: ['film', 'philosophy'], prereqs: ['COM270'], genEdReqs: [] },
     { id: 'COM362', title: 'Documentary Film', description: 'Ethics, aesthetics, and politics of documentary. Observational, participatory, and essayistic modes.', credits: 5, category: 'elective', interestTags: ['film', 'history'], prereqs: ['COM270'], genEdReqs: [] },
-    { id: 'COM382', title: 'East Asian Cinema', description: 'Japanese, Korean, and Chinese cinema from golden-age masters to the Korean New Wave. Ozu, Kurosawa, Bong Joon-ho.', credits: 5, category: 'elective', interestTags: ['film', 'cultural-studies'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
+    { id: 'JAPAN325', title: 'Introduction to Japanese Cinema and Media', description: 'Japanese, Korean, and Chinese cinema from golden-age masters to the Korean New Wave. Ozu, Kurosawa, Bong Joon-ho.', credits: 5, category: 'elective', interestTags: ['film', 'cultural-studies'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
 
     // ===================================================================
     // ENVIRONMENTAL STUDIES
     // ===================================================================
     { id: 'ENVIR239', title: 'Climate Change: Science & Society', description: 'Atmospheric science, carbon cycles, climate modeling, international negotiations, and the economics of decarbonization.', credits: 5, category: 'elective', interestTags: ['environmental', 'science', 'politics'], prereqs: [], genEdReqs: [] },
-    { id: 'ENVIR310', title: 'Environmental Justice', description: 'Unequal distribution of environmental harms by race and class. Toxic exposure, food deserts, and grassroots activism.', credits: 5, category: 'elective', interestTags: ['environmental', 'cultural-studies'], prereqs: [], genEdReqs: ['diversity'] },
+    { id: 'ENVIR361', title: 'Environmental Justice Issues: Regional Perspectives', description: 'Unequal distribution of environmental harms by race and class. Toxic exposure, food deserts, and grassroots activism.', credits: 5, category: 'elective', interestTags: ['environmental', 'cultural-studies'], prereqs: [], genEdReqs: ['diversity'] },
 
     // ===================================================================
     // RELIGION & CLASSICS
     // ===================================================================
     { id: 'RELIG101', title: 'Introduction to World Religions', description: 'Comparative study of Judaism, Christianity, Islam, Hinduism, Buddhism, and indigenous traditions.', credits: 5, category: 'elective', interestTags: ['religion', 'philosophy', 'cultural-studies'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
-    { id: 'RELIG301', title: 'Philosophy of Religion', description: 'Arguments for and against God\'s existence, the problem of evil, faith and reason, and religious experience.', credits: 5, category: 'elective', interestTags: ['religion', 'philosophy'], prereqs: [], genEdReqs: [] },
+    { id: 'PHIL267', title: 'Introduction to Philosophy of Religion', description: 'Sources of religious ideas and practices, main kinds of religious views and their problems, forms of spirituality. Relations of religion to science and morality.', credits: 5, category: 'elective', interestTags: ['religion', 'philosophy'], prereqs: [], genEdReqs: [] },
     { id: 'CLASS205', title: 'Classical Civilizations', description: 'Ancient Greece and Rome: politics, philosophy, art, literature, and their lasting influence on Western civilization.', credits: 5, category: 'elective', interestTags: ['classics', 'history'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
 
     // ===================================================================
@@ -304,7 +303,7 @@ export const uwExploreComplit: Curriculum = {
     { id: 'CSE121', title: 'Intro to Computer Programming I', description: 'Introduction to programming concepts, data types, control flow, and functions. Java-based. Satisfies engineering fundamentals + placement.', credits: 4, category: 'elective', interestTags: ['video-games', 'design'], prereqs: [], genEdReqs: [] },
     { id: 'DXARTS200', title: 'Digital Arts: Interdisciplinary Foundations', description: 'Creative coding, interactive art, digital fabrication. Intersection of art and technology.', credits: 5, category: 'elective', interestTags: ['design', 'video-games'], prereqs: [], genEdReqs: ['arts-humanities', 'addl-ah-ssc'] },
     { id: 'DXARTS490', title: 'Game Art & Interactive Narrative', description: 'Creating art assets for games. Narrative design, world-building, and environmental storytelling in interactive media.', credits: 5, category: 'elective', interestTags: ['video-games', 'design', 'literature'], prereqs: ['DXARTS200'], genEdReqs: [] },
-    { id: 'COM450', title: 'Video Game Studies', description: 'Games as cultural texts. Ludology vs. narratology, player agency, procedural rhetoric, and representation in games.', credits: 5, category: 'elective', interestTags: ['film', 'video-games', 'design'], prereqs: [], genEdReqs: [] },
+    { id: 'CMS302', title: 'Media Arts and Cultures', description: 'Cultural expressions and aesthetic formations across media forms including comics, games, electronic literature, video installations, photography, and soundscapes.', credits: 5, category: 'elective', interestTags: ['film', 'video-games', 'design'], prereqs: [], genEdReqs: [] },
     { id: 'INFO200', title: 'Intellectual Foundations of Informatics', description: 'Information in society, human-information interaction, data ethics, and the social impact of technology.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: ['social-science', 'addl-ah-ssc'] },
 
     // ===================================================================
@@ -321,7 +320,7 @@ export const uwExploreComplit: Curriculum = {
     // ===================================================================
     // DESIGN / DIGITAL ARTS
     // ===================================================================
-    { id: 'DESIGN360', title: 'Visual Communication Design', description: 'Typography, layout, color systems, and visual hierarchy. Designing for print and digital media with emphasis on communication clarity.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
+    { id: 'DESIGN369', title: 'Visual Systems', description: 'Organizational strategies and graphic interpretations using typography, images, and diverse applications of design to create a related network of dynamic solutions.', credits: 5, category: 'elective', interestTags: ['design'], prereqs: [], genEdReqs: [] },
 
     // ===================================================================
     // PSYCHOLOGY (as electives)
